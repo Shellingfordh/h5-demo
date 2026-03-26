@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创作者作品管理</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f9;
+        }
+        .container {
+            max-width: 900px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <div class="bg-white rounded-xl shadow-lg p-6 sm:p-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-gray-800">
+                🎨 创作者作品管理
+            </h1>
+
+            <!-- Top Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4 mb-6">
+                <button class="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full shadow-md transition duration-200 ease-in-out transform hover:scale-105">
+                    ➕ 上传新作品
+                </button>
+                <button class="w-full sm:w-auto px-6 py-3 border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 font-medium rounded-full shadow-md transition duration-200 ease-in-out transform hover:scale-105">
+                    进入Flutter商品编辑器
+                </button>
+            </div>
+
+            <!-- Filter and Search -->
+            <div class="bg-gray-50 p-4 rounded-xl mb-6 shadow-inner">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="flex items-center space-x-2 text-sm text-gray-600">
+                        <span class="font-medium">筛选条件:</span>
+                        <button class="px-3 py-1 rounded-full bg-blue-500 text-white font-semibold">全部</button>
+                        <button class="px-3 py-1 rounded-full hover:bg-gray-200 transition duration-200">待审核</button>
+                        <button class="px-3 py-1 rounded-full hover:bg-gray-200 transition duration-200">已通过</button>
+                        <button class="px-3 py-1 rounded-full hover:bg-gray-200 transition duration-200">被拒绝</button>
+                    </div>
+                    <div class="flex items-center w-full md:w-auto">
+                        <input type="text" placeholder="搜索作品..." class="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button class="px-4 py-2 bg-gray-700 hover:bg-gray-800 text-white rounded-r-full flex items-center justify-center">
+                            <span class="text-lg">🔍</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Table -->
+            <div class="overflow-x-auto rounded-xl shadow-md">
+                <table class="min-w-full bg-white rounded-xl overflow-hidden">
+                    <thead class="bg-gray-100 text-gray-600 uppercase text-xs sm:text-sm leading-normal">
+                        <tr>
+                            <th class="py-3 px-4 text-left">商品ID</th>
+                            <th class="py-3 px-4 text-center">封面图</th>
+                            <th class="py-3 px-4 text-left">商品名称</th>
+                            <th class="py-3 px-4 text-left">状态</th>
+                            <th class="py-3 px-4 text-center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 text-sm font-light">
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-4">P001</td>
+                            <td class="py-3 px-4 text-center">
+                                <img src="https://placehold.co/60x60/f0f9ff/60a5fa?text=Cover" alt="封面缩略图" class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover mx-auto">
+                            </td>
+                            <td class="py-3 px-4">夏日插画海报</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-yellow-200 text-yellow-800 py-1 px-3 rounded-full text-xs font-semibold">待审核</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <a href="#" class="text-blue-500 hover:underline">查看详情</a>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-4">P002</td>
+                            <td class="py-3 px-4 text-center">
+                                <img src="https://placehold.co/60x60/f0f9ff/60a5fa?text=Cover" alt="封面缩略图" class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover mx-auto">
+                            </td>
+                            <td class="py-3 px-4">星空渐变插画</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-green-200 text-green-800 py-1 px-3 rounded-full text-xs font-semibold">已通过</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <a href="#" class="text-blue-500 hover:underline">查看详情</a>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-4">P003</td>
+                            <td class="py-3 px-4 text-center">
+                                <img src="https://placehold.co/60x60/f0f9ff/60a5fa?text=Cover" alt="封面缩略图" class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover mx-auto">
+                            </td>
+                            <td class="py-3 px-4">儿童读物封面</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs font-semibold">被拒绝</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <a href="#" class="text-blue-500 hover:underline">查看详情</a>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-4">P004</td>
+                            <td class="py-3 px-4 text-center">
+                                <img src="https://placehold.co/60x60/f0f9ff/60a5fa?text=Cover" alt="封面缩略图" class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover mx-auto">
+                            </td>
+                            <td class="py-3 px-4">3D渲染小场景</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-green-200 text-green-800 py-1 px-3 rounded-full text-xs font-semibold">已通过</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <a href="#" class="text-blue-500 hover:underline">查看详情</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-6 text-center text-sm text-gray-500">
+                <p>共 4 个作品，当前筛选：全部</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

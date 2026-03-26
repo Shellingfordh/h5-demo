@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IUUFU - Wearable Art</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfbf8;
+            color: #1a202c;
+        }
+        .container {
+            max-width: 600px;
+        }
+        .artistic-shadow {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05), 0 6px 6px rgba(0,0,0,0.1);
+        }
+        .artistic-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Flowing line animation for the "How it Works" section */
+        @keyframes flow-line {
+            0% { transform: scaleX(0); opacity: 0; }
+            50% { transform: scaleX(1); opacity: 1; }
+            100% { transform: scaleX(0); opacity: 0; }
+        }
+        .animate-flow-line {
+            animation: flow-line 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-[#FBF8EF] p-4 sm:p-6">
+    <div class="container mx-auto bg-white rounded-3xl artistic-shadow overflow-hidden">
+        <!-- Main Logo Section -->
+        <header class="p-8 text-center bg-[#1A202C] text-white rounded-t-3xl">
+            <h1 class="text-6xl font-extrabold tracking-tight artistic-heading">iuufu</h1>
+            <p class="text-sm italic mt-2 text-gray-400">Where AI and Art Intersect</p>
+        </header>
+
+        <!-- Featured Creations Section with Artistic GIF/Video -->
+        <section class="p-6">
+            <h2 class="text-xl font-bold text-center mb-6 artistic-heading text-gray-800">Featured Creations</h2>
+            <a href="#products" class="block group relative rounded-2xl overflow-hidden artistic-shadow transform transition-transform duration-300 hover:scale-105">
+                <!-- Artistic Placeholder: GIF of a starry night in a painterly style -->
+                <img src="https://media.giphy.com/media/xT0xezxJ98Wc9c5DkQ/giphy.gif" alt="Animated GIF of an AI-generated starry night painting in the style of Van Gogh" class="w-full h-auto">
+                <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-6 text-white transition-opacity duration-300 group-hover:bg-opacity-60">
+                    <h3 class="text-2xl font-bold mb-2 artistic-heading">Latest AI Masterpiece</h3>
+                    <p class="text-sm italic">Inspired by the strokes of Van Gogh.</p>
+                </div>
+                <div class="absolute top-4 right-4 bg-yellow-200 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full artistic-shadow">NEW</div>
+            </a>
+        </section>
+
+        <!-- Product Highlights Section -->
+        <section class="px-6 py-4 border-b border-gray-200" id="products">
+            <h2 class="text-xl font-bold text-center mb-6 artistic-heading text-gray-800">Wearable Art Collection</h2>
+            <div class="grid grid-cols-2 gap-6">
+                <a href="#" class="block text-center p-4 bg-gray-50 rounded-xl artistic-shadow hover:artistic-shadow transition-shadow duration-300 transform hover:scale-105">
+                    <img src="https://placehold.co/200x200/F4EAD3/88A0A0?text=Water+Lilies" alt="AI-generated water lilies design on a t-shirt, in the style of Monet" class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-medium text-sm">Monet-Inspired Tees</span>
+                </a>
+                <a href="#" class="block text-center p-4 bg-gray-50 rounded-xl artistic-shadow hover:artistic-shadow transition-shadow duration-300 transform hover:scale-105">
+                    <img src="https://placehold.co/200x200/D4B499/2E4057?text=Starry+Night" alt="AI-generated Starry Night design on a canvas print, in the style of Van Gogh" class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-medium text-sm">Starry Night Prints</span>
+                </a>
+                <a href="#" class="block text-center p-4 bg-gray-50 rounded-xl artistic-shadow hover:artistic-shadow transition-shadow duration-300 transform hover:scale-105">
+                    <img src="https://placehold.co/200x200/B8B8AC/D9D9D9?text=Impressionist+Posters" alt="AI-generated impressionist style posters" class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-medium text-sm">Impressionist Posters</span>
+                </a>
+                <a href="#" class="block text-center p-4 bg-gray-50 rounded-xl artistic-shadow hover:artistic-shadow transition-shadow duration-300 transform hover:scale-105">
+                    <img src="https://placehold.co/200x200/C0B0A0/4F443E?text=Rustic+Mugs" alt="AI-generated artistic design on mugs and accessories" class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-medium text-sm">Mugs & Accessories</span>
+                </a>
+            </div>
+            <p class="text-xs text-center text-gray-500 mt-4 italic">→ Each piece is a unique digital creation brought to life.</p>
+        </section>
+
+        <!-- Creator Community Section -->
+        <section class="p-6 border-b border-gray-200 bg-gray-50">
+            <h2 class="text-xl font-bold text-center mb-4 artistic-heading text-gray-800">Join the Collective</h2>
+            <div class="bg-white rounded-xl p-6 space-y-4 artistic-shadow">
+                <div class="text-center">
+                    <a href="#" class="inline-block px-8 py-4 bg-gray-900 text-white font-bold rounded-full artistic-shadow hover:bg-gray-700 transition-colors duration-300 transform hover:scale-105">
+                        Become a Creator
+                    </a>
+                    <p class="text-sm text-gray-600 mt-2">Unleash your AI creativity and share it with the world.</p>
+                </div>
+                <div class="text-center">
+                    <a href="#" class="inline-block text-blue-600 hover:underline font-semibold">
+                        Discover Inspiring Artists
+                    </a>
+                    <p class="text-sm text-gray-600 mt-1">Explore our vibrant community of visionary creators.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section with simple animation -->
+        <section class="p-6 border-b border-gray-200">
+            <h2 class="text-xl font-bold text-center mb-6 artistic-heading text-gray-800">The Artistic Process</h2>
+            <div class="flex items-center justify-around text-center space-x-2">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full mb-1 text-2xl">✍️</div>
+                    <span class="text-xs font-semibold">Inspiration</span>
+                </div>
+                <div class="text-gray-400 text-2xl">→</div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full mb-1 text-2xl">🎨</div>
+                    <span class="text-xs font-semibold">AI Creation</span>
+                </div>
+                <div class="text-gray-400 text-2xl">→</div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full mb-1 text-2xl">🖼️</div>
+                    <span class="text-xs font-semibold">Physical Art</span>
+                </div>
+                <div class="text-gray-400 text-2xl">→</div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full mb-1 text-2xl">📦</div>
+                    <span class="text-xs font-semibold">You</span>
+                </div>
+            </div>
+            <ul class="mt-6 space-y-2 text-gray-600 list-disc list-inside">
+                <li>From a single thought to a unique design.</li>
+                <li>Artistic freedom with a technological edge.</li>
+                <li>Seamless transition from digital art to tangible products.</li>
+            </ul>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="p-6 text-center border-b border-gray-200">
+            <h2 class="text-xl font-bold mb-4 artistic-heading text-gray-800">Become a Part of the Movement</h2>
+            <div class="space-y-4">
+                <a href="#" class="block w-full px-6 py-4 bg-blue-600 text-white font-bold rounded-full artistic-shadow hover:bg-blue-500 transition-colors duration-300">
+                    Start Your Art Journey
+                </a>
+                <a href="#products" class="block w-full px-6 py-4 border border-gray-300 text-gray-800 font-bold rounded-full artistic-shadow hover:bg-gray-100 transition-colors duration-300">
+                    Explore All Collections
+                </a>
+            </div>
+        </section>
+
+        <!-- Tagline Section -->
+        <section class="p-6 text-center bg-gray-50 rounded-b-3xl">
+            <div class="space-y-2 text-gray-500 italic">
+                <p>"Wear the Future. Art by AI. Worn by You."</p>
+                <p>"From Pixels to Products. From Imagination to Reality."</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="p-6 text-center bg-gray-900 text-white rounded-b-3xl">
+            <div class="flex justify-center items-center space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Website</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Instagram</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Pinterest</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Threads</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Email</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

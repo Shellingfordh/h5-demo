@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InCosmos Art Universe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0c10;
+            color: #d1d5db;
+        }
+        .container {
+            max-width: 600px;
+        }
+        .cosmic-shadow {
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1), 0 5px 15px rgba(0, 255, 255, 0.2);
+        }
+        .space-heading {
+            font-family: 'Space Mono', monospace;
+            text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff;
+        }
+        
+        /* Star twinkle animation for the banner */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .twinkle-stars span {
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        /* Hover bounce and glow for product cards */
+        .card-bounce:hover {
+            animation: bounce 0.5s ease-in-out;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+        }
+
+        /* Flowing arrow animation */
+        @keyframes flow-glow {
+            0%, 100% { color: #5eead4; }
+            50% { color: #06b6d4; transform: scale(1.1); }
+        }
+        .animate-flow-glow {
+            animation: flow-glow 2s infinite ease-in-out;
+        }
+        .animate-flow-glow:nth-child(2) { animation-delay: 0.5s; }
+        .animate-flow-glow:nth-child(4) { animation-delay: 1s; }
+        .animate-flow-glow:nth-child(6) { animation-delay: 1.5s; }
+    </style>
+</head>
+<body class="bg-[#0B0C10] p-4 sm:p-6 text-gray-300">
+    <div class="container mx-auto bg-gray-900 rounded-3xl cosmic-shadow overflow-hidden">
+        <!-- Main Logo Section -->
+        <header class="p-8 text-center bg-gray-800 rounded-t-3xl">
+            <h1 class="space-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-widest text-white">IUUFU ART</h1>
+            <p class="text-sm italic mt-4 text-gray-400">🌀 Welcome to InCosmos Art Universe 🌀</p>
+        </header>
+
+        <!-- Animated Splash Banner Section -->
+        <section class="p-6">
+            <a href="#featured-artwork" class="block group relative rounded-2xl overflow-hidden cosmic-shadow transform transition-transform duration-300 hover:scale-105">
+                <img src="https://media.giphy.com/media/hK2U30h372k8s4kLwR/giphy.gif" alt="Animated cosmic nebula banner" class="w-full h-auto">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6 text-white transition-opacity duration-300 group-hover:bg-opacity-70">
+                    <h3 class="text-2xl font-bold mb-2 space-heading">Featured AI Nebula</h3>
+                    <p class="text-sm italic">→ Hover for a closer look at the stars.</p>
+                </div>
+            </a>
+        </section>
+
+        <!-- Featured Creations Section -->
+        <section class="px-6 py-4 border-b border-gray-700" id="featured-artwork">
+            <h2 class="text-xl font-bold text-center mb-6 space-heading text-cyan-400">Featured Creations</h2>
+            <div class="grid grid-cols-2 gap-6">
+                <a href="#" class="block text-center p-4 bg-gray-800 rounded-xl cosmic-shadow card-bounce card-glow transform transition-all duration-300">
+                    <img src="https://placehold.co/200x200/4B4B4B/fff?text=Cosmic+Tees" alt="Cosmic-themed t-shirt" class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-medium text-sm">Cosmic Tees</span>
+                </a>
+                <a href="#" class="block text-center p-4 bg-gray-800 rounded-xl cosmic-shadow card-bounce card-glow transform transition-all duration-300">
+                    <img src="https://placehold.co/200x200/4B4B4B/fff?text=AI+Mugs" alt="AI-generated art on a mug" class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-medium text-sm">AI Mugs</span>
+                </a>
+                <a href="#" class="block text-center p-4 bg-gray-800 rounded-xl cosmic-shadow card-bounce card-glow transform transition-all duration-300">
+                    <img src="https://placehold.co/200x200/4B4B4B/fff?text=Posters" alt="Poster with motion graphics" class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-medium text-sm">Posters with Motion</span>
+                </a>
+                <a href="#" class="block text-center p-4 bg-gray-800 rounded-xl cosmic-shadow card-bounce card-glow transform transition-all duration-300">
+                    <img src="https://placehold.co/200x200/4B4B4B/fff?text=Collectibles" alt="Digital collectibles NFT" class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-medium text-sm">Digital Collectibles</span>
+                </a>
+            </div>
+            <p class="text-xs text-center text-gray-500 mt-4 italic">→ Click to explore each product's universe.</p>
+        </section>
+
+        <!-- Gameified Creator Hub Section -->
+        <section class="p-6 border-b border-gray-700 bg-gray-800">
+            <h2 class="text-xl font-bold text-center mb-4 space-heading text-cyan-400">Gameified Creator Hub</h2>
+            <div class="bg-gray-900 rounded-xl p-6 space-y-4 cosmic-shadow">
+                <div class="text-center">
+                    <a href="#" class="inline-block px-8 py-4 bg-cyan-600 text-white font-bold rounded-full shadow-lg hover:bg-cyan-500 transition-colors duration-300 transform hover:scale-105">
+                        Level Up Your Art
+                    </a>
+                    <p class="text-sm text-gray-400 mt-2">Earn XP, collect badges, and connect with fellow artists.</p>
+                </div>
+                <div class="text-center">
+                    <a href="#" class="inline-block text-cyan-400 hover:underline font-semibold">
+                        Follow Creators
+                    </a>
+                    <p class="text-sm text-gray-400 mt-1">Discover trending works and unlock hidden art.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Creative Flow Section -->
+        <section class="p-6 border-b border-gray-700">
+            <h2 class="text-xl font-bold text-center mb-6 space-heading text-cyan-400">Creative Flow</h2>
+            <div class="flex items-center justify-around text-center space-x-2">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-full mb-1 text-2xl">✍️</div>
+                    <span class="text-xs font-semibold">Inspiration</span>
+                </div>
+                <div class="text-cyan-400 text-2xl animate-flow-glow">→</div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-full mb-1 text-2xl">🪄</div>
+                    <span class="text-xs font-semibold">AI Magic</span>
+                </div>
+                <div class="text-cyan-400 text-2xl animate-flow-glow">→</div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-full mb-1 text-2xl">🖼️</div>
+                    <span class="text-xs font-semibold">Product</span>
+                </div>
+                <div class="text-cyan-400 text-2xl animate-flow-glow">→</div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-full mb-1 text-2xl">👨‍🚀</div>
+                    <span class="text-xs font-semibold">Collector</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Adventure Section -->
+        <section class="p-6 text-center border-b border-gray-700">
+            <h2 class="text-xl font-bold mb-4 space-heading text-cyan-400">Call to Adventure</h2>
+            <div class="space-y-4">
+                <a href="#" class="block w-full px-6 py-4 bg-blue-600 text-white font-bold rounded-full cosmic-shadow hover:bg-blue-500 transition-colors duration-300">
+                    Join the Universe
+                </a>
+                <a href="#featured-artwork" class="block w-full px-6 py-4 border border-gray-700 text-white font-bold rounded-full cosmic-shadow hover:bg-gray-800 transition-colors duration-300">
+                    Explore the Galaxy
+                </a>
+            </div>
+        </section>
+
+        <!-- Tagline Section -->
+        <section class="p-6 text-center bg-gray-800 rounded-b-3xl">
+            <div class="space-y-2 text-gray-500 italic">
+                <p>"Turn Pixels into Planets. Make Art Playable."</p>
+                <p>"Collect, Wear, and Live Your Imagination."</p>
+                <p>"Adventure is not just a game — it’s art."</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="p-6 text-center bg-gray-900 text-white rounded-b-3xl">
+            <div class="flex justify-center items-center space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Website</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Instagram</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Pinterest</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Threads</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Email</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IUUFU Wonderland</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #FFF0E0; /* A soft, warm off-white */
+            color: #555;
+        }
+        .container {
+            max-width: 600px;
+        }
+        .cute-shadow {
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.1), 0 5px 15px rgba(255, 165, 0, 0.2);
+        }
+        .cute-heading {
+            font-family: 'Pacifico', cursive;
+        }
+
+        /* Header banner animations */
+        @keyframes float-sparkle {
+            0%, 100% { transform: translateY(0); opacity: 0.8; }
+            50% { transform: translateY(-15px); opacity: 1; }
+        }
+        @keyframes paw-sway {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        .float-animation {
+            animation: float-sparkle 4s ease-in-out infinite;
+        }
+        .float-animation.paw {
+            animation-name: paw-sway;
+            animation-duration: 5s;
+        }
+        
+        /* Product card hover effects */
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 165, 0, 0.4);
+        }
+        .card-hover:hover .heart-pop {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+        .card-hover:hover .paw-animation {
+            opacity: 1;
+            transform: rotate(10deg);
+        }
+        .heart-pop, .paw-animation {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 2rem;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s ease;
+        }
+        .paw-animation {
+            font-size: 2.5rem;
+        }
+
+        /* Creative Flow animation */
+        @keyframes pastel-flow {
+            0% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .flow-path {
+            background-image: linear-gradient(to right, #FFDAB9 0%, #FFA07A 25%, #FF6347 50%, #FFA07A 75%, #FFDAB9 100%);
+            background-size: 200% 100%;
+            animation: pastel-flow 5s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-[#FFF0E0] p-4 sm:p-6">
+    <div class="container mx-auto bg-white rounded-3xl cute-shadow overflow-hidden">
+        <!-- Main Logo & Tagline -->
+        <header class="p-8 text-center bg-[#FFDAB9] text-white rounded-t-3xl">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold cute-heading text-[#8B4513]">💖 IUUFU 💖</h1>
+            <p class="text-sm italic mt-2 text-[#4B4B4B]">"Art That You Can Wear & Love"</p>
+        </header>
+
+        <!-- Animated Header Banner -->
+        <section class="p-6 relative bg-[#FFDAB9] overflow-hidden">
+            <div class="w-full h-48 rounded-2xl relative overflow-hidden">
+                <img src="https://placehold.co/600x200/FFB6C1/FFF?text=Welcome+to+IUUFU+Wonderland" alt="A pastel wonderland banner with a soft background." class="w-full h-full object-cover">
+                <!-- Floating elements -->
+                <span class="absolute top-1/4 left-1/4 text-4xl float-animation" style="animation-delay: 0.5s;">✨</span>
+                <span class="absolute top-1/2 left-3/4 text-3xl float-animation" style="animation-delay: 1.2s;">✨</span>
+                <span class="absolute top-2/3 left-1/2 text-5xl float-animation paw" style="animation-delay: 2s;">🐾</span>
+            </div>
+            <p class="text-sm text-center text-gray-500 mt-4 italic">→ Click to explore our newest magical creations.</p>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="px-6 py-4 border-b border-[#F0D5BB]" id="products">
+            <h2 class="text-xl font-bold text-center mb-6 text-[#FF6347]">🛍 Featured Products</h2>
+            <div class="grid grid-cols-2 gap-6">
+                <a href="#" class="block text-center p-4 bg-white rounded-xl cute-shadow card-hover transform transition-transform duration-300 relative">
+                    <img src="https://placehold.co/200x200/FFB6C1/FFF?text=Artsy+Tees" alt="Artsy t-shirt in pink-orange tones." class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-semibold text-sm">Artsy AI Tees</span>
+                    <span class="paw-animation">🐾</span>
+                </a>
+                <a href="#" class="block text-center p-4 bg-white rounded-xl cute-shadow card-hover transform transition-transform duration-300 relative">
+                    <img src="https://placehold.co/200x200/FFA07A/FFF?text=Cat+Mugs" alt="Mug with a minimalist cat design." class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-semibold text-sm">Cat Mugs</span>
+                    <span class="paw-animation">🐾</span>
+                </a>
+                <a href="#" class="block text-center p-4 bg-white rounded-xl cute-shadow card-hover transform transition-transform duration-300 relative">
+                    <img src="https://placehold.co/200x200/FFDAB9/FFF?text=Art+Prints" alt="A pink-orange art print." class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-semibold text-sm">Art Prints</span>
+                    <span class="paw-animation">🐾</span>
+                </a>
+                <a href="#" class="block text-center p-4 bg-white rounded-xl cute-shadow card-hover transform transition-transform duration-300 relative">
+                    <img src="https://placehold.co/200x200/FFD1DC/4B4B4B?text=Plushies" alt="Plush cat accessory." class="w-full h-auto rounded-xl mb-2">
+                    <span class="font-semibold text-sm">Plush Accessories</span>
+                    <span class="paw-animation">🐾</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Creator Corner -->
+        <section class="p-6 border-b border-[#F0D5BB] bg-[#FFDAB9]">
+            <h2 class="text-xl font-bold text-center mb-4 text-[#FF6347]">🐾 Creator Corner</h2>
+            <div class="bg-white rounded-xl p-6 space-y-4 cute-shadow">
+                <div class="text-center">
+                    <a href="#" class="inline-block px-8 py-4 bg-[#FF6347] text-white font-bold rounded-full shadow-lg hover:bg-[#FF8FAB] transition-colors duration-300 transform hover:scale-105">
+                        Become a Creator
+                    </a>
+                    <p class="text-sm text-gray-600 mt-2">Build your brand, engage fans, and monetize your designs.</p>
+                </div>
+                <div class="text-center">
+                    <a href="#" class="inline-block text-[#FF6347] hover:underline font-semibold">
+                        Follow Trending Artists
+                    </a>
+                    <p class="text-sm text-gray-600 mt-1">Leave heart reactions and collect cute badges!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Creative Journey Flow -->
+        <section class="p-6 border-b border-[#F0D5BB]">
+            <h2 class="text-xl font-bold text-center mb-6 text-[#FF6347]">🌈 Creative Journey</h2>
+            <div class="flex items-center justify-around text-center space-x-2">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-[#FFF0E0] rounded-full mb-1 text-2xl">💡</div>
+                    <span class="text-xs font-semibold">Inspiration</span>
+                </div>
+                <div class="text-3xl text-[#FFA07A] animate-flow-glow">→</div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-[#FFDAB9] rounded-full mb-1 text-2xl">🎨</div>
+                    <span class="text-xs font-semibold">AI Design</span>
+                </div>
+                <div class="text-3xl text-[#FFA07A] animate-flow-glow">→</div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-[#FFA07A] rounded-full mb-1 text-2xl">📦</div>
+                    <span class="text-xs font-semibold">Product</span>
+                </div>
+                <div class="text-3xl text-[#FFA07A] animate-flow-glow">→</div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 flex items-center justify-center bg-[#FF6347] rounded-full mb-1 text-2xl">💖</div>
+                    <span class="text-xs font-semibold">Fans</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="p-6 text-center border-b border-[#F0D5BB]">
+            <h2 class="text-xl font-bold mb-4 text-[#FF6347]">🎀 Find Your Perfect Match</h2>
+            <div class="space-y-4">
+                <a href="#" class="block w-full px-6 py-4 bg-[#FF6347] text-white font-bold rounded-full cute-shadow hover:bg-[#FF8FAB] transition-colors duration-300">
+                    Join IUUFU Today
+                </a>
+                <a href="#products" class="block w-full px-6 py-4 border border-[#FFDAB9] text-[#FF6347] font-bold rounded-full cute-shadow hover:bg-[#FFF5F7] transition-colors duration-300">
+                    Explore Products
+                </a>
+            </div>
+        </section>
+
+        <!-- Tagline -->
+        <section class="p-6 text-center bg-[#FFDAB9] rounded-b-3xl">
+            <div class="space-y-2 text-gray-500 italic">
+                <p>"Wear the Art, Share the Love."</p>
+                <p>"From Imagination to Cute Reality."</p>
+                <p>"Life is pastel, playful, and paw-some!"</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="p-6 text-center bg-[#FFA07A] text-[#4B4B4B] rounded-b-3xl">
+            <div class="flex justify-center items-center space-x-4">
+                <a href="#" class="text-gray-500 hover:text-[#4B4B4B] transition-colors duration-300">Website</a>
+                <a href="#" class="text-gray-500 hover:text-[#4B4B4B] transition-colors duration-300">Instagram</a>
+                <a href="#" class="text-gray-500 hover:text-[#4B4B4B] transition-colors duration-300">Pinterest</a>
+                <a href="#" class="text-gray-500 hover:text-[#4B4B4B] transition-colors duration-300">Threads</a>
+                <a href="#" class="text-gray-500 hover:text-[#4B4B4B] transition-colors duration-300">Email</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

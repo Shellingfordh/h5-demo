@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:media="http://search.yahoo.com/mrss/"
+     xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>BoringDay App Product Feed</title>
+        <link>https://example.com</link>
+        <description>RSS feed for BoringDay App product images</description>
+        <atom:link href="https://example.com/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title>8K Minimal Aesthetic Painting of Galloping Horses Wallpaper</title>
+            <link>https://boringday.app/product/8k-minimal-aesthetic-painting-of-galloping-horses-wallpaper/</link>
+            <guid isPermaLink="true">https://boringday.app/product/8k-minimal-aesthetic-painting-of-galloping-horses-wallpaper/</guid>
+            <pubDate>Fri, 05 Dec 2025 09:22:10 UTC</pubDate>
+            <description>
+                <![CDATA[
+                They run not from the wind, but with it.
+A thunder of hooves shaping the air into memory.
+
+Share with someone who’d get it.
+#horses #motion #wilderness #artistic #nature #emotional #wallpaper #dejavuwallpaper #dust #freedom
+
+Search code: mp0320 in the app to get this original wallpaper in high-res！
+            ]]>
+            </description>
+            <media:content url="https://boringday-pic.oss-cn-zhangjiakou.aliyuncs.com/wallpaperpsdimg/2025-04/mp0320_woocommerce/b27b40a5941ca8a14a2ab8e9b2ca2a0a.webp?x-oss-credential=LTAI5t9EY8kJBgaTYDLMpE5V%2F20251205%2Fcn-zhangjiakou%2Foss%2Faliyun_v4_request&amp;x-oss-date=20251205T092210Z&amp;x-oss-expires=259200&amp;x-oss-process=image%2Fresize%2Cw_1920%2Cm_lfit%2Fquality%2CQ_90%2Fformat%2Cwebp&amp;x-oss-signature=c2df5ba145f7db13a604d988ce16389dfd95da54a1c1b2c1519f7ad2a6a9aa7c&amp;x-oss-signature-version=OSS4-HMAC-SHA256" medium="image"/>
+        </item>
+    </channel>
+</rss>

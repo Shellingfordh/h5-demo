@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创作者中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f9;
+        }
+        .container {
+            max-width: 900px;
+        }
+        /* 仅在只读状态下应用灰色背景和不可用光标 */
+        input:read-only, textarea:read-only {
+            background-color: #e5e7eb;
+            cursor: not-allowed;
+            color: #4b554b;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #374151;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .section-header .icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+        }
+        .section-line {
+            width: 100%;
+            height: 1px;
+            background-color: #e5e7eb;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 space-y-8">
+
+            <!-- 页面标题 -->
+            <div class="text-center">
+                <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-6">
+                    创作者中心
+                </h1>
+            </div>
+            
+            <div class="section-line"></div>
+
+            <!-- 基本信息 Section -->
+            <div class="space-y-6">
+                <h2 class="section-header">
+                    <div class="section-title">
+                        <span class="icon">👤</span> 基本信息
+                    </div>
+                    <!-- 本地修改/保存 按钮 -->
+                    <button id="toggleEditBtn" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm font-medium text-gray-700 transition-colors duration-200">
+                        修改/保存
+                    </button>
+                </h2>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-1">用户名</label>
+                    <input type="text" value="read-only，同WP账号" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-1">邮箱</label>
+                    <input type="text" id="emailInput" value="email@example.com" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-1">手机</label>
+                    <input type="text" id="phoneInput" value="12345678901" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+
+            <div class="section-line"></div>
+
+            <!-- 创作者资料 Section -->
+            <div class="space-y-6">
+                <h2 class="section-header">
+                    <div class="section-title">
+                        <span class="icon">📄</span> 创作者资料
+                    </div>
+                </h2>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-1">姓名 / 机构名</label>
+                    <input type="text" placeholder="请输入姓名或机构名" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-1">个人简介 <span class="text-xs text-gray-400">(≤500字)</span></label>
+                    <textarea placeholder="请填写个人简介，支持 Markdown 格式" readonly class="w-full px-4 py-3 h-32 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+                </div>
+                <div class="space-y-3">
+                    <label class="block text-sm font-medium text-gray-600">社交链接</label>
+                    <input type="text" placeholder="Instagram (可选)" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" placeholder="Behance (可选)" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" placeholder="Dribbble (可选)" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" placeholder="其他 (可选)" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+
+            <div class="section-line"></div>
+
+            <!-- 资质上传 Section -->
+            <div class="space-y-4">
+                <h2 class="section-header">
+                    <div class="section-title">
+                        <span class="icon">🪪</span> 资质上传
+                    </div>
+                </h2>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button class="w-full sm:w-auto px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium rounded-lg transition duration-200">
+                        上传身份证件/营业执照
+                    </button>
+                    <div class="flex-grow space-y-1">
+                        <p class="font-medium">状态：<span class="text-yellow-600">待审核</span></p>
+                        <p class="text-xs text-gray-500">
+                            提示：暂不接第三方实名验证，可后台人工审核。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-line"></div>
+
+            <!-- 收款账户设置 Section -->
+            <div class="space-y-4">
+                <h2 class="section-header">
+                    <div class="section-title">
+                        <span class="icon">💰</span> 收款账户设置
+                    </div>
+                </h2>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-1">支付宝账号</label>
+                    <input type="text" placeholder="请输入支付宝账号" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-1">PayPal账号</label>
+                    <input type="text" placeholder="请输入PayPal账号" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400 text-yellow-700 text-sm">
+                    ⚠️ 提现方式从这里填写，仅可在此修改，不可在提现页面临时修改
+                </div>
+            </div>
+            
+            <div class="section-line"></div>
+
+            <!-- 快捷入口 Section -->
+            <div class="space-y-2">
+                <h2 class="section-header">
+                    <div class="section-title">
+                        <span class="icon">🔗</span> 快捷入口
+                    </div>
+                </h2>
+                <ul class="space-y-2 text-gray-600">
+                    <li><a href="#" class="hover:underline hover:text-blue-600 transition-colors duration-200">• 创作者工具页 → 进入Flutter Web编辑器</a></li>
+                    <li><a href="#" class="hover:underline hover:text-blue-600 transition-colors duration-200">• 作品管理 → 管理、上下架、审核状态</a></li>
+                    <li><a href="#" class="hover:underline hover:text-blue-600 transition-colors duration-200">• 收益 & 提现 → 查看订单明细 + 发起提现</a></li>
+                    <li><a href="#" class="hover:underline hover:text-blue-600 transition-colors duration-200">• 订单明细 → 查看所有卖出订单及收益状态</a></li>
+                    <li><a href="#" class="hover:underline hover:text-blue-600 transition-colors duration-200">• 帮助中心 → 创作者指南 / 常见问题解答</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 获取需要控制的 DOM 元素
+        const toggleEditBtn = document.getElementById('toggleEditBtn');
+        const emailInput = document.getElementById('emailInput');
+        const phoneInput = document.getElementById('phoneInput');
+
+        /**
+         * 切换基本信息字段的编辑状态和按钮文本/样式
+         */
+        toggleEditBtn.addEventListener('click', () => {
+            const isReadOnly = emailInput.readOnly;
+
+            if (isReadOnly) {
+                // 当前是只读状态，切换到可编辑
+                emailInput.readOnly = false;
+                phoneInput.readOnly = false;
+                toggleEditBtn.textContent = '保存';
+                toggleEditBtn.classList.remove('bg-gray-200', 'hover:bg-gray-300', 'text-gray-700');
+                toggleEditBtn.classList.add('bg-blue-600', 'hover:bg-blue-700', 'text-white');
+                emailInput.focus(); // 聚焦第一个可编辑字段
+            } else {
+                // 当前是可编辑状态，执行保存逻辑并切换回只读
+                // TODO: 在这里添加实际的后端保存逻辑
+                console.log('保存基本信息：', {
+                    email: emailInput.value,
+                    phone: phoneInput.value
+                });
+                
+                emailInput.readOnly = true;
+                phoneInput.readOnly = true;
+                toggleEditBtn.textContent = '修改/保存';
+                toggleEditBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700', 'text-white');
+                toggleEditBtn.classList.add('bg-gray-200', 'hover:bg-gray-300', 'text-gray-700');
+            }
+        });
+    </script>
+</body>
+</html>

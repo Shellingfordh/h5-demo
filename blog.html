@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vincent's Light: An Exploration of Color and Emotion</title>
+    <!-- Load Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Apply Inter font and standard fallbacks */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: #f7f7f7;
+            /* Remove padding from body to allow full-bleed image */
+            padding: 0;
+        }
+        /* Custom styles for 3:4 aspect ratio */
+        .aspect-3-4 {
+            /* Using aspect-ratio utility for precise control */
+            aspect-ratio: 3 / 4; 
+        }
+        /* Custom button styling for the dark download buttons */
+        .download-btn {
+            /* Styles to match the provided screenshot: black background, rounded corners, shadow */
+            @apply flex items-center justify-center p-3 sm:p-4 bg-black text-white rounded-xl shadow-lg transition duration-200 hover:bg-gray-800 border-2 border-transparent;
+            min-height: 80px; /* Ensure buttons are large enough for touch targets */
+        }
+    </style>
+</head>
+<body class="p-0 sm:p-0">
+
+    <!-- FULL-BLEED FEATURED IMAGE HEADER (Shopify Blog Style) -->
+    <header class="relative w-full h-[500px] sm:h-[600px] overflow-hidden">
+        <!-- Background Image (1200x630 OG Ratio is maintained by object-cover, but visual height is fixed) -->
+        <img 
+            src="https://placehold.co/1200x630/6366F1/ffffff?text=Van+Gogh+Featured+Art+Header" 
+            alt="Featured art image for blog post header" 
+            class="absolute inset-0 w-full h-full object-cover"
+            onerror="this.onerror=null; this.src='https://placehold.co/1200x630/6366F1/ffffff?text=Image+Load+Failed';"
+        >
+        
+        <!-- Gradient Overlay for Text Readability -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+        
+        <!-- Content Overlay (Title, Text, Metadata) -->
+        <div class="relative z-10 max-w-7xl mx-auto h-full flex flex-col justify-end p-6 sm:p-10 text-white">
+            
+            <!-- Metadata (Simplified) -->
+            <div class="text-sm opacity-90 mb-6 flex justify-between items-center max-w-4xl mx-auto w-full">
+                 <span class="font-semibold">By ART LOVER</span> 
+                 <span class="text-xs">SEP 25, 2025 | INSPIRATION MAGS</span>
+            </div>
+            
+            <!-- H1 Title -->
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-center max-w-4xl mx-auto mb-6 leading-tight">
+                Vincent's Light: An Exploration of Color and Emotion
+            </h1>
+            
+            <!-- Summary Text (Using snippet of original prose) -->
+            <p class="text-lg text-center max-w-3xl mx-auto leading-relaxed opacity-95 mb-10">
+                Vincent van Gogh’s love affair with yellow was not merely a choice of pigment but an expression of his emotional intensity and hope under the fierce Provençal sun.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Container (Limited Width, White Card) -->
+    <!-- The negative margin pulls the white card up to overlap the header slightly -->
+    <div class="max-w-7xl mx-auto bg-white p-6 sm:p-10 rounded-2xl shadow-2xl mt-[-40px] relative z-20">
+
+        <!-- Share Widget Placeholder (as seen in the reference image) -->
+        <div class="flex items-center text-gray-500 text-sm mb-10 border-b pb-4">
+            <span class="font-semibold mr-4">Share:</span>
+            <div class="flex space-x-3">
+                <!-- Placeholder Icons (X, Pinterest, Facebook, Link) -->
+                <a href="#share-x" class="hover:text-black transition duration-150"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.9 3.3c-0.7 0.3-1.4 0.5-2.2 0.6 0.8-0.5 1.4-1.2 1.7-2.1 -0.8 0.5-1.7 0.8-2.6 1 -0.7-0.7-1.7-1.2-2.8-1.2 -2.1 0-3.8 1.7-3.8 3.8 0 0.3 0 0.6 0.1 0.9 -3.2-0.2-6-1.7-7.9-4 -0.3 0.5-0.5 1-0.5 1.7 0 1.3 0.7 2.4 1.7 3.1 -0.6 0-1.3-0.2-1.8-0.5 0 0 0 0 0 0 0 1.8 1.2 3.3 2.8 3.6 -0.3 0.1-0.6 0.1-0.9 0.1 -0.2 0-0.4 0-0.6-0.1 0.4 1.4 1.8 2.5 3.4 2.5 -1.2 1-2.7 1.6-4.3 1.6 -0.3 0-0.6 0-0.9-0.1 1.5 1 3.2 1.6 5 1.6 6 0 9.3-5 9.3-9.3 0-0.1 0-0.3 0-0.4 0.6-0.5 1.2-1.2 1.6-2z"/></svg></a>
+                <a href="#share-pin" class="hover:text-black transition duration-150"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-2.48 0-4.5-2.02-4.5-4.5 0-2.48 2.02-4.5 4.5-4.5s4.5 2.02 4.5 4.5c0 2.48-2.02 4.5-4.5 4.5zm-1.8-11.83c-0.14-0.18-0.4-0.2-0.6-.04 -0.21 0.16-0.28 0.45-0.15 0.7l0.6 1.15c-0.5 0.1-1 0.35-1.4 0.75 -0.66 0.66-0.96 1.6-0.7 2.55 0.13 0.49 0.4 0.9 0.7 1.25 0.66 0.66 1.6 0.96 2.55 0.7 0.49-0.13 0.9-0.4 1.25-0.7 0.66-0.66 0.96-1.6 0.7-2.55 -0.13-0.49-0.4-0.9-0.7-1.25l-0.6-1.15zM12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8z"/></svg></a>
+                <a href="#share-fb" class="hover:text-black transition duration-150"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 3h-3c-1.1 0-2 0.9-2 2v2h3l-1 3h-2v11h-4V10H8v-3h2V5c0-2.2 1.8-4 4-4h3V3z"/></svg></a>
+                <a href="#share-link" class="hover:text-black transition duration-150"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7h-4V3h-4v4H7c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm0 12H7V9h10v10zM10 11H8v2h2v-2zM10 15H8v2h2v-2zM14 11h-2v2h2v-2zM14 15h-2v2h2v-2z"/></svg></a>
+            </div>
+        </div>
+        
+        <!-- Article Content Starts Here -->
+        <div class="space-y-10">
+
+            <!-- Subheading H2 and Prose 1: The Audacity of Yellow -->
+            <div>
+                <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-l-4 border-pink-500 pl-3">
+                    The Audacity of Yellow: Sunflowers and Arles
+                </h2>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    In Arles, Van Gogh chased the light with a feverish dedication, immortalizing sunflowers not as still life subjects, but as fiery symbols of life, gratitude, and the overwhelming brilliance of the French summer. Each petal and stalk, thick with impasto, vibrates with energy, pulling the viewer into a vortex of color that challenges the very notion of observation. It is in this yellow that we find the purest, if most tormented, joy of his creative spirit.
+                </p>
+            </div>
+
+            <!-- Subheading H2 and Prose 2: Night's Embrace -->
+            <div>
+                <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-l-4 border-pink-500 pl-3">
+                    Night's Embrace: Swirling Stars and Cypresses
+                </h2>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    When daylight failed, Van Gogh turned his gaze to the cosmos, transforming the silent night sky into a spectacular, turbulent drama. Works like "The Starry Night" are not topographical maps but visceral records of sensation. The stars burst forth as luminous orbs, and the air itself—rendered in thick, expressive strokes—appears to surge and swirl. The dark, flame-like cypress trees act as anchors, bridging the terrestrial world to the celestial upheaval above. These nocturnal visions reflect an artist grappling with profound spiritual questions, where the line between internal emotion and external reality is gloriously blurred.
+                </p>
+            </div>
+
+            <!-- Subheading H2 and Prose 3: Enduring Legacy -->
+            <div>
+                <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-l-4 border-pink-500 pl-3">
+                    The Enduring Legacy of the Post-Impressionist
+                </h2>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    Though his life was tragically short and his recognition scant, Van Gogh laid the groundwork for modern expressionism. His technique—the bold, separated brushstrokes, the non-naturalistic use of color, and the projection of subjective emotion onto the landscape—broke irrevocably from traditional constraints. His art speaks directly to the soul, resonating with a universal vulnerability and passion that few artists have matched. By daring to paint what he felt, rather than simply what he saw, Vincent van Gogh ensured his work would endure, continuing to inspire, challenge, and move generations.
+                </p>
+            </div>
+        </div>
+
+        <!-- Unified Wallpaper Gallery Section (Fixed 3:4 Ratio) -->
+        <div class="mt-16">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center">Van Gogh Inspired Gallery (3:4 Ratio)</h2>
+
+            <!-- Single Grid Container for ALL Wallpapers -->
+            <!-- Layout: 2 items per row on mobile, 3 on tablet/small desktop, 4 on large desktop -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                
+                <script>
+                    // Generate 12 wallpapers with a fixed 3:4 aspect ratio
+                    const totalWallpapers = 12; 
+                    const aspect34 = '450x600';
+                    const colors = ['FDCB6E', '2C3E50', 'E94C6D', '1ABC9C', '54A0FF', '9B59B6', '34495E', 'ECF0F1', 'E67E22', 'F39C12', '2ECC71', '3498DB'];
+
+                    for (let i = 0; i < totalWallpapers; i++) {
+                        const linkId = i + 1;
+                        document.write(`
+                            <a href="#product-link-${linkId}" class="block group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
+                                <div class="aspect-3-4"> <!-- Custom class for 3:4 -->
+                                    <img 
+                                        src="https://placehold.co/${aspect34}/${colors[i % colors.length]}/ffffff?text=VG+Wallpaper+${linkId}" 
+                                        alt="Van Gogh inspired wallpaper ${linkId} (3:4)" 
+                                        class="w-full h-full object-cover transition duration-300 group-hover:opacity-80"
+                                        onerror="this.onerror=null; this.src='https://placehold.co/450x600/cccccc/000000?text=Load+Error';"
+                                    >
+                                </div>
+                                <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <span class="text-white text-sm font-bold p-2 bg-indigo-600 rounded-full">Download Now</span>
+                                </div>
+                            </a>
+                        `);
+                    }
+                </script>
+
+            </div>
+            
+        </div>
+        
+        <!-- DOWNLOAD MODULE SECTION (Based on user-provided image) -->
+        <div class="mt-20 pt-8 border-t border-gray-200">
+            <p class="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">
+                You can download all these wallpapers on Dejavu Wallpaper!
+            </p>
+            <p class="text-gray-600 mb-8 max-w-4xl leading-relaxed">
+                Experience the magic of AI in advance! Let the infinite imagination of AI decorate your screens, bring you fresh delights every day.
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-4">
+                
+                <!-- 1. Apple App Store Button -->
+                <a href="#app-store-link" class="download-btn">
+                    <!-- Apple Logo SVG -->
+                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1293 831q0-101 44.5-207.5t125.5-200.5q-126-78-232-78-83 0-164 43t-154 115q-33 48-107 48-73 0-117-64-106-154-209-154-159 0-316 261-125 108-125 292 0 160 119.5 298.5t310.5 138.5q138 0 244-123t212-321q77-2 163 103 131-29 231-155 49 14 100 14 105 0 205-144-88-251-182-358z"/></svg>
+                    <div class="text-left">
+                        <span class="text-xs font-light block">Download on the</span>
+                        <span class="text-xl font-bold">App Store</span>
+                    </div>
+                </a>
+
+                <!-- 2. Android (Direct Download/APK Placeholder) -->
+                <a href="#android-apk-link" class="download-btn">
+                    <!-- Android Robot SVG -->
+                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1595 1682q-11 0-21-4-50-20-74-72-108-243-261-419-150-170-362-300-47-28-100-28t-100 28q-212 130-362 300-153 176-261 419-24 52-74 72-10 4-21 4-13 0-25-4-61-24-95-88-11-20-11-39 0-19 8-38 31-102 79-204 16-36 41-76-28-56-42-102-14-46-14-92 0-104 52-192 175-300 375-300 66 0 114 26 138-164 366-164 199 0 338 164 48-26 114-26 200 0 375 300 52 88 52 192 0 46-14 92-14 46-42 102 25 40 41 76 48 102 79 204 8 19 8 38 0 19-11 39-34 64-95 88-12 4-25 4zm-1456-483v-352q0-13-9.5-22.5t-22.5-9.5h-128q-13 0-22.5 9.5t-9.5 22.5v352q0 13 9.5 22.5t22.5 9.5h128q13 0 22.5-9.5t9.5-22.5zm1408 0v-352q0-13-9.5-22.5t-22.5-9.5h-128q-13 0-22.5 9.5t-9.5 22.5v352q0 13 9.5 22.5t22.5 9.5h128q13 0 22.5-9.5t9.5-22.5z"/></svg>
+                    <div class="text-left">
+                        <span class="text-xs font-light block">Download for</span>
+                        <span class="text-xl font-bold">Android</span>
+                    </div>
+                </a>
+
+                <!-- 3. Google Play Button -->
+                <a href="#google-play-link" class="download-btn">
+                    <!-- Google Play Icon (simplified triangle) -->
+                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5L20.5 12L3.5 22.5V1.5Z" /></svg>
+                    <div class="text-left">
+                        <span class="text-xs font-light block">GET IT ON</span>
+                        <span class="text-xl font-bold">Google Play</span>
+                    </div>
+                </a>
+                
+                <!-- 4. Galaxy Store Button -->
+                <a href="#galaxy-store-link" class="download-btn">
+                    <!-- Shopping Bag Icon SVG -->
+                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 6h-3c0-2.21-1.79-4-4-4S7 3.79 7 6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM9 6c0-1.1.9-2 2-2s2 .9 2 2H9zm9 14H4V8h3v2h2V8h6v2h2V8h3v12z"/></svg>
+                    <div class="text-left">
+                        <span class="text-xs font-light block">Available on the</span>
+                        <span class="text-xl font-bold">Galaxy Store</span>
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-16 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 Van Gogh Inspired Collection. All rights reserved.</p>
+            <p>Prototype demonstration. All art is inspired, and links are placeholders.</p>
+        </footer>
+
+    </div>
+    
+    <!-- Custom Aspect Ratio Configuration - Only 3:4 is needed now -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            aspectRatio: {
+              '3/4': '3 / 4',
+            },
+          }
+        }
+      }
+    </script>
+</body>
+</html>

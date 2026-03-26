@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InCosmos Art - Art you’ll actually use</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-sub: #666666;
+            --accent: #000000;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero Slider */
+        .slider-container {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-placeholder {
+            background: #eee;
+            border: 1px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        /* Dots */
+        .dots {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: rgba(0,0,0,0.8);
+            transform: scale(1.5);
+        }
+
+        /* Modules */
+        .module-section {
+            padding: 5rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: #000;
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 99px;
+            font-weight: 600;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.95);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .code-display {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-radius: 12px;
+            font-family: monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* 修正后的价值声明模块样式 */
+        .statement-section {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .statement-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            padding: 0 2rem;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航 -->
+    <nav class="sticky-nav">
+        <div class="font-bold tracking-tighter text-xl">InCosmos</div>
+        <a href="#download" class="text-sm font-semibold underline">Get App</a>
+    </nav>
+
+    <!-- Hero Slider -->
+    <div class="slider-container">
+        <!-- Slide 1: 确认动机 -->
+        <div class="slide active" id="slide-1">
+            <div class="slide-bg">
+                <div class="w-4/5 h-3/5 image-placeholder">Hero Slide 1: [Image: High-res wallpaper showcase]</div>
+            </div>
+            <div class="relative z-10">
+                <h1 class="serif text-4xl md:text-5xl mb-4 leading-tight">Beautiful.<br>Effortless.<br>Personal.</h1>
+                <p class="text-sub mb-8 max-w-xs mx-auto text-sm">Art you’ll actually use—every day. Zero setup. Zero stress. Pure visual delight.</p>
+                <div class="space-y-2">
+                    <p class="text-xs uppercase tracking-widest font-bold">Unlock the original</p>
+                    <p class="text-xs text-sub">InCosmos has the clean, uncompressed original.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: 长期价值 -->
+        <div class="slide" id="slide-2">
+            <div class="slide-bg">
+                <div class="w-full h-full flex gap-2 px-4 py-20">
+                    <div class="flex-1 image-placeholder h-64 mt-12">[Magazine Style 1]</div>
+                    <div class="flex-1 image-placeholder h-64">[Magazine Style 2]</div>
+                    <div class="flex-1 image-placeholder h-64 mt-12">[Magazine Style 3]</div>
+                </div>
+            </div>
+            <div class="relative z-10 mt-auto mb-16">
+                <h1 class="serif text-4xl mb-3">Not just wallpapers.<br>A daily visual ritual.</h1>
+                <p class="text-sub text-sm">Art you’ll actually enjoy seeing every day.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: 心理安全 -->
+        <div class="slide" id="slide-3">
+            <div class="slide-bg">
+                <div class="w-2/3 h-2/3 image-placeholder rounded-3xl shadow-2xl">[Image: Phone lockscreen at dawn]</div>
+            </div>
+            <div class="relative z-10 text-left w-full px-8 mt-auto mb-20">
+                <h1 class="serif text-4xl mb-4">Set it once.<br>Enjoy it every day.</h1>
+                <p class="text-sub mb-6 text-sm">Zero setup. Zero stress.<br>Designed for real screens, real habits.</p>
+                <div class="text-[10px] text-sub uppercase tracking-wider space-y-1 opacity-70">
+                    <p>• Preview on your device before applying</p>
+                    <p>• Auto-change, or just pick once and forget</p>
+                    <p>• Works without account. Cancel anytime</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <!-- 下载模块 (单作品模式 vs 通用模式) -->
+    <section id="download" class="module-section bg-gray-50">
+        <div id="single-work-ui" class="hidden">
+            <div class="text-center mb-8">
+                <span class="text-[10px] bg-black text-white px-2 py-1 rounded">MATCH FOUND</span>
+                <h2 class="serif text-2xl mt-4">Your Curated Artwork</h2>
+            </div>
+            <div class="w-full aspect-[3/4] image-placeholder rounded-2xl mb-6 shadow-lg">
+                [Image: Featured Artwork for Code]
+            </div>
+            <div class="code-display">
+                <span id="display-code">UK2797</span>
+                <button onclick="copyCode()" class="text-xs font-bold underline">COPY CODE</button>
+            </div>
+            <p class="text-center text-xs text-sub mb-8">Copy the code above, open InCosmos Art App to get the uncompressed original.</p>
+        </div>
+
+        <div id="general-download-ui" class="text-center py-10">
+            <h2 class="serif text-3xl mb-4">Start Your Ritual</h2>
+            <p class="text-sub text-sm mb-10">Download InCosmos Art to explore daily curated collections.</p>
+        </div>
+
+        <div class="flex flex-col items-center gap-4">
+            <a href="#" class="btn-primary w-full text-center py-4">Download on App Store</a>
+            <p class="text-[10px] text-sub uppercase tracking-widest">Free to Start • No Account Required</p>
+        </div>
+    </section>
+
+    <!-- 优化后的价值声明模块 -->
+    <section class="statement-section">
+        <div class="absolute inset-0 slide-bg image-placeholder border-none">
+            [Background: Minimalist Artwork]
+            <!-- 叠加柔和遮罩确保可读性 -->
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        <div class="statement-content fade-in">
+            <h3 class="serif text-2xl md:text-3xl leading-tight mb-6">“We don’t show everything.<br>Only what still feels right<br>after the third day.”</h3>
+            <div class="w-12 h-[1px] bg-white/30 mx-auto mb-6"></div>
+            <p class="text-xs tracking-[0.2em] uppercase opacity-70 leading-loose">Social platforms are for discovering.<br>InCosmos App is for keeping.</p>
+        </div>
+    </section>
+
+    <!-- 图文叙事区块 (交错布局) -->
+    
+    <!-- 模块 A — Why InCosmos (左图右文) -->
+    <section class="module-section grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div class="image-placeholder aspect-square rounded-2xl">
+            [Image: Social media vs High-res contrast]
+        </div>
+        <div class="fade-in">
+            <h3 class="serif text-3xl mb-4">Curated. Screen-ready. Calm.</h3>
+            <p class="text-sub text-sm leading-relaxed">Forget random web-compressed images. InCosmos provides ultra-high resolution art, perfectly tailored for every modern screen you own.</p>
+        </div>
+    </section>
+
+    <!-- 模块 B — 新用户安心 (左文右图) -->
+    <section class="module-section grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-gray-50">
+        <div class="order-2 md:order-1 fade-in">
+            <h3 class="serif text-3xl mb-4">Focus on beauty,<br>not the friction.</h3>
+            <ul class="text-sub text-sm space-y-3">
+                <li><i class="fa-solid fa-check mr-2 text-black"></i> Free to start</li>
+                <li><i class="fa-solid fa-check mr-2 text-black"></i> Works without account</li>
+                <li><i class="fa-solid fa-check mr-2 text-black"></i> Cancel anytime</li>
+                <li><i class="fa-solid fa-check mr-2 text-black"></i> For phones, tablets, and foldables</li>
+                <li><i class="fa-solid fa-check mr-2 text-black"></i> Get the original, uncompressed wallpapers that look perfect on your screen, </li>
+                <li><i class="fa-solid fa-check mr-2 text-black"></i> not just 1080p previews from social media</li>
+            </ul>
+        </div>
+        <div class="order-1 md:order-2 image-placeholder aspect-square rounded-2xl">
+            [Image: App icon + Happy user]
+        </div>
+    </section>
+
+    <!-- 模块 C — 三步流程 (左图右文) -->
+    <section class="module-section grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div class="image-placeholder aspect-[4/5] rounded-3xl">
+            [Image: Device showing real-time preview]
+        </div>
+        <div class="fade-in">
+            <h3 class="serif text-3xl mb-6">How it works.</h3>
+            <div class="space-y-8">
+                <div>
+                    <span class="text-2xl serif italic mr-3">01.</span>
+                    <span class="font-bold">Choose a style</span>
+                    <p class="text-sub text-xs mt-1 ml-10">Browse our curated "magazines" or search by code.</p>
+                </div>
+                <div>
+                    <span class="text-2xl serif italic mr-3">02.</span>
+                    <span class="font-bold">Preview on your device</span>
+                    <p class="text-sub text-xs mt-1 ml-10">See exactly how it looks on your lock screen instantly.</p>
+                </div>
+                <div>
+                    <span class="text-2xl serif italic mr-3">03.</span>
+                    <span class="font-bold">Apply & Forget</span>
+                    <p class="text-sub text-xs mt-1 ml-10">Download and set. Let the art become part of your day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 D — 轻习惯机制 (左文右图) -->
+    <section class="module-section grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-black text-white">
+        <div class="fade-in">
+            <h3 class="serif text-3xl mb-4 text-white">One tap, a fresh perspective.</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">Let your screen quietly change with your mood. Built for real screens and real habits, making your daily visual experience effortless.</p>
+            <p class="text-xs text-gray-500 uppercase tracking-widest">A Daily Visual Ritual</p>
+        </div>
+        <div class="image-placeholder aspect-square rounded-2xl bg-zinc-800 border-zinc-700">
+            [Image: Daily wallpaper changing animation]
+        </div>
+    </section>
+
+    <!-- 模块 E — Smart Tools (修正布局：左图右文) -->
+    <section class="module-section grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="image-placeholder aspect-[4/5] rounded-3xl overflow-hidden">
+            [Slideshow: Daily Surprise / Mood / Random]
+        </div>
+        <div class="fade-in">
+            <h3 class="serif text-4xl mb-8">Smart tools that quietly work.</h3>
+            <div class="space-y-8">
+                <div class="flex gap-5">
+                    <div class="w-12 h-12 bg-zinc-50 rounded-2xl flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm mb-1">Daily Surprise</h4>
+                        <p class="text-sub text-[11px]">Automatically applies a fresh wallpaper from today’s collection.</p>
+                    </div>
+                </div>
+                <div class="flex gap-5">
+                    <div class="w-12 h-12 bg-zinc-50 rounded-2xl flex items-center justify-center shrink-0 text-zinc-400">
+                        <i class="fa-solid fa-moon text-sm"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm mb-1">Change Mood (Pro)</h4>
+                        <p class="text-sub text-[11px]">Switches wallpapers based on your Favorites whenever you feel like it.</p>
+                    </div>
+                </div>
+                <div class="flex gap-5">
+                    <div class="w-12 h-12 bg-zinc-50 rounded-2xl flex items-center justify-center shrink-0 text-zinc-400">
+                        <i class="fa-solid fa-shuffle text-sm"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm mb-1">Random Favorite (Pro)</h4>
+                        <p class="text-sub text-[11px]">One tap to refresh from what you already love.</p>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-12 text-[11px] italic text-sub border-l-2 border-zinc-100 pl-4">Set once, or tap when you want. Your screen keeps changing — without thinking about it.</p>
+        </div>
+    </section>
+
+    <!-- 模块 F — 用户画像 (左文右图) -->
+    <section class="module-section grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-gray-50">
+        <div class="fade-in">
+            <h3 class="serif text-3xl mb-6">Who it’s for.</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 bg-white rounded-xl shadow-sm">
+                    <div class="text-xl mb-2">🌿</div>
+                    <div class="font-bold text-xs">Minimalists</div>
+                </div>
+                <div class="p-4 bg-white rounded-xl shadow-sm">
+                    <div class="text-xl mb-2">🎨</div>
+                    <div class="font-bold text-xs">Creatives</div>
+                </div>
+                <div class="p-4 bg-white rounded-xl shadow-sm">
+                    <div class="text-xl mb-2">🔍</div>
+                    <div class="font-bold text-xs">Detail Seekers</div>
+                </div>
+                <div class="p-4 bg-white rounded-xl shadow-sm">
+                    <div class="text-xl mb-2">📱</div>
+                    <div class="font-bold text-xs">Power Users</div>
+                </div>
+            </div>
+        </div>
+        <div class="image-placeholder aspect-square rounded-full">
+            [Image: Abstract persona icons]
+        </div>
+    </section>
+
+    <!-- 模块 G — 个性化解释 (左图右文) -->
+    <section class="module-section grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div class="image-placeholder aspect-square rounded-2xl">
+            [Image: Personalized dashboard]
+        </div>
+        <div class="fade-in">
+            <h3 class="serif text-3xl mb-4">The more you explore, the better it fits.</h3>
+            <p class="text-sub text-sm leading-relaxed">Our recommendation engine learns from your tastes and device types, ensuring that every suggestion feels like it was made just for you.</p>
+        </div>
+    </section>
+
+    <!-- 模块 H — FAQ (全宽纯文案版) -->
+<section class="module-section bg-gray-50 py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        <h3 class="serif text-4xl mb-12 text-center fade-in">Common Questions.</h3>
+        
+        <div class="space-y-6 fade-in">
+            <!-- Q1 -->
+            <details class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all hover:shadow-md">
+                <summary class="list-none flex justify-between items-center cursor-pointer">
+                    <div class="pr-4">
+                        <p class="font-bold text-lg text-gray-900">Q1: 我能在 App 里找到刚才那张吗?</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest font-medium">Can I find the wallpaper I just saw in the App?</p>
+                    </div>
+                    <span class="transition-transform duration-300 group-open:rotate-180 flex-shrink-0 bg-gray-100 p-2 rounded-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </summary>
+                <div class="mt-6 pt-6 border-t border-gray-50 space-y-4">
+                    <p class="text-gray-700 leading-relaxed font-medium">是的！只要你用帖子里提供的 Code 打开 App 搜索，就能直接找到并下载这张原图。App 会帮你精准定位，不用翻找整个图库，也不用担心错过最喜欢的作品。</p>
+                    <p class="text-sm text-gray-500 italic leading-relaxed">Absolutely! Enter the code from the post in the App search, and you’ll get the exact original wallpaper instantly. No need to scroll through the full gallery, and you won’t miss your favorite pieces.</p>
+                </div>
+            </details>
+
+            <!-- Q2 -->
+            <details class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all hover:shadow-md">
+                <summary class="list-none flex justify-between items-center cursor-pointer">
+                    <div class="pr-4">
+                        <p class="font-bold text-lg text-gray-900">Q2: 为什么不直接在社媒给原图?</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest font-medium">Why not share the original wallpaper directly on social media?</p>
+                    </div>
+                    <span class="transition-transform duration-300 group-open:rotate-180 flex-shrink-0 bg-gray-100 p-2 rounded-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </summary>
+                <div class="mt-6 pt-6 border-t border-gray-50 space-y-4">
+                    <p class="text-gray-700 leading-relaxed font-medium">社交平台只提供压缩预览，分辨率低、暗部模糊、渐变断层，纹理丢失。App 提供 高分辨率、无水印、适配屏幕 的原图，让你的锁屏和主屏都能完美呈现设计细节。</p>
+                    <p class="text-sm text-gray-500 italic leading-relaxed">Social platforms only provide compressed previews with low resolution, blurred dark areas, and lost texture. The App gives you high-resolution, watermark-free originals, perfectly optimized for your screen.</p>
+                </div>
+            </details>
+
+            <!-- Q3 -->
+            <details class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all hover:shadow-md">
+                <summary class="list-none flex justify-between items-center cursor-pointer">
+                    <div class="pr-4">
+                        <p class="font-bold text-lg text-gray-900">Q3: 必须订阅吗?</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest font-medium">Do I need a subscription?</p>
+                    </div>
+                    <span class="transition-transform duration-300 group-open:rotate-180 flex-shrink-0 bg-gray-100 p-2 rounded-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </summary>
+                <div class="mt-6 pt-6 border-t border-gray-50 space-y-4">
+                    <p class="text-gray-700 leading-relaxed font-medium">不必！你可以一次性购买单张壁纸，也可以选择终身解锁全部原图。Pro 功能（如自动切换壁纸或从收藏随机应用）需要订阅，但下载单张或杂志原图完全无需订阅。</p>
+                    <p class="text-sm text-gray-500 italic leading-relaxed">Not required! You can purchase a single wallpaper or unlock all originals for lifetime access. Pro features, like automatic wallpaper changes or random selection from your Favorites, require a subscription, but downloading single wallpapers or magazine collections does not.</p>
+                </div>
+            </details>
+
+            <!-- Q4 -->
+            <details class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all hover:shadow-md">
+                <summary class="list-none flex justify-between items-center cursor-pointer">
+                    <div class="pr-4">
+                        <p class="font-bold text-lg text-gray-900">Q4: 如何保证壁纸适配我的设备？</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest font-medium">How do I know the wallpaper fits my device?</p>
+                    </div>
+                    <span class="transition-transform duration-300 group-open:rotate-180 flex-shrink-0 bg-gray-100 p-2 rounded-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </summary>
+                <div class="mt-6 pt-6 border-t border-gray-50 space-y-4">
+                    <p class="text-gray-700 leading-relaxed font-medium">App 自动提供多设备适配的原图（手机、平板、电脑、可折叠屏），无需手动裁剪或缩放，每张壁纸都完美填充你的屏幕尺寸。</p>
+                    <p class="text-sm text-gray-500 italic leading-relaxed">The App automatically provides originals optimized for any device—phones, tablets, computers, even foldables. No manual cropping or resizing needed; every wallpaper fits your screen perfectly.</p>
+                </div>
+            </details>
+
+            <!-- Q5 -->
+            <details class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all hover:shadow-md">
+                <summary class="list-none flex justify-between items-center cursor-pointer">
+                    <div class="pr-4">
+                        <p class="font-bold text-lg text-gray-900">Q5: 我下载的壁纸可以随时更换吗？</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest font-medium">Can I change the wallpapers anytime?</p>
+                    </div>
+                    <span class="transition-transform duration-300 group-open:rotate-180 flex-shrink-0 bg-gray-100 p-2 rounded-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </summary>
+                <div class="mt-6 pt-6 border-t border-gray-50 space-y-4">
+                    <div class="text-gray-700 leading-relaxed font-medium">
+                        <p>可以！App 支持：</p>
+                        <ul class="list-disc ml-5 mt-2 space-y-1 text-sm">
+                            <li>每日自动更新壁纸，让你的屏幕每天都有新鲜感</li>
+                            <li>随机从收藏中应用，随心更换喜欢的风格</li>
+                            <li>快速设置最近下载的图片</li>
+                        </ul>
+                        <p class="mt-2 text-base">你可以选择自动切换，也可以手动操作，轻松打造个性化屏幕。</p>
+                    </div>
+                    <div class="text-sm text-gray-500 italic leading-relaxed border-l-2 border-gray-200 pl-4">
+                        <p>Yes! The App lets you:</p>
+                        <ul class="list-disc ml-5 mt-1">
+                            <li>Automatically refresh wallpapers daily</li>
+                            <li>Randomly apply from Favorites</li>
+                            <li>Quickly set recent downloads</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Q6 -->
+            <details class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all hover:shadow-md">
+                <summary class="list-none flex justify-between items-center cursor-pointer">
+                    <div class="pr-4">
+                        <p class="font-bold text-lg text-gray-900">Q6: 下载后还能在 App 里管理这些壁纸吗？</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest font-medium">Can I manage downloaded wallpapers in the App?</p>
+                    </div>
+                    <span class="transition-transform duration-300 group-open:rotate-180 flex-shrink-0 bg-gray-100 p-2 rounded-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </summary>
+                <div class="mt-6 pt-6 border-t border-gray-50 space-y-4">
+                    <p class="text-gray-700 leading-relaxed font-medium">可以。App 提供收藏、预览和管理功能，让你轻松整理喜欢的壁纸、快速切换或重新下载。你可以按风格、主题或收藏排序，随时找到想要的壁纸。</p>
+                    <p class="text-sm text-gray-500 italic leading-relaxed">Absolutely. The App lets you preview, favorite, and organize wallpapers. Sort by style, theme, or collection, and quickly switch or re-download any wallpaper you love.</p>
+                </div>
+            </details>
+
+            <!-- Q7 -->
+            <details class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all hover:shadow-md">
+                <summary class="list-none flex justify-between items-center cursor-pointer">
+                    <div class="pr-4">
+                        <p class="font-bold text-lg text-gray-900">Q7: 壁纸文件会有水印吗？</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest font-medium">Are wallpapers watermarked?</p>
+                    </div>
+                    <span class="transition-transform duration-300 group-open:rotate-180 flex-shrink-0 bg-gray-100 p-2 rounded-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </summary>
+                <div class="mt-6 pt-6 border-t border-gray-50 space-y-4">
+                    <p class="text-gray-700 leading-relaxed font-medium">没有。通过 App 下载的原图都是 无水印高清版本，完美用于锁屏或主屏，不会影响美感。</p>
+                    <p class="text-sm text-gray-500 italic leading-relaxed">No. Originals downloaded via the App are high-resolution and watermark-free, perfect for lock screens or home screens.</p>
+                </div>
+            </details>
+
+            <!-- Q8 -->
+            <details class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all hover:shadow-md">
+                <summary class="list-none flex justify-between items-center cursor-pointer">
+                    <div class="pr-4">
+                        <p class="font-bold text-lg text-gray-900">Q8: 下载 App 会不会很麻烦？</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest font-medium">Is it difficult to download wallpapers from the App?</p>
+                    </div>
+                    <span class="transition-transform duration-300 group-open:rotate-180 flex-shrink-0 bg-gray-100 p-2 rounded-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </summary>
+                <div class="mt-6 pt-6 border-t border-gray-50 space-y-4">
+                    <p class="text-gray-700 leading-relaxed font-medium">不会。安装 App 后，只需输入帖子里的 Code 或直接浏览精选杂志，就能在 15 秒内 拿到原图。流程简单、直达目标，无需注册或复杂操作。</p>
+                    <p class="text-sm text-gray-500 italic leading-relaxed">Not at all. After installing the App, just enter the code from the post or browse curated collections, and you can get the original wallpaper in 15 seconds. Simple, direct, and hassle-free—no account required.</p>
+                </div>
+            </details>
+
+            <!-- Q9 -->
+            <details class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all hover:shadow-md">
+                <summary class="list-none flex justify-between items-center cursor-pointer">
+                    <div class="pr-4">
+                        <p class="font-bold text-lg text-gray-900">Q9: 我的朋友也能轻松拿到同一张壁纸吗？</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest font-medium">Can my friends get the same wallpaper easily?</p>
+                    </div>
+                    <span class="transition-transform duration-300 group-open:rotate-180 flex-shrink-0 bg-gray-100 p-2 rounded-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </summary>
+                <div class="mt-6 pt-6 border-t border-gray-50 space-y-4">
+                    <p class="text-gray-700 leading-relaxed font-medium">可以！只需分享 Code 或帖子链接，对方就能打开 App 并立即下载同一张原图。社媒好友共享轻松无损。</p>
+                    <p class="text-sm text-gray-500 italic leading-relaxed">Yes! Just share the code or post link, and they can open the App to instantly download the same original wallpaper. Perfect for sharing with friends without losing quality.</p>
+                </div>
+            </details>
+        </div>
+    </div>
+</section>
+    <!-- 页脚 -->
+    <footer class="py-20 text-center border-t border-gray-100">
+        <div class="font-bold text-2xl mb-2">InCosmos</div>
+        <p class="text-sub text-xs mb-8">Art you’ll actually use.</p>
+        <div class="flex justify-center gap-6 text-sub text-xs mb-10">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Support</a>
+        </div>
+        <p class="text-[10px] text-gray-400">© 2024 InCosmos Art. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Hero Slider Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let next = (currentSlide + 1) % slides.length;
+            showSlide(next);
+        }
+
+        setInterval(nextSlide, 5000);
+
+        // URL Parameters Logic
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const singleWorkUI = document.getElementById('single-work-ui');
+        const generalUI = document.getElementById('general-download-ui');
+        const displayCode = document.getElementById('display-code');
+
+        if (code) {
+            singleWorkUI.classList.remove('hidden');
+            generalUI.classList.add('hidden');
+            displayCode.innerText = code.toUpperCase();
+        }
+
+        // Copy Code Function
+        function copyCode() {
+            const text = displayCode.innerText;
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "COPIED!";
+            setTimeout(() => btn.innerText = originalText, 2000);
+        }
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

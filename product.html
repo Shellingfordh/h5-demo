@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf8f3;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Custom styles for the slider (mobile) */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            padding-top: 133.33%; /* 3:4 aspect ratio for mobile */
+            overflow: hidden;
+        }
+
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Accordion custom styling */
+        .accordion-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .accordion-title {
+            cursor: pointer;
+            position: relative;
+            padding: 1rem 0;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-title::after {
+            content: '+';
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .accordion-item input[type="checkbox"]:checked+.accordion-title::after {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .accordion-item input[type="checkbox"]:checked~.accordion-content {
+            max-height: 500px;
+        }
+
+        /* Desktop specific gallery styles */
+        .gallery-container {
+            display: none; /* Hidden on mobile */
+        }
+        @media (min-width: 768px) {
+            .gallery-container {
+                display: flex; /* Display on desktop */
+                flex-direction: row;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar (Mobile only) -->
+    <header class="fixed top-0 left-0 w-full bg-white z-50 shadow-sm p-4 flex items-center justify-between md:hidden">
+        <button onclick="window.history.back()" class="text-gray-600 hover:text-gray-800 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <h1 class="text-lg font-bold">商品详情</h1>
+        <a href="#" class="text-gray-600 hover:text-gray-800 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+        </a>
+    </header>
+
+    <!-- Main Content Area with two columns for desktop -->
+    <main class="container mx-auto px-4 pt-16 md:pt-8 md:flex md:space-x-8">
+
+        <!-- Left Column: Image Gallery (Desktop) & Slider (Mobile) -->
+        <div class="md:w-1/2">
+            <!-- Image Slider (Mobile) -->
+            <section class="slider-container md:hidden">
+                <div class="slider" id="image-slider">
+                    <div class="slide" style="background-image: url('https://placehold.co/800x1200/efd9c1/ffffff?text=AI+Artwork+1')"></div>
+                    <div class="slide" style="background-image: url('https://placehold.co/800x1200/b5a5c6/ffffff?text=AI+Artwork+2')"></div>
+                    <div class="slide" style="background-image: url('https://placehold.co/800x1200/d9ad8b/ffffff?text=AI+Artwork+3')"></div>
+                </div>
+                <div class="absolute bottom-4 right-4 text-white text-sm font-medium bg-black bg-opacity-50 px-3 py-1 rounded-full" id="slider-counter">1 / 3</div>
+            </section>
+
+            <!-- Image Gallery (Desktop) -->
+            <section class="gallery-container hidden md:flex">
+                <!-- Thumbnails -->
+                <div class="flex flex-col space-y-4">
+                    <img src="https://placehold.co/100x150/efd9c1/ffffff?text=Thumb+1" class="w-24 h-36 object-cover rounded-md cursor-pointer border-2 border-transparent hover:border-gray-500 transition-colors duration-200" alt="Thumbnail 1" onclick="changeMainImage('https://placehold.co/800x1200/efd9c1/ffffff?text=AI+Artwork+1', this)">
+                    <img src="https://placehold.co/100x150/b5a5c6/ffffff?text=Thumb+2" class="w-24 h-36 object-cover rounded-md cursor-pointer border-2 border-transparent hover:border-gray-500 transition-colors duration-200" alt="Thumbnail 2" onclick="changeMainImage('https://placehold.co/800x1200/b5a5c6/ffffff?text=AI+Artwork+2', this)">
+                    <img src="https://placehold.co/100x150/d9ad8b/ffffff?text=Thumb+3" class="w-24 h-36 object-cover rounded-md cursor-pointer border-2 border-transparent hover:border-gray-500 transition-colors duration-200" alt="Thumbnail 3" onclick="changeMainImage('https://placehold.co/800x1200/d9ad8b/ffffff?text=AI+Artwork+3', this)">
+                </div>
+                <!-- Main Image -->
+                <div class="flex-1">
+                    <img id="main-product-image" src="https://placehold.co/800x1200/efd9c1/ffffff?text=AI+Artwork+1" class="w-full object-cover rounded-xl shadow-lg" alt="Main Product Image">
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Column: Product Details -->
+        <div class="md:w-1/2 md:p-8 bg-white md:rounded-xl md:shadow-lg">
+            <!-- Product Title and Author -->
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-gray-800">AI幻想风马克杯</h2>
+                <div class="flex items-center mt-2 text-sm text-gray-500">
+                    <span class="mr-2">作者：独立艺术家</span>
+                    <a href="#" class="text-indigo-500 hover:underline">主页</a>
+                </div>
+            </div>
+
+            <!-- Price and Stock -->
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl font-bold text-red-500">￥68</span>
+                <span class="text-sm text-gray-500">库存：有货</span>
+            </div>
+
+            <!-- Quantity/Specification Selection -->
+            <div class="flex items-center justify-between py-4 border-t border-b border-gray-200">
+                <span class="text-gray-600">选择数量或规格</span>
+                <span class="text-gray-500">
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </span>
+            </div>
+
+            <!-- Action Buttons for Mobile -->
+            <div class="mt-8 flex items-center justify-between space-x-4 md:hidden">
+                <button class="flex-1 py-3 border border-gray-300 text-gray-700 rounded-full font-bold hover:bg-gray-100 transition-colors duration-300">加入购物车</button>
+                <button class="flex-1 py-3 bg-indigo-500 text-white rounded-full font-bold hover:bg-indigo-600 transition-colors duration-300">立即购买</button>
+            </div>
+
+            <!-- Action Buttons for Desktop -->
+            <div class="hidden md:flex flex-row space-x-4 mt-8">
+                <button class="flex-1 py-3 bg-indigo-500 text-white rounded-full font-bold hover:bg-indigo-600 transition-colors duration-300">立即购买</button>
+                <button class="flex-1 py-3 border border-gray-300 text-gray-700 rounded-full font-bold hover:bg-gray-100 transition-colors duration-300">加入购物车</button>
+            </div>
+
+            <!-- Delivery Information -->
+            <div class="py-4 border-b border-gray-200 text-sm text-gray-600">
+                <div class="flex justify-between items-center mb-1">
+                    <span>Delivery</span>
+                    <span class="font-medium">Express by 25 August</span>
+                </div>
+                <div class="flex justify-between items-center mb-1">
+                    <span>Standard</span>
+                    <span class="font-medium">22-27 August</span>
+                </div>
+                <div class="flex justify-between items-center mt-2">
+                    <span>礼品卡入口</span>
+                    <span class="text-gray-400">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Returns & Features -->
+            <div class="py-4 border-b border-gray-200">
+                <div class="flex items-center text-sm text-gray-600 mb-2">
+                    <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.5-1.782 1.732-3.04L13.732 3.54a2.5 2.5 0 00-4.464 0L3.54 17.96A2.5 2.5 0 005.062 21z" />
+                    </svg>
+                    <span>Super-easy returns, fast fix.</span>
+                </div>
+                <div class="flex items-center justify-between text-sm text-gray-600">
+                    <span class="font-bold">Product Features</span>
+                    <div class="flex items-center">
+                        <span class="text-yellow-400 text-lg mr-1">⭐⭐⭐⭐⭐</span>
+                        <span>4.94 (16 reviews)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Product Details Accordion -->
+    <section class="container mx-auto px-4 mt-8 md:mt-0">
+        <!-- Product Specifications Accordion -->
+        <div class="accordion-item border-b border-gray-200">
+            <input type="checkbox" id="specs-toggle">
+            <label for="specs-toggle" class="accordion-title">
+                <h4 class="text-base">Specs（规格）</h4>
+            </label>
+            <div class="accordion-content">
+                <div class="grid grid-cols-2 gap-2 text-sm text-gray-700 py-2">
+                    <span>尺寸：300ml</span>
+                    <span>材质：陶瓷</span>
+                    <span>产地：中国</span>
+                    <span>重量：280g</span>
+                    <span>特性：耐高温，可微波</span>
+                    <span>包装：环保纸盒</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Material Accordion -->
+        <div class="accordion-item border-b border-gray-200">
+            <input type="checkbox" id="material-toggle">
+            <label for="material-toggle" class="accordion-title">
+                <h4 class="text-base">Material（材质）</h4>
+            </label>
+            <div class="accordion-content">
+                <p class="text-sm text-gray-700 py-2">
+                    采用优质高岭土，经1300°C高温烧制而成，釉面光滑，耐磨损。
+                </p>
+            </div>
+        </div>
+
+        <!-- Features Accordion -->
+        <div class="accordion-item border-b border-gray-200">
+            <input type="checkbox" id="features-toggle">
+            <label for="features-toggle" class="accordion-title">
+                <h4 class="text-base">Features（特性）</h4>
+            </label>
+            <div class="accordion-content">
+                <ul class="text-sm text-gray-700 py-2 list-disc list-inside space-y-1">
+                    <li>手绘花卉图案，色彩鲜明，不易褪色。</li>
+                    <li>杯身带有独特釉裂纹理，增添艺术感。</li>
+                    <li>符合食品级安全标准，不含铅镉等有害物质。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Use Cases Accordion -->
+        <div class="accordion-item border-b border-gray-200">
+            <input type="checkbox" id="use-cases-toggle">
+            <label for="use-cases-toggle" class="accordion-title">
+                <h4 class="text-base">Use Cases（使用场景）</h4>
+            </label>
+            <div class="accordion-content">
+                <ul class="text-sm text-gray-700 py-2 list-disc list-inside space-y-1">
+                    <li>日常饮水、咖啡或茶。</li>
+                    <li>办公室或书房的桌面装饰。</li>
+                    <li>赠送亲友的创意礼品。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About This Pic Section -->
+    <section class="container mx-auto mt-12 px-4">
+        <h2 class="text-2xl font-bold mb-6">About this pic</h2>
+        <div class="bg-white rounded-xl shadow-lg p-4 flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8">
+            <img src="https://placehold.co/400x400/8d8a8b/ffffff?text=AI+Art" alt="AI Artwork" class="w-full md:w-1/3 aspect-square object-cover rounded-xl">
+            <div class="md:w-2/3 text-gray-700">
+                <p class="font-semibold text-lg mb-2">创意说明：</p>
+                <p class="text-sm">这个设计灵感来源于梦境中的奇幻森林，每一笔都像是捕捉了转瞬即逝的光影。我们希望通过这件作品，能将一丝超现实的想象力融入您的日常生活，让普通的饮水时刻也充满艺术气息。马克杯上的图案使用了先进的数字印刷技术，确保色彩鲜艳且持久，同时保留了手绘的细腻质感。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALL PRODUCTS Section -->
+    <section class="container mx-auto mt-12 px-4">
+        <h2 class="text-2xl font-bold mb-6">ALL PRODUCTS</h2>
+        <!-- Categories -->
+        <div class="flex overflow-x-auto gap-4 text-sm text-gray-500 mb-8 pb-2">
+            <a href="#" class="font-bold text-gray-800 flex-shrink-0">ALL</a>
+            <a href="#" class="hover:text-gray-800 flex-shrink-0">DIGITAL PRODUCTS</a>
+            <a href="#" class="hover:text-gray-800 flex-shrink-0">HOME DECORATIVE PRODUCTS</a>
+            <a href="#" class="hover:text-gray-800 flex-shrink-0">KITCHENWARE</a>
+            <a href="#" class="hover:text-gray-800 flex-shrink-0">PUZZLES</a>
+            <a href="#" class="hover:text-gray-800 flex-shrink-0">BATHROOM PRODUCTS</a>
+            <a href="#" class="hover:text-gray-800 flex-shrink-0">CRAFTS</a>
+            <a href="#" class="hover:text-gray-800 flex-shrink-0">CAR INTERIORS</a>
+            <a href="#" class="hover:text-gray-800 flex-shrink-0">GARDEN DECORATIVE</a>
+        </div>
+        <!-- Product Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
+            <!-- Product 1 -->
+            <a href="#" class="group block bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-2">
+                <img src="https://placehold.co/400x400/8d8a8b/ffffff?text=Product+1" alt="Product Image" class="w-full rounded-lg mb-2 transform group-hover:scale-105 transition-transform duration-300">
+                <p class="text-sm font-medium text-gray-800 mb-1">Product Name</p>
+                <div class="text-xs text-gray-400 mb-1">by Artist</div>
+                <div class="flex justify-between items-center text-sm font-semibold">
+                    <span class="text-red-500">￥12.99</span>
+                    <span class="text-gray-400 line-through text-xs">￥25.00</span>
+                </div>
+            </a>
+            <!-- Product 2 -->
+            <a href="#" class="group block bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-2">
+                <img src="https://placehold.co/400x400/a392a8/ffffff?text=Product+2" alt="Product Image" class="w-full rounded-lg mb-2 transform group-hover:scale-105 transition-transform duration-300">
+                <p class="text-sm font-medium text-gray-800 mb-1">Product Name</p>
+                <div class="text-xs text-gray-400 mb-1">by Artist</div>
+                <div class="flex justify-between items-center text-sm font-semibold">
+                    <span class="text-red-500">￥15.00</span>
+                    <span class="text-gray-400 line-through text-xs">￥30.00</span>
+                </div>
+            </a>
+            <!-- Product 3 -->
+            <a href="#" class="group block bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-2">
+                <img src="https://placehold.co/400x400/98b4c0/ffffff?text=Product+3" alt="Product Image" class="w-full rounded-lg mb-2 transform group-hover:scale-105 transition-transform duration-300">
+                <p class="text-sm font-medium text-gray-800 mb-1">Product Name</p>
+                <div class="text-xs text-gray-400 mb-1">by Artist</div>
+                <div class="flex justify-between items-center text-sm font-semibold">
+                    <span class="text-red-500">￥10.50</span>
+                    <span class="text-gray-400 line-through text-xs">￥20.00</span>
+                </div>
+            </a>
+            <!-- Product 4 -->
+            <a href="#" class="group block bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-2">
+                <img src="https://placehold.co/400x400/ff9289/ffffff?text=Product+4" alt="Product Image" class="w-full rounded-lg mb-2 transform group-hover:scale-105 transition-transform duration-300">
+                <p class="text-sm font-medium text-gray-800 mb-1">Product Name</p>
+                <div class="text-xs text-gray-400 mb-1">by Artist</div>
+                <div class="flex justify-between items-center text-sm font-semibold">
+                    <span class="text-red-500">￥22.00</span>
+                    <span class="text-gray-400 line-through text-xs">￥45.00</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- RELATED CREATIVITY Section -->
+    <section class="container mx-auto mt-12 px-4">
+        <h2 class="text-2xl font-bold mb-6">RELATED CREATIVITY</h2>
+        <!-- Creativity Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
+            <!-- Item 1 -->
+            <a href="#" class="group block bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-2">
+                <img src="https://placehold.co/400x400/ff9289/ffffff?text=Creativity+1" alt="Creativity Image" class="w-full rounded-lg mb-2 transform group-hover:scale-105 transition-transform duration-300">
+                <p class="text-sm font-medium text-gray-800 mb-1">Project Name</p>
+                <div class="text-xs text-gray-400">by Artist</div>
+            </a>
+            <!-- Item 2 -->
+            <a href="#" class="group block bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-2">
+                <img src="https://placehold.co/400x400/98b4c0/ffffff?text=Creativity+2" alt="Creativity Image" class="w-full rounded-lg mb-2 transform group-hover:scale-105 transition-transform duration-300">
+                <p class="text-sm font-medium text-gray-800 mb-1">Project Name</p>
+                <div class="text-xs text-gray-400">by Artist</div>
+            </a>
+            <!-- Item 3 -->
+            <a href="#" class="group block bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-2">
+                <img src="https://placehold.co/400x400/a392a8/ffffff?text=Creativity+3" alt="Creativity Image" class="w-full rounded-lg mb-2 transform group-hover:scale-105 transition-transform duration-300">
+                <p class="text-sm font-medium text-gray-800 mb-1">Project Name</p>
+                <div class="text-xs text-gray-400">by Artist</div>
+            </a>
+            <!-- Item 4 -->
+            <a href="#" class="group block bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-2">
+                <img src="https://placehold.co/400x400/8d8a8b/ffffff?text=Creativity+4" alt="Creativity Image" class="w-full rounded-lg mb-2 transform group-hover:scale-105 transition-transform duration-300">
+                <p class="text-sm font-medium text-gray-800 mb-1">Project Name</p>
+                <div class="text-xs text-gray-400">by Artist</div>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Generic Footer -->
+    <footer class="bg-gray-800 text-white py-12 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex flex-col md:flex-row justify-center items-center md:space-x-8 space-y-4 md:space-y-0 text-sm">
+                <a href="#" class="hover:text-gray-400 transition duration-300">关于我们</a>
+                <a href="#" class="hover:text-gray-400 transition duration-300">创作者入驻</a>
+                <a href="#" class="hover:text-gray-400 transition duration-300">联系方式</a>
+                <a href="#" class="hover:text-gray-400 transition duration-300">隐私政策</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile slider
+        const slider = document.getElementById('image-slider');
+        const sliderCounter = document.getElementById('slider-counter');
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            sliderCounter.textContent = `${currentIndex + 1} / ${totalSlides}`;
+        }
+
+        // Swipe functionality for touch devices
+        let startX = 0;
+        if (slider) {
+            slider.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+            slider.addEventListener('touchend', (e) => {
+                let endX = e.changedTouches[0].clientX;
+                if (startX - endX > 50) {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                } else if (endX - startX > 50) {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                }
+                updateSlider();
+            });
+        }
+
+        // Keyboard navigation for desktop
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlider();
+            } else if (e.key === 'ArrowLeft') {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            }
+        });
+
+        // JavaScript for desktop image gallery
+        function changeMainImage(src, element) {
+            const mainImage = document.getElementById('main-product-image');
+            mainImage.src = src;
+
+            // Remove active state from all thumbnails
+            const thumbnails = document.querySelectorAll('.gallery-container img');
+            thumbnails.forEach(thumb => thumb.classList.remove('border-gray-500'));
+
+            // Add active state to the clicked thumbnail
+            element.classList.add('border-gray-500');
+        }
+    </script>
+</body>
+</html>

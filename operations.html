@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bullion Note 产品与运营方案</title>
+<!-- 
+  ⚠️ 版权声明 (Copyright Notice)
+  本文档为内部保密资料，仅供授权人员查看
+  禁止商业使用、禁止转载、禁止复制、禁止传播
+  严禁用于商业目的、竞品分析、或任何盈利活动
+  违者将承担法律责任
+  
+  ⚠️ WARNING: CONFIDENTIAL INTERNAL DOCUMENT
+  This document is confidential and proprietary.
+  Unauthorized copying, distribution, or commercial use is strictly prohibited.
+  Legal action will be taken against violations.
+-->
 <style>
   :root {
     --bg-color: #0d0f12;
@@ -80,9 +92,31 @@
 
   /* Page Footer Counter */
   .page-num { position: fixed; bottom: 25px; left: 30px; font-size: 14px; color: var(--text-secondary); }
+
+  /* Copyright Notice Banner */
+  .copyright-banner {
+    position: fixed;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.95) 0%, rgba(220, 38, 38, 0.95) 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 200;
+    text-align: center;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+  }
 </style>
 </head>
 <body>
+
+<div class="copyright-banner">
+  ⚠️ 内部保密资料 | 禁止商用 | 禁止复制转载 | CONFIDENTIAL - NO COMMERCIAL USE ⚠️
+</div>
 
 <div class="progress-bar" id="progress"></div>
 <div class="page-num" id="pageNum">Slide 1</div>
@@ -98,13 +132,13 @@
   <section class="slide active">
     <h1>一、我们到底要做什么</h1>
     <div class="quote-box">
-      <p><strong>核心定位反思：</strong>我们不是在做一个普通的“黄金记账 App”。</p>
-      <p>用户不会因为“我需要一个黄金记账软件”而产生非常强的需求。黄金不像微信、银行卡、日历一样每天都必须打开，很多用户可能买了一次黄金，记录一次，然后几周甚至几个月都不会回来。</p>
+      <p><strong>核心定位反思：</strong>我们不是在做一个普通的"黄金记账 App"。</p>
+      <p>用户不会因为"我需要一个黄金记账软件"而产生非常强的需求。黄金不像微信、银行卡、日历一样每天都必须打开，很多用户可能买了一次黄金而且[...]</p>
     </div>
     <p><strong>所以真正的问题不是：</strong>怎么让用户下载一个黄金记账 App？</p>
-    <p><strong>而是：</strong>怎么让用户因为黄金产生问题 → 使用我们的工具 → 顺手记录自己的黄金 → 形成自己的黄金资产 → 为了目标持续回来 → 产生可以分享的结果 → 再带来新用户。</p>
+    <p><strong>而是：</strong>怎么让用户因为黄金产生问题 → 使用我们的工具 → 顺手记录自己的黄金 → 形成自己的黄金资产 → 为了目标持续回来 → 产生分享 → 吸引新用户</p>
     
-    <h2>因此产品应该从单纯的“黄金工具”升级成：</h2>
+    <h2>因此产品应该从单纯的"黄金工具"升级成：</h2>
     <div class="flow-container">
       <div class="flow-step">黄金工具</div> <span class="flow-arrow">+</span>
       <div class="flow-step">财富生活内容</div> <span class="flow-arrow">+</span>
@@ -136,14 +170,14 @@
       <div class="grid-card">
         <h2>最终希望用户形成的简单认知：</h2>
         <div class="quote-box">
-          <p class="highlight-gold">“想知道自己的钱值多少黄金、手里有多少黄金、黄金赚了多少、怎么攒黄金，就用我们。”</p>
+          <p class="highlight-gold">"想知道自己的钱值多少黄金、手里有多少黄金、黄金赚了多少、怎么攒黄金，就用我们。"</p>
         </div>
-        <p><strong>而不是：</strong>“这是一个黄金行情/黄金记账软件。”</p>
+        <p><strong>而不是：</strong>"这是一个黄金行情/黄金记账软件。"</p>
       </div>
 
       <div class="grid-card">
         <h2>竞品市场现状分析：</h2>
-        <p>目前黄金工具市场并不是没有产品，而是已经出现了一批有用户习惯的产品，例如<strong class="highlight-gold">金攒攒、黄金天眼、攒金PRO</strong>等。</p>
+        <p>目前黄金工具市场并不是没有产品，而是已经出现了一批有用户习惯的产品，例如<strong class="highlight-gold">金攒攒、黄金天眼、攒金PRO</strong>等[...]
         <p><strong>问题在于：</strong>这些产品整体仍然更接近传统工具产品：</p>
         <div class="flow-container">
           <span>行情</span> → <span>记录</span> → <span>持仓</span> → <span>收益</span> → <span>攒金</span>
@@ -159,532 +193,9 @@
       <li>用户为什么主动分享，不够强；</li>
       <li>用户之间为什么产生互动，不够强；</li>
       <li>产品本身没有形成足够强的内容人格；</li>
-      <li>金价、持仓、收益等数据虽然有价值，但是没有被充分“内容化”和“游戏化”；</li>
+      <li>金价、持仓、收益等数据虽然有价值，但是没有被充分"内容化"和"游戏化"；</li>
       <li>产品功能和自媒体运营之间没有形成完整闭环。</li>
     </ul>
-  </section>
-
-  <!-- PAGE 3 -->
-  <section class="slide">
-    <h1>一、我们到底要做什么（完整链路与机会）</h1>
-    <h2>完整增长链路视觉图：</h2>
-    <p>社媒内容制造需求 → 用户产生黄金相关问题 → 搜索 / AI 搜索 → SEO / ASO 承接 → App 下载 → 使用工具 → 记录黄金 → 生成分享内容 → 再回到社媒传播</p>
-    
-    <div class="flow-container" style="flex-direction: column; align-items: flex-start; gap: 6px;">
-      <div>小红书 / 抖音 / 搜索 / AI</div>
-      <div>↓ 黄金问题</div>
-      <div>↓ 黄金计算器</div>
-      <div>↓ 用户得到答案</div>
-      <div>↓ 顺手记录黄金</div>
-      <div>↓ 建立黄金资产</div>
-      <div>↓ 设置目标 / 挑战</div>
-      <div>↓ 金豆 / 成就 / 宠物</div>
-      <div>↓ 持续记录和成长</div>
-      <div>↓ 资产卡 / 黄金人生 / 年度报告</div>
-      <div>↓ 分享</div>
-      <div>↓ 小红书 / 抖音</div>
-      <div>↓ 产生新的用户问题</div>
-      <div>↓ 新用户</div>
-    </div>
-
-    <div class="quote-box" style="margin-top: 15px;">
-      <p><strong>最终认知强调：</strong>想知道自己的钱值多少黄金、手里有多少黄金、黄金赚了多少、怎么攒黄金，就用我们。而不是“这是一个黄金行情软件”或“这是一个黄金记账软件”。</p>
-      <p><strong>我们的核心机会：</strong>不是再做一个“功能更多的黄金账本”，而是把成熟互联网产品里的内容、工具、游戏化、用户成长、身份、分享和裂变真正接到黄金这个品类里。</p>
-    </div>
-  </section>
-
-  <!-- PAGE 4 -->
-  <section class="slide">
-    <h1>二、竞品真正缺的是什么</h1>
-    <h2>核心维度对比矩阵：</h2>
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>维度</th><th>金攒攒</th><th>黄金天眼</th><th>攒金PRO</th><th>我们</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>行情</td><td>强</td><td>强</td><td>有</td><td>必须有</td></tr>
-          <tr><td>黄金记录</td><td>强</td><td>有</td><td>强</td><td>强</td></tr>
-          <tr><td>收益分析</td><td>有</td><td>有</td><td>有</td><td>强化</td></tr>
-          <tr><td>攒金目标</td><td>有</td><td>弱</td><td>强</td><td>强化</td></tr>
-          <tr><td>热力图</td><td>有</td><td>弱</td><td>有</td><td>有</td></tr>
-          <tr><td>活动激励</td><td>有</td><td>弱</td><td>有</td><td>强化</td></tr>
-          <tr><td>用户成长</td><td>较弱</td><td>弱</td><td>中等</td><td>核心游戏化</td></tr>
-          <tr><td>核心差异IP</td><td>弱</td><td>弱</td><td>弱</td><td>金豆IP</td></tr>
-          <tr><td>内容人格</td><td>弱</td><td>弱</td><td>弱</td><td>核心Meme</td></tr>
-          <tr><td>UGC</td><td>有限</td><td>弱</td><td>有限</td><td>核心社区身份</td></tr>
-          <tr><td>内容→工具</td><td>弱</td><td>弱</td><td>弱</td><td>核心</td></tr>
-          <tr><td>工具→分享</td><td>有</td><td>有限</td><td>有</td><td>强化</td></tr>
-          <tr><td>分享→新用户</td><td>不强</td><td>不强</td><td>不强</td><td>增长闭环</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <div class="grid-2">
-      <div class="grid-card">
-        <h3>定位升级：</h3>
-        <p>所以我们的产品不应该只是：“金攒攒2.0。”</p>
-        <p>而应该是：<strong class="highlight-gold">黄金工具 + 内容IP + 游戏化成长 + 社交传播。</strong></p>
-      </div>
-      <div class="grid-card">
-        <h3>用户心理闭环逻辑：</h3>
-        <p>用户看内容 → 产生问题 → 用工具 → 得答案 → 想看自己情况 → 录资产 → 建资产 → 设目标 → 持续记录 → 获成就 → 生成分享 → 分享 → 他人“那我呢？” → 新用户</p>
-      </div>
-    </div>
-    <div class="quote-box" style="margin-top: 10px;">
-      <p><strong>总结：</strong>内容不是广告。App不是内容的终点。分享也不是流程终点。整个产品实际上是：内容生产问题，工具解决问题，产品沉淀资产，游戏化制造留存，分享制造下一轮内容。</p>
-    </div>
-  </section>
-
-  <!-- PAGE 5 -->
-  <section class="slide">
-    <h1>三、账号定位</h1>
-    <h2>定位基调：黄金 × 生活 × 情绪</h2>
-    <p class="highlight-red">不要把自己定位成黄金财经账号。也不要定位成黄金记账 App 官方账号，而是黄金生活方式账号。</p>
-    
-    <h2>分平台讨论 —— 小红书：负责“讨论”</h2>
-    <p><strong>关键词：</strong>生活 / 故事 / 比较 / Meme / 女性 / 分享</p>
-    <p>小红书不是每天告诉别人黄金涨跌。而是让用户产生：<span class="highlight-gold">“等等，那我呢？”</span></p>
-
-    <div class="grid-2" style="margin-top: 10px;">
-      <div class="grid-card">
-        <h3>内容示例：</h3>
-        <p><strong>主题：</strong>25岁女生有多少克黄金？</p>
-        <p><strong>正文：</strong>25岁，月薪 8k，工作 3 年，目前：7.8g。算多还是算少？</p>
-      </div>
-      <div class="grid-card">
-        <h3>评论区预期互动（这才是我们想要的）：</h3>
-        <ul>
-          <li>“我25岁只有2g……”</li>
-          <li>“我有18g但是都是家里给的。”</li>
-          <li>“我现在开始攒还来得及吗？”</li>
-        </ul>
-      </div>
-    </div>
-
-    <h2 style="margin-top: 15px;">小红书内容 5 个固定栏目（运营不用临时想题）</h2>
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr><th>栏目</th><th>占比</th><th>内容示例</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>黄金生活</td><td>30%</td><td>工资、房租、奶茶、衣服、iPhone</td></tr>
-          <tr><td>黄金人生</td><td>20%</td><td>25岁、30岁、结婚、工作、存款</td></tr>
-          <tr><td>黄金 Meme</td><td>20%</td><td>FOMO、追涨、踏空、抄底、自嘲</td></tr>
-          <tr><td>用户故事</td><td>20%</td><td>攒金记录、资产展示、人生节点</td></tr>
-          <tr><td>App/工具</td><td>10%</td><td>计算器、资产记录、分享卡</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="highlight-red">⚠️ 一个非常重要的原则：App 内容最多只能占 10%。不能每天“新功能上线啦/可以记录黄金啦”，否则很快变成广告号。</p>
-  </section>
-
-  <!-- PAGE 6 -->
-  <section class="slide">
-    <h1>三、账号定位（小红书内容选题库与发布频率）</h1>
-    <h2>小红书运营可以直接套用的选题模板：</h2>
-    <div class="grid-2">
-      <div class="grid-card">
-        <h3>工资 & 消费类：</h3>
-        <ul>
-          <li><strong>工资：</strong>月薪5000值多少克黄金？/ 月薪8000值多少克？/ 月薪1万能留多少克？/ 如果工资发黄金你愿意吗？</li>
-          <li><strong>消费：</strong>一杯奶茶/一顿海底捞/一个月外卖/一部iPhone/一年衣服钱=多少克黄金？</li>
-          <li><strong>房租：</strong>房租5000吃掉多少克黄金？/ 北京通勤吃掉多少克？/ 上海月生活成本=多少克？</li>
-        </ul>
-      </div>
-      <div class="grid-card">
-        <h3>年龄、女性 & Meme类：</h3>
-        <ul>
-          <li><strong>年龄：</strong>25岁有多少克？/ 30岁有100g是什么水平？/ 工作三年43g算多吗？/ 20岁攒到30岁有多少？</li>
-          <li><strong>女性：</strong>少买一个包多多少克？/ 女生为什么喜欢小金豆？/ 结婚前希望有多少克？/ 男友送5000要现金还是黄金？</li>
-          <li><strong>Meme：</strong>金价600嫌贵/650等等/700后悔；黄金跌5块“长期主义呢？”，跌50块“是不是该卖了？”</li>
-        </ul>
-      </div>
-    </div>
-
-    <h2>前30天小红书发布频率建议：</h2>
-    <div class="quote-box">
-      <p>新手不要一开始每天发十几条把账号做成垃圾场。</p>
-      <ul>
-        <li><strong>每天 2 篇：</strong>一篇偏（生活/财富/比较/故事），一篇偏（Meme/搜索/工具/黄金知识）。</li>
-        <li><strong>每周：</strong>14 篇 | <strong>30天：</strong>约 42—60 篇。</li>
-        <li>表现明显好的阶段可增加到每天3篇，但切忌第一天直接3-5篇。</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- PAGE 7 -->
-  <section class="slide">
-    <h1>三、账号定位 —— 抖音运营策略</h1>
-    <h2>抖音唯一铁律法则：</h2>
-    <div class="quote-box">
-      <p class="highlight-gold" style="font-size: 1.2rem;">3秒给数字，10秒给反差，最后给问题。</p>
-    </div>
-
-    <div class="grid-2">
-      <div class="grid-card">
-        <h3>视频脚本标准模板：</h3>
-        <ul>
-          <li><strong>0–3秒：</strong>月薪8000，其实只有 X 克黄金。</li>
-          <li><strong>3–7秒：</strong>房租3500 = Xg / 吃饭1500 = Xg / 交通500 = Xg</li>
-          <li><strong>7–12秒：</strong>最后你真正留下的只有 Xg。</li>
-          <li><strong>12–15秒：</strong>你的工资是多少？评论区告诉我，我帮你算。</li>
-        </ul>
-      </div>
-      <div class="grid-card">
-        <h3>抖音核心 CTA（不要讲“去下载”）：</h3>
-        <ul>
-          <li>“评论区留下你的工资。”</li>
-          <li>“你现在有多少克黄金？”</li>
-          <li>“你想算什么？房租、工资还是 iPhone？”</li>
-        </ul>
-      </div>
-    </div>
-
-    <h2>抖音固定 6 个系列（每天套用）：</h2>
-    <ol>
-      <li><strong>「你的工资值多少克」：</strong>月薪5000/8000/10000/20000</li>
-      <li><strong>「这个东西值多少克」：</strong>奶茶/iPhone/房租/海底捞/包/化妆品</li>
-      <li><strong>「如果你去年买了」：</strong>去年买10g，现在怎么样？</li>
-      <li><strong>「黄金人的一天」：</strong>工资到账 → 房租 → 吃饭 → 娱乐 → 买黄金</li>
-      <li><strong>「黄金人类观察」：</strong>600不买/650等等/700开始研究/750问还能买吗</li>
-      <li><strong>「黄金 Meme」：</strong>影视截图、动物、表情包、Twitter/Reddit 风格 Meme。</li>
-    </ol>
-
-    <p style="margin-top: 10px;"><strong>抖音频率：</strong>每天2条（一条换算/数字冲击，一条情绪/Meme/故事）。30天约42-60条。两平台合计每天4条，单月120条建立数据基础。</p>
-  </section>
-
-  <!-- PAGE 8 -->
-  <section class="slide">
-    <h1>三、账号定位 —— Meme与海外金融社区本地化</h1>
-    <p>海外股票、加密货币和黄金社区已形成：<strong class="highlight-gold">金融资产 × Meme × 日常生活 × 情绪 × 财富展示 × 自嘲</strong></p>
-    <p>国内黄金内容仍偏：行情、经验、买金攻略、女性攒金。我们要把海外表达方式本地化成中国人的工资、房租、消费和攒金。</p>
-
-    <h2>Meme黄金本地化词库对比表：</h2>
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr><th>金融情绪</th><th>黄金表达</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>FOMO</td><td>昨天不买今天又涨了</td></tr>
-          <tr><td>踏空</td><td>涨到700了我一克都没有</td></tr>
-          <tr><td>抄底</td><td>等跌到500我就买</td></tr>
-          <tr><td>追高</td><td>600觉得贵，700觉得再不买更贵</td></tr>
-          <tr><td>低价卖出</td><td>刚卖完，黄金开始涨</td></tr>
-          <tr><td>长期持有</td><td>不看价格，先攒到100g</td></tr>
-          <tr><td>定投</td><td>每个月固定买1g</td></tr>
-          <tr><td>越跌越买</td><td>第一次600，第二次580，第三次……</td></tr>
-          <tr><td>恐慌卖出</td><td>跌5块就开始怀疑人生</td></tr>
-          <tr><td>黄金牛市</td><td>全家开始讨论黄金的时候</td></tr>
-          <tr><td>黄金熊市</td><td>终于没人问我黄金多少钱</td></tr>
-          <tr><td>梭哈</td><td>工资到账直接买10g</td></tr>
-          <tr><td>报复性买入</td><td>昨天没买涨了50，今天多买2g</td></tr>
-          <tr><td>炫富</td><td>不小心攒了100g</td></tr>
-          <tr><td>财富焦虑</td><td>月薪8000多久能攒到100g</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- PAGE 9 -->
-  <section class="slide">
-    <h1>四、转化与评论区运营</h1>
-    <h2>转化逻辑：</h2>
-    <p class="highlight-red">内容不要直接想“卖 App”，应该按照：问题 → 情绪 → 工具 → App（而非 App → 功能 → 下载）。</p>
-    <p><strong>运营职责：</strong>把用户的一个问题，变成下一条内容。</p>
-    
-    <div class="flow-container">
-      <span>月薪8000值多少克？</span> → <span>用户“我也想算”</span> → <span>黄金计算器</span> → <span>用户“我自己的黄金呢？”</span> → <span>App记录资产</span> → <span>用户“我今年攒了多少？”</span> → <span>App年度报告</span> → <span>分享2026 GOLD JOURNEY</span> → <span>其他用户“我才12g”</span> → <span>新用户</span>
-    </div>
-
-    <h2>评论区精细化运营（4类回复法则）：</h2>
-    <p>❌ 严禁回复“谢谢支持～”、“感谢关注～”等无价值废话。</p>
-    <div class="grid-2">
-      <div class="grid-card">
-        <h3>第一类：用户报数字（例：“我工资6000”）</h3>
-        <p><strong>回复：</strong>6000的话今天大概是 Xg，你一个月能留下多少？</p>
-        
-        <h3>第二类：用户炫资产（例：“我已经100g了”）</h3>
-        <p><strong>回复：</strong>100g已经可以单独开一篇了，你是自己攒的还是家里给的？</p>
-      </div>
-      <div class="grid-card">
-        <h3>第三类：用户质疑（例：“黄金有什么用？”）</h3>
-        <p><strong>回复：</strong>所以我们其实更想知道的是：如果不用人民币，而是用黄金克数看自己的收入和消费，你会不会有不同感觉？</p>
-        
-        <h3>第四类：用户提问（例：“黄金怎么买？”）</h3>
-        <p><strong>回复策略：</strong>直接把问题变成下一条内容！如《第一次买黄金，到底应该买多少克？》</p>
-      </div>
-    </div>
-    <div class="quote-box" style="margin-top: 10px;">
-      <p><strong>闭环：</strong>评论 → 选题 → 内容 → 评论 → 新选题（社媒账号持续增长的根本）</p>
-    </div>
-  </section>
-
-  <!-- PAGE 10 -->
-  <section class="slide">
-    <h1>五、内容测试与爆发机制</h1>
-    <h2>内容测试原则：不要一次赌一个方向</h2>
-    <p>初期分两种：纯文字笔记引起讨论 & Meme梗图引起讨论，建立内容机器。</p>
-    
-    <h2>内容 5 大来源池：</h2>
-    <ol>
-      <li><strong>用户生活：</strong>工资、房租、消费、存款、恋爱、结婚、工作。</li>
-      <li><strong>黄金：</strong>金价、克重、购买、收益、黄金首饰、金豆。</li>
-      <li><strong>情绪：</strong>FOMO、后悔、踏空、追涨、抄底、焦虑、自嘲。</li>
-      <li><strong>用户故事：</strong>25岁7.8g / 工作三年43g / 第一次买黄金 / 结婚攒黄金 / 每月买1g。</li>
-      <li><strong>热点：</strong>金价变化、社会/消费热点、年轻人财富话题（吉伊卡哇快闪、美联储降息、iPhone涨价、中东局势等）。<br><em>注：热点参考小红书/抖音推荐流、知乎/贴吧热榜。可做AI简单热点推送爬虫工具。</em></li>
-    </ol>
-
-    <h2>冷启动 50 条测试矩阵：</h2>
-    <p>第一阶段做 <strong>5个内容池 × 每个10条 = 50条测试内容</strong>。</p>
-    <div class="quote-box">
-      <p><strong>爆款复制核心：</strong>爆款不能直接复制“图片+文案”，而是要复制<strong>“内容机制”</strong>（如：年龄比较、财富比较、自我代入）。将《25岁有100g黄金》演变为《25岁有多少黄金才算多？》，看评论率+收藏率+分享率+Profile访问。</p>
-    </div>
-  </section>
-
-  <!-- PAGE 11 -->
-  <section class="slide">
-    <h1>五、内容测试（发布时间与新手每日 SOP）</h1>
-    <h2>小红书 & 抖音发布时间测试 SOP：</h2>
-    <ul>
-      <li><strong>小红书首周测试：</strong>固定每天 12:30 & 20:00；第二周测试 11:30 & 19:30；第三周测试 12:30 & 21:00。</li>
-      <li><strong>抖音测试：</strong>固定每天 12:30 & 20:30，连续测试 7 天。</li>
-      <li><strong>测试法则：</strong>一次只改变一个变量（同一栏目第一周12:30/第二周19:30/第三周21:00），对比1h、6h、24h数据得出专属账号最佳发布点。</li>
-    </ul>
-
-    <h2>运营新手每日工作 SOP 流程表：</h2>
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr><th>时间段</th><th>工作内容</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>09:30 - 10:00</td><td>看昨天数据（播放、评论、收藏、分享、主页访问、用户评论）</td></tr>
-          <tr><td>10:00 - 11:00</td><td>找今天选题（昨天评论区、小红书搜索/推荐、抖音热点、金价变化、海外Meme）</td></tr>
-          <tr><td>11:00 - 12:00</td><td>制作第一条内容</td></tr>
-          <tr><td>12:30</td><td>发布第一条内容</td></tr>
-          <tr><td>13:00 - 14:00</td><td>互动回复评论（切忌发完就走）</td></tr>
-          <tr><td>15:00 - 17:00</td><td>制作第二条内容</td></tr>
-          <tr><td>20:00</td><td>发布第二条内容</td></tr>
-          <tr><td>20:00 - 21:30</td><td>重点互动回复评论</td></tr>
-          <tr><td>22:00</td><td>记录全天完整数据</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h2>阶段推进路线图：</h2>
-    <ul>
-      <li><strong>Phase 1 验证内容：</strong>验证“黄金×生活×Meme”自然流量。只做小红书/抖音/黄金计算器/简单App/分享卡，跑50-100条内容。</li>
-      <li><strong>Phase 2 验证留存：</strong>若用户愿意记录，增加 Goal、热力图、成就、年报、Gold Journey、Widget，解决下周留存。</li>
-    </ul>
-  </section>
-
-  <!-- PAGE 12 -->
-  <section class="slide">
-    <h1>六、运营前准备</h1>
-    <div class="grid-2">
-      <div class="grid-card">
-        <h2>A. 品牌素材包（必须备齐）：</h2>
-        <ul>
-          <li>Bullion Note Logo & App Icon</li>
-          <li>品牌字体与品牌颜色</li>
-          <li>金豆 IP（不同表情与动作）</li>
-          <li>背景模板 & 小红书封面模板</li>
-          <li>抖音视频模板 & 分享卡模板</li>
-        </ul>
-
-        <h2>B. 内容模板套系：</h2>
-        <ul>
-          <li><strong>小红书：</strong>至少 10 套封面模板（25岁有多少克/月薪8000值多少/房租吃掉多少等）。</li>
-          <li><strong>抖音：</strong>至少 5 套视频模板（数字换算型、Meme型、故事型、对比型、评论回复型）。</li>
-        </ul>
-      </div>
-
-      <div class="grid-card">
-        <h2>C. 黄金数据接口规范：</h2>
-        <p class="highlight-red">必须建立统一的黄金价格数据源，严禁运营自行百度数据导致平台间数据冲突。</p>
-        <p><strong>统一规范：</strong>发布内容时必须标注标准格式：</p>
-        <div class="quote-box">
-          <p>价格：XXX 元/g</p>
-          <p>时间：2026-08-18 XX:XX</p>
-        </div>
-
-        <h2>D. 黄金计算器（最短转化路径）：</h2>
-        <p>网页版 Demo / 官网配置：工资→黄金 / 消费→黄金 / 存款→黄金 / 黄金→人民币。</p>
-        <p>输入 8000 → 输出 ≈ X.Xg → 下方引导：“记录到我的黄金资产” → 跳转 App。</p>
-      </div>
-    </div>
-
-    <h2>E. App 必须准备的运营能力优先级划分：</h2>
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr><th>优先级</th><th>核心功能配置</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>第一优先级</strong></td><td>黄金资产录入（克重/买入价/当前价值/收益）、黄金计算器、目标设置、分享卡</td></tr>
-          <tr><td><strong>第二优先级</strong></td><td>年度报告、攒金热力图、成就系统、Gold Journey、桌面 Widget</td></tr>
-          <tr><td><strong>第三优先级</strong></td><td>金豆 IP 宠物、家园、收集系统、彩蛋、社群、双人金豆岛</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- PAGE 13 -->
-  <section class="slide">
-    <h1>七、SEO运营（含 AEO、ASO）—— 工具 & 问题层</h1>
-    <h2>第一层：工具型 SEO（最重要）</h2>
-    <p>直接针对工具词做 Landing Page：黄金计算器（工资8000值多少克/10万存款多少克/100g值多少钱/收益怎么算/金饰价值）。搜索后使用，顺手保存至“账本/成就/人生记录榜单”。</p>
-    
-    <h3>人生记录 SEO（拉开竞品差距的核心）：</h3>
-    <p>竞品逻辑是“买金→记账→看价”，我们是<strong class="highlight-gold">“人生发生一件事 → 买黄金 → 留下记录”</strong>。</p>
-    <p>关键词：黄金人生记录、黄金成长记录、黄金时间线、我的黄金故事、黄金人生账本、黄金成长日记、攒金日记、黄金日记、黄金资产成长记录。</p>
-
-    <h2>SEO 页面架构树状图：</h2>
-    <div class="flow-container" style="align-items: flex-start; flex-direction: column;">
-      <div><strong>黄金工具体系：</strong></div>
-      <div>├── <strong>黄金计算器：</strong>克重计算器 | 估值计算器 | 收益计算器 | 工资换黄金 | 消费换黄金</div>
-      <div>├── <strong>黄金账本：</strong>黄金怎么记账 | 购买记录 | 持仓记录 | 资产管理 | 收益记录</div>
-      <div>├── <strong>黄金成就：</strong>第一克 | 10g | 50g | 100g | 黄金等级</div>
-      <div>├── <strong>黄金挑战：</strong>30天攒金挑战 | 50g挑战 | 100g挑战 | 年度攒金挑战</div>
-      <div>├── <strong>黄金人生：</strong>黄金人生记录 | 黄金成长记录 | 攒金日记 | 黄金时间线 | 黄金人生报告</div>
-      <div>└── <strong>黄金榜单：</strong>本月攒金榜 | 连续记录榜 | 黄金挑战榜 | 黄金成长榜</div>
-    </div>
-
-    <h2>第二层：问题型 SEO</h2>
-    <p>围绕用户真正搜索的问题（如：黄金怎么记账、黄金涨100元赚多少、9999黄金含义、金饰算不算资产）。</p>
-    <p><strong>策略：</strong>先解决问题，末尾引导：“如果你需要长期记录自己的黄金资产，可以使用 Bullion Note。”</p>
-  </section>
-
-  <!-- PAGE 14 -->
-  <section class="slide">
-    <h1>七、SEO运营 —— 内容层与 AI Search (AEO) 战略</h1>
-    <h2>第三层：内容型 SEO</h2>
-    <p>把社媒爆款反向沉淀为搜索内容。小红书《25岁有多少克黄金？》爆了 → SEO做《25岁应该有多少克黄金？年轻人的黄金资产怎么计算》；《月薪8000值多少克？》爆了 → SEO做《月薪8000元值多少克黄金？工资黄金换算器》。</p>
-    <div class="quote-box"><p><strong>社媒负责发现需求，SEO负责长期吃搜索流量。</strong></p></div>
-
-    <h2>第四层：AI Search / AEO（核心突破口）</h2>
-    <p>社媒内容运营为主，社媒搜索/AI搜索为核心目标，传统 SEO 为辅助。</p>
-
-    <div class="grid-2">
-      <div class="grid-card">
-        <h3>国内搜索引擎市场现状（2026数据）：</h3>
-        <ul>
-          <li><strong>桌面端：</strong>2026年3-6月数据显示 Bing 占比 35%~39%，已超越百度的 29%~34%。</li>
-          <li><strong>移动端：</strong>百度仍占 63.77% 领先（靠流氓软件/摇一摇）。</li>
-          <li><strong>结论：</strong>不把“百度SEO”当主渠道。移动端用户已经在平台内部（小红书/抖音/知乎）或直接问 AI（豆包/元宝/DeepSeek）。</li>
-        </ul>
-      </div>
-      <div class="grid-card">
-        <h3>AI 搜索场景覆盖策略：</h3>
-        <p>用户常问 AI：“有没有好用的黄金记账App？”“20g黄金怎么管理？”</p>
-        <p>官网必须建立：<strong class="highlight-gold">FAQ、黄金知识、黄金计算器、黄金资产管理指南、黄金记账指南、黄金收益计算、持仓管理、购买记录</strong>。让 AI 明确识别：Bullion Note = 黄金资产记录/计算工具。</p>
-      </div>
-    </div>
-
-    <h2>社媒渠道阵地矩阵：</h2>
-    <ul>
-      <li><strong>小红书（核心）：</strong>生活化内容 + 搜索 + UGC + 女性用户</li>
-      <li><strong>抖音（核心）：</strong>短视频流量 + 情绪 + 数字冲击 + 热点</li>
-      <li><strong>知乎：</strong>黄金知识 + 问题型搜索内容</li>
-      <li><strong>微博：</strong>热点 + 金价事件 + 内容分发</li>
-    </ul>
-  </section>
-
-  <!-- PAGE 15 -->
-  <section class="slide">
-    <h1>七、ASO 运营方案与关键词词库</h1>
-    <h2>用户搜索与产品匹配意图路径：</h2>
-    <div class="flow-container">
-      <span>搜黄金</span> → <span>看价格/算黄金/记黄金/管资产/攒黄金</span> → <span>Bullion Note (海广手帐)</span>
-    </div>
-
-    <h2>App Store 页面文本结构规划：</h2>
-    <ul>
-      <li><strong>App Name（核心产品词）：</strong>海广手帐｜黄金资产管理</li>
-      <li><strong>Subtitle（第二层意图）：</strong>黄金记账・攒金目标・收益计算</li>
-      <li><strong>Keywords（长尾组合词）：</strong>账本,记录,持仓,计算器,估值,克重,实物,金条,金豆,积存金,首饰,金饰,金价,价格,投资,定投,存款,助手,账户,买金,理财,海光,海光手帐,海光黄金,海广黄金,海光攒金</li>
-    </ul>
-
-    <h2>关键词扩展监控维度（周监控）：</h2>
-    <p>监控词：海广 / 海广手帐 / 海广黄金 / 海光 / 海光手帐 / 海广黄金记账 的搜索结果、竞品占位、联想词及排名。</p>
-
-    <h2>关键词 9 大分类扩展库：</h2>
-    <div class="grid-3" style="font-size:0.8rem;">
-      <div class="grid-card">
-        <h3>1. 核心词</h3>
-        <p>黄金记账、黄金账本、黄金资产、黄金持仓、黄金收益、黄金记录、攒黄金、攒金、黄金投资记录、黄金资产管理</p>
-      </div>
-      <div class="grid-card">
-        <h3>2. 攒金赛道</h3>
-        <p>攒黄金、攒金、攒金助手、攒金记录、攒金目标、攒金计划、攒金打卡、黄金目标、黄金存款、黄金挑战</p>
-      </div>
-      <div class="grid-card">
-        <h3>3. 计算器</h3>
-        <p>黄金计算器、黄金估值、黄金克重计算/换算、黄金价格/收益/盈亏/成本/回收/价值计算</p>
-      </div>
-      <div class="grid-card">
-        <h3>4. 黄金行情</h3>
-        <p>黄金价格、今日金价、实时金价、金价查询、国际金价、黄金行情、黄金走势、大盘</p>
-      </div>
-      <div class="grid-card">
-        <h3>5. 实物黄金</h3>
-        <p>实物黄金、黄金首饰/饰品、金条、金豆、手镯、戒指、项链、积存金、银行积存金、克重/买卖记录</p>
-      </div>
-      <div class="grid-card">
-        <h3>6. 问题型</h3>
-        <p>黄金怎么/如何记账、买了怎么记录、收益/持仓/成本/盈亏/克重怎么算、现在值多少钱、首饰怎么估值</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PAGE 16 -->
-  <section class="slide">
-    <h1>七、ASO 品牌词与竞品反查总结</h1>
-    <h2>7. 品牌词矩阵：</h2>
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr><th>类型</th><th>关键词</th><th>优先级</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>品牌</td><td>海广手帐</td><td>S</td></tr>
-          <tr><td>品牌简称</td><td>海广</td><td>S</td></tr>
-          <tr><td>品牌+品类</td><td>海广黄金</td><td>S</td></tr>
-          <tr><td>品牌+功能</td><td>海广黄金账本 / 海广黄金记账 / 海广黄金资产</td><td>A</td></tr>
-          <tr><td>品牌+行为</td><td>海广攒金</td><td>A</td></tr>
-          <tr><td>品牌+平台</td><td>海广App</td><td>A</td></tr>
-          <tr><td>常见错别字变体</td><td>海广手帐app, 海广手账, 海广手账app, 海广帐本, 海广账本, 海广黄金手帐, 海广黄金手账</td><td>A</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h2>竞品关键词定位与优势反查：</h2>
-    <div class="grid-2">
-      <div class="grid-card">
-        <h3>金攒攒</h3>
-        <p><strong>定位：</strong>攒金 + 记账 + 贵金属 + 金价 + 收益 + 克重换算</p>
-        <p><strong>现状：</strong>积累了非常大的自然用户基础，App Store 显示约 2.9 万评分。</p>
-
-        <h3>攒金PRO</h3>
-        <p><strong>定位：</strong>黄金资产 + 持仓 + 收益 + 攒钱 + 数据分析</p>
-      </div>
-      <div class="grid-card">
-        <h3>黄金天眼</h3>
-        <p><strong>定位：</strong>金价 + 行情 + 价格提醒 + 攒金记账</p>
-
-        <h3>攒黄金</h3>
-        <p><strong>定位：</strong>黄金记录 + 攒金助手 + 金价查询 + 黄金记账</p>
-      </div>
-    </div>
-
-    <div class="quote-box" style="margin-top: 15px;">
-      <p class="highlight-gold" style="text-align: center; font-size: 1.1rem;">总结：突破竞品围剿的核心方案 —— 以“内容IP+游戏化”为矛，以“黄金计算器+人生记录SEO”为盾，打造完整的增长与传播闭环！</p>
-    </div>
   </section>
 
 </div>

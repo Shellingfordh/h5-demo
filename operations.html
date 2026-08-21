@@ -1,243 +1,1188 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bullion Note 产品与运营方案</title>
-<!-- 
-  ⚠️ 版权声明 (Copyright Notice)
-  本文档为内部保密资料，仅供授权人员查看
-  禁止商业使用、禁止转载、禁止复制、禁止传播
-  严禁用于商业目的、竞品分析、或任何盈利活动
-  违者将承担法律责任
-  
-  ⚠️ WARNING: CONFIDENTIAL INTERNAL DOCUMENT
-  This document is confidential and proprietary.
-  Unauthorized copying, distribution, or commercial use is strictly prohibited.
-  Legal action will be taken against violations.
--->
-<style>
-  :root {
-    --bg-color: #0d0f12;
-    --card-bg: #161a22;
-    --text-primary: #f0f4f8;
-    --text-secondary: #94a3b8;
-    --accent-gold: #fbbf24;
-    --accent-gold-hover: #f59e0b;
-    --border-color: #272f3d;
-    --table-header: #1e293b;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-  body { background: var(--bg-color); color: var(--text-primary); overflow: hidden; height: 100vh; width: 100vw; }
-
-  /* Deck & Slide Layout */
-  .deck { position: relative; width: 100%; height: 100%; overflow: hidden; }
-  .slide {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    opacity: 0; visibility: hidden; transition: all 0.4s ease-in-out;
-    padding: 60px 80px 80px; overflow-y: auto; display: flex; flex-direction: column;
-  }
-  .slide.active { opacity: 1; visibility: visible; }
-
-  /* Header Controls & Progress */
-  .progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: var(--accent-gold); z-index: 100; transition: width 0.3s; }
-  .nav-controls { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; z-index: 100; }
-  .btn {
-    background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary);
-    padding: 10px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: bold;
-    transition: 0.2s;
-  }
-  .btn:hover { background: var(--accent-gold); color: #000; }
-
-  /* Typography */
-  h1 { font-size: 2.2rem; color: var(--accent-gold); margin-bottom: 20px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
-  h2 { font-size: 1.5rem; color: #38bdf8; margin: 15px 0 10px; }
-  h3 { font-size: 1.1rem; color: #f43f5e; margin: 10px 0; }
-  p { line-height: 1.6; color: var(--text-primary); margin-bottom: 10px; font-size: 0.95rem; }
-  ul, ol { margin-left: 20px; margin-bottom: 15px; }
-  li { line-height: 1.6; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 4px; }
-  li strong { color: var(--text-primary); }
-  
-  /* Callouts & Blocks */
-  .quote-box {
-    background: rgba(251, 191, 36, 0.08); border-left: 4px solid var(--accent-gold);
-    padding: 12px 18px; margin: 10px 0 15px; border-radius: 0 8px 8px 0;
-  }
-  .highlight-red { color: #f43f5e; font-weight: bold; }
-  .highlight-gold { color: var(--accent-gold); font-weight: bold; }
-
-  /* Visual Elements: Flowcharts */
-  .flow-container {
-    display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: flex-start;
-    margin: 15px 0; padding: 15px; background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border-color);
-  }
-  .flow-step {
-    background: #1e293b; color: var(--accent-gold); padding: 8px 14px; border-radius: 20px;
-    font-weight: bold; font-size: 0.85rem; border: 1px solid var(--accent-gold);
-  }
-  .flow-arrow { color: var(--text-secondary); font-weight: bold; font-size: 1.1rem; }
-
-  /* Tables */
-  .table-wrapper { overflow-x: auto; margin: 15px 0; }
-  table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 8px; overflow: hidden; font-size: 0.85rem; }
-  th, td { padding: 10px 12px; border: 1px solid var(--border-color); text-align: left; }
-  th { background: var(--table-header); color: var(--accent-gold); font-weight: bold; }
-  tr:nth-child(even) { background: rgba(255,255,255,0.02); }
-
-  /* Grid Layouts */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
-  .grid-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; }
-
-  /* Page Footer Counter */
-  .page-num { position: fixed; bottom: 25px; left: 30px; font-size: 14px; color: var(--text-secondary); }
-
-  /* Copyright Notice Banner */
-  .copyright-banner {
-    position: fixed;
-    top: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(90deg, rgba(239, 68, 68, 0.95) 0%, rgba(220, 38, 38, 0.95) 100%);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
-    z-index: 200;
-    text-align: center;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海广手帐（Bullion Note）产品运营方案 PPT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                            800: '#854d0e',
+                            900: '#713f12',
+                        },
+                        darkbg: '#0B0F17',
+                        cardbg: '#161F30',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #0B0F17;
+            color: #E2E8F0;
+            overflow-x: hidden;
+        }
+        /* Custom scrollbar for slide content */
+        .slide-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .slide-scroll::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .slide-scroll::-webkit-scrollbar-thumb {
+            background: #ca8a04;
+            border-radius: 3px;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFE082 0%, #EAB308 50%, #B45309 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border {
+            border-image: linear-gradient(to right, #eab308, #ca8a04) 1;
+        }
+        .glass-panel {
+            background: rgba(22, 31, 48, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(234, 179, 8, 0.15);
+        }
+    </style>
 </head>
-<body>
+<body class="h-screen flex flex-col justify-between select-none">
 
-<div class="copyright-banner">
-  ⚠️ 内部保密资料 | 禁止商用 | 禁止复制转载 | CONFIDENTIAL - NO COMMERCIAL USE ⚠️
-</div>
-
-<div class="progress-bar" id="progress"></div>
-<div class="page-num" id="pageNum">Slide 1</div>
-
-<div class="nav-controls">
-  <button class="btn" onclick="prevSlide()">← 上一页</button>
-  <button class="btn" onclick="nextSlide()">下一页 →</button>
-</div>
-
-<div class="deck" id="deck">
-
-  <!-- PAGE 1 -->
-  <section class="slide active">
-    <h1>一、我们到底要做什么</h1>
-    <div class="quote-box">
-      <p><strong>核心定位反思：</strong>我们不是在做一个普通的"黄金记账 App"。</p>
-      <p>用户不会因为"我需要一个黄金记账软件"而产生非常强的需求。黄金不像微信、银行卡、日历一样每天都必须打开，很多用户可能买了一次黄金而且[...]</p>
-    </div>
-    <p><strong>所以真正的问题不是：</strong>怎么让用户下载一个黄金记账 App？</p>
-    <p><strong>而是：</strong>怎么让用户因为黄金产生问题 → 使用我们的工具 → 顺手记录自己的黄金 → 形成自己的黄金资产 → 为了目标持续回来 → 产生分享 → 吸引新用户</p>
-    
-    <h2>因此产品应该从单纯的"黄金工具"升级成：</h2>
-    <div class="flow-container">
-      <div class="flow-step">黄金工具</div> <span class="flow-arrow">+</span>
-      <div class="flow-step">财富生活内容</div> <span class="flow-arrow">+</span>
-      <div class="flow-step">攒金成长</div> <span class="flow-arrow">+</span>
-      <div class="flow-step">游戏化激励</div> <span class="flow-arrow">+</span>
-      <div class="flow-step">用户资产展示</div> <span class="flow-arrow">+</span>
-      <div class="flow-step">社交传播</div>
-    </div>
-
-    <h2>核心产品闭环：</h2>
-    <div class="flow-container">
-      <div class="flow-step">内容</div> <span class="flow-arrow">→</span>
-      <div class="flow-step">产生问题</div> <span class="flow-arrow">→</span>
-      <div class="flow-step">工具</div> <span class="flow-arrow">→</span>
-      <div class="flow-step">下载</div> <span class="flow-arrow">→</span>
-      <div class="flow-step">第一次记录</div> <span class="flow-arrow">→</span>
-      <div class="flow-step">黄金资产</div> <span class="flow-arrow">→</span>
-      <div class="flow-step">目标/成长</div> <span class="flow-arrow">→</span>
-      <div class="flow-step">分享</div> <span class="flow-arrow">→</span>
-      <div class="flow-step">UGC</div> <span class="flow-arrow">→</span>
-      <div class="flow-step">新用户</div>
-    </div>
-  </section>
-
-  <!-- PAGE 2 -->
-  <section class="slide">
-    <h1>一、我们到底要做什么（续）</h1>
-    <div class="grid-2">
-      <div class="grid-card">
-        <h2>最终希望用户形成的简单认知：</h2>
-        <div class="quote-box">
-          <p class="highlight-gold">"想知道自己的钱值多少黄金、手里有多少黄金、黄金赚了多少、怎么攒黄金，就用我们。"</p>
+    <!-- Top Header Navigation -->
+    <header class="bg-slate-900/90 border-b border-slate-800 px-4 py-2.5 flex items-center justify-between z-30 shrink-0">
+        <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-yellow-400 to-amber-600 flex items-center justify-center text-slate-950 font-bold shadow-lg shadow-amber-500/20">
+                <i class="fa-solid font-bold text-lg">金</i>
+            </div>
+            <div>
+                <h1 class="text-sm font-bold text-slate-100 flex items-center gap-2">
+                    海广手帐 (Bullion Note)
+                    <span class="text-xs font-normal px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">产品运营方案</span>
+                </h1>
+                <p class="text-[10px] text-slate-400">新人运营培训 & 完整策略讲解 PPT</p>
+            </div>
         </div>
-        <p><strong>而不是：</strong>"这是一个黄金行情/黄金记账软件。"</p>
-      </div>
 
-      <div class="grid-card">
-        <h2>竞品市场现状分析：</h2>
-        <p>目前黄金工具市场并不是没有产品，而是已经出现了一批有用户习惯的产品，例如<strong class="highlight-gold">金攒攒、黄金天眼、攒金PRO</strong>等[...]
-        <p><strong>问题在于：</strong>这些产品整体仍然更接近传统工具产品：</p>
-        <div class="flow-container">
-          <span>行情</span> → <span>记录</span> → <span>持仓</span> → <span>收益</span> → <span>攒金</span>
+        <!-- Controls -->
+        <div class="flex items-center space-x-2">
+            <button id="toggle-sidebar" class="px-2.5 py-1.5 rounded-md text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1.5 border border-slate-700">
+                <i class="fa-solid fa-list-ul"></i>
+                <span class="hidden sm:inline">目录</span>
+            </button>
+            <div class="text-xs bg-slate-950 px-3 py-1.5 rounded-md border border-slate-800 font-mono text-amber-400">
+                <span id="current-slide-num">1</span> / <span id="total-slide-num">19</span>
+            </div>
+            <button id="btn-prev" class="px-3 py-1.5 rounded-md bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold text-xs transition disabled:opacity-40 disabled:cursor-not-allowed">
+                <i class="fa-solid fa-chevron-left"></i> 上页
+            </button>
+            <button id="btn-next" class="px-3 py-1.5 rounded-md bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition disabled:opacity-40 disabled:cursor-not-allowed">
+                下页 <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <button id="btn-fullscreen" class="p-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 transition text-xs border border-slate-700" title="全屏演示">
+                <i class="fa-solid fa-expand"></i>
+            </button>
         </div>
-        <p>功能并不少，但互联网产品思路还不够强。</p>
-      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="relative flex-1 flex overflow-hidden">
+
+        <!-- Left Slide Navigation Drawer/Sidebar -->
+        <aside id="sidebar" class="absolute left-0 top-0 bottom-0 w-72 bg-slate-900/95 border-r border-slate-800 z-20 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
+            <div class="p-3 border-b border-slate-800 flex justify-between items-center bg-slate-950">
+                <span class="text-xs font-bold text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-book-bookmark"></i> PPT 幻灯片大纲
+                </span>
+                <button id="close-sidebar" class="text-slate-400 hover:text-white text-xs p-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-2 space-y-1 slide-scroll text-xs" id="sidebar-toc">
+                <!-- TOC Items inserted via JS -->
+            </div>
+        </aside>
+
+        <!-- Slide Presentation Stage -->
+        <main class="flex-1 relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 p-3 md:p-6 flex flex-col justify-center">
+            
+            <!-- Slide Container -->
+            <div id="slides-wrapper" class="w-full max-w-6xl mx-auto h-full flex flex-col justify-between">
+                
+                <!-- Individual Slides are JS managed or inline -->
+                <div id="active-slide-container" class="w-full h-full bg-slate-900/80 rounded-xl border border-slate-800/80 p-4 md:p-8 slide-scroll overflow-y-auto shadow-2xl flex flex-col relative">
+                    <!-- Slide content injected here dynamically -->
+                </div>
+
+            </div>
+        </main>
     </div>
 
-    <h2>现有竞品的痛点不足：</h2>
-    <ul>
-      <li>用户第一次打开以后为什么留下来，不够强；</li>
-      <li>用户每天为什么回来，不够强；</li>
-      <li>用户为什么主动分享，不够强；</li>
-      <li>用户之间为什么产生互动，不够强；</li>
-      <li>产品本身没有形成足够强的内容人格；</li>
-      <li>金价、持仓、收益等数据虽然有价值，但是没有被充分"内容化"和"游戏化"；</li>
-      <li>产品功能和自媒体运营之间没有形成完整闭环。</li>
-    </ul>
-  </section>
+    <!-- Bottom Progress Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800/80 px-4 py-2 flex items-center justify-between text-[11px] text-slate-400 shrink-0">
+        <div class="flex items-center gap-3">
+            <span class="text-amber-500 font-semibold flex items-center gap-1">
+                <i class="fa-solid fa-paperclip"></i> 补充说明链接:
+            </span>
+            <a href="https://futurebots.notion.site/3ba509b91c1080dc8833cb41f46fd7bc?source=copy_link" target="_blank" class="text-slate-300 underline hover:text-amber-400 transition truncate max-w-[200px] sm:max-w-md">
+                https://futurebots.notion.site/3ba509b91c1080dc8833cb41f46fd7bc
+            </a>
+        </div>
+        <div class="hidden sm:flex items-center gap-4 text-slate-400">
+            <span><i class="fa-solid fa-keyboard"></i> 可使用键盘 ← → 键翻页</span>
+            <span id="slide-title-indicator" class="text-amber-400/80 font-medium">加载中...</span>
+        </div>
+    </footer>
 
-</div>
+    <script>
+        // Full Dataset Preserving 100% Text Content from User Prompt
+        const slidesData = [
+            {
+                id: 1,
+                section: "封面与补充说明",
+                title: "海广手帐 (Bullion Note) 补充说明与产品运营方案",
+                badge: "方案总览",
+                content: `
+                    <div class="flex flex-col items-center justify-center min-h-[420px] text-center space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold">
+                            <i class="fa-solid fa-bullhorn"></i> 运营团队内部培训 & 方案讲解专用
+                        </div>
+                        <h1 class="text-3xl md:text-5xl font-black text-slate-100 tracking-tight leading-tight">
+                            海广手帐 <span class="gold-gradient-text">(Bullion Note)</span><br/>产品运营全景方案
+                        </h1>
+                        <p class="text-slate-400 max-w-2xl text-sm md:text-base leading-relaxed">
+                            本文档作为上一篇运营方面的补充说明：<br/>
+                            <a href="https://futurebots.notion.site/3ba509b91c1080dc8833cb41f46fd7bc?source=copy_link" target="_blank" class="text-amber-400 underline hover:text-amber-300 break-all">
+                                https://futurebots.notion.site/3ba509b91c1080dc8833cb41f46fd7bc?source=copy_link
+                            </a>
+                        </p>
 
-<script>
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.slide');
-  const progress = document.getElementById('progress');
-  const pageNum = document.getElementById('pageNum');
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-3xl pt-4">
+                            <div class="bg-slate-800/60 p-4 rounded-lg border border-slate-700/60">
+                                <i class="fa-solid fa-compass text-amber-400 text-2xl mb-2"></i>
+                                <div class="text-xs font-bold text-slate-200">一、定位重塑</div>
+                                <div class="text-[11px] text-slate-400 mt-1">从工具到增长闭环</div>
+                            </div>
+                            <div class="bg-slate-800/60 p-4 rounded-lg border border-slate-700/60">
+                                <i class="fa-solid fa-chart-pie text-amber-400 text-2xl mb-2"></i>
+                                <div class="text-xs font-bold text-slate-200">二、竞品缺口</div>
+                                <div class="text-[11px] text-slate-400 mt-1">游戏化与内容IP</div>
+                            </div>
+                            <div class="bg-slate-800/60 p-4 rounded-lg border border-slate-700/60">
+                                <i class="fa-solid fa-share-nodes text-amber-400 text-2xl mb-2"></i>
+                                <div class="text-xs font-bold text-slate-200">三、社媒矩阵</div>
+                                <div class="text-[11px] text-slate-400 mt-1">小红书 & 抖音实操</div>
+                            </div>
+                            <div class="bg-slate-800/60 p-4 rounded-lg border border-slate-700/60">
+                                <i class="fa-solid fa-magnifying-glass text-amber-400 text-2xl mb-2"></i>
+                                <div class="text-xs font-bold text-slate-200">四、SEO & ASO</div>
+                                <div class="text-[11px] text-slate-400 mt-1">AI搜索与关键词</div>
+                            </div>
+                        </div>
 
-  function updateSlide() {
-    slides.forEach((slide, index) => {
-      slide.classList.toggle('active', index === currentSlide);
-    });
-    progress.style.width = ((currentSlide + 1) / slides.length) * 100 + '%';
-    pageNum.innerText = `Slide ${currentSlide + 1} / ${slides.length}`;
-  }
+                        <div class="text-xs text-slate-400 pt-2">
+                            <i class="fa-solid fa-circle-info text-amber-500 mr-1"></i> 请新手运营人员仔细阅读，点击“下页”或使用键盘方向键开始学习。
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                section: "一、我们到底要做什么",
+                title: "一、我们到底要做什么（定位与核心闭环）",
+                badge: "产品重新定义",
+                content: `
+                    <div class="space-y-5 text-slate-300">
+                        <div class="bg-amber-500/10 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                            <p class="font-bold text-amber-400 text-base">我们不是在做一个普通的“黄金记账 App”。</p>
+                            <p class="text-xs text-slate-300 mt-1">用户不会因为“我需要一个黄金记账软件”而产生非常强的需求。黄金不像微信、银行卡、日历一样每天都必须打开，很多用户可能买了一次黄金，记录一次，然后几周甚至几个月都不会回来。</p>
+                        </div>
 
-  function nextSlide() {
-    if (currentSlide < slides.length - 1) {
-      currentSlide++;
-      updateSlide();
-    }
-  }
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-red-950/30 border border-red-800/40 p-4 rounded-xl">
+                                <div class="text-red-400 text-xs font-bold mb-1"><i class="fa-solid fa-circle-xmark mr-1"></i> 错误的问题思考：</div>
+                                <blockquote class="text-slate-200 italic font-semibold text-sm">“怎么让用户下载一个黄金记账 App？”</blockquote>
+                            </div>
+                            <div class="bg-emerald-950/30 border border-emerald-800/40 p-4 rounded-xl">
+                                <div class="text-emerald-400 text-xs font-bold mb-1"><i class="fa-solid fa-circle-check mr-1"></i> 真正的问题思考：</div>
+                                <blockquote class="text-slate-200 font-semibold text-sm">“怎么让用户因为黄金产生问题 → 使用我们的工具 → 顺手记录自己的黄金 → 形成自己的黄金资产 → 为了目标持续回来 → 产生可以分享的结果 → 再带来新用户。”</blockquote>
+                            </div>
+                        </div>
 
-  function prevSlide() {
-    if (currentSlide > 0) {
-      currentSlide--;
-      updateSlide();
-    }
-  }
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+                            <p class="text-xs font-bold text-amber-400 mb-2">因此产品应该从单纯的“黄金工具”升级成：</p>
+                            <div class="text-sm font-bold text-slate-100 bg-slate-950 p-3 rounded-lg border border-amber-500/30 text-center">
+                                黄金工具 + 财富生活内容 + 攒金成长 + 游戏化激励 + 用户资产展示 + 社交传播
+                            </div>
+                        </div>
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === ' ') {
-      nextSlide();
-    } else if (e.key === 'ArrowLeft') {
-      prevSlide();
-    }
-  });
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                            <div class="text-xs font-bold text-slate-400 mb-3 text-center"><i class="fa-solid fa-arrows-spin text-amber-400 mr-1"></i> 核心产品闭环链路：</div>
+                            <div class="flex flex-wrap items-center justify-center gap-2 text-xs font-semibold">
+                                <span class="bg-slate-800 text-amber-300 px-2.5 py-1 rounded">内容</span> <i class="fa-solid fa-arrow-right text-slate-600"></i>
+                                <span class="bg-slate-800 text-amber-300 px-2.5 py-1 rounded">产生问题</span> <i class="fa-solid fa-arrow-right text-slate-600"></i>
+                                <span class="bg-slate-800 text-amber-300 px-2.5 py-1 rounded">工具</span> <i class="fa-solid fa-arrow-right text-slate-600"></i>
+                                <span class="bg-slate-800 text-amber-300 px-2.5 py-1 rounded">下载</span> <i class="fa-solid fa-arrow-right text-slate-600"></i>
+                                <span class="bg-slate-800 text-amber-300 px-2.5 py-1 rounded">第一次记录</span> <i class="fa-solid fa-arrow-right text-slate-600"></i>
+                                <span class="bg-slate-800 text-amber-300 px-2.5 py-1 rounded">黄金资产</span> <i class="fa-solid fa-arrow-right text-slate-600"></i>
+                                <span class="bg-slate-800 text-amber-300 px-2.5 py-1 rounded">目标/成长</span> <i class="fa-solid fa-arrow-right text-slate-600"></i>
+                                <span class="bg-slate-800 text-amber-300 px-2.5 py-1 rounded">分享</span> <i class="fa-solid fa-arrow-right text-slate-600"></i>
+                                <span class="bg-slate-800 text-amber-300 px-2.5 py-1 rounded">UGC</span> <i class="fa-solid fa-arrow-right text-slate-600"></i>
+                                <span class="bg-amber-500 text-slate-950 px-2.5 py-1 rounded font-bold">新用户</span>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                section: "一、我们到底要做什么",
+                title: "一、我们到底要做什么（认知定位与完整链路）",
+                badge: "认知占领 & 链路剖析",
+                content: `
+                    <div class="space-y-4 text-xs md:text-sm text-slate-300">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+                                <h3 class="font-bold text-amber-400 text-sm mb-2"><i class="fa-solid fa-bullseye mr-1"></i> 最终希望用户形成认知：</h3>
+                                <blockquote class="bg-amber-500/10 border-l-4 border-amber-400 p-3 rounded text-slate-100 font-semibold leading-relaxed">
+                                    “想知道自己的钱值多少黄金、手里有多少黄金、黄金赚了多少、怎么攒黄金，就用我们。”
+                                </blockquote>
+                            </div>
+                            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+                                <h3 class="font-bold text-slate-400 text-sm mb-2"><i class="fa-solid fa-ban mr-1"></i> 而不是形成如下旧认知：</h3>
+                                <div class="space-y-1.5 text-slate-400 italic">
+                                    <p class="p-1.5 bg-slate-900 rounded">❌ “这是一个黄金行情/黄金记账软件。”</p>
+                                    <p class="p-1.5 bg-slate-900 rounded">❌ “这是一个黄金行情软件。”</p>
+                                    <p class="p-1.5 bg-slate-900 rounded">❌ “这是一个黄金记账软件。”</p>
+                                </div>
+                            </div>
+                        </div>
 
-  updateSlide();
-</script>
+                        <div class="bg-slate-800/50 p-3.5 rounded-xl border border-slate-700/70">
+                            <h4 class="font-bold text-slate-200 text-xs mb-1">市场现状与我们的机会：</h4>
+                            <p class="text-slate-300 leading-relaxed text-xs">
+                                目前黄金工具市场并不是没有产品，而是已经出现了一批有用户习惯的产品，例如<strong class="text-amber-400">金攒攒、黄金天眼、攒金PRO</strong>等。问题在于，这些产品整体仍然更接近传统工具产品（行情 → 记录 → 持仓 → 收益 → 攒金）。功能并不少，但互联网产品思路还不够强。
+                            </p>
+                        </div>
 
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                            <div class="text-xs font-bold text-amber-400 mb-2 flex items-center gap-1.5">
+                                <i class="fa-solid fa-sitemap"></i> 用户完整转化链路图解：
+                            </div>
+                            <div class="text-[11px] text-slate-400 leading-tight space-y-1 bg-slate-900/90 p-3 rounded-lg border border-slate-800 font-mono">
+                                <div><strong class="text-amber-300">完整链路：</strong>社媒内容制造需求 → 用户产生黄金相关问题 → 搜索 / AI 搜索 → SEO / ASO 承接 → App 下载 → 使用工具 → 记录黄金 → 生成分享内容 → 再回到社媒传播</div>
+                                <div class="text-center text-amber-400 py-1">小红书 / 抖音 / 搜索 / AI ↓</div>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-center text-[10px]">
+                                    <span class="bg-slate-800 p-1.5 rounded text-slate-200">黄金问题 ↓</span>
+                                    <span class="bg-slate-800 p-1.5 rounded text-slate-200">黄金计算器 ↓</span>
+                                    <span class="bg-slate-800 p-1.5 rounded text-slate-200">用户得到答案 ↓</span>
+                                    <span class="bg-slate-800 p-1.5 rounded text-slate-200">顺手记录黄金 ↓</span>
+                                    <span class="bg-slate-800 p-1.5 rounded text-slate-200">建立黄金资产 ↓</span>
+                                    <span class="bg-slate-800 p-1.5 rounded text-slate-200">设置目标 / 挑战 ↓</span>
+                                    <span class="bg-slate-800 p-1.5 rounded text-slate-200">金豆 / 成就 / 宠物 ↓</span>
+                                    <span class="bg-slate-800 p-1.5 rounded text-slate-200">持续记录和成长 ↓</span>
+                                    <span class="bg-slate-800 p-1.5 rounded text-slate-200">资产卡 / 黄金人生 / 年度报告 ↓</span>
+                                    <span class="bg-slate-800 p-1.5 rounded text-slate-200">分享 ↓</span>
+                                    <span class="bg-slate-800 p-1.5 rounded text-slate-200">小红书 / 抖音 ↓</span>
+                                    <span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 p-1.5 rounded">产生新的用户问题 → 新用户</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                section: "一、我们到底要做什么",
+                title: "一、我们到底要做什么（核心四大动作：算、记、攒、晒）",
+                badge: "核心用户路径",
+                content: `
+                    <div class="space-y-4 text-xs md:text-sm">
+                        <p class="text-slate-300">
+                            我们的机会不是再做一个“功能更多的黄金账本”，而是把成熟互联网产品里的<strong>内容、工具、游戏化、用户成长、身份、分享和裂变</strong>真正接到黄金这个品类里。
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                            <!-- 算 -->
+                            <div class="bg-slate-800/80 p-4 rounded-xl border-l-4 border-amber-400 space-y-1.5">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-black text-amber-400 text-base">算</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-400/10 text-amber-300">对应：黄金计算器</span>
+                                </div>
+                                <p class="text-slate-200 font-semibold">让用户第一次产生兴趣。</p>
+                                <ul class="text-slate-400 text-xs space-y-1 list-disc list-inside">
+                                    <li>月薪8000值多少克黄金？</li>
+                                    <li>房租5000值多少克黄金？</li>
+                                    <li>一台iPhone值多少克黄金？</li>
+                                </ul>
+                            </div>
+
+                            <!-- 记 -->
+                            <div class="bg-slate-800/80 p-4 rounded-xl border-l-4 border-yellow-500 space-y-1.5">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-black text-yellow-400 text-base">记</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-yellow-400/10 text-yellow-300">对应：黄金账本 / 黄金资产</span>
+                                </div>
+                                <p class="text-slate-200 font-semibold">用户有了兴趣以后，把自己的黄金放进去。</p>
+                                <ul class="text-slate-400 text-xs space-y-1 list-disc list-inside">
+                                    <li>我有36.7g黄金。</li>
+                                    <li>我去年买了10g。</li>
+                                </ul>
+                            </div>
+
+                            <!-- 攒 -->
+                            <div class="bg-slate-800/80 p-4 rounded-xl border-l-4 border-amber-600 space-y-1.5">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-black text-amber-500 text-base">攒</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-300">对应：攒金目标 / 挑战 / 成就</span>
+                                </div>
+                                <p class="text-slate-200 font-semibold">让用户有持续使用的理由。</p>
+                                <ul class="text-slate-400 text-xs space-y-1 list-disc list-inside">
+                                    <li>我要攒到50g。</li>
+                                    <li>今年新增20g。</li>
+                                    <li>连续记录12周。</li>
+                                </ul>
+                            </div>
+
+                            <!-- 晒 -->
+                            <div class="bg-slate-800/80 p-4 rounded-xl border-l-4 border-orange-500 space-y-1.5">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-black text-orange-400 text-base">晒</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-orange-400/10 text-orange-300">对应：资产卡 / 年度报告 / 人生黄金记录</span>
+                                </div>
+                                <p class="text-slate-200 font-semibold">把用户自己的数据变成内容。</p>
+                                <ul class="text-slate-400 text-xs space-y-1 list-disc list-inside">
+                                    <li>我的黄金：36.7g</li>
+                                    <li>2026年新增18.2g</li>
+                                    <li>距离50g还差13.3g</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-amber-500/20 via-slate-800 to-amber-500/20 p-4 rounded-xl border border-amber-500/40 text-center">
+                            <span class="text-xs text-slate-400 uppercase tracking-widest block font-bold">总结一句话</span>
+                            <span class="text-slate-100 font-extrabold text-base md:text-lg gold-gradient-text">
+                                “我们让用户先算黄金，再记黄金，然后攒黄金，最后晒黄金。”
+                            </span>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                section: "二、竞品真正缺的是什么",
+                title: "二、竞品真正缺的是什么（全维度竞品对比与本质）",
+                badge: "竞品分析与闭环本质",
+                content: `
+                    <div class="space-y-4 text-xs">
+                        <p class="text-slate-300">把竞品放在一起看，我们的产品不应该只是“金攒攒2.0”，而应该是：<strong class="text-amber-400">黄金工具 + 内容IP + 游戏化成长 + 社交传播。</strong></p>
+
+                        <!-- Preserved Complete Table -->
+                        <div class="overflow-x-auto rounded-lg border border-slate-700 bg-slate-900/90">
+                            <table class="w-full text-left text-slate-300 border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-800/90 text-slate-200 text-xs border-b border-slate-700">
+                                        <th class="p-2 border-r border-slate-700">维度</th>
+                                        <th class="p-2 border-r border-slate-700">金攒攒</th>
+                                        <th class="p-2 border-r border-slate-700">黄金天眼</th>
+                                        <th class="p-2 border-r border-slate-700">攒金PRO</th>
+                                        <th class="p-2 text-amber-400 font-bold bg-amber-500/10">我们</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800 text-[11px]">
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">行情</td><td class="p-1.5 border-r border-slate-800">强</td><td class="p-1.5 border-r border-slate-800">强</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 text-amber-300 font-bold bg-amber-500/5">必须有</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">黄金记录</td><td class="p-1.5 border-r border-slate-800">强</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 border-r border-slate-800">强</td><td class="p-1.5 text-amber-300 font-bold bg-amber-500/5">强</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">收益分析</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 text-amber-300 font-bold bg-amber-500/5">强化</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">攒金目标</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">强</td><td class="p-1.5 text-amber-300 font-bold bg-amber-500/5">强化</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">热力图</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 text-amber-300 font-bold bg-amber-500/5">有</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">活动激励</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 text-amber-300 font-bold bg-amber-500/5">强化</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">用户成长</td><td class="p-1.5 border-r border-slate-800">较弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">中等</td><td class="p-1.5 text-amber-400 font-black bg-amber-500/20">核心</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">游戏化</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 text-amber-400 font-black bg-amber-500/20">核心差异</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">IP</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 text-amber-400 font-black bg-amber-500/20">金豆IP</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">内容人格</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 text-amber-400 font-black bg-amber-500/20">核心</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">Meme</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 text-amber-400 font-black bg-amber-500/20">核心</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">UGC</td><td class="p-1.5 border-r border-slate-800">有限</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">有限</td><td class="p-1.5 text-amber-400 font-black bg-amber-500/20">核心</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">社区身份</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">中等</td><td class="p-1.5 text-amber-300 font-bold bg-amber-500/5">重点</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">内容→工具</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 border-r border-slate-800">弱</td><td class="p-1.5 text-amber-400 font-black bg-amber-500/20">核心</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">工具→分享</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 border-r border-slate-800">有限</td><td class="p-1.5 border-r border-slate-800">有</td><td class="p-1.5 text-amber-300 font-bold bg-amber-500/5">强化</td></tr>
+                                    <tr><td class="p-1.5 font-medium border-r border-slate-800">分享→新用户</td><td class="p-1.5 border-r border-slate-800">不强</td><td class="p-1.5 border-r border-slate-800">不强</td><td class="p-1.5 border-r border-slate-800">不强</td><td class="p-1.5 text-amber-400 font-black bg-amber-500/20">增长闭环</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-[11px] space-y-1">
+                            <p class="font-bold text-slate-200">运营认知三不原则：</p>
+                            <p class="text-amber-400 font-mono">1. 内容不是广告。 2. App不是内容的终点。 3. 分享也不是流程终点。</p>
+                            <p class="text-slate-400">整个产品实际上是：<strong class="text-slate-200">内容生产问题，工具解决问题，产品沉淀资产，游戏化制造留存，分享制造下一轮内容。</strong></p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 6,
+                section: "三、账号定位",
+                title: "三、账号定位（黄金 × 生活 × 情绪 与 小红书“讨论”策略）",
+                badge: "社媒定位与小红书",
+                content: `
+                    <div class="space-y-4 text-xs md:text-sm">
+                        <div class="bg-amber-500/10 border border-amber-500/30 p-3.5 rounded-xl text-slate-200">
+                            <h3 class="font-black text-amber-400 text-sm mb-1">核心定位：黄金 × 生活 × 情绪</h3>
+                            <p class="text-xs">不要把自己定位成黄金财经账号。也不要定位成黄金记账 App 官方账号，而是<strong>黄金生活方式账号</strong>。</p>
+                        </div>
+
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-red-400 text-sm"><i class="fa-solid fa-bookmark text-red-500 mr-1"></i> 小红书：负责“讨论”</span>
+                                <span class="text-[10px] text-slate-400">关键词：生活 / 故事 / 比较 / Meme / 女性 / 分享</span>
+                            </div>
+                            <p class="text-slate-300">小红书不是每天告诉别人黄金涨跌，而是让用户产生：<strong class="text-amber-300 font-bold">“等等，那我呢？”</strong></p>
+                            
+                            <!-- Case study simulation -->
+                            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 space-y-2 text-xs">
+                                <div class="text-amber-400 font-bold">【小红书爆款案例拆解】主题：《25岁女生有多少克黄金？》</div>
+                                <div class="bg-slate-900 p-2 rounded text-slate-300 font-mono text-[11px]">
+                                    正文：25岁 | 月薪 8k | 工作 3 年 | 目前：7.8g | 算多还是算少？
+                                </div>
+                                <div class="text-slate-400 space-y-1 text-[11px] pl-2 border-l-2 border-slate-700">
+                                    <p>评论区真实互动反响：</p>
+                                    <p class="text-slate-300 font-serif">💬 “我25岁只有2g……”</p>
+                                    <p class="text-slate-300 font-serif">💬 “我有18g但是都是家里给的。”</p>
+                                    <p class="text-slate-300 font-serif">💬 “我现在开始攒还来得及吗？”</p>
+                                </div>
+                                <div class="text-amber-400 font-semibold text-[11px]">👉 这才是我们运营想要的真实讨论场！</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 7,
+                section: "三、账号定位",
+                title: "三、账号定位（小红书 5 大栏目与运营核心原则）",
+                badge: "小红书栏目拆解",
+                content: `
+                    <div class="space-y-4 text-xs">
+                        <div class="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700">
+                            <p class="font-bold text-slate-200 text-xs">小红书内容分成 5 个栏目（运营不要每天临时想题，直接固定栏目）：</p>
+                        </div>
+
+                        <!-- 5 Columns Table preserved -->
+                        <div class="overflow-x-auto rounded-lg border border-slate-700 bg-slate-900">
+                            <table class="w-full text-left text-slate-300 border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-800 text-slate-200 text-xs border-b border-slate-700">
+                                        <th class="p-2.5 border-r border-slate-700">栏目</th>
+                                        <th class="p-2.5 border-r border-slate-700 w-20 text-amber-400 font-bold">占比</th>
+                                        <th class="p-2.5">内容方向</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800 text-xs">
+                                    <tr><td class="p-2 font-bold text-slate-200 border-r border-slate-800">黄金生活</td><td class="p-2 border-r border-slate-800 text-amber-400 font-bold">30%</td><td class="p-2 text-slate-300">工资、房租、奶茶、衣服、iPhone</td></tr>
+                                    <tr><td class="p-2 font-bold text-slate-200 border-r border-slate-800">黄金人生</td><td class="p-2 border-r border-slate-800 text-amber-400 font-bold">20%</td><td class="p-2 text-slate-300">25岁、30岁、结婚、工作、存款</td></tr>
+                                    <tr><td class="p-2 font-bold text-slate-200 border-r border-slate-800">黄金 Meme</td><td class="p-2 border-r border-slate-800 text-amber-400 font-bold">20%</td><td class="p-2 text-slate-300">FOMO、追涨、踏空、抄底、自嘲</td></tr>
+                                    <tr><td class="p-2 font-bold text-slate-200 border-r border-slate-800">用户故事</td><td class="p-2 border-r border-slate-800 text-amber-400 font-bold">20%</td><td class="p-2 text-slate-300">攒金记录、资产展示、人生节点</td></tr>
+                                    <tr><td class="p-2 font-bold text-slate-200 border-r border-slate-800">App/工具</td><td class="p-2 border-r border-slate-800 text-amber-400 font-bold">10%</td><td class="p-2 text-slate-300">计算器、资产记录、分享卡</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="bg-red-950/40 border border-red-800/50 p-3.5 rounded-xl space-y-1">
+                            <span class="text-red-400 font-bold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-triangle-exclamation"></i> 一个非常重要的铁律原则：
+                            </span>
+                            <p class="text-slate-200 font-bold text-sm">App 内容最多只能占 10%！我们的内容运营放在社媒里填充内容。</p>
+                            <p class="text-slate-400 text-xs">不能每天喊：“新功能上线啦！”、“可以记录黄金啦！”，这样很快就会变成人人讨厌的广告号。</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 8,
+                section: "三、账号定位",
+                title: "三、账号定位（小红书选题模板库）",
+                badge: "选题灵感模板",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <p class="text-slate-300">运营可以直接从这个模板库里面选题（按维度快速套用）：</p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+                            <!-- 工资 -->
+                            <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
+                                <div class="font-bold text-amber-400 text-xs mb-1">💰 工资类</div>
+                                <ul class="text-slate-300 space-y-1 list-disc list-inside text-[11px]">
+                                    <li>月薪5000值多少克黄金？</li>
+                                    <li>月薪8000值多少克？</li>
+                                    <li>月薪1万，每个月能留下多少克？</li>
+                                    <li>如果工资直接发黄金，你愿意吗？</li>
+                                </ul>
+                            </div>
+
+                            <!-- 消费 -->
+                            <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
+                                <div class="font-bold text-amber-400 text-xs mb-1">🛍️ 消费类</div>
+                                <ul class="text-slate-300 space-y-1 list-disc list-inside text-[11px]">
+                                    <li>一杯奶茶=多少克黄金？</li>
+                                    <li>一顿海底捞=多少克黄金？</li>
+                                    <li>一个月外卖=多少克黄金？</li>
+                                    <li>一部 iPhone=多少克黄金？</li>
+                                    <li>一年买衣服的钱可以买多少克？</li>
+                                </ul>
+                            </div>
+
+                            <!-- 房租 -->
+                            <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
+                                <div class="font-bold text-amber-400 text-xs mb-1">🏠 房租/生活类</div>
+                                <ul class="text-slate-300 space-y-1 list-disc list-inside text-[11px]">
+                                    <li>房租5000，一个月吃掉多少克黄金？</li>
+                                    <li>在北京工作，一个月通勤吃掉多少克黄金？</li>
+                                    <li>上海一个月生活成本=多少克黄金？</li>
+                                </ul>
+                            </div>
+
+                            <!-- 年龄 -->
+                            <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
+                                <div class="font-bold text-amber-400 text-xs mb-1">🎂 年龄/里程碑类</div>
+                                <ul class="text-slate-300 space-y-1 list-disc list-inside text-[11px]">
+                                    <li>25岁有多少克黄金？</li>
+                                    <li>30岁有100g黄金是什么水平？</li>
+                                    <li>工作三年43g黄金算多吗？</li>
+                                    <li>20岁开始攒金，30岁能有多少？</li>
+                                </ul>
+                            </div>
+
+                            <!-- 女性 -->
+                            <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
+                                <div class="font-bold text-amber-400 text-xs mb-1">👩 女性/情感类</div>
+                                <ul class="text-slate-300 space-y-1 list-disc list-inside text-[11px]">
+                                    <li>如果少买一个包，一年能多多少克黄金？</li>
+                                    <li>女生为什么开始喜欢买小金豆？</li>
+                                    <li>结婚前，你希望自己有多少克黄金？</li>
+                                    <li>男朋友送5000元，你要现金还是黄金？</li>
+                                </ul>
+                            </div>
+
+                            <!-- Meme -->
+                            <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
+                                <div class="font-bold text-amber-400 text-xs mb-1">🤡 Meme 梗图类</div>
+                                <div class="text-slate-300 space-y-1 text-[10px]">
+                                    <p>• 我：今年一定要存钱 → 工资到账：买1g黄金。</p>
+                                    <p>• 金价600:太贵 | 650:等等 | 700:为什么去年不买。</p>
+                                    <p>• 跌5块:长期主义呢？ | 跌50块:我是不是该卖了？</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 9,
+                section: "三、账号定位",
+                title: "三、账号定位（小红书发布频率与实操案例）",
+                badge: "小红书一日实操",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-amber-500/10 border-l-4 border-amber-400 p-2.5 rounded-r text-slate-200">
+                            <strong>新手发布频率建议：</strong>前30天小红书一天3篇（不要一开始每天发十几条做成垃圾场）。
+                            <span class="text-amber-300">组合：1篇生活讨论 + 1篇工具/知识 + 1篇用户/热点/Meme</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <!-- 第一篇 -->
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-1.5">
+                                <div class="bg-slate-800 text-amber-400 font-bold px-2 py-0.5 rounded w-max text-[11px]">第一篇：生活型</div>
+                                <p class="font-bold text-slate-200">标题：月薪8000，现在到底值多少克黄金？</p>
+                                <p class="text-slate-400 text-[11px]">正文：如果工资不是人民币而是黄金，你会怎么看收入？月薪8000折算约X克，扣完房租吃饭交通留下的比想象得少。你月薪多少？评论区报数字我帮算。</p>
+                                <div class="text-emerald-400 font-bold text-[10px] bg-emerald-950/40 p-1 rounded">🎯 目的：爆评论。</div>
+                            </div>
+
+                            <!-- 第二篇 -->
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-1.5">
+                                <div class="bg-slate-800 text-amber-400 font-bold px-2 py-0.5 rounded w-max text-[11px]">第二篇：工具型</div>
+                                <p class="font-bold text-slate-200">标题：黄金买了以后怎么记？我终于把手里的黄金算明白了</p>
+                                <p class="text-slate-400 text-[11px]">内容：金饰金豆金条买了一堆不知道总共多少。我现在记三个数：买入克重、买入价格、当前价值。自然引出：我们最近就在做一个记录黄金小工具。</p>
+                                <div class="text-emerald-400 font-bold text-[10px] bg-emerald-950/40 p-1 rounded">🎯 目的：搜索 + 产品认知。</div>
+                            </div>
+
+                            <!-- 第三篇 -->
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-1.5">
+                                <div class="bg-slate-800 text-amber-400 font-bold px-2 py-0.5 rounded w-max text-[11px]">第三篇：Meme / 讨论型</div>
+                                <p class="font-bold text-slate-200">多图卡片组：</p>
+                                <p class="text-slate-400 text-[10px]">P1:我今年一定要存钱 | P2:工资到账 | P3:房租3.8g/吃饭1.2g/奶茶0.3g/打车0.6g | P4:真正留下的黄金：0.8g！你留下多少？</p>
+                                <div class="text-emerald-400 font-bold text-[10px] bg-emerald-950/40 p-1 rounded">🎯 目的：互动 + 收藏 + 分享。</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 10,
+                section: "三、账号定位",
+                title: "三、账号定位（抖音策略、3秒黄金模板与 6 大系列）",
+                badge: "抖音短视频矩阵",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700 flex justify-between items-center">
+                            <span class="font-bold text-slate-100 text-sm"><i class="fa-brands fa-tiktok text-amber-400 mr-1"></i> 抖音核心口诀：</span>
+                            <span class="text-amber-300 font-mono font-bold bg-amber-500/20 px-3 py-1 rounded-full text-xs">3秒给数字，10秒给反差，最后给问题。</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <!-- 视频脚本模板 -->
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-2">
+                                <div class="text-amber-400 font-bold text-xs">🎬 抖音脚本标准结构：</div>
+                                <div class="space-y-1 text-[11px]">
+                                    <p class="text-slate-200"><strong>0–3秒：</strong>月薪8000，其实只有 X 克黄金。</p>
+                                    <p class="text-slate-300"><strong>3–7秒：</strong>房租3500 = Xg / 吃饭1500 = Xg / 交通500 = Xg</p>
+                                    <p class="text-slate-300"><strong>7–12秒：</strong>最后你真正留下的只有 Xg。</p>
+                                    <p class="text-amber-300 font-bold"><strong>12–15秒：</strong>你的工资是多少？评论区告诉我，我帮你算。</p>
+                                </div>
+                            </div>
+
+                            <!-- 核心 CTA -->
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-2">
+                                <div class="text-amber-400 font-bold text-xs">💬 抖音核心 CTA (不要直喊“去下载”):</div>
+                                <ul class="text-slate-300 space-y-1 text-[11px] list-disc list-inside">
+                                    <li>“评论区留下你的工资。”</li>
+                                    <li>“你现在有多少克黄金？”</li>
+                                    <li>“你想算什么？房租、工资还是 iPhone？”</li>
+                                </ul>
+                                <p class="text-slate-400 text-[10px] italic">引导评论才是引爆抖音推荐流量算法的关隘。</p>
+                            </div>
+                        </div>
+
+                        <!-- 6大固定系列 -->
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                            <div class="text-xs font-bold text-slate-200 mb-2">抖音账号固定做 6 个系列（运营每天从中挑选）：</div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px]">
+                                <div class="bg-slate-800 p-2 rounded"><strong class="text-amber-300">①「工资值多少克」</strong><br/>5000 / 8000 / 1w / 2w</div>
+                                <div class="bg-slate-800 p-2 rounded"><strong class="text-amber-300">②「东西值多少克」</strong><br/>奶茶/iPhone/房租/海底捞/包</div>
+                                <div class="bg-slate-800 p-2 rounded"><strong class="text-amber-300">③「如果你去年买了」</strong><br/>去年买10g，现在怎么样？</div>
+                                <div class="bg-slate-800 p-2 rounded"><strong class="text-amber-300">④「黄金人的一天」</strong><br/>工资→房租→吃饭→买黄金</div>
+                                <div class="bg-slate-800 p-2 rounded"><strong class="text-amber-300">⑤「黄金人类观察」</strong><br/>600不买/700研究/750问能买吗</div>
+                                <div class="bg-slate-800 p-2 rounded"><strong class="text-amber-300">⑥「黄金 Meme」</strong><br/>影视截图/动物表情包/Twitter风</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 11,
+                section: "三、账号定位",
+                title: "三、账号定位（抖音频率 & 海外金融 Meme 本地化词库）",
+                badge: "Meme本地化",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-amber-500/10 border border-amber-500/30 p-2.5 rounded-xl text-slate-200 flex justify-between items-center">
+                            <div>
+                                <strong class="text-amber-400">抖音发布频率：</strong>每天 2 条（1条换算数字冲击 + 1条情绪故事Meme）。
+                            </div>
+                            <div class="text-slate-300 font-bold text-[11px] bg-slate-900 px-3 py-1 rounded border border-slate-800">
+                                两个平台合计：每天4条 | 一个月约120条内容
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-1">
+                            <h4 class="font-bold text-slate-200 text-xs">Meme 和海外金融社区内容本地化逻辑：</h4>
+                            <p class="text-slate-400 text-[11px]">海外社区已形成：<span class="text-slate-200">金融资产 × Meme × 日常生活 × 情绪 × 财富展示 × 自嘲</span>。国内黄金内容偏传统。我们需要把海外金融表达转化为中国人的工资、房租、消费和攒金。</p>
+                        </div>
+
+                        <!-- Complete Meme Localized Dictionary Table preserved -->
+                        <div class="overflow-x-auto rounded-lg border border-slate-700 bg-slate-900 max-h-[220px] slide-scroll">
+                            <table class="w-full text-left text-slate-300 border-collapse">
+                                <thead class="sticky top-0 bg-slate-800 text-xs text-slate-200">
+                                    <tr class="border-b border-slate-700">
+                                        <th class="p-2 border-r border-slate-700 w-1/3">金融情绪概念</th>
+                                        <th class="p-2 text-amber-400">本地化黄金表达方式</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800 text-[11px]">
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">FOMO</td><td class="p-1.5 text-slate-300">昨天不买今天又涨了</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">踏空</td><td class="p-1.5 text-slate-300">涨到700了我一克都没有</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">抄底</td><td class="p-1.5 text-slate-300">等跌到500我就买</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">追高</td><td class="p-1.5 text-slate-300">600觉得贵，700觉得再不买更贵</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">低价卖出</td><td class="p-1.5 text-slate-300">刚卖完，黄金开始涨</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">长期持有</td><td class="p-1.5 text-slate-300">不看价格，先攒到100g</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">定投</td><td class="p-1.5 text-slate-300">每个月固定买1g</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">越跌越买</td><td class="p-1.5 text-slate-300">第一次600，第二次580，第三次……</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">恐慌卖出</td><td class="p-1.5 text-slate-300">跌5块就开始怀疑人生（跌50块：我是不是应该卖）</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">黄金牛市</td><td class="p-1.5 text-slate-300">全家开始讨论黄金的时候</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">黄金熊市</td><td class="p-1.5 text-slate-300">终于没人问我黄金多少钱</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">梭哈</td><td class="p-1.5 text-slate-300">工资到账直接买10g</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">报复性买入</td><td class="p-1.5 text-slate-300">昨天没买涨了50，今天多买2g</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">炫富</td><td class="p-1.5 text-slate-300">不小心攒了100g</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800 text-slate-200">财富焦虑</td><td class="p-1.5 text-slate-300">月薪8000多久能攒到100g</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 12,
+                section: "四、转化",
+                title: "四、转化（转化闭环、评论区 4 类回复与飞轮机制）",
+                badge: "评论区运营",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <div class="font-bold text-amber-400 mb-1">转化链路逻辑：问题 → 情绪 → 工具 → App</div>
+                            <p class="text-slate-300 text-[11px]">运营的职责不是硬卖 App，而是：<strong class="text-slate-100 font-bold">把用户的一个问题，变成下一条内容。</strong></p>
+                        </div>
+
+                        <!-- 评论区 4 类分类回复 -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                            <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                                <span class="text-amber-400 font-bold">第一类：用户报数字（如“我工资6000”）</span>
+                                <p class="text-slate-300 mt-1">💬 回复：“6000的话今天大概是 Xg，你一个月能留下多少？”</p>
+                            </div>
+                            <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                                <span class="text-amber-400 font-bold">第二类：用户炫资产（如“我已经100g了”）</span>
+                                <p class="text-slate-300 mt-1">💬 回复：“100g已经可以单独开一篇了，你是自己攒的还是家里给的？”</p>
+                            </div>
+                            <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                                <span class="text-amber-400 font-bold">第三类：用户质疑（如“黄金有什么用？”）</span>
+                                <p class="text-slate-300 mt-1">💬 回复：“所以我们其实更想知道：如果不用人民币，而是用黄金克数看收入消费，你会不会有不同感觉？”</p>
+                            </div>
+                            <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                                <span class="text-amber-400 font-bold">第四类：用户提问（如“黄金怎么买？”）</span>
+                                <p class="text-slate-300 mt-1"><strong class="text-emerald-400">直接变成下一条：</strong>《第一次买黄金，到底应该买多少克？》</p>
+                            </div>
+                        </div>
+
+                        <!-- 评论->选题 闭环示范 -->
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-amber-400 font-bold">🔄 评论 → 选题 → 内容 增长飞轮示范：</div>
+                            <p class="text-slate-300">首条：《25岁有多少克黄金？》 → 评论：“那30岁呢？” → 下一条：《30岁有多少克黄金？》</p>
+                            <p class="text-slate-300">评论：“我25岁只有3g是不是太少？” → 下一条：《25岁只有3g黄金，真的很少吗？》</p>
+                            <p class="text-slate-300">评论：“黄金首饰算吗？” → 下一条：《黄金首饰到底算不算自己的黄金资产？》</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 13,
+                section: "五、内容测试不要一次赌一个方向",
+                title: "五、内容测试（5大内容来源、50条测试池与机制复制）",
+                badge: "AB测试策略",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="font-bold text-amber-400">初期测试策略：</span>纯文字笔记 + Meme梗图引起讨论，建立<strong>内容机器</strong>。
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px]">
+                            <div class="bg-slate-900 p-2.5 rounded border border-slate-800">
+                                <strong class="text-slate-200">① 用户生活：</strong>工资、房租、消费、存款、恋爱、结婚、工作。
+                            </div>
+                            <div class="bg-slate-900 p-2.5 rounded border border-slate-800">
+                                <strong class="text-slate-200">② 黄金：</strong>金价、克重、购买、收益、黄金首饰、金豆。
+                            </div>
+                            <div class="bg-slate-900 p-2.5 rounded border border-slate-800">
+                                <strong class="text-slate-200">③ 情绪：</strong>FOMO、后悔、踏空、追涨、抄底、焦虑、自嘲。
+                            </div>
+                            <div class="bg-slate-900 p-2.5 rounded border border-slate-800 col-span-1 md:col-span-2">
+                                <strong class="text-slate-200">④ 用户故事：</strong>25岁7.8g / 工作3年43g / 第一次买金 / 结婚攒金 / 每月固定买1g
+                            </div>
+                            <div class="bg-slate-900 p-2.5 rounded border border-slate-800">
+                                <strong class="text-slate-200">⑤ 热点：</strong>美联储降息/吉伊卡哇快闪/暴涨暴跌/iPhone18/特朗普中东等
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1.5">
+                            <div class="text-amber-400 font-bold">第一阶段：50 条测试内容池</div>
+                            <p class="text-slate-300 text-[11px]">做 5 个内容池 × 每个10条（黄金生活10 + 黄金人生10 + Meme10 + 用户故事10 + 黄金知识10）。</p>
+                            <div class="bg-slate-900 p-2 rounded border border-slate-800 text-[11px] text-slate-300">
+                                🔑 <strong class="text-amber-300">爆款复制铁律：</strong>复制的是<strong class="text-slate-100">“内容机制”</strong>（如：年龄比较、财富比较、自我代入），而不是机械照抄别人“图片+文案”。
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 14,
+                section: "五、内容测试不要一次赌一个方向",
+                title: "五、内容测试（发布时间测试方法 & 常见问题调优）",
+                badge: "数据调优&时间控制",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <!-- 发布时间测试 -->
+                            <div class="bg-slate-800 p-3 rounded-xl border border-slate-700 space-y-1">
+                                <div class="font-bold text-amber-400">🕒 发布时间控制变量测试法：</div>
+                                <p class="text-slate-300 text-[11px]">不要今天12点、明天17点同时换选题封面文案。应该<strong class="text-slate-100">一次只改变一个变量</strong>。</p>
+                                <div class="text-[10px] text-slate-400 space-y-0.5 font-mono">
+                                    <p>• 小红书测试：11:30–13:00 / 18:00–19:30 / 20:00–22:30</p>
+                                    <p>• 抖音测试：12:00左右 / 18:00–20:00 / 21:00–23:00</p>
+                                    <p>• 观察：1小时、6小时、24小时数据。</p>
+                                </div>
+                            </div>
+
+                            <!-- 关键指标与调优指南 -->
+                            <div class="bg-slate-800 p-3 rounded-xl border border-slate-700 space-y-1">
+                                <div class="font-bold text-amber-400">🛠️ 内容数据诊断与修改指南：</div>
+                                <div class="space-y-1 text-[10px]">
+                                    <p><strong class="text-red-400">浏览低：</strong>改标题/封面/开头（未吸引点击）。</p>
+                                    <p><strong class="text-yellow-400">浏览高但没人评论：</strong>增加对立问题逼用户站队。</p>
+                                    <p><strong class="text-emerald-400">收藏高点赞低：</strong>好现象！说明有工具价值，继续做。</p>
+                                    <p><strong class="text-amber-400">评论高但下载低：</strong>加强计算器/资产记录/分享卡承接。</p>
+                                    <p><strong class="text-purple-400">下载高但次留低：</strong>产品和运营共同增加目标/成就/金豆/热力图。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-[11px] text-slate-400">
+                            💡 核心观察指标优先级：<strong class="text-amber-400">评论率 + 收藏率 + 分享率 + Profile主页访问</strong>（黄金内容往往点赞不高但收藏/评论/分享极高）。
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 15,
+                section: "五、内容测试不要一次赌一个方向",
+                title: "五、内容测试（运营新人每日作息流程表 & Phase 1-2 路线）",
+                badge: "新人SOP与阶段路线",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                            <div class="font-bold text-amber-400 text-xs mb-2"><i class="fa-solid fa-clock mr-1"></i> 运营新人每日标准工作流程（SOP）：</div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-[10px]">
+                                <div class="bg-slate-800 p-2 rounded">
+                                    <strong class="text-amber-300">09:30—10:00</strong><br/>复盘昨天播放、评论、收藏、分享、主页访问
+                                </div>
+                                <div class="bg-slate-800 p-2 rounded">
+                                    <strong class="text-amber-300">10:00—11:00</strong><br/>评论区/推荐流/热榜/海外找今天选题
+                                </div>
+                                <div class="bg-slate-800 p-2 rounded">
+                                    <strong class="text-amber-300">11:00—12:30</strong><br/>制作并发布第1条内容
+                                </div>
+                                <div class="bg-slate-800 p-2 rounded">
+                                    <strong class="text-amber-300">13:00—14:00</strong><br/>重点回复第一波评论
+                                </div>
+                                <div class="bg-slate-800 p-2 rounded">
+                                    <strong class="text-amber-300">15:00—17:00</strong><br/>制作第2条内容
+                                </div>
+                                <div class="bg-slate-800 p-2 rounded">
+                                    <strong class="text-amber-300">20:00左右</strong><br/>发布第2条内容
+                                </div>
+                                <div class="bg-slate-800 p-2 rounded">
+                                    <strong class="text-amber-300">20:00—21:30</strong><br/>重点互动与引导
+                                </div>
+                                <div class="bg-slate-800 p-2 rounded">
+                                    <strong class="text-amber-300">22:00</strong><br/>记录归档当天数据
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="bg-slate-800 p-3 rounded-xl border border-amber-500/30">
+                                <div class="font-bold text-amber-400">Phase 1：验证内容</div>
+                                <p class="text-slate-300 text-[11px] mt-1">目标：“黄金 × 生活 × Meme”能否获取自然流量？跑50~100条内容（小红书/抖音/计算器/简单App/分享卡）。</p>
+                            </div>
+                            <div class="bg-slate-800 p-3 rounded-xl border border-amber-500/30">
+                                <div class="font-bold text-amber-400">Phase 2：验证留存</div>
+                                <p class="text-slate-300 text-[11px] mt-1">目标：解决“为什么下周还回来？”。增加Goal/热力图/成就/年报/Gold Journey/Widget。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 16,
+                section: "六、运营前准备",
+                title: "六、运营前准备（品牌素材、模板、基准金价与App能力分级）",
+                badge: "运营准备基础设施",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+                            <!-- A. 品牌素材 -->
+                            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
+                                <div class="font-bold text-amber-400 mb-1">A. 品牌素材包</div>
+                                <p class="text-slate-300 text-[11px]">Logo, App Icon, 品牌字体/颜色, <strong class="text-amber-300">金豆IP（不同表情动作）</strong>, 背景模板, 封面模板, 视频模板, 分享卡模板。</p>
+                            </div>
+                            <!-- B. 内容模板 -->
+                            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
+                                <div class="font-bold text-amber-400 mb-1">B. 内容套用模板</div>
+                                <p class="text-slate-300 text-[11px]">小红书 10 套封面模板 + 抖音 5 套视频模板（数字换算/Meme/故事/对比/评论回复），避免每天从零设计。</p>
+                            </div>
+                            <!-- C. 金价接口 -->
+                            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
+                                <div class="font-bold text-amber-400 mb-1">C. 统一金价数据源</div>
+                                <p class="text-slate-300 text-[11px]">规定统一统一采用 XXX 金价/时间点，严禁不同渠道数据冲突（发布时附带价格与时间戳）。</p>
+                            </div>
+                        </div>
+
+                        <!-- App 优先级分级 -->
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                            <div class="font-bold text-slate-100 text-xs mb-2">E. App 必须准备的运营能力分级：</div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px]">
+                                <div class="bg-slate-800 p-2 rounded border-t-2 border-emerald-400">
+                                    <strong class="text-emerald-400">P1 第一优先级：</strong><br/>黄金资产录入、克重、买入价、当前价值、收益、黄金计算器、目标、分享卡
+                                </div>
+                                <div class="bg-slate-800 p-2 rounded border-t-2 border-yellow-400">
+                                    <strong class="text-yellow-400">P2 第二优先级：</strong><br/>年度报告、攒金热力图、成就、Gold Journey、Widget
+                                </div>
+                                <div class="bg-slate-800 p-2 rounded border-t-2 border-amber-500">
+                                    <strong class="text-amber-500">P3 第三优先级：</strong><br/>金豆IP、宠物、家园、收集、彩蛋、社群、双人金豆岛
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 17,
+                section: "七、SEO运营（含aeo，aso）",
+                title: "七、SEO运营（三层 SEO 结构与人生记录分类架构）",
+                badge: "SEO架构&人生记录",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                            <div class="bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <strong class="text-amber-400">第一层：工具型 SEO</strong>
+                                <p class="text-slate-300 text-[10px] mt-1">工资8000值多少克/10万存款多少克/100g黄金值多少钱/收益计算/首饰计算。</p>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <strong class="text-amber-400">第二层：问题型 SEO</strong>
+                                <p class="text-slate-300 text-[10px] mt-1">黄金怎么记账/持仓怎么算/9999黄金/回收价/金饰算不算资产（解决问题后自然承接 App）。</p>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <strong class="text-amber-400">第三层：内容型 SEO</strong>
+                                <p class="text-slate-300 text-[10px] mt-1">爆款反向变搜索，社媒负责发现需求，SEO负责长期吃搜索流量。</p>
+                            </div>
+                        </div>
+
+                        <!-- Tree diagram preserved completely -->
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-[10px] space-y-1 font-mono text-slate-300">
+                            <div class="text-amber-400 font-bold mb-1">🌲 黄金工具 SEO 分类架构树图：</div>
+                            <pre class="overflow-x-auto leading-tight text-amber-300/90">
+黄金工具
+│
+├── 黄金计算器 (克重/估值/收益/工资换算/消费换算)
+├── 黄金账本 (怎么记账/购买记录/持仓记录/资产管理/收益记录)
+├── 黄金成就 (第一克/10g/50g/100g/黄金等级)
+├── 黄金挑战 (30天攒金/50g挑战/100g挑战/年度攒金挑战)
+├── 黄金人生 (黄金人生记录/黄金成长记录/攒金日记/时间线/人生报告)
+└── 黄金榜单 (本月攒金榜/连续记录榜/黄金挑战榜/黄金成长榜)
+                            </pre>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 18,
+                section: "七、SEO运营（含aeo，aso）",
+                title: "七、SEO运营（第四层：AI Search / AEO 矩阵与搜索趋势）",
+                badge: "AEO与AI搜索",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700 space-y-1">
+                            <div class="font-bold text-amber-400 flex items-center gap-2">
+                                <span>第四层：AI Search / AEO 战略</span>
+                                <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded">社媒内容为主，传统SEO为辅</span>
+                            </div>
+                            <p class="text-slate-300 text-[11px] leading-relaxed">
+                                国内移动互联网时代各家内容封闭，百度SEO已不是主战场。我们的主要内容生产在社媒上，抢占社媒AI搜索与各大AI模型（豆包、DeepSeek、元宝等）的内容索引。
+                            </p>
+                        </div>
+
+                        <!-- StatCounter Data preserved -->
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-amber-300 font-bold">📊 搜索引擎份额数据参考（2026年数据）：</div>
+                            <p class="text-slate-300">• <strong>中国桌面端：</strong>2026年3月 StatCounter 数据显示 Bing (35.02%) 已略微超过百度 (34.86%)；2026年6月显示 Bing 39.03% vs 百度 29.41%。</p>
+                            <p class="text-slate-300">• <strong>中国移动端：</strong>百度仍占优势（约 63.77% vs Bing 7.51%）。</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-center">
+                            <div class="bg-slate-800 p-2 rounded"><strong class="text-amber-400">小红书</strong><br/>生活化/搜索/UGC/女性</div>
+                            <div class="bg-slate-800 p-2 rounded"><strong class="text-amber-400">抖音</strong><br/>短视频/情绪/数字冲击</div>
+                            <div class="bg-slate-800 p-2 rounded"><strong class="text-amber-400">知乎</strong><br/>黄金知识/问题型搜索</div>
+                            <div class="bg-slate-800 p-2 rounded"><strong class="text-amber-400">微博</strong><br/>热点/金价事件/分发</div>
+                        </div>
+
+                        <div class="bg-amber-500/10 border-l-4 border-amber-400 p-2.5 rounded text-slate-200 text-[11px]">
+                            <strong>SEO 每周任务：</strong>新人每周固定生产至少 5 篇搜索型内容（解决一个具体黄金痛点后自然引入 App）。
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 19,
+                section: "七、SEO运营（含aeo，aso）",
+                title: "七、SEO运营（ASO 关键词架构、矩阵分工与竞品反查）",
+                badge: "ASO全解析",
+                content: `
+                    <div class="space-y-3 text-xs">
+                        <!-- App Store Metas preserved -->
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-1">
+                            <div class="font-bold text-amber-400 text-xs">📱 ASO 商店上架设置：</div>
+                            <div class="text-[11px] space-y-1 font-mono">
+                                <p><strong class="text-slate-200">App Name:</strong> 海广手帐｜黄金资产管理</p>
+                                <p><strong class="text-slate-200">Subtitle:</strong> 黄金记账・攒金目标・收益计算</p>
+                                <p><strong class="text-slate-200">Keywords:</strong> 账本,记录,持仓,计算器,估值,克重,实物,金条,金豆,积存金,首饰,金饰,金价,价格,投资,定投,存款,助手,账户,买金,理财,海光,海光手帐,海光黄金,海广黄金,海光攒金</p>
+                            </div>
+                        </div>
+
+                        <!-- Keywords Table preserved -->
+                        <div class="overflow-x-auto rounded-lg border border-slate-700 bg-slate-900 max-h-[160px] slide-scroll text-[11px]">
+                            <table class="w-full text-left text-slate-300 border-collapse">
+                                <thead class="sticky top-0 bg-slate-800 text-xs text-slate-200">
+                                    <tr class="border-b border-slate-700">
+                                        <th class="p-2 border-r border-slate-700">一级分类</th>
+                                        <th class="p-2 border-r border-slate-700">搜索意图</th>
+                                        <th class="p-2 text-amber-400">关键词列举</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800">
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800">A 核心产品词</td><td class="p-1.5 border-r border-slate-800">找黄金管理App</td><td class="p-1.5">黄金记账、黄金账本、黄金记录、黄金资产、黄金持仓</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800">B 攒金词</td><td class="p-1.5 border-r border-slate-800">我要攒黄金</td><td class="p-1.5">攒黄金、攒金、攒金助手、攒金记录、攒金目标</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800">C 收益/投资词</td><td class="p-1.5 border-r border-slate-800">想知道赚没赚</td><td class="p-1.5">黄金收益、黄金盈亏、黄金持仓、黄金成本、黄金利润</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800">D 工具词</td><td class="p-1.5 border-r border-slate-800">我要计算</td><td class="p-1.5">黄金计算器、黄金估值、黄金克重计算、黄金换算</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800">E 行情词</td><td class="p-1.5 border-r border-slate-800">我要看价格</td><td class="p-1.5">黄金价格、今日金价、实时金价、国际金价、金价查询</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800">F 实物黄金词</td><td class="p-1.5 border-r border-slate-800">我有实体黄金</td><td class="p-1.5">金饰记录、黄金首饰、金条、金豆、积存金、实物黄金</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800">G 财富管理词</td><td class="p-1.5 border-r border-slate-800">管理黄金资产</td><td class="p-1.5">黄金资产管理、黄金资产、贵金属资产、黄金投资记录</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800">H 目标/习惯词</td><td class="p-1.5 border-r border-slate-800">我要持续攒</td><td class="p-1.5">黄金目标、攒金挑战、攒金打卡、黄金存款、黄金计划</td></tr>
+                                    <tr><td class="p-1.5 font-bold border-r border-slate-800">I 品牌词</td><td class="p-1.5 border-r border-slate-800">找 Bullion Note</td><td class="p-1.5">Bullion Note、BullionNote、Bullion、Bullion 账本、海广手帐</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-[10px] text-slate-400">
+                            🔍 <strong>竞品关键词反查速记：</strong>金攒攒（2.9万评分，主打攒金记账收益）/ 攒金PRO（主打持仓数据）/ 黄金天眼（主打行情提醒）。
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // Slide State Management
+        let currentSlideIndex = 0;
+
+        const container = document.getElementById('active-slide-container');
+        const currentNumEl = document.getElementById('current-slide-num');
+        const totalNumEl = document.getElementById('total-slide-num');
+        const btnPrev = document.getElementById('btn-prev');
+        const btnNext = document.getElementById('btn-next');
+        const slideTitleIndicator = document.getElementById('slide-title-indicator');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToc = document.getElementById('sidebar-toc');
+        const toggleSidebarBtn = document.getElementById('toggle-sidebar');
+        const closeSidebarBtn = document.getElementById('close-sidebar');
+
+        totalNumEl.textContent = slidesData.length;
+
+        function buildTOC() {
+            sidebarToc.innerHTML = '';
+            slidesData.forEach((slide, index) => {
+                const item = document.createElement('button');
+                item.className = `w-full text-left p-2 rounded-lg transition flex items-center justify-between text-xs ${
+                    index === currentSlideIndex 
+                        ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' 
+                        : 'text-slate-300 hover:bg-slate-800'
+                }`;
+                item.innerHTML = `
+                    <span class="truncate pr-2">${slide.id}. ${slide.section}</span>
+                    <span class="text-[10px] opacity-60 font-mono">${slide.id}</span>
+                `;
+                item.onclick = () => {
+                    goToSlide(index);
+                    sidebar.classList.add('-translate-x-full');
+                };
+                sidebarToc.appendChild(item);
+            });
+        }
+
+        function renderSlide(index) {
+            const slide = slidesData[index];
+            currentNumEl.textContent = slide.id;
+            slideTitleIndicator.textContent = `${slide.id}. ${slide.title}`;
+
+            // Render Slide HTML
+            container.innerHTML = `
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4 shrink-0">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold border border-amber-500/30">
+                            ${slide.badge || slide.section}
+                        </span>
+                        <h2 class="text-base md:text-xl font-black text-slate-100 tracking-tight">
+                            ${slide.title}
+                        </h2>
+                    </div>
+                    <span class="text-xs text-slate-400 font-mono hidden md:inline">SLIDE ${slide.id} / ${slidesData.length}</span>
+                </div>
+                <div class="flex-1 slide-scroll overflow-y-auto pr-1">
+                    ${slide.content}
+                </div>
+            `;
+
+            // Update button states
+            btnPrev.disabled = index === 0;
+            btnNext.disabled = index === slidesData.length - 1;
+
+            buildTOC();
+        }
+
+        function goToSlide(index) {
+            if (index >= 0 && index < slidesData.length) {
+                currentSlideIndex = index;
+                renderSlide(currentSlideIndex);
+            }
+        }
+
+        btnPrev.addEventListener('click', () => goToSlide(currentSlideIndex - 1));
+        btnNext.addEventListener('click', () => goToSlide(currentSlideIndex + 1));
+
+        toggleSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space') {
+                if (currentSlideIndex < slidesData.length - 1) {
+                    goToSlide(currentSlideIndex + 1);
+                }
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlideIndex > 0) {
+                    goToSlide(currentSlideIndex - 1);
+                }
+            }
+        });
+
+        // Fullscreen toggle
+        document.getElementById('btn-fullscreen').addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Fullscreen error: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        // Initial Load
+        renderSlide(0);
+    </script>
 </body>
 </html>

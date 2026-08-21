@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full bg-slate-950 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黄金资产生活记录与游戏化产品方案 Presentation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: {
+                            50: '#fffbe1',
+                            100: '#fff3b4',
+                            200: '#ffe685',
+                            300: '#ffd247',
+                            400: '#ffba1a',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                            950: '#451a03',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for glassmorphic containers */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(245, 158, 11, 0.4);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(245, 158, 11, 0.8);
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFE685 0%, #F59E0B 50%, #B45309 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-glow {
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.15);
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col font-sans antialiased overflow-hidden selection:bg-gold-500 selection:text-slate-950">
+
+    <!-- Top Navigation Header -->
+    <header class="h-16 glass-panel shrink-0 z-30 px-4 md:px-8 flex items-center justify-between border-b border-gold-500/20">
+        <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-gold-600 to-gold-400 flex items-center justify-center text-slate-950 font-bold shadow-lg shadow-gold-500/20">
+                <i class="fa-solid font-black fa-coins text-lg"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-sm md:text-base gold-gradient-text leading-tight">黄金资产生活记录与游戏化产品方案</h1>
+                <p class="text-xs text-slate-400 hidden sm:block">系统策划 & 运营讲解专稿 (共 32 页全量解析)</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center space-x-2 md:space-x-4">
+            <!-- Directory Menu Button -->
+            <button onclick="toggleCatalog()" class="px-3 py-1.5 rounded-lg glass-card hover:border-gold-500/50 text-xs md:text-sm text-slate-300 hover:text-gold-400 transition flex items-center space-x-2">
+                <i class="fa-solid fa-list-ul"></i>
+                <span class="hidden md:inline">目录大纲</span>
+            </button>
+
+            <!-- Page Counter Display -->
+            <div class="px-3 py-1.5 rounded-lg glass-card text-xs md:text-sm font-mono text-gold-400 border border-gold-500/30">
+                <span id="currentSlideNum">1</span> / <span id="totalSlidesNum">32</span>
+            </div>
+
+            <!-- Fullscreen Button -->
+            <button onclick="toggleFullscreen()" class="p-2 rounded-lg glass-card hover:border-gold-500/50 text-slate-300 hover:text-gold-400 transition" title="全屏显示">
+                <i class="fa-solid fa-expand" id="fullscreenIcon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Slide Area -->
+    <main class="flex-1 relative overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black">
+        
+        <!-- Ambient Gold Glow Background -->
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-gold-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Slide Content Wrapper (Scrollable inside each slide to fit ALL text) -->
+        <div id="slidesContainer" class="w-full h-full relative">
+            
+            <!-- SLIDE 1: 产品定位 -->
+            <section class="slide-item absolute inset-0 opacity-100 transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">一、产品定位</span>
+                        <span>定位突破 & 核心战略思考</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">把黄金变成本地化的个人资产生活方式入口</h2>
+                    
+                    <div class="glass-panel p-5 md:p-6 rounded-2xl space-y-4 border-l-4 border-l-gold-500">
+                        <p class="text-sm md:text-base leading-relaxed text-slate-200">
+                            目前黄金工具市场已经存在用户习惯，尤其是金攒攒、黄金天眼已经成为部分黄金内容博主推荐和用户查金价、记黄金时的常用工具。但从产品和运营方式来看，现有产品整体仍然偏传统工具思路：有行情、有记账、有计算、有提醒，但缺少完整的内容运营、用户成长、活动机制和社交传播体系。
+                        </p>
+                        <p class="text-sm md:text-base font-semibold text-gold-300 bg-gold-500/10 p-4 rounded-xl border border-gold-500/20">
+                            因此，我们不应该再做一个“功能更多的黄金记账 App”，而应该思考一个更大的定位：<br>
+                            把黄金从一个需要查询和记录的金融资产，变成一个可以被内容化、工具化、游戏化、资产化和社交化的用户生活入口。
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="glass-card p-5 rounded-2xl space-y-3">
+                            <h3 class="text-base font-bold text-gold-400 flex items-center gap-2">
+                                <i class="fa-solid fa-bullseye"></i> 竞争重点与全链路
+                            </h3>
+                            <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                                我们的竞争重点不是单纯超过竞品一个“黄金记账”功能，而是利用现有竞品已经教育出来的用户需求，再往上做一层：
+                            </p>
+                            <div class="p-3 bg-slate-900/80 rounded-xl text-xs text-gold-200 font-mono flex flex-wrap gap-2 items-center">
+                                <span>内容吸引用户</span> &rarr; <span>工具解决问题</span> &rarr; <span>资产记录产生长期价值</span> &rarr; <span>目标和挑战推动留存</span> &rarr; <span>金豆/IP增加趣味</span> &rarr; <span>分享卡产生内容</span> &rarr; <span>UGC带来新用户</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-5 rounded-2xl space-y-3">
+                            <h3 class="text-base font-bold text-gold-400 flex items-center gap-2">
+                                <i class="fa-solid fa-chart-line"></i> 竞品验证的已知需求
+                            </h3>
+                            <ul class="text-xs md:text-sm text-slate-300 space-y-2 list-disc list-inside">
+                                <li><strong>金攒攒：</strong>约 2.9 万个 App Store 评分，覆盖实时价格、价格预警、攒金记账、多账本、攒金日历、金额换算黄金、小组件、识图录入、导入导出，近期持续增加行情中心、国际金价、换算器等。</li>
+                                <li><strong>黄金天眼：</strong>差异化点“周末也有金价”，加入国际行情、价格预警、识图攒金、收益可视化，并尝试“猜金价限时挑战赛 + 限定金豆”活动化运营。</li>
+                                <li><strong>攒金PRO：</strong>往资产管理和持续行为方向走，持仓均价、收益分析、热力图、攒钱目标以及 365 天、52 周、12 月挑战。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-5 rounded-2xl space-y-3">
+                        <h3 class="text-base font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-question-circle text-gold-400"></i> 第二阶段待解决的核心痛点
+                        </h3>
+                        <p class="text-xs md:text-sm text-slate-300">
+                            市场已经完成第一阶段：“用户为什么需要黄金工具？”（查金价、记黄金、算收益、看持仓、设目标）。<br>
+                            但第二阶段还没有被充分解决：<span class="text-gold-300 font-bold">“为什么用户会每天打开？为什么愿意分享？为什么会主动把朋友带进来？为什么内容创作者愿意持续围绕这个产品生产内容？”</span> 这正是我们可以切入的地方。
+                        </p>
+                        <p class="text-xs md:text-sm text-slate-400">
+                            目前黄金类 App 的竞争主要集中在三个方向：查金价、记黄金、算收益。现有产品有需求时打开，用完就走；功能越来越多，但功能之间没有形成足够强的用户关系，也没有真正把黄金变成一种可以持续参与、收集、记录和分享的生活内容（互联网化）。
+                        </p>
+                        <div class="p-3 bg-gold-500/10 border border-gold-500/30 rounded-xl text-xs md:text-sm text-gold-300">
+                            <strong>核心定位总结：</strong> 内容入口 + 黄金工具 + 黄金资产记录 + 攒金挑战 + 金豆/IP + 分享内容生成器。<br>
+                            产品最终形成：内容/搜索/社区 &rarr; 用户产生问题 &rarr; 工具解决问题 &rarr; 用户建立黄金资产 &rarr; 设置目标并持续记录 &rarr; 获得成长/IP &rarr; 生成可分享内容 &rarr; 用户分享 &rarr; 新用户进入。<br>
+                            <strong>战略结论：</strong> 我们的产品不应该只是：“金攒攒2.0”，而应该是：黄金工具 + 内容IP + 游戏化成长 + 社交传播。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 2: 为什么现在是切入机会 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">二、为什么现在是切入机会</span>
+                        <span>市场风口与内容化红利</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">黄金消费年轻化与天然的互联网社交属性</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="glass-panel p-6 rounded-2xl space-y-4">
+                            <h3 class="text-lg font-bold text-gold-400 flex items-center gap-2">
+                                <i class="fa-solid fa-gem"></i> 1. 黄金本身已经具备内容属性
+                            </h3>
+                            <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                                黄金过去更多被当成投资产品，但现在“小金豆”“攒金豆”等轻量化黄金产品已经天然具备低门槛、仪式感、收集和社交属性。公开行业数据也显示，“攒金豆”等话题在小红书已经形成较高讨论量，黄金正在从单纯的投资行为变成一种年轻人的储蓄和生活表达方式。
+                            </p>
+                            <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-700/50 space-y-2 text-xs md:text-sm text-slate-200">
+                                <div class="text-gold-400 font-semibold">用户不只会问金价多少？还会问：</div>
+                                <ul class="space-y-1.5 list-disc list-inside text-slate-300">
+                                    <li>我一个月工资可以买多少克？</li>
+                                    <li>25岁有多少克黄金算正常？</li>
+                                    <li>房租一个月吃掉多少克黄金？</li>
+                                    <li>我工作三年攒了43g算多吗？</li>
+                                    <li>去年买的10g现在值多少钱？</li>
+                                </ul>
+                                <p class="text-xs text-gold-300 pt-2 border-t border-slate-800">
+                                    这些问题天然适合内容平台传播，也天然适合被工具解决。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel p-6 rounded-2xl space-y-4">
+                            <h3 class="text-lg font-bold text-gold-400 flex items-center gap-2">
+                                <i class="fa-solid fa-share-nodes"></i> 2. 黄金内容具备“互联网内容”条件
+                            </h3>
+                            <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                                黄金本身有非常强的数字化表达：克数、金额、涨跌、收益、目标、排名、时间、年龄、工资、消费。
+                            </p>
+                            <div class="p-3 bg-gold-500/10 rounded-xl border border-gold-500/20 text-xs md:text-sm text-gold-200 font-semibold text-center">
+                                比较 &rarr; 焦虑 &rarr; FOMO &rarr; 挑战 &rarr; 炫耀 &rarr; 自我记录 &rarr; 分享
+                            </div>
+                            <div class="space-y-2 text-xs md:text-sm text-slate-300">
+                                <p><strong>典型链路示例：“25岁有多少克黄金？”</strong></p>
+                                <p>用户看完不是结束，而是马上产生：<span class="text-gold-300">“那我呢？”</span></p>
+                                <p>于是就可以进入计算器。算完：<span class="text-gold-300">“我现在有17.8g。”</span></p>
+                                <p>下一步自然就是：<span class="text-gold-300">“那我记录下来。”</span>并且愿意在社区和社群分享/对比/打卡记录。</p>
+                            </div>
+                            <p class="text-xs text-slate-400 border-t border-slate-800 pt-3">
+                                这就是产品和内容真正应该形成的关系。小红书平台已经有大量用户持续分享，记录以及有大量财富相关生活焦虑的内容，并且十分具有讨论度。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: 三、竞品已经做到什么程度（金攒攒） -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">三、竞品分析</span>
+                        <span>金攒攒：个人开发者与最强工具套件</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">金攒攒：能力最完整，但仍然是“工具逻辑”</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-xs md:text-sm text-slate-200 leading-relaxed">
+                            金攒攒目前是最值得重点研究的直接竞品，因为它不是单纯靠一个功能获得用户，而是逐步把：<br>
+                            <span class="text-gold-300 font-semibold">查金价 &rarr; 记黄金 &rarr; 攒金日历 &rarr; 收益 &rarr; 小组件 &rarr; 生活记账 &rarr; 换算黄金</span> 串起来。
+                        </p>
+                        <p class="text-xs md:text-sm text-slate-300">
+                            它近期甚至继续增加行情中心、国际黄金、白银、铂金、钯金、贵金属换算器、搜索以及数据导入导出等能力。这说明它的产品策略很明确：不断降低记录黄金的成本，同时增加用户打开 App 的理由。这是我们应该学习的地方。
+                        </p>
+                        <p class="text-xs md:text-sm text-slate-300">
+                            金攒攒目前已经拥有较强的产品基础：贵金属价格、金价预警、攒金记账、多账本、攒金日历、金额自动换算黄金、小组件、识图攒金、导入导出、行情中心、贵金属换算器等，而且 App Store 当前约有2.9万评分，评分4.9。近期版本仍在持续增加行情中心、攒金汇总、攒金罐罐、快捷记账等组件。
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="glass-card p-5 rounded-2xl space-y-3 border-t-2 border-t-emerald-500">
+                            <h3 class="text-base font-bold text-emerald-400 flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check"></i> 它真正做对的地方
+                            </h3>
+                            <ul class="text-xs md:text-sm text-slate-300 space-y-2">
+                                <li><strong>1. 把“钱”转换成“克”：</strong> 传统记账存500元，金攒攒转换为攒了0.X克黄金，极度适合黄金内容传播。</li>
+                                <li><strong>2. 把一次记录变成持续进度：</strong> 攒金日历、攒金罐罐、小组件，本质上解决“我有没有持续攒”。</li>
+                                <li><strong>3. 不断降低记录成本：</strong> 识图、导入导出、小组件、快捷记账，本质上在减少用户输入。</li>
+                            </ul>
+                        </div>
+
+                        <div class="glass-card p-5 rounded-2xl space-y-3 border-t-2 border-t-rose-500">
+                            <h3 class="text-base font-bold text-rose-400 flex items-center gap-2">
+                                <i class="fa-solid fa-triangle-exclamation"></i> 存在的突出问题
+                            </h3>
+                            <ul class="text-xs md:text-sm text-slate-300 space-y-2">
+                                <li><strong>1. 主要是功能堆叠而非用户关系：</strong> 用户进入心智是“查金价/记黄金”，而不是“完成今天任务”或“看金豆成长”。</li>
+                                <li><strong>2. 缺乏持续回来的强理由：</strong> 用完即走，没有形成“这是我的黄金世界”，金豆并非高频购买商品，长期不买易遗忘。</li>
+                                <li><strong>3. 竞争切入点：</strong> 金攒攒证明了工具需求存在，但未证明黄金可成为持续运营的互联网产品。我们可以解决用户关系和内容习惯。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: 四、黄金天眼：开始互联网化，但方向仍然偏行情产品 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">四、竞品分析</span>
+                        <span>黄金天眼：互联网化试水与行情属性</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">黄金天眼：偏行情方向的活动运营尝试</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-xs md:text-sm text-slate-200 leading-relaxed">
+                            黄金天眼值得重点关注，因为它已经不是纯工具思路。它抓住“周末没有传统报价”的用户痛点，建立“周末有金价”“国际暗金”等产品认知，并加入价格预警、识图录入、分享等功能。更重要的是，它已经开始尝试“猜金价限时挑战 &rarr; 金豆奖励”。
+                        </p>
+                        <p class="text-xs md:text-sm text-slate-300">
+                            目前黄金天眼强调7×24小时行情、周末金价、国际暗金、价格预警、识图攒金、收益可视化，并推出“S1猜金价限时挑战赛”，预测准确可以参与瓜分限定金豆池。同时加入了分享微信/朋友圈、小组件、价格提醒等功能，后续又增加资金流向、黄金商城等内容。
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="glass-card p-5 rounded-2xl space-y-3">
+                            <h3 class="text-base font-bold text-gold-400 flex items-center gap-2">
+                                <i class="fa-solid fa-bolt"></i> 突破点：行情 &rarr; 预测 &rarr; 挑战 &rarr; 奖励
+                            </h3>
+                            <p class="text-xs md:text-sm text-slate-300">
+                                竞品已经意识到单纯看金价不够，需要让用户参与。这比单纯“看行情 &rarr; 看完退出”明显更接近互联网产品。
+                            </p>
+                        </div>
+
+                        <div class="glass-card p-5 rounded-2xl space-y-3">
+                            <h3 class="text-base font-bold text-amber-400 flex items-center gap-2">
+                                <i class="fa-solid fa-puzzle-piece"></i> 局限与我们的进化方向
+                            </h3>
+                            <p class="text-xs md:text-sm text-slate-300">
+                                它的“游戏化”仍然是附着在行情之上的工具+临时活动，活动结束行为可能结束。我们需进一步把工具本身做成游戏：<br>
+                                <span class="text-gold-300 font-semibold">工具 &rarr; 任务 &rarr; 成长 &rarr; 收藏 &rarr; 成就 &rarr; 分享</span><br>
+                                预测金价 &rarr; 得金豆经验 &rarr; 宠物成长 &rarr; 解锁限定收藏 &rarr; 生成分享卡。成为长期机制。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: 五、金闪闪：“轻量资产工具” -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">五、竞品分析</span>
+                        <span>金闪闪：轻量纯资产管理工具</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">金闪闪：极简付费资产工具</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4 border-l-4 border-l-amber-500">
+                        <h3 class="text-lg font-bold text-white">定位与特点</h3>
+                        <p class="text-xs md:text-sm text-slate-200 leading-relaxed">
+                            金闪闪的定位更加简单：黄金、铂金、白银，支持赠卖记录、海海外价格、收益计算、小组件、iCloud同步，并通过会员收费。其 App Store 页面显示年度会员和永久会员价格，产品强调本地及 iCloud 数据存储。
+                        </p>
+                        <p class="text-xs md:text-sm text-gold-300 font-medium">
+                            它证明：用户确实愿意为一个足够简单的贵金属资产管理工具付费。
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl space-y-4">
+                        <h3 class="text-base font-bold text-rose-400">短板与策略选择</h3>
+                        <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                            但它的产品仍然是典型：个人资产工具。缺乏内容入口、挑战、成长、社区和UGC。而且其名称过于泛化很难抢占社交媒体，建议弃疗。
+                        </p>
+                        <div class="p-4 bg-slate-900 rounded-xl border border-gold-500/30 text-xs md:text-sm text-slate-200">
+                            <strong>竞争差异结论：</strong> 我们的竞争点不应该是：“我们的资产记录比它多两个字段”，而应该是：“我们让用户更愿意长期使用这个资产”。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: 六、攒金PRO：“目标+挑战+可视化”已经成立 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">六、竞品分析</span>
+                        <span>攒金PRO：目标与挑战的可视化探索</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">攒金PRO：“目标+挑战+可视化”已成立</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-xs md:text-sm text-slate-200 leading-relaxed">
+                            攒金PRO已经加入日常记账、攒钱目标、365天、52周、12月存钱挑战、连续打卡、首次启动引导、数据迁移等功能。纯技术类个人开发者。
+                        </p>
+                        <div class="p-4 bg-gold-500/10 rounded-xl border border-gold-500/20 text-xs md:text-sm text-gold-300 font-medium">
+                            它已经从记录工具往目标工具发展。这说明：用户并不是只需要知道“我有多少钱”，还需要知道“我要攒到多少”。
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl space-y-4">
+                        <h3 class="text-base font-bold text-gold-400">进化方向：从“数字进度”到“生命化进度”</h3>
+                        <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                            目前攒金PRO的机制主要还是：数字进度 + 热力图 + 打卡。
+                        </p>
+                        <p class="text-xs md:text-sm text-slate-300">
+                            我们可以进一步增加：<span class="text-gold-300 font-bold">目标 &rarr; 金豆成长 &rarr; 宠物 &rarr; 成就 &rarr; 分享</span>。<br>
+                            也就是把“进度可视化”进一步变成“进度有生命”。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: 七、竞品结论：缺的不是功能，而是互联网产品思维 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">七、竞品结论</span>
+                        <span>全矩阵能力横评与四大召回体系</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">缺的不是功能，而是互联网产品思维</h2>
+
+                    <!-- Matrix Table -->
+                    <div class="glass-panel p-4 rounded-2xl overflow-x-auto">
+                        <h3 class="text-sm font-bold text-gold-400 mb-3">竞品功能与定位对比矩阵</h3>
+                        <table class="w-full text-xs text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 bg-slate-900/80 text-slate-300">
+                                    <th class="p-2">能力维度</th>
+                                    <th class="p-2">金攒攒</th>
+                                    <th class="p-2">黄金天眼</th>
+                                    <th class="p-2">金闪闪</th>
+                                    <th class="p-2">攒金PRO</th>
+                                    <th class="p-2 text-gold-400">我们的方向</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr><td class="p-2">金价/提醒/记录/收益</td><td class="p-2">✓</td><td class="p-2">✓</td><td class="p-2">✓</td><td class="p-2">✓</td><td class="p-2 text-gold-400 font-bold">✓ 基础覆盖</td></tr>
+                                <tr><td class="p-2">识图记录/小组件</td><td class="p-2">✓</td><td class="p-2">✓</td><td class="p-2">✓</td><td class="p-2">部分</td><td class="p-2 text-gold-400 font-bold">✓ 基础覆盖</td></tr>
+                                <tr><td class="p-2">目标与挑战</td><td class="p-2">✓ / 部分</td><td class="p-2">部分 / ✓</td><td class="p-2">—</td><td class="p-2">✓</td><td class="p-2 text-gold-400 font-bold">✓ 强化</td></tr>
+                                <tr><td class="p-2 font-bold text-white">游戏化/宠物IP</td><td class="p-2">弱</td><td class="p-2">活动型</td><td class="p-2">—</td><td class="p-2">弱</td><td class="p-2 text-gold-400 font-bold bg-gold-500/10">核心</td></tr>
+                                <tr><td class="p-2 font-bold text-white">收藏体系/图鉴</td><td class="p-2">弱</td><td class="p-2">金豆活动</td><td class="p-2">—</td><td class="p-2">—</td><td class="p-2 text-gold-400 font-bold bg-gold-500/10">核心</td></tr>
+                                <tr><td class="p-2 font-bold text-white">内容入口与UGC</td><td class="p-2">弱</td><td class="p-2">行情内容/分享</td><td class="p-2">弱</td><td class="p-2">弱/分享</td><td class="p-2 text-gold-400 font-bold bg-gold-500/10">核心</td></tr>
+                                <tr><td class="p-2 font-bold text-white">增长闭环(分享&rarr;新用户)</td><td class="p-2">不强</td><td class="p-2">不强</td><td class="p-2">不强</td><td class="p-2">不强</td><td class="p-2 text-gold-400 font-bold bg-gold-500/10">核心闭环</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Product Roles Table -->
+                    <div class="glass-card p-4 rounded-2xl overflow-x-auto space-y-2">
+                        <h3 class="text-sm font-bold text-gold-400">产品角色分工体系</h3>
+                        <table class="w-full text-xs text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 bg-slate-900/80 text-slate-300">
+                                    <th class="p-2">产品角色</th>
+                                    <th class="p-2">用户在做什么</th>
+                                    <th class="p-2">对应功能</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr><td class="p-2 font-semibold text-gold-300">黄金计算器</td><td class="p-2">“这个东西到底值多少黄金？”</td><td class="p-2">工资、消费、存款、房租换算</td></tr>
+                                <tr><td class="p-2 font-semibold text-gold-300">黄金记录器</td><td class="p-2">“我到底买了多少？”</td><td class="p-2">买入、卖出、赠送、历史资产</td></tr>
+                                <tr><td class="p-2 font-semibold text-gold-300">黄金资产管家</td><td class="p-2">“我现在有多少钱？”</td><td class="p-2">总克重、成本、估值、收益</td></tr>
+                                <tr><td class="p-2 font-semibold text-gold-300">攒金挑战工具</td><td class="p-2">“我什么时候能攒到100g？”</td><td class="p-2">10g/50g/100g/365天挑战</td></tr>
+                                <tr><td class="p-2 font-semibold text-gold-300">黄金内容生成器</td><td class="p-2">“我要怎么晒我的黄金？”</td><td class="p-2">资产卡、挑战卡、年度报告、黄金人格</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 4 Layers Recall Strategy -->
+                    <div class="glass-panel p-5 rounded-2xl space-y-3">
+                        <h3 class="text-base font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-left text-gold-400"></i> 如何解决“用户三个月不打开”的四层召回体系
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+                            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+                                <div class="text-gold-400 font-bold mb-1">第一层：行情召回</div>
+                                <p class="text-slate-300">不是单纯告诉“今日金价XXX”，而是提醒“今天你的黄金资产变化了¥128”或“你的36.7g黄金今天比昨天多了¥128”。用户关注资产变化，而非单纯行情。</p>
+                            </div>
+                            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+                                <div class="text-gold-400 font-bold mb-1">第二层：目标召回</div>
+                                <p class="text-slate-300">“距离50g还差3.6g”、“本月完成度72%”、“你的年度目标已经完成55%”。明确的目标天然产生回访。</p>
+                            </div>
+                            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+                                <div class="text-gold-400 font-bold mb-1">第三层：成长召回</div>
+                                <p class="text-slate-300">“🫘 金豆正在成长，再记录一次就可以解锁新的装饰”、“你已经连续记录12周”。游戏化钩子留存。</p>
+                            </div>
+                            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+                                <div class="text-gold-400 font-bold mb-1">第四层：内容召回</div>
+                                <p class="text-slate-300">每天/每周抛出问题：“今天的奶茶相当于多少克黄金？”“去年买的10g现在怎么样？”看完内容再回工具。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 8: 八、用户第一次打开 ，要建立什么心智 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">八、首次体验</span>
+                        <span>首屏心智建立 (Onboarding Mental Model)</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">用户第一次打开，要建立什么心智</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-sm md:text-base text-slate-200">
+                            这是整个产品最重要的一步。用户第一次打开不能让他觉得：“这是一个黄金记账软件。”这个心智太弱。
+                        </p>
+                        <h3 class="text-lg font-bold text-gold-300">应该让用户在30秒内得到三个认知：</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs md:text-sm">
+                            <div class="p-4 bg-slate-900/90 rounded-xl border border-gold-500/30">
+                                <span class="text-gold-400 font-bold text-base block mb-2">01. 资产即时感知</span>
+                                免费且马上知道自己的黄金资产到底值多少钱。
+                            </div>
+                            <div class="p-4 bg-slate-900/90 rounded-xl border border-gold-500/30">
+                                <span class="text-gold-400 font-bold text-base block mb-2">02. 持续资产记录</span>
+                                可以随时在这里持续、便捷地记录自己的黄金积攒。
+                            </div>
+                            <div class="p-4 bg-slate-900/90 rounded-xl border border-gold-500/30">
+                                <span class="text-gold-400 font-bold text-base block mb-2">03. 游戏化与社交</span>
+                                记录可成长、展示和分享，拥有成就系统，有持续打开的动力。
+                            </div>
+                        </div>
+                        <p class="text-xs md:text-sm text-slate-300 bg-gold-500/10 p-3 rounded-xl border border-gold-500/20">
+                            用户第一次进入完成的是：<strong>资产认知 + 产品价值 + 目标建立 + IP记忆</strong>。<br>
+                            而不是传统的：注册 + 看首页 + 自己研究功能。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 9: 九、第一次使用的核心流程 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">九、激活流程</span>
+                        <span>首测极致压缩 Activation Flow</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">第一次使用的核心流程设计</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-xs md:text-sm text-slate-200">
+                            建议把首次体验极度压缩：<br>
+                            <span class="text-gold-300 font-bold text-base">进入 &rarr; 输入克数 &rarr; 看资产 &rarr; 设目标 &rarr; 获得金豆 &rarr; 生成资产卡</span>
+                        </p>
+
+                        <div class="bg-slate-900/90 p-5 rounded-xl border border-slate-700/60 space-y-3 text-xs md:text-sm text-slate-300">
+                            <div class="flex items-center gap-2 text-gold-400 font-bold text-base">
+                                <i class="fa-solid fa-play"></i> 典型用户 Onboarding 故事线
+                            </div>
+                            <p><strong>1. 痛点询问：</strong> “你有多少黄金？” 用户输入：<code>37.6g</code></p>
+                            <p><strong>2. 资产反馈：</strong> 系统立即告诉用户：当前黄金资产：X,XXX，累计收益：8.2%。</p>
+                            <p><strong>3. 游戏奖励：</strong> “你的第一颗金豆已经诞生。”</p>
+                            <p><strong>4. 目标选择：</strong> 选择目标克重：<code>10g / 50g / 100g</code></p>
+                            <p><strong>5. 成果建档：</strong> “你的黄金档案已经建立。” 自动生成第一张：“我的黄金资产：37.6g”。</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
+                            <div class="p-4 bg-rose-500/10 rounded-xl border border-rose-500/20 text-rose-200">
+                                <strong>传统黄金 App 的 onboarding：</strong><br>
+                                登录 &rarr; 首页 &rarr; 看行情 &rarr; 自己研究。（路径长，无紧迫感）
+                            </div>
+                            <div class="p-4 bg-emerald-500/10 rounded-xl border border-emerald-500/20 text-emerald-200">
+                                <strong>我们的反向处理：</strong><br>
+                                进入 App 第一件事就让用户看到“自己的黄金”与资产 Valuation。同步完成注册 &rarr; 首次录入 &rarr; Portfolio建立 &rarr; IP绑定。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 10: 十、不要把“注册”作为核心指标 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">十、指标重定义</span>
+                        <span>真正有效激活的定义</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">不要把“注册”作为核心指标</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4 border-l-4 border-l-gold-500">
+                        <div class="space-y-2">
+                            <p class="text-xs text-slate-400 uppercase tracking-widest font-mono">Traditional Mindset</p>
+                            <p class="text-sm md:text-base text-slate-300">传统产品：下载 &rarr; 注册。</p>
+                        </div>
+                        <div class="space-y-2 pt-3 border-t border-slate-700">
+                            <p class="text-xs text-gold-400 uppercase tracking-widest font-mono">Our Product Mindset</p>
+                            <p class="text-sm md:text-base text-gold-300 font-bold">
+                                我们的链路：下载 &rarr; 注册 &rarr; 首次资产录入 &rarr; Portfolio &rarr; 目标 &rarr; 持续记录 &rarr; 分享。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl space-y-3">
+                        <h3 class="text-base font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-flag-checkered text-gold-400"></i> 核心 Activation (激活) 严密定义
+                        </h3>
+                        <div class="p-4 bg-gold-500/10 rounded-xl border border-gold-500/30 text-sm md:text-base text-gold-200 font-medium">
+                            用户完成至少一笔黄金资产录入，并成功看到自己的资产价值或收益。
+                        </div>
+                        <p class="text-xs md:text-sm text-slate-400">
+                            唯有看到真实价值，用户才算真正跨过体验鸿沟，成为资产留存用户。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 11: 十一、内容 → 工具 → 资产的入口体系 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">十一、增长体系</span>
+                        <span>内容-工具-资产 的转化入口与全景映射</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">内容 &rarr; 工具 &rarr; 资产的入口体系</h2>
+
+                    <p class="text-xs md:text-sm text-slate-300">
+                        内容不应该全部宣传下载，这样会变成硬广告。让内容本身先解决一个问题。
+                    </p>
+
+                    <!-- Entry Mapping Table 1 -->
+                    <div class="glass-panel p-4 rounded-2xl overflow-x-auto">
+                        <h3 class="text-sm font-bold text-gold-400 mb-3">选题与工具承接表</h3>
+                        <table class="w-full text-xs text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 bg-slate-900/80 text-slate-300">
+                                    <th class="p-2">内容选题</th>
+                                    <th class="p-2">用户问题</th>
+                                    <th class="p-2">承接工具</th>
+                                    <th class="p-2">下一步动作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr><td class="p-2 font-medium text-gold-200">月薪8000值多少克黄金</td><td class="p-2">我的工资到底值多少黄金</td><td class="p-2">工资换黄金计算器</td><td class="p-2">保存结果</td></tr>
+                                <tr><td class="p-2 font-medium text-gold-200">房租5000吃掉多少黄金</td><td class="p-2">我的生活成本有多高</td><td class="p-2">消费换算</td><td class="p-2">记录消费</td></tr>
+                                <tr><td class="p-2 font-medium text-gold-200">25岁有多少黄金</td><td class="p-2">我现在算什么水平</td><td class="p-2">黄金资产计算</td><td class="p-2">建立资产</td></tr>
+                                <tr><td class="p-2 font-medium text-gold-200">10g现在值多少钱</td><td class="p-2">我的黄金值多少钱</td><td class="p-2">黄金估值</td><td class="p-2">加入资产</td></tr>
+                                <tr><td class="p-2 font-medium text-gold-200">去年买10g赚多少</td><td class="p-2">我的收益是多少</td><td class="p-2">收益计算器</td><td class="p-2">建立Portfolio</td></tr>
+                                <tr><td class="p-2 font-medium text-gold-200">50g挑战</td><td class="p-2">我多久能攒到50g</td><td class="p-2">攒金目标</td><td class="p-2">开始挑战</td></tr>
+                                <tr><td class="p-2 font-medium text-gold-200">我的黄金年度报告</td><td class="p-2">我今年攒了多少</td><td class="p-2">年度报告</td><td class="p-2">分享</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Comprehensive UGC & Content Table -->
+                    <div class="glass-card p-4 rounded-2xl overflow-x-auto space-y-2">
+                        <h3 class="text-sm font-bold text-gold-400">内容形态与UGC驱动链条全视图</h3>
+                        <table class="w-full text-xs text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 bg-slate-900/80 text-slate-300">
+                                    <th class="p-2">内容类型</th>
+                                    <th class="p-2">用户在展示什么</th>
+                                    <th class="p-2">为什么愿意发</th>
+                                    <th class="p-2">评论区讨论</th>
+                                    <th class="p-2">App 承接/后续行为</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr><td class="p-2 text-gold-300 font-bold">攒金打卡</td><td class="p-2">今天买了几克</td><td class="p-2">进度感</td><td class="p-2">“我也在攒”</td><td class="p-2">攒金记录 &rarr; 攒金进度系统</td></tr>
+                                <tr><td class="p-2 text-gold-300 font-bold">黄金存款</td><td class="p-2">我有多少克</td><td class="p-2">财富展示</td><td class="p-2">“这个年龄算多吗”</td><td class="p-2">黄金资产页 &rarr; 资产分享卡</td></tr>
+                                <tr><td class="p-2 text-gold-300 font-bold">购买记录</td><td class="p-2">今天买金消费记录</td><td class="p-2">“在哪里买的”</td><td class="p-2">买入记录/价格</td><td class="p-2">添加持仓Portfolio</td></tr>
+                                <tr><td class="p-2 text-gold-300 font-bold">收益晒图</td><td class="p-2">赚了多少</td><td class="p-2">成就感</td><td class="p-2">“什么时候买的”</td><td class="p-2">收益分析 &rarr; Portfolio</td></tr>
+                                <tr><td class="p-2 text-gold-300 font-bold">人生节点</td><td class="p-2">结婚/生日/工作买金</td><td class="p-2">情绪表达</td><td class="p-2">“好有意义”</td><td class="p-2">黄金时间线内容故事 &rarr; 功能(2024工作1g/2025生日3g/2026结婚10g)</td></tr>
+                                <tr><td class="p-2 text-gold-300 font-bold">黄金消费化</td><td class="p-2">一杯奶茶=多少黄金</td><td class="p-2">新奇/反差</td><td class="p-2">“我的工资呢”</td><td class="p-2">黄金计算器 (“工资换黄金”、“消费换黄金”) &rarr; 消费决策工具</td></tr>
+                                <tr><td class="p-2 text-gold-300 font-bold">黄金挑战</td><td class="p-2">30g/50g/100g</td><td class="p-2">游戏/挑战</td><td class="p-2">“一起攒”</td><td class="p-2">目标/打卡成就系统</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 4 Sharing Modes -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                        <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                            <span class="text-gold-400 font-bold block">模式 A：只显示克数</span>
+                            <span class="text-slate-300 font-mono">36.7g</span>
+                        </div>
+                        <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                            <span class="text-gold-400 font-bold block">模式 B：克数 + 收益</span>
+                            <span class="text-slate-300 font-mono">36.7g / +18.2%</span>
+                        </div>
+                        <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                            <span class="text-gold-400 font-bold block">模式 C：年度报告</span>
+                            <span class="text-slate-300 font-mono">2026 GOLD JOURNEY</span>
+                        </div>
+                        <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                            <span class="text-gold-400 font-bold block">模式 D：匿名模式</span>
+                            <span class="text-slate-300">不显示金额、不显示姓名。</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 12: 十二、Calculator：层增长工具 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">十二、功能设计</span>
+                        <span>Calculator 计算器矩阵与转化转化链</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">Calculator：首批增长工具矩阵</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <h3 class="text-base font-bold text-gold-400">首批建议打造的 8 大计算器：</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+                            <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><strong>1. 工资换黄金：</strong> 8000相当于多少克黄金？</div>
+                            <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><strong>2. 存款换黄金：</strong> 万元存款相当于多少克？</div>
+                            <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><strong>3. 消费换黄金：</strong> 房租、iPhone、衣服分别是多少克？</div>
+                            <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><strong>4. 黄金估值：</strong> g现在值多少钱？</div>
+                            <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><strong>5. 黄金收益：</strong> 买的10g现在赚多少？</div>
+                            <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><strong>6. 买入回收价差：</strong> 牌价和回收价差多少？</div>
+                            <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><strong>7. 攒金目标：</strong> 买1g多久达到50g？</div>
+                            <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800"><strong>8. 年度攒金：</strong> 可以积累多少克？</div>
+                        </div>
+
+                        <div class="p-4 bg-gold-500/10 rounded-xl border border-gold-500/30 space-y-2">
+                            <p class="text-xs md:text-sm text-gold-300 font-bold">
+                                核心设计准则：不是算完就结束。
+                            </p>
+                            <p class="text-xs text-slate-300">
+                                每个工具结果页必须出现 CTA 按钮：<br>
+                                <span class="text-white bg-slate-800 px-2 py-1 rounded font-mono">「保存到我的黄金资产」</span> 或 <span class="text-white bg-slate-800 px-2 py-1 rounded font-mono">「开始记录我的黄金」</span>
+                            </p>
+                            <p class="text-xs text-gold-400 font-mono pt-1">
+                                达成关键转换：内容 &rarr; Calculator &rarr; Portfolio &rarr; 进一步触发分享系统。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 13: 十三、Portfolio：单次访问变成长期关系 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">十三、核心模块</span>
+                        <span>Portfolio 资产看板与时间线</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">Portfolio：单次访问变成长期关系</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <h3 class="text-base font-bold text-white">Portfolio 必须回答的五个核心问题：</h3>
+                        <div class="flex flex-wrap gap-2 text-xs md:text-sm text-gold-300">
+                            <span class="px-3 py-1.5 bg-slate-900 rounded-lg border border-gold-500/30">我有多少黄金？</span>
+                            <span class="px-3 py-1.5 bg-slate-900 rounded-lg border border-gold-500/30">我花了多少钱？</span>
+                            <span class="px-3 py-1.5 bg-slate-900 rounded-lg border border-gold-500/30">现在值多少钱？</span>
+                            <span class="px-3 py-1.5 bg-slate-900 rounded-lg border border-gold-500/30">我赚了多少钱？</span>
+                            <span class="px-3 py-1.5 bg-slate-900 rounded-lg border border-gold-500/30">我的黄金是怎么积累起来的？</span>
+                        </div>
+
+                        <div class="p-4 bg-slate-900/80 rounded-xl space-y-2 border border-slate-700">
+                            <span class="text-xs text-gold-400 font-bold uppercase tracking-wider block">核心功能模块</span>
+                            <p class="text-xs md:text-sm text-slate-300">
+                                总克重、当前估值、持仓成本、累计收益、收益率、买入记录、卖出/赠送记录、资产结构、黄金时间线。
+                            </p>
+                        </div>
+
+                        <div class="p-4 bg-gold-500/10 rounded-xl border border-gold-500/30 space-y-2">
+                            <h4 class="text-sm font-bold text-gold-300 flex items-center gap-2">
+                                <i class="fa-solid fa-timeline"></i> 创新功能：Gold Journey 黄金人生时间线
+                            </h4>
+                            <p class="text-xs md:text-sm text-slate-200">
+                                例如：<code>2024：第一年，1g</code> &rarr; <code>2025：生日，3g</code> &rarr; <code>2026：结婚，10g</code>。<br>
+                                黄金就不再只是一串数字，而是用户人生中的资产记录（可一键转发分享）。
+                            </p>
+                            <p class="text-xs text-gold-400 pt-1">
+                                更进一步：直观呈现“我买入时期的金价多少，我这些年通过黄金购入财富增加了多少”。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 14: 十四、目标和挑战：资产记录变成持续行为 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">十四、留存机制</span>
+                        <span>目标与挑战系统</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">目标和挑战：资产记录变成持续行为</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <h3 class="text-base font-bold text-gold-400">首期挑战规格规划：</h3>
+                        <p class="text-xs md:text-sm text-slate-200">
+                            10g新手挑战、30天攒金、50g挑战、100g挑战、365天黄金计划、52周攒金计划。
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 bg-slate-900 rounded-xl border border-rose-500/30 text-xs md:text-sm">
+                                <span class="text-rose-400 font-bold block mb-1">传统冰冷进度</span>
+                                简单的数字显示：<code class="text-slate-300">37.6g / 50g</code>（无情绪张力）
+                            </div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-emerald-500/30 text-xs md:text-sm">
+                                <span class="text-emerald-400 font-bold block mb-1">游戏化活体进度</span>
+                                <code class="text-gold-300">37.6 / 50g &rarr; 金豆成长37.6% &rarr; 宠物经验增加 &rarr; 距离下一阶段还有12.4g</code>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-gold-500/10 rounded-xl border border-gold-500/20 text-xs md:text-sm text-gold-300 text-center font-semibold">
+                            这样数字进度就和游戏进度彻底绑定，驱动长期打卡。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 15: 十五、金豆不是“金币”，而是IP -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">十五、IP与游戏化</span>
+                        <span>金豆 IP 定位与现实-虚拟成长双轨机制</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">金豆不是“金币”，而是虚拟 IP 体系</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-xs md:text-sm text-slate-200">
+                            黄金资产是真实资产。金豆则是 App 里的虚拟 IP。<br>
+                            <strong class="text-gold-300">核心定位：</strong> 金豆不代表钱，不代表黄金，也不能提现。它是用户黄金资产成长的数字化视觉载体。
+                        </p>
+                        <p class="text-xs md:text-sm text-gold-400 font-semibold">
+                            作用：收藏、成长、成就、装饰和身份。
+                        </p>
+
+                        <!-- Growth Chain -->
+                        <div class="p-3 bg-slate-900 rounded-xl border border-slate-700 text-xs text-slate-300 font-mono">
+                            黄金记录 &rarr; 金豆成长 &rarr; 宠物 &rarr; 家园 &rarr; 图鉴 &rarr; 稀有收藏
+                        </div>
+
+                        <!-- Real behavior vs Virtual growth table -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-700 bg-slate-900 text-slate-300">
+                                        <th class="p-2">现实行为（蚂蚁森林范式）</th>
+                                        <th class="p-2">IP 虚拟成长与反馈</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800 text-slate-300">
+                                    <tr><td class="p-2">第一次录入黄金</td><td class="p-2 text-gold-300">第一颗金豆 / 金豆发芽</td></tr>
+                                    <tr><td class="p-2">累计 1g / 5g / 10g</td><td class="p-2 text-gold-300">金豆发芽 &rarr; 金豆成长 &rarr; 解锁宠物 / 第一枚黄金成就</td></tr>
+                                    <tr><td class="p-2">累计 50g / 100g</td><td class="p-2 text-gold-300">解锁稀有宠物 &rarr; 家园升级 / 解锁稀有区域</td></tr>
+                                    <tr><td class="p-2">连续记录 7天 / 30天</td><td class="p-2 text-gold-300">解锁装饰 / 获得特殊金豆</td></tr>
+                                    <tr><td class="p-2">特定节日 / 达到年度目标</td><td class="p-2 text-gold-300">限定金豆 / 获得年度纪念物 / 隐藏彩蛋</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Roguelike Event Example -->
+                        <div class="p-4 bg-slate-900/90 rounded-xl border border-gold-500/20 space-y-2 text-xs md:text-sm">
+                            <span class="text-gold-400 font-bold block"><i class="fa-solid fa-dice"></i> 肉鸽 (Roguelike) 式轻量事件机制举例</span>
+                            <p class="text-slate-300">不直接做成复杂重度游戏，先做成「黄金人生事件」：</p>
+                            <div class="p-3 bg-slate-950 rounded-lg space-y-1 text-slate-300">
+                                <p class="text-gold-300 font-bold">Event 01: 今天发工资了 (我有 ¥8,000)</p>
+                                <p>选择 A. 买衣服 | B. 吃顿好的 | <span class="text-gold-400 font-bold">C. 攒下1g</span></p>
+                                <p class="text-xs text-slate-400">选择 C &rarr; 🪙 获得「今天也攒了」badge，金豆成长+1。</p>
+                            </div>
+                            <div class="p-3 bg-slate-950 rounded-lg space-y-1 text-slate-300">
+                                <p class="text-gold-300 font-bold">Event 02: 朋友喊你出去吃饭 (消费 ¥300 ≈ 0.Xg黄金)</p>
+                                <p>选择：吃 | 攒 | 一半吃、一半攒 &rarr; 最终形成「你的黄金人生」。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 16: 十六、为什么要做宠物 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">十六、情感锚点</span>
+                        <span>宠物系统与情感留存机制 (Emotional Retention)</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">为什么要做宠物：工具留存 &rarr; 情感留存</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-xs md:text-sm text-slate-200">
+                            宠物的价值不是“可爱”，而是解决一个工具产品最严重的问题：<span class="text-rose-400 font-bold">用户没有情感关系</span>。
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
+                                <span class="text-slate-400 font-bold block mb-1">传统记账 App</span>
+                                我记录钱。用户不一定会因为“今天应该记一笔黄金”而打开。
+                            </div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-gold-500/30">
+                                <span class="text-gold-400 font-bold block mb-1">我们的情感体验</span>
+                                我的金豆在成长。用户会因为“我的小金豆今天要长大了”而主动回来。
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gold-500/10 rounded-xl border border-gold-500/20 space-y-2 text-xs md:text-sm">
+                            <span class="text-gold-300 font-bold block">标杆案例借鉴 (Finch & 小红书洛克王国)</span>
+                            <p class="text-slate-300">
+                                小红书上洛克王国的火爆已经证明了这条链路的存在。<br>
+                                <strong>Finch 机制：</strong> Finch目前把每日任务、宠物互动和奖励结合起来，完成任务获得用于购买宠物物品的奖励，每日任务还会主动引导用户探索产品功能。这个机制值得借鉴，但我们应该把现实中的“攒金行为”作为任务来源，而不是照搬普通习惯 App。
+                            </p>
+                        </div>
+
+                        <div class="p-4 bg-slate-900/80 rounded-xl space-y-2 text-xs md:text-sm text-slate-300">
+                            <span class="text-gold-400 font-bold block">小红书自然生活的自发传播形态</span>
+                            <p>用户习惯分享：买什么、存款、副业、创业、生活、宠物、年度总结、挑战进度。</p>
+                            <p class="text-gold-300">
+                                衍生爆款文案：“工作三年，我终于攒到43g了。” / “25岁，我只有12g黄金，正常吗？” / “我把一年奶茶钱换成黄金以后……” / “我的50g黄金挑战第37天。” / “这个黄金 App 怎么还能养宠物？”
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 17: 十七、任务体系 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">十七、任务设计</span>
+                        <span>新用户任务链路 (Task System)</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">新用户任务体系设计</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <h3 class="text-base font-bold text-gold-400">今天的黄金任务清单（新手指南）：</h3>
+                        <div class="space-y-2 text-xs md:text-sm">
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-between">
+                                <span>1. 记录你的第一笔黄金</span>
+                                <span class="text-gold-400 font-mono">+金豆成长</span>
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-between">
+                                <span>2. 设置50g目标</span>
+                                <span class="text-gold-400 font-mono">+金豆成长</span>
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-between">
+                                <span>3. 查看一次黄金收益</span>
+                                <span class="text-gold-400 font-mono">+金豆成长</span>
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-between">
+                                <span>4. 完成一次黄金计算</span>
+                                <span class="text-gold-400 font-mono">+金豆成长</span>
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-between">
+                                <span>5. 分享你的黄金资产卡</span>
+                                <span class="text-gold-400 font-mono">+限定边框</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gold-500/10 rounded-xl border border-gold-500/30 text-xs md:text-sm text-gold-300 font-semibold text-center">
+                            每完成一个：金豆成长。<br>
+                            任务本身同步完成：产品教育 + 功能发现 + Activation + 留存。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 18: 十八、分享系统：产品变成内容+成就系统 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">十八、自传播</span>
+                        <span>内置分享系统、成就与 Meme 裂变</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">分享系统：产品即内容生成器与成就系统</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-xs md:text-sm text-slate-200">
+                            <strong>核心准则：</strong> UGC 分享应该成为产品原生功能，而不是运营人员手工做海报。
+                        </p>
+
+                        <!-- 7 Share Card Templates -->
+                        <div class="glass-card p-4 rounded-xl space-y-2">
+                            <h3 class="text-sm font-bold text-gold-400">内置 7 种原生分享卡模板：</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                                <div class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>克数卡：</strong>我的黄金：36.7g</div>
+                                <div class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>收益卡：</strong>36.7g / +18.2%</div>
+                                <div class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>年度报告：</strong>2026黄金之旅</div>
+                                <div class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>挑战卡：</strong>50g挑战：37.6/50g</div>
+                                <div class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>时间线：</strong>我的黄金人生</div>
+                                <div class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>人格卡：</strong>你是哪种攒金人？</div>
+                                <div class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>金豆卡：</strong>我的金豆Lv.12</div>
+                            </div>
+                        </div>
+
+                        <!-- 8 Cards with Meme Examples -->
+                        <div class="glass-card p-4 rounded-xl space-y-2">
+                            <h3 class="text-sm font-bold text-gold-400"><i class="fa-solid fa-face-laugh-beam"></i> 带 Meme / 梗文本的 8 大卡片（增长系统出口）：</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-300">
+                                <div class="p-2 bg-slate-900 rounded"><strong>① 工资卡：</strong> 我的月薪=8.7g黄金。“打工人的黄金 YOLO”、“发工资&rarr;买金豆，成年人快乐很简单”。</div>
+                                <div class="p-2 bg-slate-900 rounded"><strong>② 消费卡：</strong> 我这个月喝咖啡=0.38g黄金。</div>
+                                <div class="p-2 bg-slate-900 rounded"><strong>③ 资产卡：</strong> 我的黄金=36.7g。“600一克买的，现在谁来接我的班”、“438为什么不买？因为当时觉得会跌”。</div>
+                                <div class="p-2 bg-slate-900 rounded"><strong>④ 收益卡：</strong> 我的黄金今年+18.2%。“去年买的10g，现在……”。</div>
+                                <div class="p-2 bg-slate-900 rounded"><strong>⑤ 攒金卡：</strong> 2026 Goal: 50g | 当前: 27.8g | Progress: 55.6%。</div>
+                                <div class="p-2 bg-slate-900 rounded"><strong>⑥ 年度报告：</strong> 2026 GOLD JOURNEY | 买入42次 | 累计37.6g | 今年新增18.2g。</div>
+                                <div class="p-2 bg-slate-900 rounded"><strong>⑦ 人生时间线：</strong> 2024工作1g &rarr; 2025生日3g &rarr; 2026结婚10g。</div>
+                                <div class="p-2 bg-slate-900 rounded"><strong>⑧ 成就徽章：</strong> 🥉 10g | 🥈 50g | 🥇 100g。“25岁应该有多少克黄金？”</div>
+                            </div>
+                        </div>
+
+                        <!-- Community & WAGMI -->
+                        <div class="p-3 bg-gold-500/10 rounded-xl border border-gold-500/20 text-xs md:text-sm space-y-1">
+                            <span class="text-gold-300 font-bold block">Benchmark 与 Meme 社区共鸣 (WAGMI)</span>
+                            <p class="text-slate-300">
+                                <strong>Benchmark:</strong> 你目前 36.7g | 目标 50g | 距离目标 13.3g (让用户有获得感：你比过去的自己多了多少？)<br>
+                                <strong>社群挑战与 Meme:</strong> Reddit 理念引入 WAGMI &rarr; “一起攒”（We're All Gonna Make It）。收集零散攒金用户进入专属攒金社区。
+                            </p>
+                        </div>
+
+                        <!-- 8 Social Angle Topics -->
+                        <div class="p-3 bg-slate-900 rounded-xl text-xs space-y-1">
+                            <span class="text-gold-400 font-bold block">小红书/社区 8 大热议社交切口选题：</span>
+                            <p class="text-slate-300">
+                                ①《我的黄金家底》| ②《今天+多少克》| ③《下一个目标》| ④《黄金黑历史》| ⑤《黄金人的一天》| ⑥《25岁黄金多少克》| ⑦《我的黄金人类进化史》| ⑧《Gold Journey》
+                            </p>
+                        </div>
+
+                        <!-- Viral Referral Loop -->
+                        <div class="p-3 bg-slate-950 rounded-xl border border-gold-500/30 text-xs text-gold-300 font-mono flex flex-wrap gap-1 items-center">
+                            <span>注册</span> &rarr; <span>🎁第一颗金豆</span> &rarr; <span>首次录入</span> &rarr; <span>🫘金豆成长</span> &rarr; <span>设50g目标</span> &rarr; <span>🐹解锁宠物</span> &rarr; <span>连记7天</span> &rarr; <span>🏠解锁家园</span> &rarr; <span>生成资产卡</span> &rarr; <span>分享</span> &rarr; <span>🎁限定装饰</span> &rarr; <span>邀请好友</span> &rarr; <span>🌳双人金豆岛</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 19: 十九、进一步app内内容运营：只做“黄金知识” -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">十九、内容运营</span>
+                        <span>App 内四层内容矩阵 (Content Hierarchy)</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">App 内内容运营：四层内容分层</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 space-y-2">
+                                <span class="text-gold-400 font-bold block text-base">第一层：流量与 Meme</span>
+                                <p class="text-slate-300">
+                                    “金价又涨了，我是不是该买了？”、“等黄金跌到500我就买”、“黄金涨到700了，我一克都没有”、“600买的金豆现在……”、“我今年一定要存钱，结果房租吃掉了我X克黄金”。
+                                </p>
+                                <span class="text-xs text-gold-500 font-mono block">负责：吸纳海量公域流量。</span>
+                            </div>
+
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 space-y-2">
+                                <span class="text-gold-400 font-bold block text-base">第二层：场景化内容</span>
+                                <p class="text-slate-300">
+                                    “月薪8000一个月可以买多少克？”、“房租5000等于多少克黄金？”、“一杯奶茶等于多少黄金？”、“25岁女生有多少克黄金？”。
+                                </p>
+                                <span class="text-xs text-gold-500 font-mono block">负责：引发讨论与计算。</span>
+                            </div>
+
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 space-y-2">
+                                <span class="text-gold-400 font-bold block text-base">第三层：专业/硬核内容</span>
+                                <p class="text-slate-300">
+                                    “去年买10g现在赚多少？”、“黄金买入价和回收价为什么差这么多？”、“10万元存款相当于多少克黄金？”。
+                                </p>
+                                <span class="text-xs text-gold-500 font-mono block">负责：精准搜索与工具转化。</span>
+                            </div>
+
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 space-y-2">
+                                <span class="text-gold-400 font-bold block text-base">第四层：用户故事与身份认同</span>
+                                <p class="text-slate-300">
+                                    “工作三年攒43g”、“25岁女生开始攒金”、“结婚前给自己攒100g”、“宝妈每个月给自己买1g”。
+                                </p>
+                                <span class="text-xs text-gold-500 font-mono block">负责：UGC与身份认同建立。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 20: 二十、内容和产品必须一一对应 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">二十、运营协同</span>
+                        <span>运营选题与产品功能 1:1 映射表</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">内容和产品必须一一对应</h2>
+
+                    <p class="text-xs md:text-sm text-slate-300">
+                        运营不能只给产品“曝光”，应该直接建立映射关系，做到每一个内容选题都有一个产品功能承接：
+                    </p>
+
+                    <div class="glass-panel p-4 rounded-2xl overflow-x-auto">
+                        <table class="w-full text-xs text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 bg-slate-900/80 text-slate-300">
+                                    <th class="p-2.5">运营选题</th>
+                                    <th class="p-2.5 text-gold-400">承接产品动作/功能</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr><td class="p-2">月薪8000值多少克</td><td class="p-2 font-bold text-gold-300">工资计算器</td></tr>
+                                <tr><td class="p-2">房租吃掉多少克</td><td class="p-2 font-bold text-gold-300">消费计算器</td></tr>
+                                <tr><td class="p-2">25岁有多少克</td><td class="p-2 font-bold text-gold-300">黄金资产计算</td></tr>
+                                <tr><td class="p-2">10g现在值多少</td><td class="p-2 font-bold text-gold-300">黄金估值</td></tr>
+                                <tr><td class="p-2">工作三年43g</td><td class="p-2 font-bold text-gold-300">资产记录</td></tr>
+                                <tr><td class="p-2">50g挑战</td><td class="p-2 font-bold text-gold-300">攒金挑战</td></tr>
+                                <tr><td class="p-2">我的黄金报告</td><td class="p-2 font-bold text-gold-300">年度报告</td></tr>
+                                <tr><td class="p-2">我的黄金人格</td><td class="p-2 font-bold text-gold-300">人格测试</td></tr>
+                                <tr><td class="p-2">我的金豆Lv.12</td><td class="p-2 font-bold text-gold-300">金豆系统</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 21: 二十一、注册激励：和金融平台拼现金 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">二十一、用户激励全景</span>
+                        <span>24种激励机制、金融差异与4层级模型</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">注册激励与 24 种机制全景借鉴表</h2>
+
+                    <!-- Concept Difference -->
+                    <div class="glass-panel p-5 rounded-2xl space-y-3">
+                        <h3 class="text-base font-bold text-gold-400">避开现金烧钱陷阱，重塑激励模型</h3>
+                        <p class="text-xs md:text-sm text-slate-300">
+                            金融平台（交易平台）可注册送红包、体验金、首充返现，因为后续有开户与交易。我们可以借鉴“体验金”的心理机制（免费体验产品价值）：注册后免费生成一次完整黄金资产报告，而真正的注册礼是“第一颗金豆”。
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                                <strong>新用户基础激励：</strong><br>
+                                注册 &rarr; 第一颗金豆 | 首次录入 &rarr; 金豆发芽 | 设置目标 &rarr; 第一只宠物 | 完成第一笔记录 &rarr; 黄金成就 | 连续3天 &rarr; 金豆成长 | 连续7天 &rarr; 黄金小屋 | 首次分享 &rarr; 限定边框 | 好友完成激活 &rarr; 双人金豆岛。
+                            </div>
+                            <div class="p-3 bg-gold-500/10 rounded-xl border border-gold-500/30 text-gold-200">
+                                <strong>4层级核心机制 (Bullion Note 实现)：</strong><br>
+                                1. Activation: 首次行为+Pro试用+资产导入<br>
+                                2. Habit: 连续成长+任务+目标+热力图<br>
+                                3. Collection/Identity: 收集+成就+限定+彩蛋+身份<br>
+                                4. Growth: 分享+Referral+内容生成+周期报告
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mega 24 Incentive Table -->
+                    <div class="glass-card p-4 rounded-2xl overflow-x-auto space-y-2">
+                        <h3 class="text-sm font-bold text-gold-400">行业 24 种经典激励机制与我们借鉴方案</h3>
+                        <table class="w-full text-xs text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 bg-slate-900 text-slate-300">
+                                    <th class="p-2">序号</th>
+                                    <th class="p-2">激励类型</th>
+                                    <th class="p-2">典型产品/场景</th>
+                                    <th class="p-2">给用户什么</th>
+                                    <th class="p-2">核心目的与我们借鉴动作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr><td class="p-2">①</td><td class="p-2 font-bold text-gold-300">体验金</td><td class="p-2">同花顺爱基金/交易平台</td><td class="p-2">虚拟本金 (如50元)</td><td class="p-2">设计“黄金资产模拟体验”，注册即体验估值/收益/回测。</td></tr>
+                                <tr><td class="p-2">②</td><td class="p-2 font-bold text-gold-300">红包/现金</td><td class="p-2">金融开户平台</td><td class="p-2">现金 ¥3/¥10/¥50</td><td class="p-2">用于节日短期 Campaign，不作为长期核心以避羊毛党。</td></tr>
+                                <tr><td class="p-2">③</td><td class="p-2 font-bold text-gold-300">首次行为奖励</td><td class="p-2">钱迹/任务型App</td><td class="p-2">积分/徽章/虚拟物品</td><td class="p-2">首次录入黄金 &rarr; 获得「第一颗金豆」。绑定核心行为。</td></tr>
+                                <tr><td class="p-2">④</td><td class="p-2 font-bold text-gold-300">免费 Pro 试用</td><td class="p-2">钱迹/SaaS记账</td><td class="p-2">7天高级功能</td><td class="p-2">注册免费体验高级分析：收益、资产曲线、年度报告、历史回测。</td></tr>
+                                <tr><td class="p-2">⑤</td><td class="p-2 font-bold text-gold-300">连续签到/成长</td><td class="p-2">Finch/Forest/手帐</td><td class="p-2">金币/成长值/宠物成长</td><td class="p-2">做金豆连续成长：Day1发芽 &rarr; Day3成长 &rarr; Day7解锁宠物。</td></tr>
+                                <tr><td class="p-2">⑥</td><td class="p-2 font-bold text-gold-300">任务体系</td><td class="p-2">Finch/积分App</td><td class="p-2">明确目标与道具</td><td class="p-2">新手任务：记录第一笔 &rarr; 设目标 &rarr; 加历史资产 &rarr; 看收益。</td></tr>
+                                <tr><td class="p-2">⑦</td><td class="p-2 font-bold text-gold-300">收集/养成</td><td class="p-2">Finch/宠物/游戏</td><td class="p-2">宠物/贴纸/图鉴</td><td class="p-2">金豆 IP + 宠物 + 家园 + 图鉴 + 稀有金豆 + 彩蛋。</td></tr>
+                                <tr><td class="p-2">⑧</td><td class="p-2 font-bold text-gold-300">目标/挑战</td><td class="p-2">攒金PRO/习惯App</td><td class="p-2">10/50/100g目标徽章</td><td class="p-2">10g/50g/100g黄金挑战；30天攒金；结合热力图显示进度。</td></tr>
+                                <tr><td class="p-2">⑨</td><td class="p-2 font-bold text-gold-300">成就系统</td><td class="p-2">游戏/习惯App</td><td class="p-2">称号/荣誉证明</td><td class="p-2">“第一克”、“10g”、“连续记录30天”等黄金成就卡。</td></tr>
+                                <tr><td class="p-2">⑩</td><td class="p-2 font-bold text-gold-300">资产展示</td><td class="p-2">金攒攒/攒金PRO</td><td class="p-2">持仓/收益/资产曲线</td><td class="p-2">生成「我的黄金资产卡」：克数、成本、估值、收益、变化。</td></tr>
+                                <tr><td class="p-2">⑪</td><td class="p-2 font-bold text-gold-300">分享卡</td><td class="p-2">投资/健身App</td><td class="p-2">精美视觉数据卡</td><td class="p-2">36.7g/+18.2%、年度报告、匿名卡、“我的第一桶黄金”。</td></tr>
+                                <tr><td class="p-2">⑫</td><td class="p-2 font-bold text-gold-300">邀请 Referral</td><td class="p-2">NALA/Zora</td><td class="p-2">双方利益/额度</td><td class="p-2">“邀请好友进入金豆岛 &rarr; 双人家园 / 联名金豆”。</td></tr>
+                                <tr><td class="p-2">⑬</td><td class="p-2 font-bold text-gold-300">限定收藏</td><td class="p-2">Forest/潮玩游戏</td><td class="p-2">限定皮肤/限定宠物</td><td class="p-2">“2026新用户限定金豆”、“春节金豆”、“七夕金豆”。</td></tr>
+                                <tr><td class="p-2">⑭</td><td class="p-2 font-bold text-gold-300">彩蛋/隐藏奖励</td><td class="p-2">游戏/社区</td><td class="p-2">隐藏角色/特殊装饰</td><td class="p-2">特定克数 (8.88g, 18.88g, 52.0g) 触发隐藏动画与角色。</td></tr>
+                                <tr><td class="p-2">⑮</td><td class="p-2 font-bold text-gold-300">社区身份</td><td class="p-2">社区/社交App</td><td class="p-2">身份标签/称号</td><td class="p-2">“50g俱乐部”、“百克俱乐部”、“黄金仓鼠”、“长期主义人”。</td></tr>
+                                <tr><td class="p-2">⑯</td><td class="p-2 font-bold text-gold-300">排行/社群挑战</td><td class="p-2">储蓄挑战/运动App</td><td class="p-2">群体目标/榜单</td><td class="p-2">“本月攒金挑战”、“50g俱乐部” (只显示克数/匿名昵称)。</td></tr>
+                                <tr><td class="p-2">⑰</td><td class="p-2 font-bold text-gold-300">内容生成奖励</td><td class="p-2">UGC社区/健身报告</td><td class="p-2">积分/权益</td><td class="p-2">生成黄金报告/人格后分享，获得限定金豆与框。</td></tr>
+                                <tr><td class="p-2">⑱</td><td class="p-2 font-bold text-gold-300">首次资产导入</td><td class="p-2">钱迹/Portfolio</td><td class="p-2">完整资产报告</td><td class="p-2">输入“我有37.6g”，即生成资产页，免从零录入流水。</td></tr>
+                                <tr><td class="p-2">⑲</td><td class="p-2 font-bold text-gold-300">数据导入/迁移</td><td class="p-2">钱迹/理财工具</td><td class="p-2">Excel/CSV 批量迁移</td><td class="p-2">支持批量导入黄金购买记录、历史克重、金饰资产。</td></tr>
+                                <tr><td class="p-2">⑺</td><td class="p-2 font-bold text-gold-300">周期报告</td><td class="p-2">投资/年度报告</td><td class="p-2">周报/月报/年报</td><td class="p-2">「本周黄金报告」、「本月攒了X克」、「2026 GOLD JOURNEY」。</td></tr>
+                                <tr><td class="p-2">㉑</td><td class="p-2 font-bold text-gold-300">实时行情/预警</td><td class="p-2">金攒攒/多多攒金</td><td class="p-2">价格提醒/涨跌推送</td><td class="p-2">“今天你的黄金资产比昨天多 ¥XXX”，转化行情为资产记录。</td></tr>
+                                <tr><td class="p-2">㉒</td><td class="p-2 font-bold text-gold-300">日历 / 热力图</td><td class="p-2">金攒攒/攒金PRO</td><td class="p-2">打卡日历与热力图</td><td class="p-2">每日买金记录形成“黄金足迹”，月度热力图直接作为分享素材。</td></tr>
+                                <tr><td class="p-2">㉓</td><td class="p-2 font-bold text-gold-300">桌面小组件 Widget</td><td class="p-2">金攒攒/钱迹</td><td class="p-2">桌面金价/资产/收益</td><td class="p-2">Widget：“今日黄金资产”、“我的黄金克数”、“距50g还有Xg”。</td></tr>
+                                <tr><td class="p-2">㉔</td><td class="p-2 font-bold text-gold-300">真实行为&rarr;虚拟成长</td><td class="p-2">Forest专注森林/Finch</td><td class="p-2">可见的森林/宠物成长</td><td class="p-2">记录 1g &rarr; 金豆长大；10g &rarr; 宠物出生；50g &rarr; 家园升级。</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 22: 二十二、活动运营也要从“送东西”升级成“行为设计” -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">二十二、活动运营</span>
+                        <span>活动设计与 4 大分类 (Campaign Engineering)</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">活动运营：从“送东西”升级成“行为设计”</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-xs md:text-sm text-slate-200">
+                            体验金典型机制是给虚拟本金体验收益。金融平台体验 &rarr; 让用户交易。而我们：体验 &rarr; 让用户记录。这是完全不同的增长模型。
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
+                                <span class="text-gold-400 font-bold block mb-1">拉新活动</span>
+                                示例：新人第一颗金豆、限定宠物。核心目的：注册激活。
+                            </div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
+                                <span class="text-gold-400 font-bold block mb-1">留存活动</span>
+                                示例：7天攒金、30天挑战、52周挑战。核心目的：连续使用。
+                            </div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
+                                <span class="text-gold-400 font-bold block mb-1">裂变活动</span>
+                                示例：分享资产卡、邀请好友进入金豆岛。核心目的：UGC + 拉新。
+                            </div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
+                                <span class="text-gold-400 font-bold block mb-1">行为绑定原则</span>
+                                竞品送体验金/现金/券。我们适合送：第一颗金豆 + 第一次资产报告 + 新用户限定内容。现金易招羊毛党，我们要黄金资产记录用户。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 23: 二十三、工具化、游戏化、内容化三条线最终合并 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">二十三、三线合一</span>
+                        <span>工具化 + 游戏化 + 内容化 三位一体</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">工具化、游戏化、内容化三条线最终合并</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-panel p-5 rounded-2xl space-y-3 border-t-2 border-t-blue-500">
+                            <h3 class="text-base font-bold text-blue-400 flex items-center gap-2">
+                                <i class="fa-solid fa-wrench"></i> 工具化 (获客 & 解决问题)
+                            </h3>
+                            <p class="text-xs md:text-sm text-slate-300">
+                                解决：“我想知道黄金值多少钱。”<br>
+                                对应：计算器、行情、估值、收益、Portfolio。
+                            </p>
+                        </div>
+
+                        <div class="glass-panel p-5 rounded-2xl space-y-3 border-t-2 border-t-gold-500">
+                            <h3 class="text-base font-bold text-gold-400 flex items-center gap-2">
+                                <i class="fa-solid fa-gamepad"></i> 游戏化 (留存)
+                            </h3>
+                            <p class="text-xs md:text-sm text-slate-300">
+                                解决：“我为什么明天还要回来？”<br>
+                                对应：金豆、宠物、目标、挑战、成就、家园、图鉴、彩蛋。
+                            </p>
+                        </div>
+
+                        <div class="glass-panel p-5 rounded-2xl space-y-3 border-t-2 border-t-purple-500">
+                            <h3 class="text-base font-bold text-purple-400 flex items-center gap-2">
+                                <i class="fa-solid fa-share-nodes"></i> 内容化 (传播)
+                            </h3>
+                            <p class="text-xs md:text-sm text-slate-300">
+                                解决：“我为什么愿意把这个东西发出去？”<br>
+                                对应：资产卡、黄金报告、黄金人格、挑战卡、人生时间线。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gold-500/10 rounded-xl border border-gold-500/30 text-xs md:text-sm text-gold-300 font-semibold text-center">
+                        三条线组合架构：工具负责获客和解决问题，游戏负责留存，内容负责传播。
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 24: 二十四、完整增长闭环 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">二十四、增长闭环</span>
+                        <span>全链路自循环增长模型 (Full Growth Loop)</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">完整增长闭环链路</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <div class="p-4 bg-slate-900 rounded-xl border border-gold-500/30 text-xs md:text-sm font-mono text-slate-200 leading-relaxed space-y-2">
+                            <p class="text-gold-400">小红书 / 抖音 / 搜索 / AI / 社区</p>
+                            <p>&darr; “我的工资值多少克？”</p>
+                            <p class="text-gold-300 font-bold">黄金计算器 &rarr; “原来是X.X克” &rarr; 保存到黄金资产</p>
+                            <p>&darr; Portfolio &rarr; 设置50g目标 &rarr; 金豆成长</p>
+                            <p class="text-gold-300 font-bold">宠物 / 成就 &rarr; 连续记录 / 挑战</p>
+                            <p>&darr; 黄金年度报告 &rarr; 分享卡</p>
+                            <p class="text-gold-400">小红书 / 朋友圈 / 社区</p>
+                            <p>&darr; “她居然有37.6g” &rarr; “那我呢？”</p>
+                            <p class="text-emerald-400 font-bold text-base">&darr; 获得新用户 (循环再次启动)</p>
+                        </div>
+
+                        <div class="p-4 bg-gold-500/10 rounded-xl border border-gold-500/20 text-xs md:text-sm text-gold-300 font-medium">
+                            这才是我们真正要做的：不是“内容给App导流”，而是让App成为黄金内容生态的一部分。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 25: 二十五、产品信息架构 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">二十五、信息架构</span>
+                        <span>4 大核心 Tab 极简架构 (Information Architecture)</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">产品信息架构 (IA) 规划</h2>
+
+                    <p class="text-xs md:text-sm text-slate-300">
+                        第一阶段不要做得太复杂。建议底部只有四个核心入口：<span class="text-gold-300 font-bold">首页 ｜ 黄金 ｜ 挑战 ｜ 我的</span>
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="glass-panel p-4 rounded-xl space-y-2">
+                            <span class="text-gold-400 font-bold text-base block border-b border-slate-700 pb-2">首页</span>
+                            <ul class="text-xs text-slate-300 space-y-1">
+                                <li>• 今日金价</li>
+                                <li>• 我的黄金 summary</li>
+                                <li>• 金豆状态</li>
+                                <li>• 今日任务</li>
+                            </ul>
+                        </div>
+
+                        <div class="glass-panel p-4 rounded-xl space-y-2">
+                            <span class="text-gold-400 font-bold text-base block border-b border-slate-700 pb-2">黄金</span>
+                            <ul class="text-xs text-slate-300 space-y-1">
+                                <li>• Portfolio 资产</li>
+                                <li>• 交易记录</li>
+                                <li>• 收益分析</li>
+                                <li>• 黄金时间线</li>
+                            </ul>
+                        </div>
+
+                        <div class="glass-panel p-4 rounded-xl space-y-2">
+                            <span class="text-gold-400 font-bold text-base block border-b border-slate-700 pb-2">挑战</span>
+                            <ul class="text-xs text-slate-300 space-y-1">
+                                <li>• 10g / 50g / 100g 目标</li>
+                                <li>• 30天 / 365天 计划</li>
+                                <li>• 打卡进度</li>
+                            </ul>
+                        </div>
+
+                        <div class="glass-panel p-4 rounded-xl space-y-2">
+                            <span class="text-gold-400 font-bold text-base block border-b border-slate-700 pb-2">我的</span>
+                            <ul class="text-xs text-slate-300 space-y-1">
+                                <li>• 金豆 / 宠物 / 图鉴</li>
+                                <li>• 个人成就 / 报告</li>
+                                <li>• 分享卡套件</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 text-xs md:text-sm text-slate-300">
+                        <strong>计算器位置设定：</strong> 作为首页高频入口 + 内容落地页承接，不要单独塞一个复杂的“工具中心”。
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 26: 二十六、第一阶段必须做什么 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">二十六、Roadmap P0</span>
+                        <span>MVP 阶段 11 项必做功能</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">第一阶段 (P0) 核心落地清单</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-xs md:text-sm text-slate-300">
+                            P0不应该把宠物、Roguelike、家园全部做出来。先验证：<span class="text-gold-300 font-bold">内容 &rarr; 工具 &rarr; 资产 &rarr; 分享</span>。
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm">
+                            <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-slate-200">1. 黄金资产录入</div>
+                            <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-slate-200">2. Portfolio 资产大盘</div>
+                            <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-slate-200">3. 黄金估值/收益计算器</div>
+                            <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-slate-200">4. 工资换黄金工具</div>
+                            <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-slate-200">5. 消费换黄金工具</div>
+                            <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-slate-200">6. 10g/50g/100g 目标体系</div>
+                            <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-slate-200">7. 基础打卡挑战</div>
+                            <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-slate-200">8. 第一颗金豆 IP 挂载</div>
+                            <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-slate-200">9. 新用户 Onboarding 引导</div>
+                            <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-slate-200">10. 基础分享卡模版</div>
+                            <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-slate-200 col-span-1 md:col-span-2">11. 完整埋点埋设</div>
+                        </div>
+
+                        <div class="p-3 bg-gold-500/10 rounded-xl border border-gold-500/20 text-xs md:text-sm text-gold-300 font-semibold text-center">
+                            核心验证假设：用户愿不愿意把自己的黄金记录下来，以及愿不愿意把结果分享出去。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 27: 二十七、P1：记录”变成“成长” -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">二十七、Roadmap P1</span>
+                        <span>“记录”转化为“成长” (10 大功能)</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">P1 阶段：把“记录”变成“成长”</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs md:text-sm">
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">1. 金豆动态成长逻辑</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">2. 宠物系统上线</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">3. 成就徽章系统</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">4. 黄金人生时间线 (Gold Journey)</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">5. 年度黄金报告</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">6. 黄金人格测试模块</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">7. 高级分享模板库</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">8. 裂变邀请机制</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">9. 周/月度资产报告</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">10. 连续记录激励体系</div>
+                        </div>
+
+                        <div class="p-3 bg-gold-500/10 rounded-xl border border-gold-500/20 text-xs md:text-sm text-gold-300 font-semibold text-center">
+                            这个阶段验证：用户会不会因为成长系统而持续回访。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 28: 二十八、P2：成长”变成IP -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">二十八、Roadmap P2</span>
+                        <span>“成长”固化为“IP与资产” (10 大功能)</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">P2 阶段：把“成长”塑造为 IP 资产</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs md:text-sm">
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">1. 黄金家园场景建设</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">2. 金豆收集图鉴</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">3. 稀有金豆与特效</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">4. 隐藏彩蛋机制</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">5. Roguelike 攒金探索事件</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">6. 节日限定 Campaign</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">7. 宠物装扮与道具商店</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">8. 好友金豆岛社交系统</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">9. 社群攒金挑战与排位</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">10. 收藏排行榜与称号</div>
+                        </div>
+
+                        <div class="p-3 bg-gold-500/10 rounded-xl border border-gold-500/20 text-xs md:text-sm text-gold-300 font-semibold text-center">
+                            这个阶段产品才真正形成强有力的黄金 IP 壁垒。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 29: 二十九、运营与产品必须共用一套选题—功能表 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">二十九、运营协同</span>
+                        <span>产运一体化选题-功能执行指南</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">产运共用选题—功能协同表</h2>
+
+                    <p class="text-xs md:text-sm text-slate-300">
+                        以后运营提一个选题，产品都应该能找到对应功能，共同生产用户行为：
+                    </p>
+
+                    <div class="glass-panel p-4 rounded-2xl overflow-x-auto">
+                        <table class="w-full text-xs text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 bg-slate-900/80 text-slate-300">
+                                    <th class="p-2.5">运营选题</th>
+                                    <th class="p-2.5">产品承接</th>
+                                    <th class="p-2.5 text-gold-400">驱动用户行为</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr><td class="p-2">月薪8000值多少黄金</td><td class="p-2 text-gold-300">工资计算器</td><td class="p-2 font-bold">计算</td></tr>
+                                <tr><td class="p-2">房租5000吃掉多少克</td><td class="p-2 text-gold-300">消费计算器</td><td class="p-2 font-bold">计算</td></tr>
+                                <tr><td class="p-2">25岁应该有多少黄金</td><td class="p-2 text-gold-300">黄金资产计算</td><td class="p-2 font-bold">比较</td></tr>
+                                <tr><td class="p-2">工作三年43g</td><td class="p-2 text-gold-300">Portfolio</td><td class="p-2 font-bold">建仓</td></tr>
+                                <tr><td class="p-2">50g挑战</td><td class="p-2 text-gold-300">攒金目标</td><td class="p-2 font-bold">加入</td></tr>
+                                <tr><td class="p-2">我今年攒了多少</td><td class="p-2 text-gold-300">年度报告</td><td class="p-2 font-bold">查看</td></tr>
+                                <tr><td class="p-2">我的黄金人格</td><td class="p-2 text-gold-300">人格测试</td><td class="p-2 font-bold">分享</td></tr>
+                                <tr><td class="p-2">我的金豆Lv.12</td><td class="p-2 text-gold-300">金豆系统</td><td class="p-2 font-bold">分享</td></tr>
+                                <tr><td class="p-2">我的2026黄金报告</td><td class="p-2 text-gold-300">年度报告</td><td class="p-2 font-bold">UGC</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 30: 三十、核心埋点 -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">三十、数据埋点</span>
+                        <span>数据追踪与漏斗转化埋点</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">核心埋点系统与漏斗关注</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <h3 class="text-base font-bold text-gold-400">从第一天开始完整记录的事件点：</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed font-mono bg-slate-900 p-3 rounded-xl border border-slate-800">
+                            安装、注册、首次启动、开始新手引导、首次资产录入、首次Portfolio生成、首次计算器使用、目标创建、挑战加入、连续3天、连续7天、分享卡生成、分享完成、好友邀请、好友激活、宠物解锁、金豆成长、收藏解锁、年度报告生成。
+                        </p>
+
+                        <h3 class="text-base font-bold text-white pt-2">尤其需要重点监测的 6 大核心转换漏斗：</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+                            <div class="p-3 bg-slate-900 rounded-xl border border-gold-500/30"><strong>漏斗 1：</strong> 注册 &rarr; 首次资产录入</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-gold-500/30"><strong>漏斗 2：</strong> 首次资产录入 &rarr; Portfolio</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-gold-500/30"><strong>漏斗 3：</strong> Portfolio &rarr; 目标</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-gold-500/30"><strong>漏斗 4：</strong> 目标 &rarr; D7 留存</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-gold-500/30"><strong>漏斗 5：</strong> Portfolio &rarr; 分享</div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-gold-500/30"><strong>漏斗 6：</strong> 分享 &rarr; 新用户 / 邀请 &rarr; 激活</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 31: 三十一、产品核心KPI -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">三十一、核心 KPI</span>
+                        <span>7 层 KPI 指标阶梯 (Performance Indicators)</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">产品 7 层核心 KPI 指标体系</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-xs md:text-sm text-slate-300">
+                            不要只看下载量和注册量，建立真正的增长评价阶梯：
+                        </p>
+
+                        <div class="space-y-2 text-xs md:text-sm">
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between">
+                                <span class="text-slate-300">第一层指标</span>
+                                <span class="text-gold-400 font-bold">注册 &rarr; 首次资产录入率</span>
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between">
+                                <span class="text-slate-300">第二层指标</span>
+                                <span class="text-gold-400 font-bold">首次资产录入 &rarr; Portfolio完成率</span>
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between">
+                                <span class="text-slate-300">第三层指标</span>
+                                <span class="text-gold-400 font-bold">Portfolio &rarr; 目标创建率</span>
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between">
+                                <span class="text-slate-300">第四层指标</span>
+                                <span class="text-gold-400 font-bold">目标 &rarr; D7 留存率</span>
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between">
+                                <span class="text-slate-300">第五层指标</span>
+                                <span class="text-gold-400 font-bold">Portfolio &rarr; 分享卡生成率</span>
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between">
+                                <span class="text-slate-300">第六层指标</span>
+                                <span class="text-gold-400 font-bold">分享 &rarr; 新用户访问率</span>
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between">
+                                <span class="text-slate-300">第七层指标</span>
+                                <span class="text-gold-400 font-bold">分享 &rarr; 新用户激活率</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gold-500/10 rounded-xl border border-gold-500/30 text-xs md:text-sm text-gold-300 font-semibold text-center">
+                            最终终极 KPI 指标公式：<br>
+                            每100个新用户 &rarr; 最终产生多少个完成资产记录的用户 &rarr; 产生多少次 UGC 传播。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 32: 三十二、最终产品方向 (+ 参考竞品) -->
+            <section class="slide-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-8 overflow-y-auto flex flex-col justify-start">
+                <div class="max-w-6xl mx-auto w-full space-y-6 pb-20">
+                    <div class="flex items-center space-x-3 text-gold-400 font-semibold text-sm">
+                        <span class="px-2.5 py-1 rounded-md bg-gold-500/10 border border-gold-500/30">三十二、最终总结</span>
+                        <span>定位占领、终局愿景与参考竞品</span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">最终产品方向与终局愿景</h2>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <h3 class="text-lg font-bold text-gold-300">我们要占据的终极定位：</h3>
+                        <p class="text-sm md:text-base font-bold text-white bg-gold-500/20 p-4 rounded-xl border border-gold-500/30">
+                            “年轻人的黄金资产生活记录工具”
+                        </p>
+
+                        <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                            它不是单纯的“黄金记账App”（如金攒攒、金闪闪、攒金PRO），也不是单纯的“黄金行情App”（如黄金天眼）。<br>
+                            它同时具备：
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+                            <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                                <strong class="text-gold-400 block mb-1">工具属性</strong> 算黄金、记录黄金、管理黄金。
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                                <strong class="text-gold-400 block mb-1">资产属性</strong> 清楚知道自己到底有多少黄金。
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                                <strong class="text-gold-400 block mb-1">目标属性</strong> 挑战 10g、50g、100g 目标。
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                                <strong class="text-gold-400 block mb-1">游戏属性</strong> 持续使用中，金豆、宠物、成就会成长。
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                                <strong class="text-gold-400 block mb-1">内容属性</strong> 把黄金生活变成可以传播的内容。
+                            </div>
+                            <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                                <strong class="text-gold-400 block mb-1">社交属性</strong> 分享黄金资产、挑战、年度报告与一起攒金。
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-900 rounded-xl border border-slate-700 text-xs md:text-sm space-y-2">
+                            <p class="text-gold-300 font-bold">最终用户心智占领：</p>
+                            <p class="text-slate-200">“黄金相关的东西，我就用我们记录。”</p>
+                            <p class="text-slate-400">竞品在争夺：“谁的黄金工具更好用。”<br>我们的机会：“谁能把黄金变成一个用户愿意每天参与、长期积累、主动分享的互联网产品。”</p>
+                        </div>
+
+                        <!-- Reference Links -->
+                        <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-1.5 text-xs text-slate-400">
+                            <span class="text-gold-400 font-bold block mb-1">参考竞品与资料链接：</span>
+                            <ul class="space-y-1 list-disc list-inside">
+                                <li><a href="https://apps.apple.com/cn/app/%E9%87%91%E6%94%92%E6%94%92/id6504058072?utm_source=chatgpt.com" target="_blank" class="hover:text-gold-300 underline">金攒攒 App Store</a></li>
+                                <li><a href="https://apps.apple.com/cn/app/%E9%BB%84%E9%87%91%E5%A4%A9%E7%9C%BC-%E5%91%A8%E6%9C%AB%E6%9C%89%E9%87%91%E4%BB%B7/id6739859972?utm_source=chatgpt.com" target="_blank" class="hover:text-gold-300 underline">黄金天眼 App Store</a></li>
+                                <li><a href="https://apps.apple.com/cn/app/%E9%87%91%E9%97%AA%E9%97%AA-%E9%BB%84%E9%87%91%E6%94%92%E6%94%92%E5%8A%A9%E6%89%8B/id6745614971?utm_source=chatgpt.com" target="_blank" class="hover:text-gold-300 underline">金闪闪 App Store</a></li>
+                                <li><a href="https://apps.apple.com/cn/app/%E6%94%92%E9%87%91pro/id6765915514?utm_source=chatgpt.com" target="_blank" class="hover:text-gold-300 underline">攒金PRO App Store</a></li>
+                                <li><a href="https://docs.qianjiapp.com/?utm_source=chatgpt.com" target="_blank" class="hover:text-gold-300 underline">钱迹用户指南</a></li>
+                                <li><a href="https://help.finchcare.com/hc/en-us/articles/37943131828749-Daily-Quests?utm_source=chatgpt.com" target="_blank" class="hover:text-gold-300 underline">Finch 每日任务机制</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Bottom Controls & Progress Bar Footer -->
+    <footer class="h-16 glass-panel shrink-0 z-30 px-4 md:px-8 flex items-center justify-between border-t border-gold-500/20 relative">
+        
+        <!-- Top Thin Progress Bar -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-slate-900">
+            <div id="progressBar" class="h-full bg-gradient-to-r from-gold-600 via-gold-400 to-amber-300 w-[3.125%] transition-all duration-300"></div>
+        </div>
+
+        <!-- Left Prev Button -->
+        <button onclick="prevSlide()" id="prevBtn" class="px-4 py-2 rounded-xl glass-card hover:border-gold-500/50 text-xs md:text-sm font-semibold text-slate-300 hover:text-gold-400 transition flex items-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span>上一页</span>
+        </button>
+
+        <!-- Center Keyboard Tip -->
+        <div class="hidden md:flex items-center space-x-3 text-xs text-slate-400">
+            <span><kbd class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 font-mono">←</kbd> <kbd class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 font-mono">→</kbd> 翻页</span>
+            <span>|</span>
+            <span>支持触摸屏滑动与快捷切换</span>
+        </div>
+
+        <!-- Right Next Button -->
+        <button onclick="nextSlide()" id="nextBtn" class="px-4 py-2 rounded-xl bg-gradient-to-r from-gold-600 to-gold-500 text-slate-950 font-bold text-xs md:text-sm hover:brightness-110 shadow-lg shadow-gold-500/20 transition flex items-center space-x-2">
+            <span>下一页</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </footer>
+
+    <!-- Catalog Modal Overlay -->
+    <div id="catalogModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex justify-end">
+        <div class="w-full max-w-md bg-slate-900 h-full border-l border-gold-500/30 p-6 overflow-y-auto flex flex-col space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <h3 class="text-lg font-bold text-gold-400 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check"></i> PPT 32 页全量目录
+                </h3>
+                <button onclick="toggleCatalog()" class="text-slate-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="catalogList" class="space-y-1.5 flex-1 overflow-y-auto pr-1 text-xs md:text-sm">
+                <!-- Javascript will dynamically inject catalog items here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript Engine -->
+    <script>
+        const totalSlides = 32;
+        let currentSlide = 1;
+
+        const slidesContainer = document.getElementById('slidesContainer');
+        const slides = document.querySelectorAll('.slide-item');
+        const currentSlideNum = document.getElementById('currentSlideNum');
+        const totalSlidesNum = document.getElementById('totalSlidesNum');
+        const progressBar = document.getElementById('progressBar');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const catalogModal = document.getElementById('catalogModal');
+        const catalogList = document.getElementById('catalogList');
+
+        // Titles array for catalog menu
+        const slideTitles = [
+            "一、产品定位",
+            "二、为什么现在是切入机会",
+            "三、竞品分析：金攒攒",
+            "四、竞品分析：黄金天眼",
+            "五、竞品分析：金闪闪",
+            "六、竞品分析：攒金PRO",
+            "七、竞品结论与四层召回体系",
+            "八、用户第一次打开的心智建立",
+            "九、第一次使用的核心流程",
+            "十、不要把“注册”作为核心指标",
+            "十一、内容 → 工具 → 资产入口体系",
+            "十二、Calculator 工具矩阵",
+            "十三、Portfolio 核心模块与时间线",
+            "十四、目标和挑战体系",
+            "十五、金豆 IP 与游戏化成长",
+            "十六、为什么要做宠物 (情感留存)",
+            "十七、新用户任务体系",
+            "十八、内置分享系统与 Meme 裂变",
+            "十九、App 内四层内容运营",
+            "二十、内容与产品一一对应",
+            "二十一、注册激励与 24 种机制全景",
+            "二十二、活动运营：行为设计",
+            "二十三、工具+游戏+内容三线合一",
+            "二十四、完整自循环增长闭环",
+            "二十五、产品信息架构 (IA)",
+            "二十六、第一阶段 (P0) 核心功能",
+            "二十七、P1阶段：记录变成长",
+            "二十八、P2阶段：成长变IP",
+            "二十九、产运协同选题-功能表",
+            "三十、核心数据埋点与漏斗",
+            "三十一、产品 7 层核心 KPI 体系",
+            "三十二、最终产品定位与参考竞品"
+        ];
+
+        totalSlidesNum.textContent = totalSlides;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide - 1) {
+                    slide.classList.remove('opacity-0', 'pointer-events-none');
+                    slide.classList.add('opacity-100');
+                    slide.scrollTop = 0; // Reset scroll position to top
+                } else {
+                    slide.classList.remove('opacity-100');
+                    slide.classList.add('opacity-0', 'pointer-events-none');
+                }
+            });
+
+            currentSlideNum.textContent = currentSlide;
+            progressBar.style.width = `${(currentSlide / totalSlides) * 100}%`;
+
+            prevBtn.disabled = (currentSlide === 1);
+            if (currentSlide === totalSlides) {
+                nextBtn.querySelector('span').textContent = '已达终页';
+            } else {
+                nextBtn.querySelector('span').textContent = '下一页';
+            }
+
+            renderCatalog();
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function goToSlide(slideNum) {
+            currentSlide = slideNum;
+            updateSlide();
+            toggleCatalog(false);
+        }
+
+        function toggleCatalog(forceState) {
+            if (forceState !== undefined) {
+                if (forceState) {
+                    catalogModal.classList.remove('opacity-0', 'pointer-events-none');
+                } else {
+                    catalogModal.classList.add('opacity-0', 'pointer-events-none');
+                }
+            } else {
+                catalogModal.classList.toggle('opacity-0');
+                catalogModal.classList.toggle('pointer-events-none');
+            }
+        }
+
+        function renderCatalog() {
+            catalogList.innerHTML = '';
+            slideTitles.forEach((title, idx) => {
+                const item = document.createElement('button');
+                item.className = `w-full text-left p-2.5 rounded-lg transition flex items-center justify-between ${idx + 1 === currentSlide ? 'bg-gold-500/20 text-gold-300 font-bold border border-gold-500/40' : 'text-slate-300 hover:bg-slate-800'}`;
+                item.innerHTML = `<span>${title}</span> <span class="text-xs font-mono opacity-60">P.${idx + 1}</span>`;
+                item.onclick = () => goToSlide(idx + 1);
+                catalogList.appendChild(item);
+            });
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                document.getElementById('fullscreenIcon').className = 'fa-solid fa-compress';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    document.getElementById('fullscreenIcon').className = 'fa-solid fa-expand';
+                }
+            }
+        }
+
+        // Keyboard Controls
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'PageDown') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                prevSlide();
+            } else if (e.key === 'Escape') {
+                toggleCatalog(false);
+            }
+        });
+
+        // Touch Swipe Gesture Support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide();
+            }
+        }
+
+        // Initialize presentation on load
+        window.onload = function() {
+            updateSlide();
+        };
+    </script>
+</body>
+</html>

@@ -176,10 +176,10 @@
 
         <!-- VIEW 1: DUAL SLIDE & NOTES PRESENTATION VIEW -->
         <div id="view-slides" class="w-full h-full flex flex-col lg:flex-row overflow-hidden">
-            <!-- Left Side: Projected Slide Deck Canvas -->
-            <div id="slide-canvas-container" class="w-full h-full bg-navy-900 p-6 lg:p-12 flex flex-col justify-between transition-all duration-300 relative overflow-y-auto">
+            <!-- Left Side: Projected Slide Deck Canvas (Default full screen since notes are hidden initially) -->
+            <div id="slide-canvas-container" class="w-full h-full bg-navy-900 p-6 lg:p-16 flex flex-col justify-between transition-all duration-300 relative overflow-y-auto">
                 <!-- Slide Header info -->
-                <div class="flex justify-between items-center mb-2">
+                <div class="flex justify-between items-center mb-4">
                     <span id="slide-num-badge" class="text-xs font-mono px-2.5 py-1 rounded bg-navy-800 text-accent-teal border border-navy-700">SLIDE 01 / 12</span>
                     <span id="slide-timing-badge" class="text-xs font-mono text-gray-400"><i class="fa-regular fa-clock mr-1"></i>45s</span>
                 </div>
@@ -190,7 +190,7 @@
                 </div>
 
                 <!-- Slide Footer Info -->
-                <div class="mt-4 pt-3 border-t border-navy-800 flex justify-between items-center text-xs text-gray-500 font-mono">
+                <div class="mt-6 pt-4 border-t border-navy-800 flex justify-between items-center text-xs text-gray-500 font-mono">
                     <span>OceanBase AI Agent Context Infrastructure</span>
                     <span>PowerContext Roadshow</span>
                 </div>
@@ -238,348 +238,358 @@
 
     <!-- JAVASCRIPT APP LOGIC -->
     <script>
-        // --- COMPLETE 12-SLIDE DATA STRUCTURE WITH FULL INVESTMENT NARRATIVE & TECHNICAL PROOF ---
+        // --- SLIDE DATA STRUCTURE (ALL 12 SECTIONS RESTRUCTURED FOR INVESTOR/TECHNICAL ROADSHOW) ---
         const slidesData = [
             {
                 id: 1,
-                titleCH: "Agent 越来越能干，为什么每次接手工作仍然需要重新理解项目？",
-                titleEN: "As agents become more capable, why must they keep rediscovering the same project context?",
-                subtitleCH: "村庄故事只用来引出问题，别占用太多开场时间。投资人需要迅速知道这是什么机会。",
-                subtitleEN: "From village knowledge loss to modern AI Agent work continuity.",
+                titleCH: "当工作结束，经验去了哪里？",
+                titleEN: "When the Work Ends, Where Does the Knowledge Go?",
+                subtitleCH: "Agent 越来越能干，为什么每次接手工作仍然需要重新理解项目？",
+                subtitleEN: "As agents become more capable, why must they keep rediscovering the same project context?",
                 timing: "45 秒",
                 type: "opening",
                 bullets: [
-                    { ch: "村庄故事引出背景：老木匠的材料经验、修桥者的未竟问题无法有效继承", en: "Village story: Carpenter wisdom and bridge repair logs lost without proper inheritance" },
-                    { ch: "核心痛点对齐：当 Agent 走向持续任务，每次对话边界导致背景被清空", en: "Core pain: As agents tackle ongoing tasks, session boundaries reset context" },
-                    { ch: "投资人视角：我们需要一种让工作跨会话、跨 Agent 连续推进的基础设施", en: "Investor view: An infrastructure for continuous cross-session agent work" }
+                    { ch: "村庄故事：老木匠的材料经验、修桥者的未竟问题无法有效继承", en: "Village Story: Experienced carpenter's material wisdom and bridge repair logs lost without proper inheritance" },
+                    { ch: "人员流动与接手者：后续接手者只能被迫从零开始探索", en: "Personnel turnover: Successors forced to restart from scratch repeatedly" },
+                    { ch: "AI Agent 核心矛盾：单次对话聪明，但缺乏跨会话的工作连续性", en: "AI Agent Core Paradox: Single session intelligence vs. lack of cross-session work continuity" }
                 ],
                 cues: [
-                    { type: "speech", text: "开场直奔核心问题，用村庄故事快速引出 Agent 连续性痛点。" }
+                    { type: "speech", text: "开场先看向听众，停顿两秒。语速放慢，直击痛点：Agent 能力越强，上下文重复消耗的问题越突出。" }
                 ],
                 script: [
-                    { zh: "大家好，今天我们讨论一个核心问题：Agent 越来越能干了，为什么每次接手工作，仍然需要重新理解项目？", en: "Hello everyone. As agents become more capable, why must they keep rediscovering the same project context?" },
-                    { zh: "就像村庄里的老木匠和修桥者，如果经验没有留下来，后来者只能从零开始。今天的 AI Agent 也面临同样的平行挑战。", en: "Just like the carpenter in our village story, if experience isn't preserved, successors restart from scratch. AI agents face a parallel challenge." }
+                    { zh: "大家好，今天我想从一个很简单的问题开始。当一项工作结束之后，我们究竟留下了什么？", en: "Hello everyone. Today, I would like to start with a simple question. When a piece of work ends, what do we actually leave behind?" },
+                    { zh: "想象一个村庄。村里的老木匠知道哪种木料容易开裂，负责修桥的人知道上次维修留下了什么问题。这些知识来自长期实践，对整个村庄都很重要。", en: "Imagine a village. The experienced carpenter knows which types of wood are likely to crack. The person responsible for repairing the bridge knows what problems were left unresolved last time. This knowledge comes from years of practice, and it matters to the entire community." },
+                    { zh: "但如果他们离开了，下一位接手者可能只能从头开始。", en: "But when they leave, the next person may have to start from scratch." },
+                    { zh: "这让我想到 AI Agent 面临的一个关键矛盾：Agent 越来越能干，为什么每次接手工作仍然需要重新理解项目？单次对话可以很聪明，但如果重要的决定和工作进度没有被保留下来，下一次工作就可能失去连续性。", en: "This brings me to a key contradiction in AI agents: as agents become more capable, why must they keep rediscovering the same project context? A single conversation can be intelligent, but without preserving important decisions and progress, the next session may lose continuity." }
                 ],
-                nextCue: "切入第二页，讲清楚信息断层的业务代价。"
+                nextCue: "停顿半秒，切到业务损失分析页。"
             },
             {
                 id: 2,
-                titleCH: "信息断层的代价：从抽象痛点改成业务损失",
-                titleEN: "The Business Cost of Lost Context",
+                titleCH: "信息断层的代价与业务损失",
+                titleEN: "The Cost of Lost Context & Business Impact",
                 timing: "45 秒",
                 type: "grid",
                 gridItems: [
-                    { icon: "fa-calculator", titleCH: "重复推理成本", titleEN: "Repeated reasoning cost", descCH: "Agent 每次重新阅读、分析和探索", descEN: "Agent re-reading, analyzing & exploring" },
+                    { icon: "fa-brain", titleCH: "重复推理成本", titleEN: "Repeated reasoning cost", descCH: "Agent 每次重新阅读、分析和探索", descEN: "Agent repeatedly re-reading and exploring" },
                     { icon: "fa-rotate-right", titleCH: "任务恢复成本", titleEN: "Recovery cost", descCH: "中断后需要重新建立工作状态", descEN: "Re-establishing state after interruption" },
-                    { icon: "fa-users-gear", titleCH: "协作成本", titleEN: "Coordination cost", descCH: "Agent 之间、人与 Agent 反复交代背景", descEN: "Repeated briefings between humans and agents" },
-                    { icon: "fa-triangle-exclamation", titleCH: "质量与风险成本", titleEN: "Quality and risk cost", descCH: "遗漏约束、重复犯错或使用过时信息", descEN: "Missing constraints & working on obsolete data" }
+                    { icon: "fa-link-slash", titleCH: "协作开销", titleEN: "Coordination cost", descCH: "Agent 之间、人与 Agent 反复交代背景", descEN: "Constant background handoff overhead" },
+                    { icon: "fa-triangle-exclamation", titleCH: "质量与风险成本", titleEN: "Quality & risk cost", descCH: "遗漏约束、重复犯错、在过时信息上工作", descEN: "Missing constraints and repeating mistakes" }
                 ],
-                formulaCH: "上下文丢失的总成本 = 重复工作 + 任务恢复 + 协作开销 + 错误损失",
-                formulaEN: "Total Cost of Lost Context = Repeated Work + Recovery + Coordination + Error Loss",
+                quoteCH: "上下文丢失的总成本 = 重复工作 + 任务恢复 + 协作开销 + 错误损失",
+                quoteEN: "Total Cost of Lost Context = Repeated Work + Recovery + Coordination + Error Losses",
                 cues: [
-                    { type: "speech", text: "强调这不是技术瑕疵，而是直接产生经济损失的业务痛点。" }
+                    { type: "speech", text: "从业务和财务视角切入，向投资人阐明上下文丢失带来的实际损耗。" }
                 ],
                 script: [
-                    { zh: "我们把痛点具象化为四个业务影响：重复推理、任务恢复、高昂协作以及质量风险。", en: "We translate abstract pain points into four business impacts: repeated reasoning, recovery, high coordination, and quality risks." },
-                    { zh: "用一个公式总结：上下文丢失的总成本等于重复工作加上任务恢复、协作开销与错误损失。", en: "Expressed simply: Total Cost of Lost Context equals repeated work plus recovery, coordination, and error losses." }
-                ],
-                nextCue: "切入第三页，解释为什么这个问题在当前时间节点爆发。"
+                    { zh: "村庄真正的问题，并不只是某个人忘记了一件事。更大的问题在于，整个团队无法稳定地继承已经积累的知识。", en: "The real problem in the village is not simply that one person forgets something. The bigger issue is that the community cannot reliably inherit the knowledge it has already accumulated." },
+                    { zh: "当这些损耗抽象为软件开发和企业工作流时，我们得到了一个公式：上下文丢失的总成本等于重复工作加上任务恢复、协作开销以及错误损失。", en: "When these losses are translated into software development and enterprise workflows, we get a clear formula: the total cost of lost context equals repeated work plus task recovery, coordination overhead, and error losses." },
+                    { zh: "这些损失会随着协作次数增加而累积，直接转化为多花的 Token 费、延长的交付周期和不可预测的错误率。", en: "These losses accumulate as collaboration continues, directly translating into wasted token costs, extended delivery cycles, and unpredictable error rates." }
+                ]
             },
             {
                 id: 3,
-                titleCH: "为什么现在：行业变化与机会窗口",
-                titleEN: "Why Now: Industry Shifts & Opportunity Window",
+                titleCH: "为什么现在：从单轮问答到持续任务",
+                titleEN: "Why Now: From Q&A to Continuous Tasks",
                 timing: "50 秒",
                 type: "comparison",
                 quoteCH: "从回答问题，到持续完成工作。",
                 quoteEN: "From answering questions to completing ongoing work.",
                 bullets: [
-                    { ch: "任务复杂度升级：Agent 开始承担跨多轮、跨工具、跨天的复杂任务", en: "Task complexity: Agents handle multi-turn, multi-tool, multi-day tasks" },
-                    { ch: "企业协作需求：工作流需要多个 Agent、员工与系统之间持续交接", en: "Enterprise workflows: Continuous handoffs between agents, staff, and systems" },
-                    { ch: "基础设施契机：机会来自工作复杂度与协作程度提升，而非单纯窗口限制", en: "Infrastructure timing: Driven by workflow complexity, not just window limits" }
+                    { ch: "Agent 任务升级：从简单的单轮问答演进为跨多轮、跨工具、跨天的复杂长任务", en: "Task Evolution: Shifting from single-turn Q&A to multi-day, multi-tool complex workflows" },
+                    { ch: "企业协作需求：需要多个 Agent、员工与系统之间进行标准、持续的交接", en: "Enterprise Collaboration: Requiring seamless handoffs across multiple agents, staff, and systems" },
+                    { ch: "治理与权限边界：当 Agent 走向团队和企业应用，历史决策与审查管理成为刚需", en: "Governance & Boundaries: Historical decisions, auditability, and permissions become critical" }
                 ],
                 cues: [
-                    { type: "speech", text: "阐述行业正从单轮问答走向长效持续任务，引出基础设施必要性。" }
+                    { type: "speech", text: "强调行业趋势：机会窗口来自于 Agent 工作复杂度和协作程度的质变。" }
                 ],
                 script: [
-                    { zh: "为什么这个问题现在必须解决？因为 AI Agent 正在从单轮问答走向跨天的持续任务。", en: "Why must this be solved now? Because AI agents are moving from single-turn Q&A to multi-day ongoing tasks." },
-                    { zh: "当企业开始部署多 Agent 协作时，任务状态、历史决策和权限边界变成了刚需。", en: "As enterprises deploy multi-agent collaboration, task state, historical decisions, and boundaries become essential." }
-                ],
-                nextCue: "切入第四页，全面介绍 PowerContext 产品全貌。"
+                    { zh: "为什么这个问题现在变得无比紧迫？因为 AI Agent 的应用形态正在发生深刻变化。", en: "Why is this problem becoming so urgent now? Because the usage paradigm of AI agents is undergoing a profound transformation." },
+                    { zh: "Agent 正在从简单的问答助手演进为承担跨多轮、跨工具、跨天任务的长期工作者。在企业落地时，多个 Agent、员工与系统之间的持续交接变得不可或缺。", en: "Agents are evolving from simple Q&A assistants into long-running workers handling multi-day, multi-tool tasks. In enterprise adoption, continuous handoffs between agents, employees, and systems become indispensable." },
+                    { zh: "因此，上下文基础设施的机会不仅源于模型窗口的限制，更源于 Agent 从个人助手走向企业核心工作流的必然诉求。", en: "Therefore, the opportunity for context infrastructure stems not merely from model window limits, but from the inevitable shift of agents from personal helpers to core enterprise workflows." }
+                ]
             },
             {
                 id: 4,
-                titleCH: "PowerContext 是什么：产品全貌与服务架构",
-                titleEN: "What Is PowerContext: Complete Product Overview",
+                titleCH: "PowerContext 是什么？",
+                titleEN: "What Is PowerContext?",
                 timing: "50 秒",
                 type: "architecture",
+                subtitleCH: "OceanBase 开源的 AI Agent 上下文基础设施",
+                subtitleEN: "Open-source context infrastructure for AI agents",
                 archSteps: [
-                    { step: "接入层 (Integration)", ch: "Server · HTTP API · Python Client · MCP", en: "Server, HTTP API, Python Client, MCP" },
-                    { step: "上下文管理层 (Management)", ch: "组织 · 版本管理 · 审查 · 按任务准备上下文", en: "Organization, versioning, review, task context prep", highlight: true },
-                    { step: "上下文资产层 (Artifacts)", ch: "Source · Memory · Handoff · Experience · Skill", en: "Source, Memory, Handoff, Experience, Skill" }
+                    { step: "Layer 1", ch: "上下文资产层 (Artifacts)", desc: "Source · Memory · Handoff\nExperience · Skill" },
+                    { step: "Layer 2", ch: "上下文管理层 (Management)", desc: "组织、版本控制、审查机制\nBounded Retrieval (预算检索)", highlight: true },
+                    { step: "Layer 3", ch: "接入层 (Integration)", desc: "Server · HTTP API · Python Client\nMCP & Agent Integration" }
                 ],
                 cues: [
-                    { type: "speech", text: "让没有技术背景的投资人也能听懂的三层产品全貌。" }
+                    { type: "speech", text: "分三层为投资人拆解 PowerContext 的完整产品全貌：资产层、管理层与接入层。" }
                 ],
                 script: [
-                    { zh: "PowerContext 是什么？它分为三层：底层是上下文资产，中间是管理与审查层，上层是丰富的接入接口。", en: "What is PowerContext? It consists of three layers: Context Artifacts, Management & Review, and the Integration Layer." },
-                    { zh: "通过完整链路，让 Agent 记录证据、管理上下文并在下一次会话中完美恢复状态。", en: "It records evidence, manages context, and restores state seamlessly for the next session." }
-                ],
-                nextCue: "切入第五页，讲解四大核心概念的实际应用场景。"
+                    { zh: "PowerContext 是 OceanBase 开源的 AI Agent 上下文服务。为了让非技术背景的听众也能清晰理解，我们可以将它拆解为清晰的三层架构。", en: "PowerContext is an open-source context service for AI agents developed under OceanBase. To make it intuitive for all audiences, we can break it down into three clear layers." },
+                    { zh: "第一层是上下文资产层，负责沉淀 Source、Memory、Handoff、Experience 和 Skill。", en: "Layer 1 is the Context Artifacts layer, capturing Sources, Memories, Handoffs, Experiences, and Skills." },
+                    { zh: "第二层是上下文管理层，负责组织、版本管理、审查以及按任务预算进行智能检索。", en: "Layer 2 is the Context Management layer, handling organization, version control, reviews, and budget-aware retrieval." },
+                    { zh: "第三层是接入层，通过标准 Server、HTTP API、Python Client 以及 MCP 接口无缝融入现有的 Agent 开发生态中。", en: "Layer 3 is the Integration Layer, connecting seamlessly via standard servers, HTTP APIs, Python clients, and MCP interfaces." }
+                ]
             },
             {
                 id: 5,
-                titleCH: "四个核心概念：减少术语，直击任务",
-                titleEN: "Four Core Concepts: Clear Tasks, Less Jargon",
+                titleCH: "四个核心概念与产品价值",
+                titleEN: "Four Core Concepts & Product Value",
                 timing: "60 秒",
                 type: "four-cards",
                 cards: [
-                    { title: "Memory", sub: "长期知识", ch: "记住项目已确认的技术选型与不可违反的约束", en: "Remembering confirmed tech stacks & hard constraints" },
-                    { title: "Handoff", sub: "任务交接", ch: "记录开发任务完成了什么、还有什么没做、下一步是什么", en: "Recording what's done, remaining, and next steps" },
-                    { title: "Experience", sub: "经过审查的经验", ch: "将经过验证的排障经验整理出来，供后续工作参考", en: "Synthesizing validated troubleshooting for future reference" },
-                    { title: "Skill", sub: "可复用程序", ch: "将审核过的操作步骤与检查要求整理成可复用流程", en: "Organizing audited steps & validation checks into workflows" }
+                    { title: "Memory", sub: "长期知识", ch: "记住项目已经确认的技术选型和不可违反的约束。", en: "Remembering confirmed tech choices & hard constraints." },
+                    { title: "Handoff", sub: "任务交接", ch: "记录开发任务完成了什么、还有什么没做、下一步是什么。", en: "Tracking completed progress, blockers, and next steps." },
+                    { title: "Experience", sub: "经过审查的经验", ch: "将验证过的排障经验整理出来，供后续工作参考。", en: "Packaging validated troubleshooting lessons for reuse." },
+                    { title: "Skill", sub: "可复用的程序", ch: "把审核过的操作步骤与检查要求整理成可复用流程。", en: "Exporting audited operational procedures and checks." }
                 ],
                 cues: [
-                    { type: "speech", text: "用业务语言逐一解释四个模块，强调审查流程与复用价值。" }
+                    { type: "speech", text: "强调资产化价值：将分散在会话里的工作状态变成可管理、可追溯、可复用的核心资产。" }
                 ],
                 script: [
-                    { zh: "我们用四个模块对应真实工作：Memory 记约束，Handoff 做交接，Experience 沉淀经验，Skill 复用流程。", en: "We map four modules to real work: Memory for constraints, Handoff for transitions, Experience for lessons, and Skill for workflows." },
-                    { zh: "所有资产均通过审查流程，确保生成的上下文安全可靠。" en: "All assets go through review processes to ensure safety and reliability." }
-                ],
-                nextCue: "切入第六页，展示底层技术架构作为可信度支撑。"
+                    { zh: "PowerContext 的核心能力可以通过四个贴近实际工作的概念来理解。", en: "PowerContext's core capabilities are built around four practical concepts." },
+                    { zh: "Memory 负责记住已确认的技术选型与约束；Handoff 记录任务进展与待办事项；Experience 沉淀经过审查的排障经验；Skill 将标准操作整理为可导出的流程。", en: "Memory retains confirmed technical choices and constraints; Handoff records current progress and todos; Experience captures reviewed troubleshooting lessons; Skill turns audited procedures into exportable workflows." },
+                    { zh: "这四者共同实现了一个核心产品价值：把原本散落在对话里的瞬时状态，转化为可管理、可追溯、可复用的上下文资产。", en: "Together, they deliver a core product value: transforming transient conversation state into manageable, traceable, and reusable context assets." }
+                ]
             },
             {
                 id: 6,
-                titleCH: "技术架构：竞争优势的支撑证据",
-                titleEN: "Technical Architecture: Proof of Competitive Edge",
+                titleCH: "技术架构与核心竞争支撑",
+                titleEN: "Technical Architecture & Competitive Moat",
                 timing: "60 秒",
                 type: "flow",
                 flowSteps: [
                     { num: "01", name: "Source", descCH: "原始证据与输入", descEN: "Raw evidence & inputs" },
-                    { num: "02", name: "Memory / Artifact", descCH: "组织知识与版本", descEN: "Organized knowledge & versioning" },
-                    { num: "03", name: "PreparedContext", descCH: "按任务选择相关上下文", descEN: "Bounded context preparation" },
-                    { num: "04", name: "Agent Execution", descCH: "执行与持续反馈", descEN: "Execution & updated feedback" }
+                    { num: "02", name: "Artifact", descCH: "版本化知识资产", descEN: "Versioned knowledge" },
+                    { num: "03", name: "PreparedContext", descCH: "预算内精确检索", descEN: "Budget-bound retrieval" },
+                    { num: "04", name: "Execution", descCH: "Agent 持续闭环", descEN: "Continuous execution" }
                 ],
                 bullets: [
-                    { ch: "跨会话持续性：确保长时间任务不丢失状态", en: "Cross-session continuity: Maintaining state across long tasks" },
-                    { ch: "跨 Agent 交接：多智能体无缝转移上下文", en: "Cross-agent handoff: Seamless transfer between agents" },
-                    { ch: "版本与来源可追溯：每一条记录均可审查核对", en: "Provenance & versioning: Every record is traceable and auditable" }
+                    { ch: "跨会话持续性：打破单次对话边界，实现多天任务无缝衔接", en: "Cross-session continuity: Breaking session bounds for multi-day tasks" },
+                    { ch: "跨 Agent 交接：标准化结构让不同专长 Agent 顺畅交接", en: "Cross-agent handoff: Standardized structures for multi-agent workflows" },
+                    { ch: "可追溯与可控边界：版本溯源、来源审查与作用域隔离", en: "Provenance & bounded control: Version tracking and scope isolation" }
                 ],
                 cues: [
-                    { type: "speech", text: "简述架构流程，证明系统具备坚实的工程实现能力。" }
+                    { type: "speech", text: "本页展示系统底层如何支撑上层产品价值，回答“它凭什么做到”这一关键工程问题。" }
                 ],
                 script: [
-                    { zh: "在工程上，系统通过 Source 收集证据，在 Memory 中组织版本，为 Agent 动态准备上下文并完成执行。", en: "Engineering-wise, the system collects evidence, manages versions, prepares bounded context, and drives execution." }
-                ],
-                nextCue: "切入第七页，展示真实应用场景与产品操作。"
+                    { zh: "在技术实现上，系统从接收原始输入 Source 开始，将其沉淀为带版本的 Artifact，再根据 Scope 和预算精准生成 PreparedContext 供 Agent 继续执行。", en: "At the technical level, the system ingests raw Sources, organizes them into versioned Artifacts, and crafts budget-bounded PreparedContext for ongoing agent execution." },
+                    { zh: "这套架构的核心支撑在于跨会话持续性、跨 Agent 交接、来源版本可追溯以及有边界的上下文准备，为上层应用构筑了坚实的工程防线。", en: "The core strengths of this architecture lie in cross-session continuity, cross-agent handoffs, version provenance, and bounded context preparation, establishing a robust engineering foundation." }
+                ]
             },
             {
                 id: 7,
-                titleCH: "真实应用场景：跨工作日的 AI 编程任务",
-                titleEN: "Real-World Application: Multi-Day AI Coding Task",
-                timing: "60 秒",
-                type: "grid",
-                gridItems: [
-                    { icon: "fa-code", titleCH: "第一天：Agent 开发", titleEN: "Day 1: Agent Development", descCH: "读取需求、确认约束、修改代码并记录检查结果", descEN: "Read reqs, confirm constraints, modify code, log checks" },
-                    { icon: "fa-arrow-right-arrow-left", titleCH: "第二天：无缝交接", titleEN: "Day 2: Seamless Handoff", descCH: "新会话或新 Agent 恢复目标与进展，无需重读历史", descEN: "New session/agent restores goals & progress without re-reading" },
-                    { icon: "fa-box-archive", titleCH: "任务结束：沉淀资产", titleEN: "Task End: Reusable Assets", descCH: "记录结果并整理出经过审查的经验，供后续使用", descEN: "Record results and synthesize reviewed experience for future tasks" }
+                titleCH: "真实应用场景：跨多日的 AI 编程任务",
+                titleEN: "Real-World Workflow: Multi-Day AI Coding Task",
+                timing: "70 秒",
+                type: "engineering",
+                focusPoints: [
+                    { title: "第一天：Agent 开始开发 (Day 1)", detailCH: "读取需求、确认架构约束、编写修改代码、记录已完成的验证检查点", detailEN: "Ingesting requirements, confirming constraints, coding, and logging checks" },
+                    { title: "第二天：新会话或新 Agent 接手 (Day 2)", detailCH: "直接恢复当前目标、已验证进展与待办事项，无需重新解析数万字历史对话", detailEN: "Restoring active goals, progress, and todos instantly without re-reading history" },
+                    { title: "任务结束：形成可复用成果 (Completion)", detailCH: "沉淀任务结果，并将审查通过的排障经验转化为后续任务可调用的资产", detailEN: "Archiving results and promoting verified lessons into reusable project assets" }
                 ],
                 cues: [
-                    { type: "speech", text: "用 AI 编程场景展示产品在实际工作中的巨大威力。" }
+                    { type: "speech", text: "通过一个跨多日的典型 AI 编程任务场景，向投资人直观展示产品在实际工作流中的运作方式。" }
                 ],
                 script: [
-                    { zh: "来看一个真实场景：跨多日的 AI 编程。第一天 Agent 建立约束与进展，第二天新会话直接接手，无需重读庞大历史。", en: "Let's look at a real scenario: multi-day AI coding. Day 1 builds progress, Day 2 resumes seamlessly without re-reading history." }
-                ],
-                nextCue: "切入第八页，详细拆解目标客户与核心痛点。"
+                    { zh: "为了让大家更直观地理解，我们来看一个典型的跨多日 AI 编程场景。", en: "To make this concrete, let's look at a typical multi-day AI programming workflow." },
+                    { zh: "第一天，Agent 接收需求、写代码并记录检查点；第二天，当新会话或另一个 Agent 接手时，它可以直接恢复目标与已验证进展，而无需重新解读冗长历史。", en: "On Day 1, the agent codes and logs verification checkpoints. On Day 2, a new session or agent inherits goals and progress instantly without wading through verbose history." },
+                    { zh: "任务完成后，系统自动沉淀成果并提取经验。这比单纯的架构图更能说明产品在真实工作中的价值。", en: "Upon completion, the system archives results and extracts experiences, demonstrating real-world utility far beyond abstract diagrams." }
+                ]
             },
             {
                 id: 8,
-                titleCH: "应用场景与目标客户：谁最需要 PowerContext？",
-                titleEN: "Target Customers & Use Cases: Who Needs It Most?",
-                timing: "60 秒",
-                type: "comparison",
-                bullets: [
-                    { ch: "AI 编程工具与开发团队：解决长任务、跨会话、代码交接与约束遗忘问题", en: "AI Coding Tools & Dev Teams: Long tasks, session handoffs, constraint retention" },
-                    { ch: "企业 Agent 平台与工作流团队：管理多 Agent 协作、任务移交与经验复用", en: "Enterprise Agent Platforms: Multi-agent coordination, handoffs, experience reuse" },
-                    { ch: "AI 应用开发者与框架维护者：通过标准服务和接口快速集成上下文能力", en: "AI App Developers: Quick integration of context capabilities via standard APIs" }
+                titleCH: "目标客户与应用场景矩阵",
+                titleEN: "Target Customers & Use Case Matrix",
+                timing: "50 秒",
+                type: "values",
+                values: [
+                    { labelCH: "AI 编程工具与团队", labelEN: "AI Coding Teams", descCH: "解决长任务与代码交接痛点，保留项目决策与进度", descEN: "Solving long-task and handoff pain points for dev teams" },
+                    { labelCH: "企业 Agent 平台", labelEN: "Enterprise Agent Platforms", descCH: "管理多 Agent 协作、任务移交与经验复用", descEN: "Managing multi-agent handoffs and experience reuse" },
+                    { labelCH: "AI 应用开发者", labelEN: "AI Framework Developers", descCH: "免去为每个 Agent 单独重复开发上下文管理服务的成本", descEN: "Saving custom context development overhead for builders" }
                 ],
+                quoteCH: "注：当前属于市场假设与试点阶段，重点验证 AI 编程与开发者生态的契合度。",
+                quoteEN: "Note: Currently in validation phase, focusing on AI coding and developer adoption.",
                 cues: [
-                    { type: "speech", text: "精准切入三大目标客户群，明确区分潜在场景与已验证需求。" }
+                    { type: "speech", text: "明确目标客户画像：优先聚焦 AI 编程与开发团队，验证核心需求与集成效率。" }
                 ],
                 script: [
-                    { zh: "我们锁定了三大潜在客户：AI 编程团队、企业工作流平台以及 AI 应用开发者，优先切入编程场景。" en: "We target three customer groups: AI coding teams, enterprise workflow platforms, and AI developers, prioritizing coding." }
-                ],
-                nextCue: "切入第九页，对比竞品并阐述差异化定位。"
+                    { zh: "谁最需要 PowerContext？我们将其划分为三类核心目标客户：AI 编程开发团队、企业 Agent 平台以及 AI 应用开发者。", en: "Who needs PowerContext most? We categorize target customers into three segments: AI coding teams, enterprise agent platforms, and AI application builders." },
+                    { zh: "其中，我们优先以 AI 编程场景切入，因为它与当前开源生态和开发者的集成路径最为直接，也最容易度量效率提升。", en: "Among these, we prioritize AI coding as the beachhead because it aligns directly with current open-source tooling and offers clear, measurable efficiency gains." }
+                ]
             },
             {
                 id: 9,
-                titleCH: "竞争定位：为什么现有的方案不够？",
+                titleCH: "竞争定位：为什么现有方案不够？",
                 titleEN: "Competitive Positioning: Why Existing Solutions Fall Short",
-                timing: "60 秒",
-                type: "comparison",
-                quoteCH: "管理工作上下文及其延续，而非单纯存储记录。",
-                quoteEN: "Managing work context and continuity, not just storing records.",
-                bullets: [
-                    { ch: "对比聊天记录：解决信息过载，提供精准、经过筛选的工作状态而非原始 transcripts", en: "Vs. Chat Transcripts: Solves info overload with curated working state, not raw logs" },
-                    { ch: "对比传统 RAG：超越静态知识检索，完美支持动态任务状态与任务交接", en: "Vs. Traditional RAG: Goes beyond static knowledge retrieval to support task state & handoffs" },
-                    { ch: "对比本地记忆文件：提供团队级跨 Agent、跨人员、带版本的统一治理能力", en: "Vs. Local Memory Files: Provides team-scale cross-agent, version-controlled governance" }
-                ],
-                cues: [
-                    { type: "speech", text: "直面行业竞品，突出 PowerContext 在工作状态延续上的降维打击。" }
+                timing: "50 秒",
+                type: "qa",
+                qaList: [
+                    {
+                        q: "重读聊天记录 (Raw Transcripts)",
+                        ch: "仅能恢复原始对话，无法过滤中间废稿与噪声，Token 成本高昂且缺乏结构化状态管理。",
+                        en: "Only replays raw chat history, suffers from high token overhead, noise, and lacks structured state."
+                    },
+                    {
+                        q: "传统 RAG (Knowledge RAG)",
+                        ch: "擅长从静态知识库检索静态文档，但无法有效管理动态更新的当前任务状态与交接边界。",
+                        en: "Great for static document retrieval, but poorly suited for tracking dynamic task states and handoffs."
+                    },
+                    {
+                        q: "Agent 本地记忆文件 (Local Files)",
+                        ch: "局限于单机或单 Agent，缺乏多 Agent 协作、跨人员交接、版本追踪和严格审查机制。",
+                        en: "Siloed to single agents, lacking multi-agent coordination, cross-user handoffs, and auditability."
+                    }
                 ],
                 script: [
-                    { zh: "为什么不直接用聊天记录、RAG 或本地文件？因为它们缺乏跨会话的任务状态管理与交接治理能力。" en: "Why not chat history, RAG, or local files? Because they lack cross-session task state management and handoff governance." }
-                ],
-                nextCue: "切入第十页，阐述开源项目的商业化演进路径。"
+                    { zh: "为什么用户不直接用聊天记录、RAG 或本地文件？因为重读记录成本高且充满噪声，RAG 缺乏任务状态管理，而本地文件无法解决多 Agent 协作与版本管控问题。", en: "Why not just use transcripts, RAG, or local files? Because transcripts are noisy and costly, RAG lacks task state management, and local files fail at multi-agent collaboration and versioning." }
+                ]
             },
             {
                 id: 10,
-                titleCH: "商业模式：开源项目如何产生商业价值？",
-                titleEN: "Commercial Model: Monetization Path for Open Source",
-                timing: "60 秒",
-                type: "grid",
-                gridItems: [
-                    { icon: "fa-code-branch", titleCH: "开源采用", titleEN: "Open-Source Adoption", descCH: "通过开发者试用、社区集成和口碑扩大使用", descEN: "Drive adoption via developer trials, community, and word-of-mouth" },
-                    { icon: "fa-building", titleCH: "企业部署", titleEN: "Enterprise Deployment", descCH: "探索企业环境下的部署、配置、监控与权限需求", descEN: "Explore deployment, config, monitoring, and security needs" },
-                    { icon: "fa-handshake", titleCH: "商业支持", titleEN: "Commercial Support", descCH: "验证团队是否愿意为集成、支持和可靠性保障付费", descEN: "Validate willingness to pay for integration, support, and reliability" },
-                    { icon: "fa-cloud", titleCH: "托管服务", titleEN: "Managed Services", descCH: "评估云端托管运行、团队协作管理和持续运维需求", descEN: "Evaluate cloud-hosted runs, team management, and ongoing ops" }
-                ],
+                titleCH: "商业化路径假设",
+                titleEN: "Commercialization Pathways & Hypotheses",
+                timing: "40 秒",
+                type: "conclusion",
+                quoteCH: "开源采用 → 企业部署 → 商业支持 → 托管服务",
+                quoteEN: "Open-Source Adoption → Enterprise Deployment → Commercial Support → Managed Service",
+                subtitleCH: "通过开源生态扩大开发者基础，逐步验证企业级部署与托管服务的付费意愿。",
+                subtitleEN: "Growing developer base via open-source, validating enterprise deployment and managed services.",
                 cues: [
-                    { type: "speech", text: "清晰阐述从开源社区走向企业商业化支持的演进假设。" }
+                    { type: "speech", text: "向投资人阐述开源项目的演进路径：从社区开源、企业内部部署到未来的商业支撑与托管服务。" }
                 ],
                 script: [
-                    { zh: "我们的商业化路径从开源采用起步，逐步探索企业部署、商业支持与托管服务，验证真实的付费意愿。" en: "Our monetization path starts with open-source adoption, exploring enterprise deployment, commercial support, and managed services." }
-                ],
-                nextCue: "切入第十一页，展示清晰的发展路线图与验证指标。"
+                    { zh: "开源项目如何产生商业价值？我们规划了清晰的演进路径：首先通过开源采用扩大开发者社区；其次探索企业环境下的私有化部署需求；进而验证商业技术支持；最终评估托管服务与协作管理的商业化潜力。", en: "How does an open-source project create commercial value? We map a clear path: driving developer adoption via open source, exploring enterprise deployment needs, validating commercial support, and evaluating managed service potential." }
+                ]
             },
             {
                 id: 11,
-                titleCH: "发展路线图与验证指标：未来如何验证价值？",
-                titleEN: "Roadmap & Validation Metrics: Proving Value Forward",
-                timing: "60 秒",
-                type: "comparison",
-                bullets: [
-                    { ch: "阶段一（核心价值）：建立跨会话任务与跨 Agent 交接的可复现实验与对照测试", en: "Phase 1 (Core Value): Replicable experiments for cross-session & cross-agent handoffs" },
-                    { ch: "阶段二（实际工作流）：引入目标用户试点，记录集成成本、恢复效果与反馈", en: "Phase 2 (Workflows): Pilot with target users, tracking integration cost and recovery" },
-                    { ch: "阶段三（商业需求）：观察持续使用、团队推广与付费意愿，确立商业模式", en: "Phase 3 (Commercial): Observe sustained usage, team rollout, and willingness to pay" },
-                    { ch: "追踪指标：任务恢复成功率、关键信息遗漏率、重复工作量、Token 消耗与集成成本", en: "Key Metrics: Recovery success rate, omission rate, repeated work, token savings, integration cost" }
-                ],
-                cues: [
-                    { type: "speech", text: "用科学严谨的路线图和指标体系回应投资人的验证关切。" }
+                titleCH: "发展路线图与验证指标",
+                titleEN: "Roadmap & Validation Metrics",
+                timing: "40 秒",
+                type: "backup",
+                backupSections: [
+                    { title: "验证阶段 (Phased Plan)", items: ["阶段一：核心价值与对照实验验证", "阶段二：目标客户试点与集成反馈", "阶段三：商业需求与付费意愿评估"] },
+                    { title: "核心指标 (Key Metrics)", items: ["任务恢复成功率 & 交接遗漏率", "重复工作量与 Token 消耗降幅", "集成成本与开发者活跃留存"] }
                 ],
                 script: [
-                    { zh: "我们将通过三阶段路线图，结合任务恢复成功率和遗漏率等指标，严谨验证产品价值与商业需求。" en: "Through a three-phase roadmap and rigorous metrics, we will validate product value and commercial demand." }
-                ],
-                nextCue: "切入第十二页，收束全篇的投资逻辑与未来愿景。"
+                    { zh: "我们的路线图分为三个验证阶段，重点追踪任务恢复成功率、交接遗漏率、Token 消耗降幅以及开发者的活跃留存，用可度量的数据验证产品价值。", en: "Our roadmap spans three validation phases, tracking task recovery success rates, handoff omission rates, token savings, and developer retention to quantitatively prove product value." }
+                ]
             },
             {
                 id: 12,
-                titleCH: "让 Agent 的每一次工作，都成为下一次工作的起点。",
-                titleEN: "Make Every Agent Task the Starting Point for the Next.",
-                timing: "45 秒",
-                type: "opening",
-                subtitleCH: "持续增长的需求 · 基础设施思路 · 待验证的机会",
-                subtitleEN: "Growing demand · Infrastructure vision · Validated opportunity",
-                bullets: [
-                    { ch: "持续增长的需求：让长任务与协作工作保持连续", en: "Growing demand: Keeping long tasks and collaborative work continuous" },
-                    { ch: "基础设施思路：把工作上下文变成可管理、可追溯、可复用的资产", en: "Infrastructure vision: Turning work context into manageable, traceable assets" },
-                    { ch: "期待您的支持：共同通过真实工作流与试点验证未来商业价值", en: "Looking forward to your support: Validating future commercial value together" }
-                ],
+                titleCH: "总结：让工作延续，让经验积累",
+                titleEN: "Conclusion: Let Work Continue. Let Knowledge Accumulate.",
+                timing: "40 秒",
+                type: "conclusion",
+                quoteCH: "让 Agent 的每一次工作，都成为下一次工作的起点。",
+                quoteEN: "Make Every Agent Task the Starting Point for the Next.",
+                subtitleCH: "从一次性对话，走向可持续、可复用的企业工作上下文资产。",
+                subtitleEN: "Moving from one-off conversations to sustainable, reusable enterprise context assets.",
                 cues: [
-                    { type: "speech", text: "稳健收尾，感谢听众，开放交流。" }
+                    { type: "speech", text: "最后一句放慢语速，阐明长期愿景与核心诉求，致谢并邀请现场提问。" }
                 ],
                 script: [
-                    { zh: "总结来说，PowerContext 致力于让 Agent 的每一次工作，都成为下一次工作的起点。谢谢大家，期待您的支持！", en: "In summary, PowerContext makes every agent task the starting point for the next. Thank you, and we look forward to your support!" }
-                ],
-                nextCue: "演示结束。"
+                    { zh: "最后，让我们回到核心愿景：让 Agent 的每一次工作，都成为下一次工作的起点。我们期待与社区和合作伙伴共同推动 AI Agent 基础设施的演进。谢谢大家！", en: "Finally, let us return to our core vision: making every agent task the starting point for the next. We look forward to advancing AI agent infrastructure together with the community and partners. Thank you!" }
+                ]
             }
         ];
 
-        // --- APPLICATION STATE & VIEW CONTROLLERS ---
         let currentSlideIndex = 0;
         let currentView = 'slides'; // 'slides' or 'teleprompter'
-        let currentLang = 'all'; // 'all', 'zh', 'en'
-        let notesVisible = false; // Default hidden
-        let fontSize = 16;
+        let currentLangFilter = 'all'; // 'all', 'zh', 'en'
+        let notesVisible = false; // Default OFF for teleprompter notes panel
 
-        // Timer State
-        let timerSeconds = 0;
+        // Timer variables
         let timerInterval = null;
+        let secondsElapsed = 0;
         let isTimerRunning = false;
 
-        // Teleprompter Auto Scroll State
+        // Teleprompter Auto-scroll variables
         let teleScrollInterval = null;
         let isTeleScrolling = false;
         let scrollSpeedMultiplier = 3;
 
-        // DOM Elements Initialization
+        // Font size settings
+        let currentFontSize = 16;
+
+        // Initialize App
         window.addEventListener('DOMContentLoaded', () => {
-            populateSlideSelector();
+            initSlideSelector();
             renderCurrentSlide();
-            renderTeleprompterView();
-            updateTimerDisplay();
+            buildTeleprompterView();
             setupKeyboardNavigation();
         });
 
-        function populateSlideSelector() {
+        // Populate Slide Dropdown
+        function initSlideSelector() {
             const selector = document.getElementById('slide-selector');
             selector.innerHTML = '';
             slidesData.forEach((slide, idx) => {
                 const opt = document.createElement('option');
                 opt.value = idx;
-                opt.textContent = `Slide ${String(idx + 1).padStart(2, '0')}: ${slide.titleCH}`;
+                opt.textContent = `${slide.id < 10 ? '0' + slide.id : slide.id} - ${slide.titleCH}`;
                 selector.appendChild(opt);
             });
         }
 
+        // Switch Main Views (Slide Presentation vs Continuous Teleprompter)
         function switchView(view) {
             currentView = view;
-            const btnSlides = document.getElementById('btn-mode-slides');
-            const btnTele = document.getElementById('btn-mode-tele');
             const viewSlides = document.getElementById('view-slides');
             const viewTele = document.getElementById('view-teleprompter');
+            const btnSlides = document.getElementById('btn-mode-slides');
+            const btnTele = document.getElementById('btn-mode-tele');
             const teleControls = document.getElementById('tele-controls');
 
             if (view === 'slides') {
-                btnSlides.className = "px-3 py-1 text-xs font-medium rounded-md transition-all bg-accent-cyan text-navy-900 font-semibold shadow";
-                btnTele.className = "px-3 py-1 text-xs font-medium rounded-md transition-all text-gray-400 hover:text-white";
                 viewSlides.classList.remove('hidden');
                 viewTele.classList.add('hidden');
+                btnSlides.className = "px-3 py-1 text-xs font-medium rounded-md transition-all bg-accent-cyan text-navy-900 font-semibold shadow";
+                btnTele.className = "px-3 py-1 text-xs font-medium rounded-md transition-all text-gray-400 hover:text-white";
                 teleControls.classList.add('hidden');
                 stopTeleprompterScroll();
             } else {
+                viewSlides.classList.add('hidden');
+                viewTele.classList.remove('hidden');
                 btnTele.className = "px-3 py-1 text-xs font-medium rounded-md transition-all bg-accent-cyan text-navy-900 font-semibold shadow";
                 btnSlides.className = "px-3 py-1 text-xs font-medium rounded-md transition-all text-gray-400 hover:text-white";
-                viewTele.classList.remove('hidden');
-                viewSlides.classList.add('hidden');
                 teleControls.classList.remove('hidden');
                 highlightActiveTeleSection();
             }
         }
 
+        // Toggle Side Notes / Teleprompter Panel (Default is OFF/hidden)
         function toggleSideNotes() {
             notesVisible = !notesVisible;
-            const container = document.getElementById('speaker-notes-container');
-            const btnText = document.getElementById('notes-toggle-text');
             const canvasContainer = document.getElementById('slide-canvas-container');
+            const notesContainer = document.getElementById('speaker-notes-container');
+            const toggleText = document.getElementById('notes-toggle-text');
+            const toggleBtn = document.getElementById('btn-toggle-notes');
 
             if (notesVisible) {
-                container.style.display = 'flex';
-                canvasContainer.classList.remove('w-full');
-                canvasContainer.classList.add('w-full', 'lg:w-7/12');
-                btnText.textContent = "隐藏提词";
+                notesContainer.classList.remove('hidden');
+                notesContainer.style.display = 'flex';
+                canvasContainer.className = "w-full lg:w-7/12 h-full bg-navy-900 p-4 lg:p-8 flex flex-col justify-between transition-all duration-300 relative overflow-y-auto border-r border-navy-700";
+                toggleText.textContent = "隐藏提词";
+                toggleBtn.classList.remove('bg-accent-cyan', 'text-navy-900', 'font-semibold');
+                toggleBtn.classList.add('bg-navy-700', 'text-accent-light', 'border', 'border-navy-600');
             } else {
-                container.style.display = 'none';
-                canvasContainer.classList.remove('lg:w-7/12');
-                canvasContainer.classList.add('w-full');
-                btnText.textContent = "显示提词";
+                notesContainer.classList.add('hidden');
+                notesContainer.style.display = 'none';
+                canvasContainer.className = "w-full h-full bg-navy-900 p-6 lg:p-16 flex flex-col justify-between transition-all duration-300 relative overflow-y-auto";
+                toggleText.textContent = "显示提词";
+                toggleBtn.classList.remove('bg-navy-700', 'text-accent-light', 'border', 'border-navy-600');
+                toggleBtn.classList.add('bg-accent-cyan', 'text-navy-900', 'font-semibold');
             }
         }
 
-        function goToSlide(idx) {
-            if (idx < 0 || idx >= slidesData.length) return;
-            currentSlideIndex = idx;
-            document.getElementById('slide-selector').value = idx;
+        // Navigation Actions
+        function goToSlide(index) {
+            if (index < 0 || index >= slidesData.length) return;
+            currentSlideIndex = index;
+            document.getElementById('slide-selector').value = currentSlideIndex;
             renderCurrentSlide();
             if (currentView === 'teleprompter') {
                 highlightActiveTeleSection();
@@ -598,199 +608,248 @@
             }
         }
 
-        // --- RENDER SLIDE CANVAS & NOTES ---
+        // Render Current Slide and Speaker Notes
         function renderCurrentSlide() {
             const slide = slidesData[currentSlideIndex];
             
             // Update Badges
-            document.getElementById('slide-num-badge').textContent = `SLIDE ${String(currentSlideIndex + 1).padStart(2, '0')} / ${slidesData.length}`;
+            document.getElementById('slide-num-badge').textContent = `SLIDE ${slide.id < 10 ? '0' + slide.id : slide.id} / ${slidesData.length}`;
             document.getElementById('slide-timing-badge').innerHTML = `<i class="fa-regular fa-clock mr-1"></i>${slide.timing}`;
 
-            // Render Content Area based on Type
+            // Render Slide Content Canvas
             const area = document.getElementById('slide-content-area');
             let html = `
-                <div class="space-y-4 max-w-4xl mx-auto">
-                    <div class="space-y-1">
-                        <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white">${slide.titleCH}</h1>
-                        <p class="text-xs md:text-sm font-mono text-accent-light">${slide.titleEN}</p>
+                <div class="space-y-6">
+                    <div>
+                        <h2 class="text-2xl lg:text-3xl font-bold text-white tracking-tight">${slide.titleCH}</h2>
+                        <p class="text-accent-teal text-sm lg:text-base font-mono mt-1">${slide.titleEN}</p>
                     </div>
             `;
 
-            if (slide.subtitleCH) {
+            if (slide.type === 'opening') {
                 html += `
-                    <div class="bg-navy-800/80 border-l-4 border-accent-cyan p-3 rounded-r-lg">
-                        <p class="text-sm font-medium text-warm-50">${slide.subtitleCH}</p>
-                        <p class="text-xs font-mono text-gray-400">${slide.subtitleEN || ''}</p>
+                    <div class="bg-navy-800/60 border border-navy-700 rounded-xl p-6 my-4">
+                        <p class="text-lg font-medium text-warm-50">${slide.subtitleCH}</p>
+                        <p class="text-sm text-gray-400 font-mono mt-1">${slide.subtitleEN}</p>
+                    </div>
+                    <div class="space-y-3 mt-4">
+                        ${slide.bullets.map(b => `
+                            <div class="flex items-start space-x-3 bg-navy-800/40 p-3 rounded-lg border border-navy-700/50">
+                                <i class="fa-solid fa-circle-dot text-accent-cyan mt-1.5 text-xs"></i>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-200">${b.ch}</p>
+                                    <p class="text-xs text-gray-400 font-mono">${b.en}</p>
+                                </div>
+                            </div>
+                        `).join('')}
                     </div>
                 `;
-            }
-
-            if (slide.type === 'opening') {
-                html += `<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">`;
-                slide.bullets.forEach((b, i) => {
-                    html += `
-                        <div class="bg-navy-800 p-4 rounded-xl border border-navy-700 space-y-2">
-                            <span class="text-xs font-mono text-accent-cyan">0${i+1}</span>
-                            <p class="text-xs text-gray-200 leading-relaxed">${b.ch}</p>
-                            <p class="text-[10px] font-mono text-gray-400">${b.en}</p>
-                        </div>
-                    `;
-                });
-                html += `</div>`;
             } else if (slide.type === 'grid') {
-                html += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">`;
-                slide.gridItems.forEach(item => {
-                    html += `
-                        <div class="bg-navy-800 p-4 rounded-xl border border-navy-700 flex items-start space-x-3">
-                            <div class="p-2 rounded-lg bg-navy-700 text-accent-cyan mt-0.5">
-                                <i class="fa-solid ${item.icon} text-lg"></i>
+                html += `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        ${slide.gridItems.map(item => `
+                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4 flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-lg bg-navy-700 flex items-center justify-center text-accent-cyan shrink-0">
+                                    <i class="fa-solid ${item.icon} text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-base">${item.titleCH}</h4>
+                                    <p class="text-xs text-accent-light font-mono">${item.titleEN}</p>
+                                    <p class="text-xs text-gray-300 mt-1.5">${item.descCH}</p>
+                                </div>
                             </div>
-                            <div class="space-y-1">
-                                <h3 class="text-sm font-semibold text-white">${item.titleCH} <span class="text-xs font-mono text-gray-400">/ ${item.titleEN}</span></h3>
-                                <p class="text-xs text-gray-300">${item.descCH}</p>
-                                <p class="text-[10px] font-mono text-gray-400">${item.descEN}</p>
-                            </div>
-                        </div>
-                    `;
-                });
-                html += `</div>`;
-                if (slide.formulaCH) {
-                    html += `
-                        <div class="mt-4 p-3 bg-navy-800/90 border border-accent-cyan/40 rounded-xl text-center">
-                            <p class="text-xs font-bold text-accent-light font-mono">${slide.formulaCH}</p>
-                            <p class="text-[10px] text-gray-400 font-mono mt-0.5">${slide.formulaEN}</p>
-                        </div>
-                    `;
-                }
+                        `).join('')}
+                    </div>
+                    ${slide.quoteCH ? `
+                    <div class="bg-navy-800/60 border border-accent-cyan/30 rounded-xl p-4 mt-4">
+                        <p class="text-xs text-accent-light font-mono font-medium">“${slide.quoteCH}”</p>
+                        <p class="text-[11px] text-gray-400 font-mono mt-0.5">${slide.quoteEN}</p>
+                    </div>` : ''}
+                `;
             } else if (slide.type === 'comparison') {
-                if (slide.quoteCH) {
-                    html += `
-                        <div class="p-4 bg-navy-800 border border-navy-700 rounded-xl mb-4 text-center">
-                            <p class="text-base font-semibold text-accent-cyan">"${slide.quoteCH}"</p>
-                            <p class="text-xs font-mono text-gray-400 mt-1">"${slide.quoteEN}"</p>
-                        </div>
-                    `;
-                }
-                html += `<div class="space-y-2.5 mt-2">`;
-                slide.bullets.forEach((b, i) => {
-                    html += `
-                        <div class="bg-navy-800 p-3 rounded-lg border border-navy-700 flex items-center space-x-3">
-                            <span class="w-6 h-6 rounded-full bg-navy-700 text-accent-teal flex items-center justify-center font-mono text-xs font-bold shrink-0">${i+1}</span>
-                            <div>
-                                <p class="text-xs font-medium text-white">${b.ch}</p>
-                                <p class="text-[10px] font-mono text-gray-400">${b.en}</p>
+                html += `
+                    <div class="bg-navy-800/80 border border-accent-cyan/30 rounded-xl p-5 my-4">
+                        <p class="text-accent-light font-medium italic text-base">“${slide.quoteCH}”</p>
+                        <p class="text-xs text-gray-400 font-mono mt-1">${slide.quoteEN}</p>
+                    </div>
+                    <div class="space-y-3">
+                        ${slide.bullets.map(b => `
+                            <div class="flex items-start space-x-3 bg-navy-800/40 p-3 rounded-lg border border-navy-700">
+                                <i class="fa-solid fa-arrow-right text-accent-teal mt-1 text-xs"></i>
+                                <div>
+                                    <p class="text-sm text-gray-200 font-medium">${b.ch}</p>
+                                    <p class="text-xs text-gray-400 font-mono">${b.en}</p>
+                                </div>
                             </div>
-                        </div>
-                    `;
-                });
-                html += `</div>`;
+                        `).join('')}
+                    </div>
+                `;
             } else if (slide.type === 'architecture') {
-                html += `<div class="flex flex-col md:flex-row items-center justify-between gap-3 mt-6">`;
-                slide.archSteps.forEach((step, i) => {
-                    html += `
-                        <div class="flex-1 w-full bg-navy-800 p-4 rounded-xl border ${step.highlight ? 'border-accent-cyan shadow-lg shadow-accent-cyan/10 bg-navy-800/90' : 'border-navy-700'} text-center space-y-2">
-                            <span class="text-xs font-mono uppercase px-2 py-0.5 rounded ${step.highlight ? 'bg-accent-cyan text-navy-900 font-bold' : 'bg-navy-700 text-accent-light'}">${step.step}</span>
-                            <p class="text-xs font-bold text-white whitespace-pre-line">${step.ch}</p>
-                            <p class="text-[10px] font-mono text-gray-400">${step.en || step.desc || ''}</p>
-                        </div>
-                    `;
-                    if (i < slide.archSteps.length - 1) {
-                        html += `<div class="text-accent-teal my-auto hidden md:block"><i class="fa-solid fa-arrow-right"></i></div>`;
-                    }
-                });
-                html += `</div>`;
-            } else if (slide.type === 'four-cards') {
-                html += `<grid class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">`;
-                slide.cards.forEach(card => {
-                    html += `
-                        <div class="bg-navy-800 p-4 rounded-xl border border-navy-700 space-y-2">
-                            <div class="flex justify-between items-center">
-                                <h3 class="text-sm font-bold text-accent-cyan font-mono">${card.title}</h3>
-                                <span class="text-[10px] bg-navy-700 text-accent-light px-2 py-0.5 rounded">${card.sub}</span>
+                html += `
+                    <div class="bg-navy-800/60 border border-navy-700 rounded-xl p-5 my-4">
+                        <p class="text-lg font-semibold text-white">${slide.subtitleCH}</p>
+                        <p class="text-xs text-accent-teal font-mono mt-0.5">${slide.subtitleEN}</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
+                        ${slide.archSteps.map(st => `
+                            <div class="rounded-xl p-4 border text-center flex flex-col justify-center ${st.highlight ? 'bg-navy-700/80 border-accent-cyan shadow-lg shadow-accent-cyan/10' : 'bg-navy-800/50 border-navy-700'}">
+                                <span class="text-xs font-mono text-accent-light uppercase">${st.step}</span>
+                                <p class="font-bold text-white text-sm mt-1">${st.ch}</p>
+                                <p class="text-xs text-gray-400 font-mono mt-0.5 whitespace-pre-line">${st.en || st.desc || ''}</p>
                             </div>
-                            <p class="text-xs text-white font-medium">${card.ch}</p>
-                            <p class="text-[10px] font-mono text-gray-400">${card.en}</p>
-                        </div>
-                    `;
-                });
-                html += `</grid>`;
+                        `).join('')}
+                    </div>
+                `;
+            } else if (slide.type === 'four-cards') {
+                html += `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        ${slide.cards.map(c => `
+                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4 hover:border-accent-cyan/50 transition">
+                                <div class="flex justify-between items-start">
+                                    <span class="font-mono font-bold text-accent-cyan text-lg">${c.title}</span>
+                                    <span class="text-xs bg-navy-700 text-accent-light px-2 py-0.5 rounded font-mono">${c.sub}</span>
+                                </div>
+                                <p class="text-sm text-gray-200 mt-2 font-medium">${c.ch}</p>
+                                <p class="text-xs text-gray-400 font-mono mt-1">${c.en}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
             } else if (slide.type === 'flow') {
-                html += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-4">`;
-                slide.flowSteps.forEach(fs => {
-                    html += `
-                        <div class="bg-navy-800 p-3.5 rounded-xl border border-navy-700 space-y-2">
-                            <span class="text-xs font-mono text-accent-cyan font-bold">STEP ${fs.num}</span>
-                            <h3 class="text-sm font-bold text-white">${fs.name}</h3>
-                            <p class="text-xs text-gray-300">${fs.descCH}</p>
-                            <p class="text-[10px] font-mono text-gray-400">${fs.descEN}</p>
-                        </div>
-                    `;
-                });
-                html += `</div><div class="space-y-2 mt-4">`;
-                slide.bullets.forEach(b => {
-                    html += `
-                        <div class="bg-navy-800 p-2.5 rounded-lg border border-navy-700 flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-accent-teal text-xs"></i>
-                            <span class="text-xs text-white font-medium">${b.ch}</span>
-                            <span class="text-[10px] font-mono text-gray-400 ml-auto">(${b.en})</span>
-                        </div>
-                    `;
-                });
-                html += `</div>`;
+                html += `
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 my-4">
+                        ${slide.flowSteps.map(f => `
+                            <div class="bg-navy-800/70 border border-navy-700 rounded-lg p-3 text-center">
+                                <span class="text-xs font-mono font-bold text-accent-cyan px-2 py-0.5 bg-navy-900 rounded">${f.num}</span>
+                                <h4 class="font-bold text-white text-sm mt-2">${f.name}</h4>
+                                <p class="text-xs text-gray-300 mt-1">${f.descCH}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="space-y-2 mt-2">
+                        ${slide.bullets.map(b => `
+                            <div class="flex items-center space-x-2 text-xs bg-navy-800/40 p-2.5 rounded border border-navy-700/50">
+                                <i class="fa-solid fa-check text-accent-teal"></i>
+                                <span class="text-gray-200">${b.ch}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (slide.type === 'engineering') {
+                html += `
+                    <div class="space-y-3 mt-4">
+                        ${slide.focusPoints.map(fp => `
+                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fa-solid fa-code text-accent-cyan text-sm"></i>
+                                    <h4 class="font-bold text-white text-sm">${fp.title}</h4>
+                                </div>
+                                <p class="text-xs text-gray-200 mt-1.5 pl-5">${fp.detailCH}</p>
+                                <p class="text-xs text-accent-light/80 font-mono mt-0.5 pl-5">${fp.detailEN}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (slide.type === 'values') {
+                html += `
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-4">
+                        ${slide.values.map(v => `
+                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4 text-center">
+                                <h4 class="font-bold text-accent-teal text-base">${v.labelCH}</h4>
+                                <p class="text-xs text-gray-400 font-mono">${v.labelEN}</p>
+                                <p class="text-xs text-gray-200 mt-2">${v.descCH}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ${slide.quoteCH ? `
+                    <div class="bg-navy-800/60 border border-amber-500/30 rounded-xl p-3.5 mt-2">
+                        <p class="text-xs text-amber-300 font-medium">${slide.quoteCH}</p>
+                        <p class="text-xs text-gray-400 font-mono mt-0.5">${slide.quoteEN}</p>
+                    </div>` : ''}
+                `;
+            } else if (slide.type === 'conclusion') {
+                html += `
+                    <div class="bg-navy-800/80 border border-accent-cyan/40 rounded-xl p-6 text-center my-6 shadow-lg">
+                        <h3 class="text-xl font-bold text-white">${slide.quoteCH}</h3>
+                        <p class="text-sm text-accent-teal font-mono mt-1">${slide.quoteEN}</p>
+                        <p class="text-sm text-gray-300 mt-4 font-medium">${slide.subtitleCH}</p>
+                        <p class="text-xs text-gray-400 font-mono mt-1">${slide.subtitleEN}</p>
+                    </div>
+                `;
+            } else if (slide.type === 'backup') {
+                html += `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        ${slide.backupSections.map(bs => `
+                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4">
+                                <h4 class="font-bold text-accent-teal text-sm mb-2">${bs.title}</h4>
+                                <ul class="space-y-1.5">
+                                    ${bs.items.map(it => `<li class="text-xs text-gray-300 flex items-center space-x-1.5"><i class="fa-solid fa-angle-right text-accent-cyan"></i><span>${it}</span></li>`).join('')}
+                                </ul>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (slide.type === 'qa') {
+                html += `
+                    <div class="space-y-4 mt-4">
+                        ${slide.qaList.map(qa => `
+                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4">
+                                <h4 class="font-bold text-accent-cyan text-sm">${qa.q}</h4>
+                                <p class="text-xs text-gray-200 mt-2">${qa.ch}</p>
+                                <p class="text-xs text-gray-400 font-mono mt-1">${qa.en}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
             }
 
             html += `</div>`;
             area.innerHTML = html;
-            area.style.fontSize = `${fontSize}px`;
 
-            // Render Speaker Notes
+            // Render Speaker Notes Area
             renderSpeakerNotes(slide);
         }
 
+        // Render Speaker Notes with Cues & Language Filter
         function renderSpeakerNotes(slide) {
             const notesArea = document.getElementById('speaker-notes-area');
-            let html = ``;
+            let notesHtml = '';
 
-            // Cues
+            // Render Cues if available
             if (slide.cues && slide.cues.length > 0) {
-                html += `<div class="space-y-1.5 mb-4">`;
+                notesHtml += `<div class="space-y-1.5 mb-3">`;
                 slide.cues.forEach(cue => {
-                    let tagClass = 'cue-speech';
-                    let label = '演讲提示';
-                    if (cue.type === 'slide') { tagClass = 'cue-slide'; label = '幻灯片'; }
-                    else if (cue.type === 'pause') { tagClass = 'cue-pause'; label = '停顿'; }
-                    else if (cue.type === 'time') { tagClass = 'cue-time'; label = '时间'; }
-
-                    html += `<div><span class="cue-tag ${tagClass}">${label}</span><span class="text-xs text-gray-300 italic">${cue.text}</span></div>`;
+                    let badgeClass = cue.type === 'speech' ? 'cue-speech' : (cue.type === 'slide' ? 'cue-slide' : 'cue-pause');
+                    notesHtml += `<div><span class="cue-tag ${badgeClass}">演讲提示</span><span class="text-xs text-amber-200 italic">${cue.text}</span></div>`;
                 });
-                html += `</div><hr class="border-navy-700 my-3">`;
+                notesHtml += `</div><hr class="border-navy-700 my-2">`;
             }
 
-            // Script lines
-            html += `<div class="space-y-3">`;
-            slide.script.forEach(s => {
-                html += `
-                    <div class="space-y-1 p-2.5 rounded-lg bg-navy-900/50 border border-navy-700/60">
-                        ${(currentLang === 'all' || currentLang === 'zh') ? `<p class="text-xs text-warm-100 font-medium">${s.zh}</p>` : ''}
-                        ${(currentLang === 'all' || currentLang === 'en') ? `<p class="text-[11px] font-mono text-gray-400">${s.en}</p>` : ''}
-                    </div>
-                `;
-            });
-            html += `</div>`;
+            // Render Script Paragraphs
+            if (slide.script) {
+                slide.script.forEach(s => {
+                    notesHtml += `<div class="space-y-1.5 bg-navy-900/50 p-3 rounded-lg border border-navy-700/50">`;
+                    if (currentLangFilter === 'all' || currentLangFilter === 'zh') {
+                        notesHtml += `<p class="text-warm-50 text-sm leading-relaxed">${s.zh}</p>`;
+                    }
+                    if (currentLangFilter === 'all' || currentLangFilter === 'en') {
+                        notesHtml += `<p class="text-accent-light text-xs font-mono leading-relaxed">${s.en}</p>`;
+                    }
+                    notesHtml += `</div>`;
+                });
+            }
 
+            // Render Next Cue if available
             if (slide.nextCue) {
-                html += `
-                    <div class="mt-4 pt-3 border-t border-navy-700 text-[11px] font-mono text-accent-teal">
-                        <i class="fa-solid fa-forward mr-1"></i>衔接：${slide.nextCue}
-                    </div>
-                `;
+                notesHtml += `<div class="mt-3 pt-2 border-t border-navy-700"><span class="cue-tag cue-pause">翻页提示</span><span class="text-xs text-red-300 italic">${slide.nextCue}</span></div>`;
             }
 
-            notesArea.innerHTML = html;
+            notesArea.innerHTML = notesHtml;
         }
 
+        // Toggle Language Filter (ALL / ZH / EN)
         function toggleLanguageFilter(lang) {
-            currentLang = lang;
+            currentLangFilter = lang;
             ['all', 'zh', 'en'].forEach(l => {
                 const btn = document.getElementById(`lang-btn-${l}`);
                 if (l === lang) {
@@ -802,119 +861,144 @@
             renderSpeakerNotes(slidesData[currentSlideIndex]);
         }
 
-        // --- RENDER CONTINUOUS TELEPROMPTER VIEW ---
-        function renderTeleprompterView() {
+        // Build Full Continuous Teleprompter View
+        function buildTeleprompterView() {
             const container = document.getElementById('teleprompter-content');
             let html = '';
 
             slidesData.forEach((slide, idx) => {
                 html += `
-                    <div id="tele-slide-${idx}" class="p-6 rounded-xl bg-navy-800 border border-navy-700 space-y-4 transition-all">
-                        <div class="flex justify-between items-center border-b border-navy-700 pb-3">
-                            <span class="text-xs font-mono px-2.5 py-1 rounded bg-navy-900 text-accent-teal border border-navy-700">SLIDE ${String(idx + 1).padStart(2, '0')} / ${slidesData.length}</span>
-                            <span class="text-sm font-bold text-white">${slide.titleCH}</span>
+                    <div id="tele-slide-${idx}" class="tele-section bg-navy-800/60 border border-navy-700 rounded-2xl p-6 md:p-10 space-y-6 transition-all">
+                        <div class="flex justify-between items-center border-b border-navy-700 pb-4">
+                            <span class="text-xs font-mono px-3 py-1 rounded bg-navy-700 text-accent-teal font-bold">SLIDE ${slide.id < 10 ? '0' + slide.id : slide.id} / ${slidesData.length}</span>
+                            <span class="text-sm font-bold text-white">${slide.titleCH} / <span class="text-accent-teal font-mono text-xs">${slide.titleEN}</span></span>
                         </div>
-                        <div class="space-y-3">
                 `;
 
-                if (slide.cues) {
-                    slide.cues.forEach(cue => {
-                        html += `<div><span class="cue-tag cue-speech">提示</span><span class="text-xs text-accent-light italic">${cue.text}</span></div>`;
+                if (slide.cues && slide.cues.length > 0) {
+                    html += `<div class="space-y-1">`;
+                    slide.cues.forEach(c => {
+                        html += `<div><span class="cue-tag cue-speech">提示</span><span class="text-xs text-amber-200 italic">${c.text}</span></div>`;
                     });
+                    html += `</div>`;
                 }
 
-                slide.script.forEach(s => {
-                    html += `
-                        <div class="space-y-1 p-3 rounded-lg bg-navy-900/60 border border-navy-700/50">
-                            <p class="text-sm text-warm-100 font-medium">${s.zh}</p>
-                            <p class="text-xs font-mono text-gray-400">${s.en}</p>
-                        </div>
-                    `;
-                });
+                if (slide.script) {
+                    html += `<div class="space-y-4">`;
+                    slide.script.forEach(s => {
+                        html += `
+                            <div class="bg-navy-900/80 p-4 rounded-xl border border-navy-700 space-y-2">
+                                <p class="text-base text-warm-50 leading-relaxed font-sans">${s.zh}</p>
+                                <p class="text-xs text-accent-light font-mono leading-relaxed">${s.en}</p>
+                            </div>
+                        `;
+                    });
+                    html += `</div>`;
+                }
 
-                html += `</div></div>`;
+                if (slide.nextCue) {
+                    html += `<div><span class="cue-tag cue-pause">动作</span><span class="text-xs text-red-300 italic">${slide.nextCue}</span></div>`;
+                }
+
+                html += `</div>`;
             });
 
             container.innerHTML = html;
         }
 
+        // Highlight Active Slide in Teleprompter Mode
         function highlightActiveTeleSection() {
-            slidesData.forEach((_, idx) => {
-                const el = document.getElementById(`tele-slide-${idx}`);
-                if (!el) return;
+            document.querySelectorAll('.tele-section').forEach((sec, idx) => {
                 if (idx === currentSlideIndex) {
-                    el.classList.add('active-tele-section');
-                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    sec.classList.add('active-tele-section');
+                    sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
-                    el.classList.remove('active-tele-section');
+                    sec.classList.remove('active-tele-section');
                 }
             });
         }
 
-        // --- TIMER & STOPWATCH ---
+        // Timer Stopwatch Functions
         function toggleTimer() {
-            isTimerRunning = !isTimerRunning;
             const icon = document.getElementById('timer-icon');
             if (isTimerRunning) {
-                icon.className = "fa-solid fa-pause";
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+                icon.className = "fa-solid fa-play";
+            } else {
                 timerInterval = setInterval(() => {
-                    timerSeconds++;
+                    secondsElapsed++;
                     updateTimerDisplay();
                 }, 1000);
-            } else {
-                icon.className = "fa-solid fa-play";
-                clearInterval(timerInterval);
+                isTimerRunning = true;
+                icon.className = "fa-solid fa-pause";
             }
         }
 
         function resetTimer() {
-            isTimerRunning = false;
             clearInterval(timerInterval);
-            document.getElementById('timer-icon').className = "fa-solid fa-play";
-            timerSeconds = 0;
+            isTimerRunning = false;
+            secondsElapsed = 0;
             updateTimerDisplay();
+            document.getElementById('timer-icon').className = "fa-solid fa-play";
         }
 
         function updateTimerDisplay() {
-            const mins = Math.floor(timerSeconds / 60);
-            const secs = timerSeconds % 60;
-            document.getElementById('timer-display').textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            const mins = Math.floor(secondsElapsed / 60);
+            const secs = secondsElapsed % 60;
+            document.getElementById('timer-display').textContent = `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
         }
 
-        // --- FONT SIZE ADJUSTMENT ---
-        function adjustFontSize(delta) {
-            fontSize = Math.min(Math.max(fontSize + delta, 12), 26);
-            document.getElementById('font-size-label').textContent = `${fontSize}px`;
-            const area = document.getElementById('slide-content-area');
-            if (area) area.style.fontSize = `${fontSize}px`;
-        }
-
-        // --- TELEPROMPTER AUTO SCROLL ---
+        // Teleprompter Auto-Scroll Functions
         function toggleTeleprompterScroll() {
-            isTeleScrolling = !isTeleScrolling;
+            const teleView = document.getElementById('view-teleprompter');
             const icon = document.getElementById('tele-play-icon');
-            const viewTele = document.getElementById('view-teleprompter');
-
             if (isTeleScrolling) {
-                icon.className = "fa-solid fa-pause text-red-400";
-                teleScrollInterval = setInterval(() => {
-                    viewTele.scrollTop += scrollSpeedMultiplier;
-                }, 50);
-            } else {
-                icon.className = "fa-solid fa-play text-accent-cyan";
                 clearInterval(teleScrollInterval);
+                isTeleScrolling = false;
+                icon.className = "fa-solid fa-play";
+            } else {
+                teleScrollInterval = setInterval(() => {
+                    teleView.scrollBy({ top: scrollSpeedMultiplier * 1.5, behavior: 'smooth' });
+                }, 50);
+                isTeleScrolling = true;
+                icon.className = "fa-solid fa-pause";
             }
         }
 
         function updateScrollSpeed(val) {
             scrollSpeedMultiplier = parseInt(val);
             document.getElementById('speed-label').textContent = `${val}x`;
+            if (isTeleScrolling) {
+                clearInterval(teleScrollInterval);
+                const teleView = document.getElementById('view-teleprompter');
+                teleScrollInterval = setInterval(() => {
+                    teleView.scrollBy({ top: scrollSpeedMultiplier * 1.5, behavior: 'smooth' });
+                }, 50);
+            }
         }
 
-        // --- FULLSCREEN ---
+        function stopTeleprompterScroll() {
+            if (isTeleScrolling) {
+                clearInterval(teleScrollInterval);
+                isTeleScrolling = false;
+                document.getElementById('tele-play-icon').className = "fa-solid fa-play";
+            }
+        }
+
+        // Font Size Adjuster
+        function adjustFontSize(delta) {
+            currentFontSize = Math.min(24, Math.max(12, currentFontSize + delta));
+            document.getElementById('font-size-label').textContent = `${currentFontSize}px`;
+            document.getElementById('speaker-notes-area').style.fontSize = `${currentFontSize}px`;
+        }
+
+        // Fullscreen Toggle
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen();
+                document.documentElement.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable fullscreen: ${err.message}`);
+                });
             } else {
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
@@ -922,7 +1006,7 @@
             }
         }
 
-        // --- KEYBOARD SHORTCUTS ---
+        // Keyboard Navigation
         function setupKeyboardNavigation() {
             document.addEventListener('keydown', (e) => {
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;

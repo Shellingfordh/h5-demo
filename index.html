@@ -176,10 +176,10 @@
 
         <!-- VIEW 1: DUAL SLIDE & NOTES PRESENTATION VIEW -->
         <div id="view-slides" class="w-full h-full flex flex-col lg:flex-row overflow-hidden">
-            <!-- Left Side: Projected Slide Deck Canvas (Default full screen since notes are hidden initially) -->
-            <div id="slide-canvas-container" class="w-full h-full bg-navy-900 p-6 lg:p-16 flex flex-col justify-between transition-all duration-300 relative overflow-y-auto">
+            <!-- Left Side: Projected Slide Deck Canvas -->
+            <div id="slide-canvas-container" class="w-full h-full bg-navy-900 p-6 lg:p-12 flex flex-col justify-between transition-all duration-300 relative overflow-y-auto">
                 <!-- Slide Header info -->
-                <div class="flex justify-between items-center mb-4">
+                <div class="flex justify-between items-center mb-2">
                     <span id="slide-num-badge" class="text-xs font-mono px-2.5 py-1 rounded bg-navy-800 text-accent-teal border border-navy-700">SLIDE 01 / 12</span>
                     <span id="slide-timing-badge" class="text-xs font-mono text-gray-400"><i class="fa-regular fa-clock mr-1"></i>45s</span>
                 </div>
@@ -190,7 +190,7 @@
                 </div>
 
                 <!-- Slide Footer Info -->
-                <div class="mt-6 pt-4 border-t border-navy-800 flex justify-between items-center text-xs text-gray-500 font-mono">
+                <div class="mt-4 pt-3 border-t border-navy-800 flex justify-between items-center text-xs text-gray-500 font-mono">
                     <span>OceanBase AI Agent Context Infrastructure</span>
                     <span>PowerContext Roadshow</span>
                 </div>
@@ -238,374 +238,348 @@
 
     <!-- JAVASCRIPT APP LOGIC -->
     <script>
-        // --- SLIDE DATA STRUCTURE (ALL 12 SECTIONS COMPREHENSIVELY PRESERVED) ---
+        // --- COMPLETE 12-SLIDE DATA STRUCTURE WITH FULL INVESTMENT NARRATIVE & TECHNICAL PROOF ---
         const slidesData = [
             {
                 id: 1,
-                titleCH: "当工作结束，经验去了哪里？",
-                titleEN: "When the Work Ends, Where Does the Knowledge Go?",
-                subtitleCH: "工作会结束，知识不应该随之消失。",
-                subtitleEN: "Work may end, but knowledge should not disappear with it.",
+                titleCH: "Agent 越来越能干，为什么每次接手工作仍然需要重新理解项目？",
+                titleEN: "As agents become more capable, why must they keep rediscovering the same project context?",
+                subtitleCH: "村庄故事只用来引出问题，别占用太多开场时间。投资人需要迅速知道这是什么机会。",
+                subtitleEN: "From village knowledge loss to modern AI Agent work continuity.",
                 timing: "45 秒",
                 type: "opening",
                 bullets: [
-                    { ch: "村庄故事：老木匠的材料经验、修桥者的未竟问题无法有效继承", en: "Village Story: Experienced carpenter's material wisdom and bridge repair logs lost without proper inheritance" },
-                    { ch: "人员流动与接手者：后续接手者只能被迫从零开始探索", en: "Personnel turnover: Successors forced to restart from scratch repeatedly" },
-                    { ch: "AI Agent 的平行挑战：单次对话聪明，但缺乏跨会话的工作连续性", en: "AI Agent Parallel: Single session intelligence vs. lack of cross-session work continuity" }
+                    { ch: "村庄故事引出背景：老木匠的材料经验、修桥者的未竟问题无法有效继承", en: "Village story: Carpenter wisdom and bridge repair logs lost without proper inheritance" },
+                    { ch: "核心痛点对齐：当 Agent 走向持续任务，每次对话边界导致背景被清空", en: "Core pain: As agents tackle ongoing tasks, session boundaries reset context" },
+                    { ch: "投资人视角：我们需要一种让工作跨会话、跨 Agent 连续推进的基础设施", en: "Investor view: An infrastructure for continuous cross-session agent work" }
                 ],
                 cues: [
-                    { type: "speech", text: "开场先看向听众，停顿两秒。语速放慢，不要一上来就讲技术名词。" }
+                    { type: "speech", text: "开场直奔核心问题，用村庄故事快速引出 Agent 连续性痛点。" }
                 ],
                 script: [
-                    { zh: "大家好，今天我想从一个很简单的问题开始。当一项工作结束之后，我们究竟留下了什么？", en: "Hello everyone. Today, I would like to start with a simple question. When a piece of work ends, what do we actually leave behind?" },
-                    { zh: "想象一个村庄。村里的老木匠知道哪种木料容易开裂，负责修桥的人知道上次维修留下了什么问题。这些知识来自长期实践，对整个村庄都很重要。", en: "Imagine a village. The experienced carpenter knows which types of wood are likely to crack. The person responsible for repairing the bridge knows what problems were left unresolved last time. This knowledge comes from years of practice, and it matters to the entire community." },
-                    { zh: "但如果他们离开了，下一位接手者可能只能从头开始。", en: "But when they leave, the next person may have to start from scratch." },
-                    { zh: "这让我想到 AI Agent 面临的一个相似问题。一次对话可以很聪明，但如果重要的决定和工作进度没有被保留下来，下一次工作就可能失去连续性。", en: "This brings me to a similar challenge in AI agents. A single conversation can be intelligent, but without preserving important decisions and progress, the next session may lose continuity." }
+                    { zh: "大家好，今天我们讨论一个核心问题：Agent 越来越能干了，为什么每次接手工作，仍然需要重新理解项目？", en: "Hello everyone. As agents become more capable, why must they keep rediscovering the same project context?" },
+                    { zh: "就像村庄里的老木匠和修桥者，如果经验没有留下来，后来者只能从零开始。今天的 AI Agent 也面临同样的平行挑战。", en: "Just like the carpenter in our village story, if experience isn't preserved, successors restart from scratch. AI agents face a parallel challenge." }
                 ],
-                nextCue: "停顿半秒，切到村庄的问题清单。"
+                nextCue: "切入第二页，讲清楚信息断层的业务代价。"
             },
             {
                 id: 2,
-                titleCH: "信息断层的代价",
-                titleEN: "The Cost of Lost Context",
+                titleCH: "信息断层的代价：从抽象痛点改成业务损失",
+                titleEN: "The Business Cost of Lost Context",
                 timing: "45 秒",
                 type: "grid",
                 gridItems: [
-                    { icon: "fa-brain", titleCH: "决策丢失", titleEN: "Lost decisions", descCH: "遗忘先前的约束与定论", descEN: "Forgetting prior bounds & findings" },
-                    { icon: "fa-rotate-right", titleCH: "重复劳动", titleEN: "Repeated work", descCH: "重复排除已解决的问题", descEN: "Re-checking resolved issues" },
-                    { icon: "fa-link-slash", titleCH: "交接断层", titleEN: "Broken handoffs", descCH: "每次交接需重讲背景", descEN: "Re-explaining full context each time" },
-                    { icon: "fa-triangle-exclamation", titleCH: "错误重现", titleEN: "Repeated mistakes", descCH: "踩中已知且犯过的坑", descEN: "Falling into previously known traps" }
+                    { icon: "fa-calculator", titleCH: "重复推理成本", titleEN: "Repeated reasoning cost", descCH: "Agent 每次重新阅读、分析和探索", descEN: "Agent re-reading, analyzing & exploring" },
+                    { icon: "fa-rotate-right", titleCH: "任务恢复成本", titleEN: "Recovery cost", descCH: "中断后需要重新建立工作状态", descEN: "Re-establishing state after interruption" },
+                    { icon: "fa-users-gear", titleCH: "协作成本", titleEN: "Coordination cost", descCH: "Agent 之间、人与 Agent 反复交代背景", descEN: "Repeated briefings between humans and agents" },
+                    { icon: "fa-triangle-exclamation", titleCH: "质量与风险成本", titleEN: "Quality and risk cost", descCH: "遗漏约束、重复犯错或使用过时信息", descEN: "Missing constraints & working on obsolete data" }
                 ],
+                formulaCH: "上下文丢失的总成本 = 重复工作 + 任务恢复 + 协作开销 + 错误损失",
+                formulaEN: "Total Cost of Lost Context = Repeated Work + Recovery + Coordination + Error Loss",
                 cues: [
-                    { type: "speech", text: "用村庄案例继续推进。不要逐条机械念屏幕上的文字。" }
+                    { type: "speech", text: "强调这不是技术瑕疵，而是直接产生经济损失的业务痛点。" }
                 ],
                 script: [
-                    { zh: "村庄真正的问题，并不只是某个人忘记了一件事。更大的问题在于，整个团队无法稳定地继承已经积累的知识。", en: "The real problem in the village is not simply that one person forgets something. The bigger issue is that the community cannot reliably inherit the knowledge it has already accumulated." },
-                    { zh: "比如，维修人员可能重复检查已经排除的问题，新来的木匠可能再次使用不合适的材料，而每一次交接都需要重新解释背景。", en: "For example, a repair worker may repeat checks that have already been completed, a new carpenter may use unsuitable materials again, and every handoff may require the background to be explained all over again." },
-                    { zh: "这些损失会随着协作次数增加而累积。在软件开发中，我们也会遇到类似情况，尤其是项目持续数周甚至数月、任务在不同人员或不同 AI Agent 之间流转的时候。", en: "These losses accumulate as collaboration continues. We encounter the same pattern in software development, especially when projects last for weeks or months and tasks move between different people or AI agents." },
-                    { zh: "所以，问题的关键是怎样让重要信息在工作过程中被保存，在需要的时候能够被找到，并且在交接时仍然可信。", en: "The key question is how to preserve important information during work, retrieve it when needed, and keep it trustworthy when responsibility changes hands." }
-                ]
+                    { zh: "我们把痛点具象化为四个业务影响：重复推理、任务恢复、高昂协作以及质量风险。", en: "We translate abstract pain points into four business impacts: repeated reasoning, recovery, high coordination, and quality risks." },
+                    { zh: "用一个公式总结：上下文丢失的总成本等于重复工作加上任务恢复、协作开销与错误损失。", en: "Expressed simply: Total Cost of Lost Context equals repeated work plus recovery, coordination, and error losses." }
+                ],
+                nextCue: "切入第三页，解释为什么这个问题在当前时间节点爆发。"
             },
             {
                 id: 3,
-                titleCH: "为什么 AI Agent 也会遗忘？",
-                titleEN: "Why Do AI Agents Lose Context?",
+                titleCH: "为什么现在：行业变化与机会窗口",
+                titleEN: "Why Now: Industry Shifts & Opportunity Window",
                 timing: "50 秒",
                 type: "comparison",
-                quoteCH: "对话记录不等于可用的工作上下文。",
-                quoteEN: "A conversation transcript is not the same as usable work context.",
+                quoteCH: "从回答问题，到持续完成工作。",
+                quoteEN: "From answering questions to completing ongoing work.",
                 bullets: [
-                    { ch: "会话边界 (Session Boundary)：单次会话结束后背景上下文即重置", en: "Session Boundaries: Context resets completely upon conversation completion" },
-                    { ch: "上下文窗口限制 (Context Window Limit)：全量历史成本高且容易引发噪声干扰", en: "Context Window Limits: Re-feeding raw transcript is noisy, costly, and ineffective" },
-                    { ch: "信息过载与筛选困难：原始对话混杂了过时的中间思考与临时废稿", en: "Information Overload: Raw history contains obsolete temporary thoughts and noise" }
+                    { ch: "任务复杂度升级：Agent 开始承担跨多轮、跨工具、跨天的复杂任务", en: "Task complexity: Agents handle multi-turn, multi-tool, multi-day tasks" },
+                    { ch: "企业协作需求：工作流需要多个 Agent、员工与系统之间持续交接", en: "Enterprise workflows: Continuous handoffs between agents, staff, and systems" },
+                    { ch: "基础设施契机：机会来自工作复杂度与协作程度提升，而非单纯窗口限制", en: "Infrastructure timing: Driven by workflow complexity, not just window limits" }
                 ],
                 cues: [
-                    { type: "speech", text: "这一页从生活案例转入技术。强调“信息保存”和“信息使用”之间的区别。" }
+                    { type: "speech", text: "阐述行业正从单轮问答走向长效持续任务，引出基础设施必要性。" }
                 ],
                 script: [
-                    { zh: "AI Agent 的工作方式让这个问题更加明显。Agent 可以在一次会话里理解需求、分析代码、作出决定并执行任务，但会话结束之后，下一次会话未必能够直接获得所有必要的背景。", en: "This challenge becomes more visible with AI agents. An agent can understand requirements, analyze code, make decisions, and execute tasks within one session. After the session ends, however, the next session may not have all the context it needs." },
-                    { zh: "即使历史记录还在，直接把整段历史重新交给模型也未必是最好的方案。历史可能很长，其中有些信息已经过时，有些与当前任务无关，还有些只是当时的临时讨论。", en: "Even when the transcript still exists, sending the entire history back to the model is not necessarily the best solution. The history may be long, some information may be outdated, some may be irrelevant, and some may reflect only temporary discussion." },
-                    { zh: "因此，我们需要把原始信息、经过确认的知识、当前任务状态，以及可重复使用的做法组织起来，再根据当前任务选择真正有用的部分。", en: "What we need is a way to organize raw evidence, established knowledge, current task state, and reusable procedures, then select the parts that are actually useful for the task at hand." }
-                ]
+                    { zh: "为什么这个问题现在必须解决？因为 AI Agent 正在从单轮问答走向跨天的持续任务。", en: "Why must this be solved now? Because AI agents are moving from single-turn Q&A to multi-day ongoing tasks." },
+                    { zh: "当企业开始部署多 Agent 协作时，任务状态、历史决策和权限边界变成了刚需。", en: "As enterprises deploy multi-agent collaboration, task state, historical decisions, and boundaries become essential." }
+                ],
+                nextCue: "切入第四页，全面介绍 PowerContext 产品全貌。"
             },
             {
                 id: 4,
-                titleCH: "PowerContext 是什么？",
-                titleEN: "What Is PowerContext?",
+                titleCH: "PowerContext 是什么：产品全貌与服务架构",
+                titleEN: "What Is PowerContext: Complete Product Overview",
                 timing: "50 秒",
                 type: "architecture",
-                subtitleCH: "OceanBase 开源的 AI Agent 上下文基础设施",
-                subtitleEN: "Open-source context infrastructure for AI agents",
                 archSteps: [
-                    { step: "Input", ch: "AI Agent / 人类协作", en: "Work in progress" },
-                    { step: "Core", ch: "PowerContext 服务", desc: "Capture · Organize · Retrieve · Hand off\n记录 · 组织 · 检索 · 交接", highlight: true },
-                    { step: "Output", ch: "后续会话 / Agent / 团队成员", en: "Next session / Agent / Teammate" }
+                    { step: "接入层 (Integration)", ch: "Server · HTTP API · Python Client · MCP", en: "Server, HTTP API, Python Client, MCP" },
+                    { step: "上下文管理层 (Management)", ch: "组织 · 版本管理 · 审查 · 按任务准备上下文", en: "Organization, versioning, review, task context prep", highlight: true },
+                    { step: "上下文资产层 (Artifacts)", ch: "Source · Memory · Handoff · Experience · Skill", en: "Source, Memory, Handoff, Experience, Skill" }
                 ],
                 cues: [
-                    { type: "speech", text: "可以指向架构图，说明 PowerContext 位于 Agent 的工作过程与持久化上下文之间。" }
+                    { type: "speech", text: "让没有技术背景的投资人也能听懂的三层产品全貌。" }
                 ],
                 script: [
-                    { zh: "PowerContext 是 OceanBase 开源的 AI Agent 上下文服务。它的目标是让有价值的工作上下文脱离单一对话，能够在不同会话、不同 Agent 和人与 Agent 的交接中继续发挥作用。", en: "PowerContext is an open-source context service for AI agents developed under OceanBase. Its goal is to keep valuable work context outside any single conversation, so it can remain useful across sessions, agents, and handoffs between people and agents." },
-                    { zh: "它保存的不只是传统意义上的记忆，还包括工作中的决策、约束、证据、进度，以及经过整理、可以再次使用的经验。", en: "It preserves more than memory in the traditional sense. It also organizes decisions, constraints, evidence, progress, and experience that can be reused in future work." },
-                    { zh: "从产品角度看，它试图解决的是工作连续性。从工程角度看，它提供了可追溯、可管理的上下文资产，以及供不同 Agent 和应用使用的接口。", en: "From a product perspective, it addresses work continuity. From an engineering perspective, it provides traceable, manageable context artifacts and interfaces that different agents and applications can use." },
-                    { zh: "这也是我认为这个项目值得研究的原因。随着 Agent 承担越来越长的任务，管理上下文会成为系统设计的重要组成部分。", en: "That is why I believe this project is worth studying. As agents take on longer-running tasks, context management becomes an important part of system design." }
-                ]
+                    { zh: "PowerContext 是什么？它分为三层：底层是上下文资产，中间是管理与审查层，上层是丰富的接入接口。", en: "What is PowerContext? It consists of three layers: Context Artifacts, Management & Review, and the Integration Layer." },
+                    { zh: "通过完整链路，让 Agent 记录证据、管理上下文并在下一次会话中完美恢复状态。", en: "It records evidence, manages context, and restores state seamlessly for the next session." }
+                ],
+                nextCue: "切入第五页，讲解四大核心概念的实际应用场景。"
             },
             {
                 id: 5,
-                titleCH: "四个核心概念",
-                titleEN: "Four Core Concepts",
+                titleCH: "四个核心概念：减少术语，直击任务",
+                titleEN: "Four Core Concepts: Clear Tasks, Less Jargon",
                 timing: "60 秒",
                 type: "four-cards",
                 cards: [
-                    { title: "Memory", sub: "长期知识", ch: "保存可复用的事实、决定、约束和下一步。", en: "Reusable facts, decisions, constraints, and next steps." },
-                    { title: "Handoff", sub: "任务交接", ch: "记录当前目标、进展、证据和待办事项。", en: "Current goals, progress, evidence, and next steps." },
-                    { title: "Experience", sub: "经过审查的经验", ch: "记录情境、采取的行动、结果与可复用教训。", en: "Situations, actions, outcomes, and reusable lessons." },
-                    { title: "Skill", sub: "可复用的程序", ch: "把经过审查的操作步骤和验证要求整理成技能。", en: "Reviewed procedures and validation checks." }
+                    { title: "Memory", sub: "长期知识", ch: "记住项目已确认的技术选型与不可违反的约束", en: "Remembering confirmed tech stacks & hard constraints" },
+                    { title: "Handoff", sub: "任务交接", ch: "记录开发任务完成了什么、还有什么没做、下一步是什么", en: "Recording what's done, remaining, and next steps" },
+                    { title: "Experience", sub: "经过审查的经验", ch: "将经过验证的排障经验整理出来，供后续工作参考", en: "Synthesizing validated troubleshooting for future reference" },
+                    { title: "Skill", sub: "可复用程序", ch: "将审核过的操作步骤与检查要求整理成可复用流程", en: "Organizing audited steps & validation checks into workflows" }
                 ],
                 cues: [
-                    { type: "speech", text: "按四个模块依次讲解。每个概念只解释它解决的问题，不要深入 API 细节。" }
+                    { type: "speech", text: "用业务语言逐一解释四个模块，强调审查流程与复用价值。" }
                 ],
                 script: [
-                    { zh: "PowerContext 的核心概念可以用四个部分来理解。", en: "PowerContext can be understood through four core concepts." },
-                    { zh: "第一，Memory，也就是记忆。它保存后续工作仍然需要的事实、决策和约束。", en: "First, Memory. It preserves facts, decisions, and constraints that future work still needs." },
-                    { zh: "第二，Handoff，也就是交接。它记录任务当前进行到哪里，哪些事情已经验证，哪些问题仍然没有解决，以及下一步应该做什么。", en: "Second, Handoff. It records where the task stands, what has been verified, what remains unresolved, and what should happen next." },
-                    { zh: "第三，Experience，也就是经验。它把某次工作中的情境、行动和结果整理成可复用的教训，并通过审查流程决定是否应该保留。", en: "Third, Experience. It turns situations, actions, and outcomes from previous work into reusable lessons, with a review process to determine whether they should be retained." },
-                    { zh: "第四，Skill，也就是技能。它把成熟的做法组织成可以导出的程序化说明和验证步骤，让后续 Agent 能够按明确流程开展工作。", en: "Fourth, Skill. It organizes established practices into exportable procedural instructions and validation steps, allowing future agents to follow a defined workflow." },
-                    { zh: "回到村庄的例子，Memory 保存修桥的关键事实，Handoff 说明修桥工作进行到了哪里，Experience 总结上一次维修为什么成功，而 Skill 则把经过确认的维修步骤整理成可复用的流程。", en: "Returning to our village example, Memory preserves key facts about the bridge, Handoff records the current repair status, Experience captures why a previous repair succeeded, and Skill turns validated repair steps into a reusable procedure." },
-                    { zh: "这四者共同帮助系统把一次性的工作转化成后续工作可以利用的资产。", en: "Together, these four concepts help turn one-time work into assets that future work can reuse." }
-                ]
+                    { zh: "我们用四个模块对应真实工作：Memory 记约束，Handoff 做交接，Experience 沉淀经验，Skill 复用流程。", en: "We map four modules to real work: Memory for constraints, Handoff for transitions, Experience for lessons, and Skill for workflows." },
+                    { zh: "所有资产均通过审查流程，确保生成的上下文安全可靠。" en: "All assets go through review processes to ensure safety and reliability." }
+                ],
+                nextCue: "切入第六页，展示底层技术架构作为可信度支撑。"
             },
             {
                 id: 6,
-                titleCH: "从信息到可复用的工作上下文",
-                titleEN: "From Information to Reusable Work Context",
+                titleCH: "技术架构：竞争优势的支撑证据",
+                titleEN: "Technical Architecture: Proof of Competitive Edge",
                 timing: "60 秒",
                 type: "flow",
                 flowSteps: [
-                    { num: "01", name: "Source", descCH: "原始证据与工作输入", descEN: "Raw evidence & work inputs" },
+                    { num: "01", name: "Source", descCH: "原始证据与输入", descEN: "Raw evidence & inputs" },
                     { num: "02", name: "Memory / Artifact", descCH: "组织知识与版本", descEN: "Organized knowledge & versioning" },
-                    { num: "03", name: "PreparedContext", descCH: "按任务选择相关上下文", descEN: "Context selection within budget" },
-                    { num: "04", name: "Agent Execution", descCH: "继续执行并记录结果", descEN: "Execution & updated feedback" }
+                    { num: "03", name: "PreparedContext", descCH: "按任务选择相关上下文", descEN: "Bounded context preparation" },
+                    { num: "04", name: "Agent Execution", descCH: "执行与持续反馈", descEN: "Execution & updated feedback" }
                 ],
                 bullets: [
-                    { ch: "Scope 隔离：按项目与环境安全隔离工作上下文", en: "Scope Isolation: Secure bounds for different project context scopes" },
-                    { ch: "版本追溯：记录每一条信息的修改溯源与更新状态", en: "Version Provenance: Trace origin, edits, and timestamps for each item" },
-                    { ch: "系统边界：处理来源信任度、过期淘汰机制与权限约束", en: "System Boundaries: Addressing source trust, decay, and permission bounds" }
+                    { ch: "跨会话持续性：确保长时间任务不丢失状态", en: "Cross-session continuity: Maintaining state across long tasks" },
+                    { ch: "跨 Agent 交接：多智能体无缝转移上下文", en: "Cross-agent handoff: Seamless transfer between agents" },
+                    { ch: "版本与来源可追溯：每一条记录均可审查核对", en: "Provenance & versioning: Every record is traceable and auditable" }
                 ],
                 cues: [
-                    { type: "speech", text: "这一页是技术理解的关键。沿着流程图从上到下讲，突出证据、组织、选择和继续工作之间的关系。" }
+                    { type: "speech", text: "简述架构流程，证明系统具备坚实的工程实现能力。" }
                 ],
                 script: [
-                    { zh: "在技术实现上，PowerContext 会先接收工作过程中产生的输入和证据，也就是 Source。随后，系统可以将适合长期保存的信息组织成带有身份和版本的上下文资产。", en: "At the implementation level, PowerContext receives inputs and evidence produced during work, known as Sources. The system can then organize suitable information into context artifacts with stable identities and version history." },
-                    { zh: "在需要继续工作时，系统会根据项目 Scope、相关性和上下文预算准备所需信息。它的目标是为当前任务提供足够且相关的内容，而不是不加筛选地重放所有历史。", en: "When work resumes, the system prepares relevant information based on the project Scope, relevance, and context budget. The goal is to provide enough relevant information for the current task rather than replaying the entire history without filtering." },
-                    { zh: "Scope 用来隔离不同工作范围内的上下文。版本和来源记录则帮助使用者理解一条信息来自哪里，以及它是否经历过更新。", en: "A Scope isolates context within a defined work area. Versioning and source references help users understand where information came from and whether it has changed." },
-                    { zh: "这套设计也有明确的边界。保存的信息不一定正确，检索到的内容也不应该自动成为更高优先级的指令。因此，系统仍然需要考虑来源可信度、信息过期、权限和审查机制。", en: "The design also has important boundaries. Stored information is not necessarily correct, and retrieved content should not automatically become a higher-priority instruction. Source trust, stale information, permissions, and review mechanisms still matter." },
-                    { zh: "我认为这正是上下文基础设施值得关注的地方。它不仅要保存信息，还需要让信息的来源、版本、使用范围和生命周期能够被管理。", en: "I believe this is what makes context infrastructure important. It must preserve information while making its provenance, revisions, scope, and lifecycle manageable." }
-                ]
+                    { zh: "在工程上，系统通过 Source 收集证据，在 Memory 中组织版本，为 Agent 动态准备上下文并完成执行。", en: "Engineering-wise, the system collects evidence, manages versions, prepares bounded context, and drives execution." }
+                ],
+                nextCue: "切入第七页，展示真实应用场景与产品操作。"
             },
             {
                 id: 7,
-                titleCH: "可靠性问题与我的贡献",
-                titleEN: "Reliability Engineering and My Contribution",
-                timing: "70 秒",
-                type: "engineering",
-                focusPoints: [
-                    { title: "游标签名密钥 (Cursor signing key)", detailCH: "分析短写入 (short-write) 风险，保障数据写入完整性与验证准确度", detailEN: "Analyzed short-write risk to prevent corrupted key persistence & validation failure" },
-                    { title: "I/O 错误处理与清理 (Partial-write)", detailCH: "健全部分写入逻辑、失败路径上的 I/O 资源清理与指数退避重试", detailEN: "Robust handling for partial-writes, fail-path I/O cleanup, and graceful retry mechanisms" },
-                    { title: "回归测试与文档 (Regression & Docs)", detailCH: "编写自动化回归测试用例，将边界隐患转化为可重复运行的验证资产", detailEN: "Created regression tests to seal edge-case failure paths and update engineering docs" }
+                titleCH: "真实应用场景：跨工作日的 AI 编程任务",
+                titleEN: "Real-World Application: Multi-Day AI Coding Task",
+                timing: "60 秒",
+                type: "grid",
+                gridItems: [
+                    { icon: "fa-code", titleCH: "第一天：Agent 开发", titleEN: "Day 1: Agent Development", descCH: "读取需求、确认约束、修改代码并记录检查结果", descEN: "Read reqs, confirm constraints, modify code, log checks" },
+                    { icon: "fa-arrow-right-arrow-left", titleCH: "第二天：无缝交接", titleEN: "Day 2: Seamless Handoff", descCH: "新会话或新 Agent 恢复目标与进展，无需重读历史", descEN: "New session/agent restores goals & progress without re-reading" },
+                    { icon: "fa-box-archive", titleCH: "任务结束：沉淀资产", titleEN: "Task End: Reusable Assets", descCH: "记录结果并整理出经过审查的经验，供后续使用", descEN: "Record results and synthesize reviewed experience for future tasks" }
                 ],
                 cues: [
-                    { type: "speech", text: "这是个人贡献页。用“我参与了什么、问题是什么、为什么重要、如何验证”的顺序讲。不要把整个项目的功能说成自己开发的。" }
+                    { type: "speech", text: "用 AI 编程场景展示产品在实际工作中的巨大威力。" }
                 ],
                 script: [
-                    { zh: "在这个项目中，我参与了 Agent 上下文基础设施和 Python 服务可靠性相关的工作。我分析了 Memory、Handoff、Experience 和 Skill 等模块，也关注底层实现中的边界条件。", en: "In this project, I contributed to work related to agent context infrastructure and Python service reliability. I analyzed components such as Memory, Handoff, Experience, and Skill, and also examined lower-level implementation edge cases." },
-                    { zh: "其中一个具体问题涉及游标签名密钥的写入。如果代码假设一次写入就一定能完整写入，那么在发生短写入时，持久化的密钥就可能不完整，进而影响后续读取或签名验证。", en: "One concrete issue involved writing the cursor-signing key. If code assumes that a single write always writes the entire payload, a short write could leave the persisted key incomplete, potentially affecting subsequent reads or signature verification." },
-                    { zh: "我参与处理的方向包括正确应对部分写入、在失败路径上进行必要的 I/O 清理，以及在适当情况下重试。同时，我也补充了回归测试和相关文档。", en: "My work addressed proper handling of partial writes, necessary I/O cleanup on failure paths, and retries where appropriate. I also contributed regression tests and supporting documentation." },
-                    { zh: "这类问题可能不会在普通的成功路径中出现，但它们关系到服务重启之后能否继续正常工作，以及异常发生时系统能否以可预测的方式处理故障。", en: "These problems may not appear on the normal success path, but they affect whether the service can continue working after a restart and whether failures are handled predictably." },
-                    { zh: "对我来说，这项工作的价值在于把一个容易被忽视的边界条件转化为明确的代码行为和可以重复运行的测试。对于基础设施项目，可靠性最终需要落实到这些具体细节上。", en: "For me, the value of this work lies in turning an easily overlooked edge case into explicit code behavior and repeatable tests. For infrastructure projects, reliability ultimately rests on these details." }
+                    { zh: "来看一个真实场景：跨多日的 AI 编程。第一天 Agent 建立约束与进展，第二天新会话直接接手，无需重读庞大历史。", en: "Let's look at a real scenario: multi-day AI coding. Day 1 builds progress, Day 2 resumes seamlessly without re-reading history." }
                 ],
-                nextCue: "现场最好展示代码差异 diff 或 PR 编号。"
+                nextCue: "切入第八页，详细拆解目标客户与核心痛点。"
             },
             {
                 id: 8,
-                titleCH: "为什么这些细节值得重视？",
-                titleEN: "Why Do These Details Matter?",
-                timing: "50 秒",
-                type: "values",
-                values: [
-                    { labelCH: "完整性", labelEN: "Integrity", descCH: "持久化内容应当完整且可校验", descEN: "Persisted content must remain fully verifiable" },
-                    { labelCH: "可恢复性", labelEN: "Recoverability", descCH: "发生异常后具备明确可预测的恢复路径", descEN: "Clear, predictable handling path after I/O failures" },
-                    { labelCH: "可验证性", labelEN: "Verifiability", descCH: "通过单元与回归测试防止边界隐患重现", descEN: "Automated regression tests guard against recurring boundary bugs" }
+                titleCH: "应用场景与目标客户：谁最需要 PowerContext？",
+                titleEN: "Target Customers & Use Cases: Who Needs It Most?",
+                timing: "60 秒",
+                type: "comparison",
+                bullets: [
+                    { ch: "AI 编程工具与开发团队：解决长任务、跨会话、代码交接与约束遗忘问题", en: "AI Coding Tools & Dev Teams: Long tasks, session handoffs, constraint retention" },
+                    { ch: "企业 Agent 平台与工作流团队：管理多 Agent 协作、任务移交与经验复用", en: "Enterprise Agent Platforms: Multi-agent coordination, handoffs, experience reuse" },
+                    { ch: "AI 应用开发者与框架维护者：通过标准服务和接口快速集成上下文能力", en: "AI App Developers: Quick integration of context capabilities via standard APIs" }
                 ],
-                quoteCH: "注意：代码级的修复提升了可靠性，但不能直接与产品整体 Task Completion Rate 划等号。",
-                quoteEN: "Note: Code-level reliability fixes do not automatically equal overall product task completion rate gains without end-to-end benchmarking.",
                 cues: [
-                    { type: "speech", text: "这一页不要夸大结果。把工程意义和产品价值联系起来，同时承认两者之间还需要验证。" }
+                    { type: "speech", text: "精准切入三大目标客户群，明确区分潜在场景与已验证需求。" }
                 ],
                 script: [
-                    { zh: "为什么一个密钥写入的问题值得在整个项目介绍中占据一页？因为基础设施的价值不仅取决于它在正常情况下能做什么，也取决于它在异常情况下是否可靠。", en: "Why does a key-persistence issue deserve a place in this project presentation? Because infrastructure is judged not only by what it can do under normal conditions, but also by how reliably it behaves when something goes wrong." },
-                    { zh: "如果上下文服务无法可靠保存关键状态，那么再好的记忆机制也可能受到影响。如果故障无法被重复测试和定位，维护者就很难判断修复是否真正有效。", en: "If a context service cannot reliably preserve critical state, even a sophisticated memory mechanism may be affected. If a failure cannot be reproduced and tested, maintainers will struggle to determine whether a fix actually works." },
-                    { zh: "这也是我对开源工程的理解。发现问题只是第一步，之后还需要明确故障条件、实现修复、增加测试，并把行为和限制写清楚。", en: "This is also how I understand open-source engineering. Finding a problem is only the first step. We must clarify the failure conditions, implement a fix, add tests, and document the behavior and its limitations." },
-                    { zh: "与此同时，我们也需要区分工程改进与产品效果。修复一个边界条件可以提升特定路径的可靠性，但它本身并不能证明整个系统的任务完成率、响应速度或成本已经得到全面改善。", en: "At the same time, we need to distinguish engineering improvements from product outcomes. Fixing an edge case can improve reliability on a specific path, but it does not by itself prove that overall task completion, latency, or cost has improved across the entire system." }
-                ]
+                    { zh: "我们锁定了三大潜在客户：AI 编程团队、企业工作流平台以及 AI 应用开发者，优先切入编程场景。" en: "We target three customer groups: AI coding teams, enterprise workflow platforms, and AI developers, prioritizing coding." }
+                ],
+                nextCue: "切入第九页，对比竞品并阐述差异化定位。"
             },
             {
                 id: 9,
-                titleCH: "总结与下一步",
-                titleEN: "Conclusion & Next Steps",
-                timing: "40 秒",
-                type: "conclusion",
-                quoteCH: "让工作延续，让经验积累",
-                quoteEN: "Let Work Continue. Let Knowledge Accumulate.",
-                subtitleCH: "从一次性对话，走向可持续的工作上下文。",
-                subtitleEN: "From one-off conversations to persistent work context.",
+                titleCH: "竞争定位：为什么现有的方案不够？",
+                titleEN: "Competitive Positioning: Why Existing Solutions Fall Short",
+                timing: "60 秒",
+                type: "comparison",
+                quoteCH: "管理工作上下文及其延续，而非单纯存储记录。",
+                quoteEN: "Managing work context and continuity, not just storing records.",
+                bullets: [
+                    { ch: "对比聊天记录：解决信息过载，提供精准、经过筛选的工作状态而非原始 transcripts", en: "Vs. Chat Transcripts: Solves info overload with curated working state, not raw logs" },
+                    { ch: "对比传统 RAG：超越静态知识检索，完美支持动态任务状态与任务交接", en: "Vs. Traditional RAG: Goes beyond static knowledge retrieval to support task state & handoffs" },
+                    { ch: "对比本地记忆文件：提供团队级跨 Agent、跨人员、带版本的统一治理能力", en: "Vs. Local Memory Files: Provides team-scale cross-agent, version-controlled governance" }
+                ],
                 cues: [
-                    { type: "speech", text: "回到最初的村庄案例。最后一句讲慢一些，然后停顿。" }
+                    { type: "speech", text: "直面行业竞品，突出 PowerContext 在工作状态延续上的降维打击。" }
                 ],
                 script: [
-                    { zh: "最后，让我们回到最初的村庄。如果每一位接手者都必须重新发现同样的事实、重新经历同样的失败，整个社区就很难真正积累经验。", en: "Finally, let us return to our village. If every new person must rediscover the same facts and repeat the same failures, the community will struggle to build lasting knowledge." },
-                    { zh: "PowerContext 探索的是一种不同的方式，让工作中的重要信息能够被保存、组织、检索和交接，让后续工作从已经取得的进展继续。", en: "PowerContext explores a different approach. It preserves, organizes, retrieves, and hands off important work context, allowing future work to continue from existing progress." },
-                    { zh: "我参与这个项目之后，也更加认识到，AI Agent 的长期能力需要上下文管理、可靠的软件工程和持续验证共同支撑。", en: "Through my contribution to this project, I have also come to appreciate that long-running AI agents depend on context management, reliable software engineering, and continuous validation." },
-                    { zh: "我们希望达到的目标很简单。让每一次工作都能为下一次工作留下有价值的东西。", en: "The goal is simple: every piece of work should leave something valuable for the next." }
+                    { zh: "为什么不直接用聊天记录、RAG 或本地文件？因为它们缺乏跨会话的任务状态管理与交接治理能力。" en: "Why not chat history, RAG, or local files? Because they lack cross-session task state management and handoff governance." }
                 ],
-                nextCue: "看向听众，停顿两秒，再说 Thank you. 邀请提问。"
+                nextCue: "切入第十页，阐述开源项目的商业化演进路径。"
             },
             {
                 id: 10,
-                titleCH: "技术备份页：架构与验证",
-                titleEN: "Technical Backup: Architecture & Verification",
-                timing: "Backup",
-                type: "backup",
-                backupSections: [
-                    { title: "系统接口 (Integration Interfaces)", items: ["HTTP API", "Python Client", "MCP (Model Context Protocol)", "Core SDK"] },
-                    { title: "上下文管理 (Context Management)", items: ["Scope isolation (作用域隔离)", "Artifact revisions (版本控制)", "Source provenance (来源溯源)", "Bounded retrieval (预算检索)"] },
-                    { title: "验证方向 (Verification)", items: ["Regression tests (回归测试)", "Cross-session recall (跨会话召回)", "Handoff continuity (交接连续性)", "Failure recovery (故障恢复)"] }
+                titleCH: "商业模式：开源项目如何产生商业价值？",
+                titleEN: "Commercial Model: Monetization Path for Open Source",
+                timing: "60 秒",
+                type: "grid",
+                gridItems: [
+                    { icon: "fa-code-branch", titleCH: "开源采用", titleEN: "Open-Source Adoption", descCH: "通过开发者试用、社区集成和口碑扩大使用", descEN: "Drive adoption via developer trials, community, and word-of-mouth" },
+                    { icon: "fa-building", titleCH: "企业部署", titleEN: "Enterprise Deployment", descCH: "探索企业环境下的部署、配置、监控与权限需求", descEN: "Explore deployment, config, monitoring, and security needs" },
+                    { icon: "fa-handshake", titleCH: "商业支持", titleEN: "Commercial Support", descCH: "验证团队是否愿意为集成、支持和可靠性保障付费", descEN: "Validate willingness to pay for integration, support, and reliability" },
+                    { icon: "fa-cloud", titleCH: "托管服务", titleEN: "Managed Services", descCH: "评估云端托管运行、团队协作管理和持续运维需求", descEN: "Evaluate cloud-hosted runs, team management, and ongoing ops" }
+                ],
+                cues: [
+                    { type: "speech", text: "清晰阐述从开源社区走向企业商业化支持的演进假设。" }
                 ],
                 script: [
-                    { zh: "这是技术备份页。如果大家对架构接口、作用域隔离、版本管理或者验证方法有兴趣，我们可以随时结合这页深入探讨。", en: "This is the technical backup slide. If anyone has questions regarding integration interfaces, scope isolation, version management, or verification methods, we can discuss them further." }
-                ]
+                    { zh: "我们的商业化路径从开源采用起步，逐步探索企业部署、商业支持与托管服务，验证真实的付费意愿。" en: "Our monetization path starts with open-source adoption, exploring enterprise deployment, commercial support, and managed services." }
+                ],
+                nextCue: "切入第十一页，展示清晰的发展路线图与验证指标。"
             },
             {
                 id: 11,
-                titleCH: "技术问答准备 (Q&A Part 1)",
-                titleEN: "Technical Q&A (Part 1)",
-                timing: "Q&A",
-                type: "qa",
-                qaList: [
-                    {
-                        q: "Q1. PowerContext 和普通的 RAG 有什么区别？",
-                        ch: "传统 RAG 通常重点解决如何从知识库中检索相关信息。PowerContext 进一步关注工作状态如何延续、信息如何版本化、任务如何交接，以及经验和技能怎样经过审查后复用。两者可以互补，具体能力取决于系统的实现与配置。",
-                        en: "Traditional RAG primarily focuses on retrieving relevant information from a knowledge base. PowerContext also addresses work continuity, versioned context, task handoffs, and the reviewed reuse of experience and skills. They can complement each other, depending on implementation and configuration."
-                    },
-                    {
-                        q: "Q2. Memory 会不会把错误信息一直保存下去？",
-                        ch: "这是一个必须认真处理的问题。PowerContext 提供来源记录、版本管理以及经验和技能的审查机制，但这些机制并不意味着所有保存的信息都天然正确。还需要关注来源可信度、信息是否过期、冲突如何处理，以及检索结果如何被 Agent 使用。",
-                        en: "This is an important concern. PowerContext provides provenance, versioning, and review mechanisms, but these do not guarantee every stored item is correct. Source trust, stale info, and agent usage bounds still need careful handling."
-                    }
+                titleCH: "发展路线图与验证指标：未来如何验证价值？",
+                titleEN: "Roadmap & Validation Metrics: Proving Value Forward",
+                timing: "60 秒",
+                type: "comparison",
+                bullets: [
+                    { ch: "阶段一（核心价值）：建立跨会话任务与跨 Agent 交接的可复现实验与对照测试", en: "Phase 1 (Core Value): Replicable experiments for cross-session & cross-agent handoffs" },
+                    { ch: "阶段二（实际工作流）：引入目标用户试点，记录集成成本、恢复效果与反馈", en: "Phase 2 (Workflows): Pilot with target users, tracking integration cost and recovery" },
+                    { ch: "阶段三（商业需求）：观察持续使用、团队推广与付费意愿，确立商业模式", en: "Phase 3 (Commercial): Observe sustained usage, team rollout, and willingness to pay" },
+                    { ch: "追踪指标：任务恢复成功率、关键信息遗漏率、重复工作量、Token 消耗与集成成本", en: "Key Metrics: Recovery success rate, omission rate, repeated work, token savings, integration cost" }
+                ],
+                cues: [
+                    { type: "speech", text: "用科学严谨的路线图和指标体系回应投资人的验证关切。" }
                 ],
                 script: [
-                    { zh: "针对大家可能关心的常见问题，比如和传统 RAG 的区别以及错误信息的持久化防范，我们在备份页中也做了相应的准备。", en: "Regarding common questions like differences from traditional RAG and preventing stale/incorrect memory persistence, we have prepared dedicated talking points in the backup section." }
-                ]
+                    { zh: "我们将通过三阶段路线图，结合任务恢复成功率和遗漏率等指标，严谨验证产品价值与商业需求。" en: "Through a three-phase roadmap and rigorous metrics, we will validate product value and commercial demand." }
+                ],
+                nextCue: "切入第十二页，收束全篇的投资逻辑与未来愿景。"
             },
             {
                 id: 12,
-                titleCH: "技术问答准备 (Q&A Part 2)",
-                titleEN: "Technical Q&A (Part 2)",
-                timing: "Q&A",
-                type: "qa",
-                qaList: [
-                    {
-                        q: "Q3. 你的个人贡献具体体现在哪里？",
-                        ch: "我的工作聚焦于上下文基础设施分析与 Python 服务可靠性。我关注游标签名密钥的短写入风险、部分写入后的 I/O 清理和重试，并参与相应的回归测试与文档工作。我的贡献主要体现为对具体故障路径的分析和修复，不会将整个 PowerContext 架构归为个人成果。",
-                        en: "My contribution focused on context infrastructure analysis and Python service reliability. I worked on short-write risks for cursor-signing keys, fail-path I/O cleanup/retries, and regression tests/docs, rather than claiming the entire project architecture."
-                    },
-                    {
-                        q: "Q4. 如何证明 PowerContext 确实改善了 Agent 的表现？",
-                        ch: "需要用可重复的实验来验证，例如在相同任务集合上比较启用和禁用上下文服务时的任务完成率、交接后的信息缺失、重复劳动、Token 消耗和延迟，同时明确模型、数据集、运行环境与失败案例。",
-                        en: "We need reproducible experiments comparing task completion, context loss, repeated work, token usage, and latency with the service enabled vs disabled across identical task sets."
-                    }
+                titleCH: "让 Agent 的每一次工作，都成为下一次工作的起点。",
+                titleEN: "Make Every Agent Task the Starting Point for the Next.",
+                timing: "45 秒",
+                type: "opening",
+                subtitleCH: "持续增长的需求 · 基础设施思路 · 待验证的机会",
+                subtitleEN: "Growing demand · Infrastructure vision · Validated opportunity",
+                bullets: [
+                    { ch: "持续增长的需求：让长任务与协作工作保持连续", en: "Growing demand: Keeping long tasks and collaborative work continuous" },
+                    { ch: "基础设施思路：把工作上下文变成可管理、可追溯、可复用的资产", en: "Infrastructure vision: Turning work context into manageable, traceable assets" },
+                    { ch: "期待您的支持：共同通过真实工作流与试点验证未来商业价值", en: "Looking forward to your support: Validating future commercial value together" }
+                ],
+                cues: [
+                    { type: "speech", text: "稳健收尾，感谢听众，开放交流。" }
                 ],
                 script: [
-                    { zh: "另外关于个人贡献的边界划分以及如何通过可重复实验证明产品效果，我们也整理了对应的回答。", en: "Additionally, regarding the boundaries of my individual contribution and how to scientifically benchmark overall performance gains, we have detailed guidelines ready." }
-                ]
+                    { zh: "总结来说，PowerContext 致力于让 Agent 的每一次工作，都成为下一次工作的起点。谢谢大家，期待您的支持！", en: "In summary, PowerContext makes every agent task the starting point for the next. Thank you, and we look forward to your support!" }
+                ],
+                nextCue: "演示结束。"
             }
         ];
 
+        // --- APPLICATION STATE & VIEW CONTROLLERS ---
         let currentSlideIndex = 0;
         let currentView = 'slides'; // 'slides' or 'teleprompter'
-        let currentLangFilter = 'all'; // 'all', 'zh', 'en'
-        let notesVisible = false; // Default OFF for teleprompter notes panel
+        let currentLang = 'all'; // 'all', 'zh', 'en'
+        let notesVisible = false; // Default hidden
+        let fontSize = 16;
 
-        // Timer variables
+        // Timer State
+        let timerSeconds = 0;
         let timerInterval = null;
-        let secondsElapsed = 0;
         let isTimerRunning = false;
 
-        // Teleprompter Auto-scroll variables
+        // Teleprompter Auto Scroll State
         let teleScrollInterval = null;
         let isTeleScrolling = false;
         let scrollSpeedMultiplier = 3;
 
-        // Font size settings
-        let currentFontSize = 16;
-
-        // Initialize App
+        // DOM Elements Initialization
         window.addEventListener('DOMContentLoaded', () => {
-            initSlideSelector();
+            populateSlideSelector();
             renderCurrentSlide();
-            buildTeleprompterView();
+            renderTeleprompterView();
+            updateTimerDisplay();
             setupKeyboardNavigation();
         });
 
-        // Populate Slide Dropdown
-        function initSlideSelector() {
+        function populateSlideSelector() {
             const selector = document.getElementById('slide-selector');
             selector.innerHTML = '';
             slidesData.forEach((slide, idx) => {
                 const opt = document.createElement('option');
                 opt.value = idx;
-                opt.textContent = `${slide.id < 10 ? '0' + slide.id : slide.id} - ${slide.titleCH}`;
+                opt.textContent = `Slide ${String(idx + 1).padStart(2, '0')}: ${slide.titleCH}`;
                 selector.appendChild(opt);
             });
         }
 
-        // Switch Main Views (Slide Presentation vs Continuous Teleprompter)
         function switchView(view) {
             currentView = view;
-            const viewSlides = document.getElementById('view-slides');
-            const viewTele = document.getElementById('view-teleprompter');
             const btnSlides = document.getElementById('btn-mode-slides');
             const btnTele = document.getElementById('btn-mode-tele');
+            const viewSlides = document.getElementById('view-slides');
+            const viewTele = document.getElementById('view-teleprompter');
             const teleControls = document.getElementById('tele-controls');
 
             if (view === 'slides') {
-                viewSlides.classList.remove('hidden');
-                viewTele.classList.add('hidden');
                 btnSlides.className = "px-3 py-1 text-xs font-medium rounded-md transition-all bg-accent-cyan text-navy-900 font-semibold shadow";
                 btnTele.className = "px-3 py-1 text-xs font-medium rounded-md transition-all text-gray-400 hover:text-white";
+                viewSlides.classList.remove('hidden');
+                viewTele.classList.add('hidden');
                 teleControls.classList.add('hidden');
                 stopTeleprompterScroll();
             } else {
-                viewSlides.classList.add('hidden');
-                viewTele.classList.remove('hidden');
                 btnTele.className = "px-3 py-1 text-xs font-medium rounded-md transition-all bg-accent-cyan text-navy-900 font-semibold shadow";
                 btnSlides.className = "px-3 py-1 text-xs font-medium rounded-md transition-all text-gray-400 hover:text-white";
+                viewTele.classList.remove('hidden');
+                viewSlides.classList.add('hidden');
                 teleControls.classList.remove('hidden');
                 highlightActiveTeleSection();
             }
         }
 
-        // Toggle Side Notes / Teleprompter Panel (Default is OFF/hidden)
         function toggleSideNotes() {
             notesVisible = !notesVisible;
+            const container = document.getElementById('speaker-notes-container');
+            const btnText = document.getElementById('notes-toggle-text');
             const canvasContainer = document.getElementById('slide-canvas-container');
-            const notesContainer = document.getElementById('speaker-notes-container');
-            const toggleText = document.getElementById('notes-toggle-text');
-            const toggleBtn = document.getElementById('btn-toggle-notes');
 
             if (notesVisible) {
-                notesContainer.classList.remove('hidden');
-                notesContainer.style.display = 'flex';
-                canvasContainer.className = "w-full lg:w-7/12 h-full bg-navy-900 p-4 lg:p-8 flex flex-col justify-between transition-all duration-300 relative overflow-y-auto border-r border-navy-700";
-                toggleText.textContent = "隐藏提词";
-                toggleBtn.classList.remove('bg-accent-cyan', 'text-navy-900', 'font-semibold');
-                toggleBtn.classList.add('bg-navy-700', 'text-accent-light', 'border', 'border-navy-600');
+                container.style.display = 'flex';
+                canvasContainer.classList.remove('w-full');
+                canvasContainer.classList.add('w-full', 'lg:w-7/12');
+                btnText.textContent = "隐藏提词";
             } else {
-                notesContainer.classList.add('hidden');
-                notesContainer.style.display = 'none';
-                canvasContainer.className = "w-full h-full bg-navy-900 p-6 lg:p-16 flex flex-col justify-between transition-all duration-300 relative overflow-y-auto";
-                toggleText.textContent = "显示提词";
-                toggleBtn.classList.remove('bg-navy-700', 'text-accent-light', 'border', 'border-navy-600');
-                toggleBtn.classList.add('bg-accent-cyan', 'text-navy-900', 'font-semibold');
+                container.style.display = 'none';
+                canvasContainer.classList.remove('lg:w-7/12');
+                canvasContainer.classList.add('w-full');
+                btnText.textContent = "显示提词";
             }
         }
 
-        // Navigation Actions
-        function goToSlide(index) {
-            if (index < 0 || index >= slidesData.length) return;
-            currentSlideIndex = index;
-            document.getElementById('slide-selector').value = currentSlideIndex;
+        function goToSlide(idx) {
+            if (idx < 0 || idx >= slidesData.length) return;
+            currentSlideIndex = idx;
+            document.getElementById('slide-selector').value = idx;
             renderCurrentSlide();
             if (currentView === 'teleprompter') {
                 highlightActiveTeleSection();
@@ -624,242 +598,199 @@
             }
         }
 
-        // Render Current Slide and Speaker Notes
+        // --- RENDER SLIDE CANVAS & NOTES ---
         function renderCurrentSlide() {
             const slide = slidesData[currentSlideIndex];
             
             // Update Badges
-            document.getElementById('slide-num-badge').textContent = `SLIDE ${slide.id < 10 ? '0' + slide.id : slide.id} / ${slidesData.length}`;
+            document.getElementById('slide-num-badge').textContent = `SLIDE ${String(currentSlideIndex + 1).padStart(2, '0')} / ${slidesData.length}`;
             document.getElementById('slide-timing-badge').innerHTML = `<i class="fa-regular fa-clock mr-1"></i>${slide.timing}`;
 
-            // Render Slide Content Canvas
+            // Render Content Area based on Type
             const area = document.getElementById('slide-content-area');
             let html = `
-                <div class="space-y-6">
-                    <div>
-                        <h2 class="text-2xl lg:text-3xl font-bold text-white tracking-tight">${slide.titleCH}</h2>
-                        <p class="text-accent-teal text-sm lg:text-base font-mono mt-1">${slide.titleEN}</p>
+                <div class="space-y-4 max-w-4xl mx-auto">
+                    <div class="space-y-1">
+                        <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white">${slide.titleCH}</h1>
+                        <p class="text-xs md:text-sm font-mono text-accent-light">${slide.titleEN}</p>
                     </div>
             `;
 
+            if (slide.subtitleCH) {
+                html += `
+                    <div class="bg-navy-800/80 border-l-4 border-accent-cyan p-3 rounded-r-lg">
+                        <p class="text-sm font-medium text-warm-50">${slide.subtitleCH}</p>
+                        <p class="text-xs font-mono text-gray-400">${slide.subtitleEN || ''}</p>
+                    </div>
+                `;
+            }
+
             if (slide.type === 'opening') {
-                html += `
-                    <div class="bg-navy-800/60 border border-navy-700 rounded-xl p-6 my-4">
-                        <p class="text-lg font-medium text-warm-50">${slide.subtitleCH}</p>
-                        <p class="text-sm text-gray-400 font-mono mt-1">${slide.subtitleEN}</p>
-                    </div>
-                    <div class="space-y-3 mt-4">
-                        ${slide.bullets.map(b => `
-                            <div class="flex items-start space-x-3 bg-navy-800/40 p-3 rounded-lg border border-navy-700/50">
-                                <i class="fa-solid fa-circle-dot text-accent-cyan mt-1.5 text-xs"></i>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-200">${b.ch}</p>
-                                    <p class="text-xs text-gray-400 font-mono">${b.en}</p>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
+                html += `<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">`;
+                slide.bullets.forEach((b, i) => {
+                    html += `
+                        <div class="bg-navy-800 p-4 rounded-xl border border-navy-700 space-y-2">
+                            <span class="text-xs font-mono text-accent-cyan">0${i+1}</span>
+                            <p class="text-xs text-gray-200 leading-relaxed">${b.ch}</p>
+                            <p class="text-[10px] font-mono text-gray-400">${b.en}</p>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
             } else if (slide.type === 'grid') {
-                html += `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                        ${slide.gridItems.map(item => `
-                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4 flex items-start space-x-4">
-                                <div class="w-10 h-10 rounded-lg bg-navy-700 flex items-center justify-center text-accent-cyan shrink-0">
-                                    <i class="fa-solid ${item.icon} text-lg"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-white text-base">${item.titleCH}</h4>
-                                    <p class="text-xs text-accent-light font-mono">${item.titleEN}</p>
-                                    <p class="text-xs text-gray-300 mt-1.5">${item.descCH}</p>
-                                </div>
+                html += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">`;
+                slide.gridItems.forEach(item => {
+                    html += `
+                        <div class="bg-navy-800 p-4 rounded-xl border border-navy-700 flex items-start space-x-3">
+                            <div class="p-2 rounded-lg bg-navy-700 text-accent-cyan mt-0.5">
+                                <i class="fa-solid ${item.icon} text-lg"></i>
                             </div>
-                        `).join('')}
-                    </div>
-                `;
+                            <div class="space-y-1">
+                                <h3 class="text-sm font-semibold text-white">${item.titleCH} <span class="text-xs font-mono text-gray-400">/ ${item.titleEN}</span></h3>
+                                <p class="text-xs text-gray-300">${item.descCH}</p>
+                                <p class="text-[10px] font-mono text-gray-400">${item.descEN}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+                if (slide.formulaCH) {
+                    html += `
+                        <div class="mt-4 p-3 bg-navy-800/90 border border-accent-cyan/40 rounded-xl text-center">
+                            <p class="text-xs font-bold text-accent-light font-mono">${slide.formulaCH}</p>
+                            <p class="text-[10px] text-gray-400 font-mono mt-0.5">${slide.formulaEN}</p>
+                        </div>
+                    `;
+                }
             } else if (slide.type === 'comparison') {
-                html += `
-                    <div class="bg-navy-800/80 border border-accent-cyan/30 rounded-xl p-5 my-4">
-                        <p class="text-accent-light font-medium italic text-base">“${slide.quoteCH}”</p>
-                        <p class="text-xs text-gray-400 font-mono mt-1">${slide.quoteEN}</p>
-                    </div>
-                    <div class="space-y-3">
-                        ${slide.bullets.map(b => `
-                            <div class="flex items-start space-x-3 bg-navy-800/40 p-3 rounded-lg border border-navy-700">
-                                <i class="fa-solid fa-arrow-right text-accent-teal mt-1 text-xs"></i>
-                                <div>
-                                    <p class="text-sm text-gray-200 font-medium">${b.ch}</p>
-                                    <p class="text-xs text-gray-400 font-mono">${b.en}</p>
-                                </div>
+                if (slide.quoteCH) {
+                    html += `
+                        <div class="p-4 bg-navy-800 border border-navy-700 rounded-xl mb-4 text-center">
+                            <p class="text-base font-semibold text-accent-cyan">"${slide.quoteCH}"</p>
+                            <p class="text-xs font-mono text-gray-400 mt-1">"${slide.quoteEN}"</p>
+                        </div>
+                    `;
+                }
+                html += `<div class="space-y-2.5 mt-2">`;
+                slide.bullets.forEach((b, i) => {
+                    html += `
+                        <div class="bg-navy-800 p-3 rounded-lg border border-navy-700 flex items-center space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-navy-700 text-accent-teal flex items-center justify-center font-mono text-xs font-bold shrink-0">${i+1}</span>
+                            <div>
+                                <p class="text-xs font-medium text-white">${b.ch}</p>
+                                <p class="text-[10px] font-mono text-gray-400">${b.en}</p>
                             </div>
-                        `).join('')}
-                    </div>
-                `;
+                        </div>
+                    `;
+                });
+                html += `</div>`;
             } else if (slide.type === 'architecture') {
-                html += `
-                    <div class="bg-navy-800/60 border border-navy-700 rounded-xl p-5 my-4">
-                        <p class="text-lg font-semibold text-white">${slide.subtitleCH}</p>
-                        <p class="text-xs text-accent-teal font-mono mt-0.5">${slide.subtitleEN}</p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
-                        ${slide.archSteps.map(st => `
-                            <div class="rounded-xl p-4 border text-center flex flex-col justify-center ${st.highlight ? 'bg-navy-700/80 border-accent-cyan shadow-lg shadow-accent-cyan/10' : 'bg-navy-800/50 border-navy-700'}">
-                                <span class="text-xs font-mono text-accent-light uppercase">${st.step}</span>
-                                <p class="font-bold text-white text-sm mt-1">${st.ch}</p>
-                                <p class="text-xs text-gray-400 font-mono mt-0.5 whitespace-pre-line">${st.en || st.desc || ''}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
+                html += `<div class="flex flex-col md:flex-row items-center justify-between gap-3 mt-6">`;
+                slide.archSteps.forEach((step, i) => {
+                    html += `
+                        <div class="flex-1 w-full bg-navy-800 p-4 rounded-xl border ${step.highlight ? 'border-accent-cyan shadow-lg shadow-accent-cyan/10 bg-navy-800/90' : 'border-navy-700'} text-center space-y-2">
+                            <span class="text-xs font-mono uppercase px-2 py-0.5 rounded ${step.highlight ? 'bg-accent-cyan text-navy-900 font-bold' : 'bg-navy-700 text-accent-light'}">${step.step}</span>
+                            <p class="text-xs font-bold text-white whitespace-pre-line">${step.ch}</p>
+                            <p class="text-[10px] font-mono text-gray-400">${step.en || step.desc || ''}</p>
+                        </div>
+                    `;
+                    if (i < slide.archSteps.length - 1) {
+                        html += `<div class="text-accent-teal my-auto hidden md:block"><i class="fa-solid fa-arrow-right"></i></div>`;
+                    }
+                });
+                html += `</div>`;
             } else if (slide.type === 'four-cards') {
-                html += `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                        ${slide.cards.map(c => `
-                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4 hover:border-accent-cyan/50 transition">
-                                <div class="flex justify-between items-start">
-                                    <span class="font-mono font-bold text-accent-cyan text-lg">${c.title}</span>
-                                    <span class="text-xs bg-navy-700 text-accent-light px-2 py-0.5 rounded font-mono">${c.sub}</span>
-                                </div>
-                                <p class="text-sm text-gray-200 mt-2 font-medium">${c.ch}</p>
-                                <p class="text-xs text-gray-400 font-mono mt-1">${c.en}</p>
+                html += `<grid class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">`;
+                slide.cards.forEach(card => {
+                    html += `
+                        <div class="bg-navy-800 p-4 rounded-xl border border-navy-700 space-y-2">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-sm font-bold text-accent-cyan font-mono">${card.title}</h3>
+                                <span class="text-[10px] bg-navy-700 text-accent-light px-2 py-0.5 rounded">${card.sub}</span>
                             </div>
-                        `).join('')}
-                    </div>
-                `;
+                            <p class="text-xs text-white font-medium">${card.ch}</p>
+                            <p class="text-[10px] font-mono text-gray-400">${card.en}</p>
+                        </div>
+                    `;
+                });
+                html += `</grid>`;
             } else if (slide.type === 'flow') {
-                html += `
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 my-4">
-                        ${slide.flowSteps.map(f => `
-                            <div class="bg-navy-800/70 border border-navy-700 rounded-lg p-3 text-center">
-                                <span class="text-xs font-mono font-bold text-accent-cyan px-2 py-0.5 bg-navy-900 rounded">${f.num}</span>
-                                <h4 class="font-bold text-white text-sm mt-2">${f.name}</h4>
-                                <p class="text-xs text-gray-300 mt-1">${f.descCH}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="space-y-2 mt-2">
-                        ${slide.bullets.map(b => `
-                            <div class="flex items-center space-x-2 text-xs bg-navy-800/40 p-2.5 rounded border border-navy-700/50">
-                                <i class="fa-solid fa-check text-accent-teal"></i>
-                                <span class="text-gray-200">${b.ch}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-            } else if (slide.type === 'engineering') {
-                html += `
-                    <div class="space-y-3 mt-4">
-                        ${slide.focusPoints.map(fp => `
-                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4">
-                                <div class="flex items-center space-x-2">
-                                    <i class="fa-solid fa-code text-accent-cyan text-sm"></i>
-                                    <h4 class="font-bold text-white text-sm">${fp.title}</h4>
-                                </div>
-                                <p class="text-xs text-gray-200 mt-1.5 pl-5">${fp.detailCH}</p>
-                                <p class="text-xs text-accent-light/80 font-mono mt-0.5 pl-5">${fp.detailEN}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-            } else if (slide.type === 'values') {
-                html += `
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-4">
-                        ${slide.values.map(v => `
-                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4 text-center">
-                                <h4 class="font-bold text-accent-teal text-base">${v.labelCH}</h4>
-                                <p class="text-xs text-gray-400 font-mono">${v.labelEN}</p>
-                                <p class="text-xs text-gray-200 mt-2">${v.descCH}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="bg-navy-800/60 border border-amber-500/30 rounded-xl p-3.5 mt-2">
-                        <p class="text-xs text-amber-300 font-medium">${slide.quoteCH}</p>
-                        <p class="text-xs text-gray-400 font-mono mt-0.5">${slide.quoteEN}</p>
-                    </div>
-                `;
-            } else if (slide.type === 'conclusion') {
-                html += `
-                    <div class="bg-navy-800/80 border border-accent-cyan/40 rounded-xl p-6 text-center my-6 shadow-lg">
-                        <h3 class="text-xl font-bold text-white">${slide.quoteCH}</h3>
-                        <p class="text-sm text-accent-teal font-mono mt-1">${slide.quoteEN}</p>
-                        <p class="text-sm text-gray-300 mt-4 font-medium">${slide.subtitleCH}</p>
-                        <p class="text-xs text-gray-400 font-mono mt-1">${slide.subtitleEN}</p>
-                    </div>
-                `;
-            } else if (slide.type === 'backup') {
-                html += `
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
-                        ${slide.backupSections.map(bs => `
-                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4">
-                                <h4 class="font-bold text-accent-teal text-sm mb-2">${bs.title}</h4>
-                                <ul class="space-y-1.5">
-                                    ${bs.items.map(it => `<li class="text-xs text-gray-300 flex items-center space-x-1.5"><i class="fa-solid fa-angle-right text-accent-cyan"></i><span>${it}</span></li>`).join('')}
-                                </ul>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-            } else if (slide.type === 'qa') {
-                html += `
-                    <div class="space-y-4 mt-4">
-                        ${slide.qaList.map(qa => `
-                            <div class="bg-navy-800/80 border border-navy-700 rounded-xl p-4">
-                                <h4 class="font-bold text-accent-cyan text-sm">${qa.q}</h4>
-                                <p class="text-xs text-gray-200 mt-2">${qa.ch}</p>
-                                <p class="text-xs text-gray-400 font-mono mt-1">${qa.en}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
+                html += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-4">`;
+                slide.flowSteps.forEach(fs => {
+                    html += `
+                        <div class="bg-navy-800 p-3.5 rounded-xl border border-navy-700 space-y-2">
+                            <span class="text-xs font-mono text-accent-cyan font-bold">STEP ${fs.num}</span>
+                            <h3 class="text-sm font-bold text-white">${fs.name}</h3>
+                            <p class="text-xs text-gray-300">${fs.descCH}</p>
+                            <p class="text-[10px] font-mono text-gray-400">${fs.descEN}</p>
+                        </div>
+                    `;
+                });
+                html += `</div><div class="space-y-2 mt-4">`;
+                slide.bullets.forEach(b => {
+                    html += `
+                        <div class="bg-navy-800 p-2.5 rounded-lg border border-navy-700 flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-accent-teal text-xs"></i>
+                            <span class="text-xs text-white font-medium">${b.ch}</span>
+                            <span class="text-[10px] font-mono text-gray-400 ml-auto">(${b.en})</span>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
             }
 
             html += `</div>`;
             area.innerHTML = html;
+            area.style.fontSize = `${fontSize}px`;
 
-            // Render Speaker Notes Area
+            // Render Speaker Notes
             renderSpeakerNotes(slide);
         }
 
-        // Render Speaker Notes with Cues & Language Filter
         function renderSpeakerNotes(slide) {
             const notesArea = document.getElementById('speaker-notes-area');
-            let notesHtml = '';
+            let html = ``;
 
-            // Render Cues if available
+            // Cues
             if (slide.cues && slide.cues.length > 0) {
-                notesHtml += `<div class="space-y-1.5 mb-3">`;
+                html += `<div class="space-y-1.5 mb-4">`;
                 slide.cues.forEach(cue => {
-                    let badgeClass = cue.type === 'speech' ? 'cue-speech' : (cue.type === 'slide' ? 'cue-slide' : 'cue-pause');
-                    notesHtml += `<div><span class="cue-tag ${badgeClass}">演讲提示</span><span class="text-xs text-amber-200 italic">${cue.text}</span></div>`;
+                    let tagClass = 'cue-speech';
+                    let label = '演讲提示';
+                    if (cue.type === 'slide') { tagClass = 'cue-slide'; label = '幻灯片'; }
+                    else if (cue.type === 'pause') { tagClass = 'cue-pause'; label = '停顿'; }
+                    else if (cue.type === 'time') { tagClass = 'cue-time'; label = '时间'; }
+
+                    html += `<div><span class="cue-tag ${tagClass}">${label}</span><span class="text-xs text-gray-300 italic">${cue.text}</span></div>`;
                 });
-                notesHtml += `</div><hr class="border-navy-700 my-2">`;
+                html += `</div><hr class="border-navy-700 my-3">`;
             }
 
-            // Render Script Paragraphs
-            if (slide.script) {
-                slide.script.forEach(s => {
-                    notesHtml += `<div class="space-y-1.5 bg-navy-900/50 p-3 rounded-lg border border-navy-700/50">`;
-                    if (currentLangFilter === 'all' || currentLangFilter === 'zh') {
-                        notesHtml += `<p class="text-warm-50 text-sm leading-relaxed">${s.zh}</p>`;
-                    }
-                    if (currentLangFilter === 'all' || currentLangFilter === 'en') {
-                        notesHtml += `<p class="text-accent-light text-xs font-mono leading-relaxed">${s.en}</p>`;
-                    }
-                    notesHtml += `</div>`;
-                });
-            }
+            // Script lines
+            html += `<div class="space-y-3">`;
+            slide.script.forEach(s => {
+                html += `
+                    <div class="space-y-1 p-2.5 rounded-lg bg-navy-900/50 border border-navy-700/60">
+                        ${(currentLang === 'all' || currentLang === 'zh') ? `<p class="text-xs text-warm-100 font-medium">${s.zh}</p>` : ''}
+                        ${(currentLang === 'all' || currentLang === 'en') ? `<p class="text-[11px] font-mono text-gray-400">${s.en}</p>` : ''}
+                    </div>
+                `;
+            });
+            html += `</div>`;
 
-            // Render Next Cue if available
             if (slide.nextCue) {
-                notesHtml += `<div class="mt-3 pt-2 border-t border-navy-700"><span class="cue-tag cue-pause">翻页提示</span><span class="text-xs text-red-300 italic">${slide.nextCue}</span></div>`;
+                html += `
+                    <div class="mt-4 pt-3 border-t border-navy-700 text-[11px] font-mono text-accent-teal">
+                        <i class="fa-solid fa-forward mr-1"></i>衔接：${slide.nextCue}
+                    </div>
+                `;
             }
 
-            notesArea.innerHTML = notesHtml;
+            notesArea.innerHTML = html;
         }
 
-        // Toggle Language Filter (ALL / ZH / EN)
         function toggleLanguageFilter(lang) {
-            currentLangFilter = lang;
+            currentLang = lang;
             ['all', 'zh', 'en'].forEach(l => {
                 const btn = document.getElementById(`lang-btn-${l}`);
                 if (l === lang) {
@@ -871,144 +802,119 @@
             renderSpeakerNotes(slidesData[currentSlideIndex]);
         }
 
-        // Build Full Continuous Teleprompter View
-        function buildTeleprompterView() {
+        // --- RENDER CONTINUOUS TELEPROMPTER VIEW ---
+        function renderTeleprompterView() {
             const container = document.getElementById('teleprompter-content');
             let html = '';
 
             slidesData.forEach((slide, idx) => {
                 html += `
-                    <div id="tele-slide-${idx}" class="tele-section bg-navy-800/60 border border-navy-700 rounded-2xl p-6 md:p-10 space-y-6 transition-all">
-                        <div class="flex justify-between items-center border-b border-navy-700 pb-4">
-                            <span class="text-xs font-mono px-3 py-1 rounded bg-navy-700 text-accent-teal font-bold">SLIDE ${slide.id < 10 ? '0' + slide.id : slide.id} / ${slidesData.length}</span>
-                            <span class="text-sm font-bold text-white">${slide.titleCH} / <span class="text-accent-teal font-mono text-xs">${slide.titleEN}</span></span>
+                    <div id="tele-slide-${idx}" class="p-6 rounded-xl bg-navy-800 border border-navy-700 space-y-4 transition-all">
+                        <div class="flex justify-between items-center border-b border-navy-700 pb-3">
+                            <span class="text-xs font-mono px-2.5 py-1 rounded bg-navy-900 text-accent-teal border border-navy-700">SLIDE ${String(idx + 1).padStart(2, '0')} / ${slidesData.length}</span>
+                            <span class="text-sm font-bold text-white">${slide.titleCH}</span>
                         </div>
+                        <div class="space-y-3">
                 `;
 
-                if (slide.cues && slide.cues.length > 0) {
-                    html += `<div class="space-y-1">`;
-                    slide.cues.forEach(c => {
-                        html += `<div><span class="cue-tag cue-speech">提示</span><span class="text-xs text-amber-200 italic">${c.text}</span></div>`;
+                if (slide.cues) {
+                    slide.cues.forEach(cue => {
+                        html += `<div><span class="cue-tag cue-speech">提示</span><span class="text-xs text-accent-light italic">${cue.text}</span></div>`;
                     });
-                    html += `</div>`;
                 }
 
-                if (slide.script) {
-                    html += `<div class="space-y-4">`;
-                    slide.script.forEach(s => {
-                        html += `
-                            <div class="bg-navy-900/80 p-4 rounded-xl border border-navy-700 space-y-2">
-                                <p class="text-base text-warm-50 leading-relaxed font-sans">${s.zh}</p>
-                                <p class="text-xs text-accent-light font-mono leading-relaxed">${s.en}</p>
-                            </div>
-                        `;
-                    });
-                    html += `</div>`;
-                }
+                slide.script.forEach(s => {
+                    html += `
+                        <div class="space-y-1 p-3 rounded-lg bg-navy-900/60 border border-navy-700/50">
+                            <p class="text-sm text-warm-100 font-medium">${s.zh}</p>
+                            <p class="text-xs font-mono text-gray-400">${s.en}</p>
+                        </div>
+                    `;
+                });
 
-                if (slide.nextCue) {
-                    html += `<div><span class="cue-tag cue-pause">动作</span><span class="text-xs text-red-300 italic">${slide.nextCue}</span></div>`;
-                }
-
-                html += `</div>`;
+                html += `</div></div>`;
             });
 
             container.innerHTML = html;
         }
 
-        // Highlight Active Slide in Teleprompter Mode
         function highlightActiveTeleSection() {
-            document.querySelectorAll('.tele-section').forEach((sec, idx) => {
+            slidesData.forEach((_, idx) => {
+                const el = document.getElementById(`tele-slide-${idx}`);
+                if (!el) return;
                 if (idx === currentSlideIndex) {
-                    sec.classList.add('active-tele-section');
-                    sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    el.classList.add('active-tele-section');
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
-                    sec.classList.remove('active-tele-section');
+                    el.classList.remove('active-tele-section');
                 }
             });
         }
 
-        // Timer Stopwatch Functions
+        // --- TIMER & STOPWATCH ---
         function toggleTimer() {
+            isTimerRunning = !isTimerRunning;
             const icon = document.getElementById('timer-icon');
             if (isTimerRunning) {
-                clearInterval(timerInterval);
-                isTimerRunning = false;
-                icon.className = "fa-solid fa-play";
-            } else {
+                icon.className = "fa-solid fa-pause";
                 timerInterval = setInterval(() => {
-                    secondsElapsed++;
+                    timerSeconds++;
                     updateTimerDisplay();
                 }, 1000);
-                isTimerRunning = true;
-                icon.className = "fa-solid fa-pause";
+            } else {
+                icon.className = "fa-solid fa-play";
+                clearInterval(timerInterval);
             }
         }
 
         function resetTimer() {
-            clearInterval(timerInterval);
             isTimerRunning = false;
-            secondsElapsed = 0;
-            updateTimerDisplay();
+            clearInterval(timerInterval);
             document.getElementById('timer-icon').className = "fa-solid fa-play";
+            timerSeconds = 0;
+            updateTimerDisplay();
         }
 
         function updateTimerDisplay() {
-            const mins = Math.floor(secondsElapsed / 60);
-            const secs = secondsElapsed % 60;
-            document.getElementById('timer-display').textContent = `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
+            const mins = Math.floor(timerSeconds / 60);
+            const secs = timerSeconds % 60;
+            document.getElementById('timer-display').textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
         }
 
-        // Teleprompter Auto-Scroll Functions
+        // --- FONT SIZE ADJUSTMENT ---
+        function adjustFontSize(delta) {
+            fontSize = Math.min(Math.max(fontSize + delta, 12), 26);
+            document.getElementById('font-size-label').textContent = `${fontSize}px`;
+            const area = document.getElementById('slide-content-area');
+            if (area) area.style.fontSize = `${fontSize}px`;
+        }
+
+        // --- TELEPROMPTER AUTO SCROLL ---
         function toggleTeleprompterScroll() {
-            const teleView = document.getElementById('view-teleprompter');
+            isTeleScrolling = !isTeleScrolling;
             const icon = document.getElementById('tele-play-icon');
+            const viewTele = document.getElementById('view-teleprompter');
+
             if (isTeleScrolling) {
-                clearInterval(teleScrollInterval);
-                isTeleScrolling = false;
-                icon.className = "fa-solid fa-play";
-            } else {
+                icon.className = "fa-solid fa-pause text-red-400";
                 teleScrollInterval = setInterval(() => {
-                    teleView.scrollBy({ top: scrollSpeedMultiplier * 1.5, behavior: 'smooth' });
+                    viewTele.scrollTop += scrollSpeedMultiplier;
                 }, 50);
-                isTeleScrolling = true;
-                icon.className = "fa-solid fa-pause";
+            } else {
+                icon.className = "fa-solid fa-play text-accent-cyan";
+                clearInterval(teleScrollInterval);
             }
         }
 
         function updateScrollSpeed(val) {
             scrollSpeedMultiplier = parseInt(val);
             document.getElementById('speed-label').textContent = `${val}x`;
-            if (isTeleScrolling) {
-                clearInterval(teleScrollInterval);
-                const teleView = document.getElementById('view-teleprompter');
-                teleScrollInterval = setInterval(() => {
-                    teleView.scrollBy({ top: scrollSpeedMultiplier * 1.5, behavior: 'smooth' });
-                }, 50);
-            }
         }
 
-        function stopTeleprompterScroll() {
-            if (isTeleScrolling) {
-                clearInterval(teleScrollInterval);
-                isTeleScrolling = false;
-                document.getElementById('tele-play-icon').className = "fa-solid fa-play";
-            }
-        }
-
-        // Font Size Adjuster
-        function adjustFontSize(delta) {
-            currentFontSize = Math.min(24, Math.max(12, currentFontSize + delta));
-            document.getElementById('font-size-label').textContent = `${currentFontSize}px`;
-            document.getElementById('speaker-notes-area').style.fontSize = `${currentFontSize}px`;
-        }
-
-        // Fullscreen Toggle
+        // --- FULLSCREEN ---
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(err => {
-                    alert(`Error attempting to enable fullscreen: ${err.message}`);
-                });
+                document.documentElement.requestFullscreen();
             } else {
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
@@ -1016,7 +922,7 @@
             }
         }
 
-        // Keyboard Navigation
+        // --- KEYBOARD SHORTCUTS ---
         function setupKeyboardNavigation() {
             document.addEventListener('keydown', (e) => {
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;

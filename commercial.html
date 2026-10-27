@@ -80,6 +80,57 @@
 
     ul.bullet-list { margin-left: 16px; font-size: 12px; color: #CBD5E1; line-height: 1.6; }
     ul.bullet-list li { margin-bottom: 4px; }
+
+    /* ===== Executive visual system: added charts without deleting original copy ===== */
+    .viz-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px; }
+    .viz-kpi { background:rgba(255,255,255,.025); border:1px solid #1E293B; border-radius:8px; padding:10px 12px; }
+    .viz-kpi .num { font:800 20px/1.1 'JetBrains Mono',monospace; color:#F8FAFC; }
+    .viz-kpi .lab { font-size:10px; color:#64748B; margin-top:4px; }
+    .mini-chart { background:rgba(255,255,255,.02); border:1px solid #1E293B; border-radius:8px; padding:12px; }
+    .mini-title { font-size:11px; font-weight:800; color:#CBD5E1; margin-bottom:8px; display:flex; justify-content:space-between; gap:8px; }
+    .mini-title span { color:#64748B; font-weight:500; }
+    .hbar { display:grid; grid-template-columns:92px 1fr 40px; gap:7px; align-items:center; margin:6px 0; font-size:10px; color:#94A3B8; }
+    .hbar-track { height:7px; border-radius:10px; background:#1E293B; overflow:hidden; }
+    .hbar-fill { height:100%; border-radius:10px; background:linear-gradient(90deg,#10B981,#38BDF8); }
+    .hbar-fill.amber { background:linear-gradient(90deg,#F59E0B,#FDE68A); }
+    .hbar-fill.purple { background:linear-gradient(90deg,#A855F7,#38BDF8); }
+    .donut-wrap { display:flex; align-items:center; gap:14px; }
+    .donut { width:92px; height:92px; border-radius:50%; position:relative; flex:0 0 auto; }
+    .donut::after { content:""; position:absolute; inset:18px; border-radius:50%; background:#111827; border:1px solid #1E293B; }
+    .donut-center { position:absolute; inset:0; display:flex; z-index:2; align-items:center; justify-content:center; flex-direction:column; font:800 13px 'JetBrains Mono'; color:#F8FAFC; pointer-events:none; }
+    .donut-center small { font:500 8px 'Noto Sans SC'; color:#64748B; margin-top:2px; }
+    .legend { display:flex; flex-direction:column; gap:5px; font-size:9px; color:#94A3B8; }
+    .legend i { width:7px; height:7px; border-radius:2px; display:inline-block; margin-right:5px; }
+    .funnel { display:flex; flex-direction:column; align-items:center; gap:5px; margin-top:8px; }
+    .funnel-step { height:27px; display:flex; align-items:center; justify-content:center; border-radius:4px; font-size:10px; font-weight:700; color:#E2E8F0; border:1px solid rgba(255,255,255,.08); }
+    .spark { height:58px; display:flex; align-items:flex-end; gap:5px; padding:5px 2px 0; border-bottom:1px solid #334155; }
+    .spark b { flex:1; min-width:7px; border-radius:3px 3px 0 0; background:linear-gradient(180deg,#38BDF8,#10B981); opacity:.9; }
+    .money-waterfall { display:flex; align-items:flex-end; gap:8px; height:100px; padding:6px 4px 20px; border-bottom:1px solid #334155; position:relative; }
+    .money-waterfall .wf { flex:1; position:relative; border-radius:4px 4px 0 0; min-width:34px; }
+    .money-waterfall .wf span { position:absolute; bottom:-17px; width:100%; text-align:center; font-size:8px; color:#64748B; }
+    .money-waterfall .wf em { position:absolute; top:-15px; width:100%; text-align:center; font:700 9px 'JetBrains Mono'; color:#CBD5E1; font-style:normal; }
+    .score-grid { display:grid; grid-template-columns:110px repeat(5,1fr); gap:4px; align-items:center; font-size:9px; }
+    .score-grid .head { color:#64748B; text-align:center; font-weight:700; }
+    .score-grid .name { color:#CBD5E1; font-weight:700; }
+    .score { height:17px; border-radius:3px; background:#1E293B; position:relative; overflow:hidden; }
+    .score::before { content:""; position:absolute; inset:0; width:var(--p); background:linear-gradient(90deg,rgba(16,185,129,.35),rgba(16,185,129,.95)); }
+    .score.blue::before { background:linear-gradient(90deg,rgba(56,189,248,.3),rgba(56,189,248,.95)); }
+    .score.amber::before { background:linear-gradient(90deg,rgba(245,158,11,.3),rgba(245,158,11,.95)); }
+    .score.purple::before { background:linear-gradient(90deg,rgba(168,85,247,.3),rgba(168,85,247,.95)); }
+    .score b { position:relative; z-index:1; display:block; text-align:center; line-height:17px; color:#F8FAFC; font-size:8px; }
+    .timeline-viz { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:10px; }
+    .timeline-viz > div { position:relative; padding-top:20px; text-align:center; font-size:9px; color:#94A3B8; }
+    .timeline-viz > div::before { content:""; position:absolute; top:7px; left:0; right:0; height:3px; background:#334155; }
+    .timeline-viz > div:first-child::before { left:50%; }
+    .timeline-viz > div:last-child::before { right:50%; }
+    .timeline-viz > div::after { content:""; position:absolute; top:2px; left:50%; width:13px; height:13px; border-radius:50%; transform:translateX(-50%); background:#10B981; border:3px solid #0B0F19; box-shadow:0 0 0 1px #10B981; }
+    .formula-strip { display:grid; grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr; align-items:center; gap:5px; margin-top:10px; }
+    .formula-box { padding:8px; border-radius:6px; background:#111827; border:1px solid #1E293B; text-align:center; font-size:9px; color:#94A3B8; }
+    .formula-box strong { display:block; color:#F8FAFC; font-size:11px; margin-bottom:2px; }
+    .formula-op { text-align:center; color:#10B981; font-weight:900; }
+    .exec-callout { margin-top:10px; padding:8px 10px; border-radius:6px; background:linear-gradient(90deg,rgba(16,185,129,.08),rgba(56,189,248,.04)); border:1px solid rgba(16,185,129,.18); font-size:10px; color:#CBD5E1; }
+    .tiny-note { font-size:8px; color:#475569; margin-top:5px; line-height:1.3; }
+
   </style>
 </head>
 <body>
@@ -112,6 +163,14 @@
         <div style="font-size: 12px; color: #64748B; font-weight: 700;">落地战略目标</div>
         <div style="font-size: 15px; font-weight: 800; color: #F8FAFC; margin-top: 4px;">90 天敏捷 MVP 验证正向单位经济</div>
       </div>
+    </div>
+
+    
+    <div class="formula-strip" style="margin-top:0;">
+      <div class="formula-box"><strong>流量</strong>用户进来</div><div class="formula-op">→</div>
+      <div class="formula-box"><strong>价值瞬间</strong>看到 AI 结果</div><div class="formula-op">→</div>
+      <div class="formula-box"><strong>付费</strong>订阅 / 点数 / 企业合同</div><div class="formula-op">→</div>
+      <div class="formula-box"><strong style="color:#10B981;">利润</strong>LTV ＞ CAC + 推理成本</div>
     </div>
 
     <div class="slide-footer">
@@ -170,6 +229,30 @@
       <div style="font-size: 12px; color: #CBD5E1;">
         <i class="fa-solid fa-lightbulb" style="color: #10B981; margin-right: 8px;"></i>
         <strong>战略结论：</strong> 技术实力仅构成立项门槛。明确的付费场景、粘性留存率与合理的推理成本（Unit Economics）共同决定最终商业成败。
+      </div>
+    </div>
+
+    
+    <div class="viz-row">
+      <div class="mini-chart">
+        <div class="mini-title">老板只需看懂这一条 <span>商业化链路</span></div>
+        <div class="formula-strip" style="grid-template-columns:1fr 18px 1fr 18px 1fr;margin-top:0;">
+          <div class="formula-box"><strong>能用</strong>技术成立</div><div class="formula-op">→</div>
+          <div class="formula-box"><strong>愿意用</strong>留存成立</div><div class="formula-op">→</div>
+          <div class="formula-box"><strong style="color:#10B981;">愿意付钱</strong>商业成立</div>
+        </div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">价值感知速度 <span>示意评分 / 非外部统计</span></div>
+        <div class="hbar"><b>C端视觉</b><div class="hbar-track"><div class="hbar-fill" style="width:95%"></div></div><b>95</b></div>
+        <div class="hbar"><b>Prosumer</b><div class="hbar-track"><div class="hbar-fill" style="width:78%"></div></div><b>78</b></div>
+        <div class="hbar"><b>B2B流程</b><div class="hbar-track"><div class="hbar-fill amber" style="width:70%"></div></div><b>70</b></div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">长期商业质量 <span>示意评分 / 非外部统计</span></div>
+        <div class="hbar"><b>C端视觉</b><div class="hbar-track"><div class="hbar-fill" style="width:58%"></div></div><b>58</b></div>
+        <div class="hbar"><b>Prosumer</b><div class="hbar-track"><div class="hbar-fill" style="width:80%"></div></div><b>80</b></div>
+        <div class="hbar"><b>B2B流程</b><div class="hbar-track"><div class="hbar-fill amber" style="width:92%"></div></div><b>92</b></div>
       </div>
     </div>
 
@@ -240,6 +323,28 @@
 
     <div style="font-size: 11px; color: #64748B; margin-top: 8px;">
       *数据来源及说明：基于 A16Z Top 50 AI Apps 历史榜单及 SensorTower/TechCrunch 公开报道整理。不同产品统计口径存在差异（含 IAP、订阅及 API 算力），仅作商业模式逻辑参考。
+    </div>
+
+    
+    <div class="viz-row" style="grid-template-columns:1.35fr 1fr 1fr;">
+      <div class="mini-chart">
+        <div class="mini-title">头部案例传递出的共同信号 <span>按本页案例归纳</span></div>
+        <div class="hbar"><b>订阅可持续性</b><div class="hbar-track"><div class="hbar-fill" style="width:92%"></div></div><b>高</b></div>
+        <div class="hbar"><b>垂直痛点强度</b><div class="hbar-track"><div class="hbar-fill" style="width:86%"></div></div><b>高</b></div>
+        <div class="hbar"><b>结果可感知性</b><div class="hbar-track"><div class="hbar-fill amber" style="width:83%"></div></div><b>高</b></div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">收入模式组合 <span>案例结构示意</span></div>
+        <div class="donut-wrap">
+          <div style="position:relative"><div class="donut" style="background:conic-gradient(#10B981 0 50%,#38BDF8 50% 75%,#F59E0B 75% 90%,#A855F7 90% 100%);"></div><div class="donut-center">多元<small>Monetization</small></div></div>
+          <div class="legend"><div><i style="background:#10B981"></i>订阅</div><div><i style="background:#38BDF8"></i>企业/API</div><div><i style="background:#F59E0B"></i>IAP/额度</div><div><i style="background:#A855F7"></i>硬件+软件</div></div>
+        </div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">一句话结论 <span>Executive takeaway</span></div>
+        <div style="font-size:17px;font-weight:900;color:#F8FAFC;line-height:1.35;margin-top:7px;">AI 不是只能卖“模型”</div>
+        <div style="font-size:11px;color:#94A3B8;line-height:1.5;margin-top:5px;">真正能收钱的是：<b style="color:#10B981">结果</b>、<b style="color:#38BDF8">效率</b>、<b style="color:#F59E0B">工作流</b>与<b style="color:#A855F7">持续服务</b>。</div>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -322,6 +427,18 @@
       </div>
     </div>
 
+    
+    <div class="mini-chart" style="margin-top:10px;padding:10px 12px;">
+      <div class="mini-title">四种模式的“老板视角”比较 <span>示意评分：越长越有利；风险项反向理解</span></div>
+      <div class="score-grid">
+        <div></div><div class="head">收入可预测</div><div class="head">毛利潜力</div><div class="head">LTV</div><div class="head">获客难度</div><div class="head">实施复杂度</div>
+        <div class="name">C端订阅</div><div class="score" style="--p:78%"><b>78</b></div><div class="score" style="--p:65%"><b>65</b></div><div class="score" style="--p:45%"><b>45</b></div><div class="score amber" style="--p:80%"><b>高</b></div><div class="score blue" style="--p:35%"><b>低</b></div>
+        <div class="name">点数/额度</div><div class="score blue" style="--p:48%"><b>48</b></div><div class="score" style="--p:70%"><b>70</b></div><div class="score" style="--p:50%"><b>50</b></div><div class="score amber" style="--p:55%"><b>中</b></div><div class="score blue" style="--p:30%"><b>低</b></div>
+        <div class="name">B端订阅</div><div class="score" style="--p:92%"><b>92</b></div><div class="score" style="--p:82%"><b>82</b></div><div class="score" style="--p:95%"><b>95</b></div><div class="score amber" style="--p:65%"><b>中高</b></div><div class="score blue" style="--p:75%"><b>高</b></div>
+        <div class="name">API计费</div><div class="score purple" style="--p:72%"><b>72</b></div><div class="score purple" style="--p:76%"><b>76</b></div><div class="score purple" style="--p:85%"><b>85</b></div><div class="score amber" style="--p:70%"><b>高</b></div><div class="score blue" style="--p:92%"><b>很高</b></div>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <div>CONFIDENTIAL | 内部商业讨论材料</div>
       <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
@@ -390,6 +507,31 @@
       </div>
     </div>
 
+    
+    <div class="viz-row" style="grid-template-columns:1.15fr 1fr 1fr;">
+      <div class="mini-chart">
+        <div class="mini-title">视觉产品付费漏斗 <span>示意：100 进入 → 3 付费</span></div>
+        <div class="funnel">
+          <div class="funnel-step" style="width:100%;background:rgba(56,189,248,.18)">100% 进入体验</div>
+          <div class="funnel-step" style="width:82%;background:rgba(56,189,248,.14)">70% 完成上传</div>
+          <div class="funnel-step" style="width:62%;background:rgba(245,158,11,.16)">35% 看到满意预览</div>
+          <div class="funnel-step" style="width:40%;background:rgba(16,185,129,.2);color:#10B981">3% 付费解锁</div>
+        </div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">为什么容易卖 <span>示意评分</span></div>
+        <div class="hbar"><b>结果直观</b><div class="hbar-track"><div class="hbar-fill" style="width:98%"></div></div><b>98</b></div>
+        <div class="hbar"><b>分享传播</b><div class="hbar-track"><div class="hbar-fill" style="width:88%"></div></div><b>88</b></div>
+        <div class="hbar"><b>付费冲动</b><div class="hbar-track"><div class="hbar-fill amber" style="width:82%"></div></div><b>82</b></div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">为什么也容易死 <span>示意评分</span></div>
+        <div class="hbar"><b>同质化</b><div class="hbar-track"><div class="hbar-fill amber" style="width:95%"></div></div><b>95</b></div>
+        <div class="hbar"><b>算力成本</b><div class="hbar-track"><div class="hbar-fill amber" style="width:80%"></div></div><b>80</b></div>
+        <div class="hbar"><b>留存压力</b><div class="hbar-track"><div class="hbar-fill amber" style="width:90%"></div></div><b>90</b></div>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <div>CONFIDENTIAL | 内部商业讨论材料</div>
       <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
@@ -451,6 +593,17 @@
       </div>
     </div>
 
+    
+    <div class="mini-chart" style="margin-top:10px;padding:10px 12px;">
+      <div class="mini-title">垂直赛道判断：不是“AI 多强”，而是“痛点 × 频次 × 付费能力” <span>示意评分</span></div>
+      <div class="score-grid" style="grid-template-columns:120px repeat(4,1fr);">
+        <div></div><div class="head">痛点强度</div><div class="head">使用频次</div><div class="head">付费能力</div><div class="head">综合机会</div>
+        <div class="name">植物/园艺</div><div class="score" style="--p:80%"><b>80</b></div><div class="score blue" style="--p:65%"><b>65</b></div><div class="score amber" style="--p:75%"><b>75</b></div><div class="score" style="--p:74%"><b>74</b></div>
+        <div class="name">健康/热量</div><div class="score" style="--p:78%"><b>78</b></div><div class="score blue" style="--p:95%"><b>95</b></div><div class="score amber" style="--p:72%"><b>72</b></div><div class="score" style="--p:82%"><b>82</b></div>
+        <div class="name">法律/会议</div><div class="score" style="--p:92%"><b>92</b></div><div class="score blue" style="--p:75%"><b>75</b></div><div class="score amber" style="--p:96%"><b>96</b></div><div class="score" style="--p:90%"><b>90</b></div>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <div>CONFIDENTIAL | 内部商业讨论材料</div>
       <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
@@ -508,6 +661,26 @@
           <div style="font-size: 11px; color: #38BDF8; font-weight: 700;">核心考量</div>
           <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">必须能够量化证明为客户节省的人力工时或带来的确定性增量收入。</div>
         </div>
+      </div>
+    </div>
+
+    
+    <div class="viz-row" style="grid-template-columns:1fr 1fr 1.2fr;">
+      <div class="mini-chart">
+        <div class="mini-title">B2C 单客经济 <span>示意</span></div>
+        <div style="font:900 24px 'JetBrains Mono';color:#10B981;">LTV $10–50</div>
+        <div style="font-size:10px;color:#94A3B8;margin-top:5px;">核心矛盾：需要大量用户，且 CAC 必须压得足够低。</div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">B2B 单客经济 <span>示意</span></div>
+        <div style="font:900 24px 'JetBrains Mono';color:#38BDF8;">LTV $500–5K+</div>
+        <div style="font-size:10px;color:#94A3B8;margin-top:5px;">核心矛盾：销售更慢，但单客价值与续费空间显著更高。</div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">增长引擎差异 <span>一眼看懂</span></div>
+        <div class="hbar"><b>B2C靠规模</b><div class="hbar-track"><div class="hbar-fill" style="width:90%"></div></div><b>量</b></div>
+        <div class="hbar"><b>B2B靠价值</b><div class="hbar-track"><div class="hbar-fill amber" style="width:92%"></div></div><b>价</b></div>
+        <div class="exec-callout">管理层决策：现金流优先时偏 B2B；追求爆发式用户增长时偏 B2C。</div>
       </div>
     </div>
 
@@ -579,6 +752,18 @@
       </div>
     </div>
 
+    
+    <div class="mini-chart" style="margin-top:10px;padding:10px 12px;">
+      <div class="mini-title">内部项目组合：商业吸引力雷达的二维替代图 <span>示意评分 / 便于资源讨论</span></div>
+      <div class="score-grid" style="grid-template-columns:130px repeat(5,1fr);">
+        <div></div><div class="head">付费意愿</div><div class="head">市场空间</div><div class="head">团队匹配</div><div class="head">验证速度</div><div class="head">综合</div>
+        <div class="name">AI视觉/形象</div><div class="score" style="--p:82%"><b>82</b></div><div class="score blue" style="--p:90%"><b>90</b></div><div class="score amber" style="--p:85%"><b>85</b></div><div class="score purple" style="--p:88%"><b>88</b></div><div class="score" style="--p:86%"><b>86</b></div>
+        <div class="name">AI电商生产力</div><div class="score" style="--p:94%"><b>94</b></div><div class="score blue" style="--p:88%"><b>88</b></div><div class="score amber" style="--p:96%"><b>96</b></div><div class="score purple" style="--p:82%"><b>82</b></div><div class="score" style="--p:92%"><b>92</b></div>
+        <div class="name">AI专业助手</div><div class="score" style="--p:88%"><b>88</b></div><div class="score blue" style="--p:72%"><b>72</b></div><div class="score amber" style="--p:68%"><b>68</b></div><div class="score purple" style="--p:60%"><b>60</b></div><div class="score" style="--p:72%"><b>72</b></div>
+        <div class="name">AI生活/社交</div><div class="score" style="--p:58%"><b>58</b></div><div class="score blue" style="--p:80%"><b>80</b></div><div class="score amber" style="--p:65%"><b>65</b></div><div class="score purple" style="--p:70%"><b>70</b></div><div class="score" style="--p:66%"><b>66</b></div>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <div>CONFIDENTIAL | 内部商业讨论材料</div>
       <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
@@ -638,6 +823,35 @@
       </div>
     </div>
 
+    
+    <div class="viz-row" style="grid-template-columns:1.25fr 1fr 1fr;">
+      <div class="mini-chart">
+        <div class="mini-title">收入瀑布：从 MAU 到 MRR <span>完全沿用本页假设</span></div>
+        <div class="money-waterfall">
+          <div class="wf" style="height:86px;background:#334155"><em>100,000</em><span>MAU</span></div>
+          <div class="wf" style="height:52px;background:#38BDF8"><em>3,000</em><span>付费用户</span></div>
+          <div class="wf" style="height:68px;background:#10B981"><em>¥90K</em><span>MRR</span></div>
+          <div class="wf" style="height:48px;background:#F59E0B"><em>¥63K</em><span>扣30%后*</span></div>
+        </div>
+        <div class="tiny-note">*仅展示应用商店 30% 分成后的机械计算，尚未扣除算力、获客与退款。</div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">付费转化敏感性 <span>ARPPU=¥30</span></div>
+        <div class="hbar"><b>1%</b><div class="hbar-track"><div class="hbar-fill" style="width:33%"></div></div><b>¥30K</b></div>
+        <div class="hbar"><b>3%</b><div class="hbar-track"><div class="hbar-fill" style="width:66%"></div></div><b>¥90K</b></div>
+        <div class="hbar"><b>5%</b><div class="hbar-track"><div class="hbar-fill" style="width:100%"></div></div><b>¥150K</b></div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">商业闭环 <span>从工具到生态</span></div>
+        <div class="formula-strip" style="grid-template-columns:1fr 14px 1fr;margin-top:0;">
+          <div class="formula-box"><strong>订阅</strong>视觉生成</div><div class="formula-op">+</div><div class="formula-box"><strong>点数</strong>高算力任务</div>
+        </div>
+        <div class="formula-strip" style="grid-template-columns:1fr 14px 1fr;margin-top:6px;">
+          <div class="formula-box"><strong>CPS</strong>电商导购</div><div class="formula-op">+</div><div class="formula-box"><strong>数据资产</strong>衣橱偏好</div>
+        </div>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <div>CONFIDENTIAL | 内部商业讨论材料</div>
       <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
@@ -680,6 +894,28 @@
         <div style="background: rgba(56, 189, 248, 0.1); padding: 8px; border-radius: 6px; margin-top: 10px; font-size: 11px; color: #CBD5E1;">
           <strong>收费定价设计：</strong> 基础版 $99/月 (含200张生成) + 超额 $0.3/张。商家极易算出正向 ROI 从而爽快买单。
         </div>
+      </div>
+    </div>
+
+    
+    <div class="viz-row" style="grid-template-columns:1.2fr 1fr 1fr;">
+      <div class="mini-chart">
+        <div class="mini-title">500 SKU/月：人工工时对比 <span>沿用本页 20min → 5min 假设</span></div>
+        <div class="hbar"><b>传统模式</b><div class="hbar-track"><div class="hbar-fill amber" style="width:100%"></div></div><b>166.7h</b></div>
+        <div class="hbar"><b>AI后</b><div class="hbar-track"><div class="hbar-fill" style="width:25%"></div></div><b>41.7h</b></div>
+        <div class="exec-callout"><b style="color:#38BDF8">节省 125 小时/月</b>，相当于把大量“制作”工作压缩成“审核”。</div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">时间成本下降 <span>单 SKU</span></div>
+        <div style="font:900 28px 'JetBrains Mono';color:#38BDF8;">20 → 5 min</div>
+        <div style="font-size:11px;color:#94A3B8;margin-top:6px;">人工触点减少 <b style="color:#10B981">75%</b></div>
+        <div class="bar-bg" style="height:9px;margin-top:9px;"><div class="bar-fill-blue" style="width:75%"></div></div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">收费逻辑 <span>让商家自己算账</span></div>
+        <div style="font:900 23px 'JetBrains Mono';color:#F8FAFC;">$99/月</div>
+        <div style="font-size:10px;color:#94A3B8;margin-top:4px;">只要节省的人力成本 ＞ SaaS 月费 + 超额生成费，就形成明确购买理由。</div>
+        <div class="exec-callout">B2B 卖的不是“AI”，而是<b style="color:#10B981">可量化节省</b>。</div>
       </div>
     </div>
 
@@ -736,6 +972,30 @@
           <div style="font-size: 12px; font-weight: 700; color: #F59E0B;"><i class="fa-solid fa-pie-chart"></i> 资源配置原则</div>
           <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">80% 研发与市场资源集中投放于 P0 级 MVP 验证，20% 用于 P1 级原型搭建。</div>
         </div>
+      </div>
+    </div>
+
+    
+    <div class="viz-row" style="grid-template-columns:1fr 1fr 1.2fr;">
+      <div class="mini-chart">
+        <div class="mini-title">资源饼图 <span>本页既定原则</span></div>
+        <div class="donut-wrap">
+          <div style="position:relative"><div class="donut" style="background:conic-gradient(#10B981 0 80%,#38BDF8 80% 100%);"></div><div class="donut-center">80/20<small>Resource</small></div></div>
+          <div class="legend"><div><i style="background:#10B981"></i>P0：80%</div><div><i style="background:#38BDF8"></i>P1：20%</div></div>
+        </div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">优先级不是“喜欢谁” <span>决策逻辑</span></div>
+        <div class="formula-strip" style="grid-template-columns:1fr 14px 1fr;margin-top:0;">
+          <div class="formula-box"><strong>商业价值</strong>收入/LTV/ROI</div><div class="formula-op">÷</div><div class="formula-box"><strong>验证成本</strong>时间/研发/获客</div>
+        </div>
+        <div class="exec-callout">比值越高，越应该先做。</div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">P0 项目综合优先度 <span>示意评分</span></div>
+        <div class="hbar"><b>AI电商内容</b><div class="hbar-track"><div class="hbar-fill" style="width:94%"></div></div><b>94</b></div>
+        <div class="hbar"><b>AI美颜试穿</b><div class="hbar-track"><div class="hbar-fill" style="width:86%"></div></div><b>86</b></div>
+        <div class="hbar"><b>律师助手</b><div class="hbar-track"><div class="hbar-fill amber" style="width:72%"></div></div><b>72</b></div>
       </div>
     </div>
 
@@ -797,6 +1057,16 @@
       </div>
     </div>
 
+    
+    <div class="mini-chart" style="margin-top:10px;padding:9px 12px;">
+      <div class="mini-title">90 天“闸门式”投入：每 30 天决定继续还是止损 <span>避免一次性重投入</span></div>
+      <div class="timeline-viz">
+        <div><b style="color:#10B981">Gate 1</b><br>真实付费意愿 ＞ 5%<br>否则：停止开发</div>
+        <div><b style="color:#38BDF8">Gate 2</b><br>出现真实账单<br>否则：调整价值主张</div>
+        <div><b style="color:#F59E0B">Gate 3</b><br>LTV / CAC / 留存成立<br>否则：不 Scaling</div>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <div>CONFIDENTIAL | 内部商业讨论材料</div>
       <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
@@ -840,6 +1110,29 @@
 
         <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #1E293B; font-size: 12px; color: #10B981; font-weight: 700;">
           <i class="fa-solid fa-arrow-right" style="margin-right: 6px;"></i> 从真实需求出发，将 AI 技术能力转化为持续收入。
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="viz-row" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="mini-chart">
+        <div class="mini-title">建议资源方向 <span>战略示意</span></div>
+        <div class="donut-wrap">
+          <div style="position:relative"><div class="donut" style="background:conic-gradient(#38BDF8 0 55%,#10B981 55% 90%,#334155 90% 100%);"></div><div class="donut-center">双轮<small>Portfolio</small></div></div>
+          <div class="legend"><div><i style="background:#38BDF8"></i>B2B 电商 55%</div><div><i style="background:#10B981"></i>B2C 视觉 35%</div><div><i style="background:#334155"></i>储备 10%</div></div>
+        </div>
+        <div class="tiny-note">该比例为战略展示建议，不代表既有预算承诺。</div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">管理层要批准什么 <span>不是“大项目”</span></div>
+        <div style="font-size:20px;font-weight:900;color:#F8FAFC;">3 人 × 30 天</div>
+        <div style="font-size:10px;color:#94A3B8;margin-top:5px;">先买“答案”，再买“研发”：用最小团队验证是否真的有人愿意付钱。</div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-title">最终决策标准 <span>Go / No-Go</span></div>
+        <div class="formula-strip" style="grid-template-columns:1fr 16px 1fr;margin-top:0;">
+          <div class="formula-box"><strong style="color:#10B981;">GO</strong>付费+留存+正向单位经济</div><div class="formula-op">/</div><div class="formula-box"><strong style="color:#EF4444;">STOP</strong>只叫好、不付钱</div>
         </div>
       </div>
     </div>
@@ -890,6 +1183,12 @@
           <strong>保密级别：</strong> CONFIDENTIAL · 绝密级内部讨论材料。未经授权禁止进行截图、复制或二次分发。
         </div>
       </div>
+    </div>
+
+    
+    <div class="exec-callout" style="margin-top:10px;">
+      <strong style="color:#F59E0B;">新增图表口径说明：</strong>
+      本版新增的“示意评分、结构占比、战略资源比例、漏斗演示”等图表，凡未直接来自原页公开数据或原页明确假设者，均标注为“示意/战略展示”，用于帮助管理层理解商业逻辑，不应被视为第三方统计事实或已实现经营数据。
     </div>
 
     <div class="slide-footer">

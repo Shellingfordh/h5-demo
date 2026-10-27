@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 产品组合与商业化机会分析：从消费级订阅到企业级 AI 服务 - 商业路演 H5</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0b1329',
+                            800: '#111e38',
+                            700: '#1a2b4c',
+                        },
+                        brand: {
+                            blue: '#3b82f6',
+                            cyan: '#06b6d4',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e',
+                            purple: '#8b5cf6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom Styles & Animation */
+        body {
+            background-color: #0b1329;
+            color: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow: hidden;
+            user-select: none; /* Anti-copy layer */
+            -webkit-user-select: none;
+        }
+
+        /* Allow text selection in dedicated text reader when needed if overridden */
+        .selectable-text {
+            user-select: text !important;
+            -webkit-user-select: text !important;
+        }
+
+        /* Slide Transition */
+        .slide-container {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        }
+
+        /* Dynamic Watermark */
+        .watermark {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='150' viewBox='0 0 300 150'%3E%3Ctext x='20' y='80' fill='%23ffffff' font-size='14' font-family='sans-serif' transform='rotate(-20 150 75)'%3ECONFIDENTIAL · AI PORTFOLIO STRATEGY%3C/text%3E%3C/svg%3E");
+        }
+
+        /* Custom Scrollbar for Detail Panels */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.4);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7);
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(17, 30, 56, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Print styles protection */
+        @media print {
+            body { display: none !important; }
+        }
+    </style>
+</head>
+<body class="h-screen w-screen relative overflow-hidden flex flex-col">
+
+    <!-- Watermark Layer -->
+    <div class="watermark"></div>
+
+    <!-- TOP HEADER / NAV BAR -->
+    <header class="h-14 glass-panel border-b border-slate-800/80 px-4 md:px-6 flex items-center justify-between z-40 shrink-0">
+        <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/20">
+                AI
+            </div>
+            <div>
+                <h1 class="text-sm font-semibold text-slate-100 tracking-wide">AI 产品组合与商业化机会分析</h1>
+                <p class="text-xs text-slate-400 hidden sm:block">从消费级订阅到企业级 AI 服务 · 商业路演材料</p>
+            </div>
+        </div>
+
+        <!-- Controls Header Right -->
+        <div class="flex items-center space-x-2 md:space-x-3 text-xs">
+            <!-- Reader Mode Toggle -->
+            <button id="toggleReaderBtn" class="px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center space-x-1.5 border border-slate-700">
+                <i class="fa-solid fa-book-open text-blue-400"></i>
+                <span class="hidden md:inline">完整正文模式</span>
+            </button>
+
+            <!-- Table of Contents Toggle -->
+            <button id="tocBtn" class="px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center space-x-1.5 border border-slate-700">
+                <i class="fa-solid fa-list-ul text-cyan-400"></i>
+                <span>目录</span>
+            </button>
+
+            <!-- Fullscreen Button -->
+            <button id="fullscreenBtn" class="px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition hidden sm:flex items-center space-x-1.5 border border-slate-700" title="按 F 键全屏">
+                <i class="fa-solid fa-expand text-slate-400"></i>
+                <span class="hidden lg:inline">全屏 (F)</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN SLIDE DISPLAY AREA -->
+    <main class="flex-1 relative overflow-hidden flex flex-col">
+        
+        <!-- SLIDE CONTENT WRAPPER -->
+        <div id="slideViewport" class="flex-1 w-full h-full relative overflow-hidden p-3 md:p-6 lg:p-8 flex items-center justify-center">
+            <!-- Dynamic Slide Injected Here -->
+            <div id="activeSlide" class="w-full h-full max-w-7xl max-h-[880px] flex flex-col justify-between glass-panel rounded-2xl p-6 md:p-8 border border-slate-700/50 shadow-2xl overflow-y-auto relative">
+                <!-- Content generated via JavaScript -->
+            </div>
+        </div>
+
+        <!-- BOTTOM TEXT DETAIL EXPANDABLE DRAWER (Layer 2 Text) -->
+        <div id="detailDrawer" class="h-0 transition-all duration-300 bg-slate-900/95 border-t border-slate-800 z-30 flex flex-col overflow-hidden">
+            <div class="px-6 py-2 bg-slate-950 border-b border-slate-800 flex justify-between items-center text-xs text-slate-400">
+                <span class="font-mono text-cyan-400 flex items-center"><i class="fa-solid fa-align-left mr-2"></i>完整正文对照（Layer 2 完整保留）</span>
+                <button id="closeDrawerBtn" class="hover:text-white"><i class="fa-solid fa-xmark text-sm"></i> 收起正文</button>
+            </div>
+            <div id="drawerContent" class="p-6 overflow-y-auto font-sans text-sm text-slate-300 leading-relaxed space-y-4">
+                <!-- Raw Text Segment Injected Here -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER CONTROL BAR -->
+    <footer class="h-14 glass-panel border-t border-slate-800 px-4 md:px-6 flex items-center justify-between z-40 shrink-0">
+        <!-- Slide Indicator -->
+        <div class="flex items-center space-x-3 text-xs text-slate-400">
+            <span id="slideCounter" class="font-mono text-sm text-cyan-400 font-bold">01 / 38</span>
+            <span id="chapterBadge" class="hidden md:inline-block px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 truncate max-w-[240px] lg:max-w-[360px]">
+                第 1 章：封面与商业判断
+            </span>
+        </div>
+
+        <!-- Center Toggle for Layer 2 Detail -->
+        <div>
+            <button id="toggleDrawerBtn" class="px-3.5 py-1.5 rounded-full bg-blue-900/40 hover:bg-blue-800/60 text-blue-300 border border-blue-500/30 text-xs font-medium transition flex items-center space-x-2">
+                <i class="fa-solid fa-angles-up text-xs"></i>
+                <span id="drawerToggleText">查看对应原始完整正文</span>
+            </button>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex items-center space-x-2">
+            <button id="prevBtn" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition border border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed" title="上一页 (←)">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="nextBtn" class="w-9 h-9 rounded-lg bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center transition border border-blue-400 shadow-md shadow-blue-600/20 disabled:opacity-40 disabled:cursor-not-allowed" title="下一页 (→)">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- PROGRESS BAR -->
+    <div class="w-full bg-slate-900 h-1.5 z-50">
+        <div id="progressBar" class="bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 h-full w-0 transition-all duration-300"></div>
+    </div>
+
+    <!-- TABLE OF CONTENTS MODAL -->
+    <div id="tocModal" class="fixed inset-0 bg-navy-900/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="p-5 border-b border-slate-800 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-sitemap text-cyan-400 text-xl"></i>
+                    <h2 class="text-lg font-bold text-white">演示文稿全局目录 (14章 / 38页)</h2>
+                </div>
+                <button id="closeTocBtn" class="text-slate-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div id="tocList" class="p-6 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- TOC Items Injected via JS -->
+            </div>
+            <div class="p-4 bg-slate-950 border-t border-slate-800 text-xs text-slate-400 flex justify-between items-center">
+                <span>提示：点击任意章节可直接跳转</span>
+                <span class="font-mono text-cyan-400">Confidential Roadshow Deck</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULL TEXT READER MODAL MODE -->
+    <div id="readerModal" class="fixed inset-0 bg-slate-950/95 backdrop-blur-lg z-50 hidden flex flex-col">
+        <div class="h-14 border-b border-slate-800 px-6 flex justify-between items-center bg-slate-900 shrink-0">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-file-lines text-blue-400"></i>
+                <h2 class="font-bold text-white">原始文案全文深度阅读模式（逐句完整对照）</h2>
+            </div>
+            <button id="closeReaderBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
+                返回幻灯片演示 <i class="fa-solid fa-xmark ml-1.5"></i>
+            </button>
+        </div>
+        <div id="readerBody" class="flex-1 p-6 md:p-12 overflow-y-auto max-w-5xl mx-auto space-y-8 text-slate-300 selectable-text leading-relaxed">
+            <!-- Full Unmodified Text Generated dynamically -->
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /**
+         * AI Portfolio Presentation System Engine
+         * Built for Executive Roadshows with Dual-Layer Raw Document Tracking.
+         */
+
+        // Raw Text Repository (Layer 2 Baseline Data)
+        const CHAPTER_RAW_DATA = [
+            {
+                id: "ch1",
+                num: 1,
+                title: "第 1 章：商业认知与宏观现象分析",
+                content: `AI 产品的商业价值可以来自消费级订阅、视觉工具、垂直专业应用和企业工作流，不需要所有项目都追求通用大模型或宏大技术叙事。在当前的 AI 商业化浪潮中，变现的核心在于“寻找高频刚需”与“清晰的付费意愿”。本路演旨在通过分析 9 种代表性 AI 产品，梳理从 ToC 消费级订阅到 ToB 企业级 AI 服务的落地路径，为企业决策者提供客观、不夸大、注重 ROI 的投研规划。`
+            },
+            {
+                id: "ch2",
+                num: 2,
+                title: "第 2 章：项目储备整体概述与架构",
+                content: `本项目储备库涵盖 9 个核心 AI 产品方向，划分为四大生态象限：1. 企业级内容与营销自动化（电商内容生成、SEO/GEO 平台）；2. 专业垂直智能助手（律师 AI 智能体）；3. 个人效率与生活决策（智能记账、AI 衣橱、形象美颜）；4. 垂直服务与情感连接（AI 社交、AI 陪伴、宠物服务）。其核心商业模式组合包含：SaaS 订阅、按量 token 付费、导购抽佣、企业定制合同及硬件 SDK 授权。`
+            },
+            {
+                id: "ch3",
+                num: 3,
+                title: "第 3 章：律师 AI 助手与智能眼镜应用",
+                content: `【一句话解释】为律师和法务人员打造的“现场智能助手”，通过智能眼镜或手机实时记录庭审与咨询，提取要点并辅助法规检索。
+【目标客户与需求】律师、企业法务。需求：现场记录繁琐、卷宗检索耗时、客户咨询实时应答压力大。
+【使用场景】律师佩戴 AI 眼镜或使用手机，实时转写客户对话，自动标记争议焦点，一键生成会谈纪要并检索相关案例。
+【核心能力】实时语音转写、法条法律文书 RAG 检索、事实要点提取、法律意见书初稿生成。
+【商业化方式】个人律师专业版订阅（按月/年）、律师事务所 Team/Enterprise 版授权、智能硬件硬件 SDK 合作。
+【客户付费理由】极大地缩短法律文书撰写时间，提升接待效率，单次案情分析时间降低 60%。
+【成本结构】高精度语音识别 API 成本、法律领域向量数据库存储成本、大模型推理 Token 成本、律师审核对齐成本。
+【竞争与风险】法律数据的严苛隐私与合规要求、幻觉风险带来的法律责任、专业壁垒高；前期宜先从手机端 App 验证，再拓展至眼镜硬件。
+【验证方案】邀请 20 名合作律所律师体验手机 MVP 版，测试语音转写与法条检索准确率。
+【阶段性判断】第二层后续储备项目。需要先验证 RAG 在专业法规检索上的准确率上限。`
+            },
+            {
+                id: "ch4",
+                num: 4,
+                title: "第 4 章：AI 智能记账与个人消费决策助手",
+                content: `【一句话解释】通过拍照小票或自动解析账单，结合长期记忆为用户提供个性化理财与消费建议的智能管家。
+【目标客户与需求】有财务管理需求但厌恶手动记账的年轻白领、家庭财务管理者。
+【使用场景】拍下超市小票或外卖订单，AI 自动识别明细并归类；月底询问“我是不是买衣服花太多了？”，AI 结合历史账单给出针对性调整建议。
+【核心能力】OCR 票据识别、消费行为长期记忆、多维度财务分析、智能省钱建议。
+【商业化方式】Freemium 基础免费，高级理财分析与长期记忆功能收取会员订阅费；消费品/优惠券导购佣金。
+【客户付费理由】无感记账，避免财务超支，帮用户精细化理财省下真实资金。
+【成本结构】视觉 OCR 识别成本、大模型推理成本、向量数据库存储成本。
+【竞争与风险】用户付费意愿偏弱（记账应用普遍难题）、个人财务隐私敏感、同质化竞争严重。
+【验证方案】发布轻量微信小程序 MVP，测试用户上传小票的留存率与付费转化率。
+【阶段性判断】第二层储备项目。优先验证导购佣金模式能否跑通，以弥补订阅意愿不足。`
+            },
+            {
+                id: "ch5",
+                num: 5,
+                title: "第 5 章：AI 衣橱管理与智能穿搭助手",
+                content: `【一句话解释】将个人衣柜数字化，利用 AI 算法提供每日穿搭推荐与虚拟试穿的个人形象管家。
+【目标客户与需求】注重形象但缺乏搭配经验的职场人士、服装爱好者。
+【使用场景】用户拍照上传自己的衣服生成数字衣橱，每天出门前询问 AI“今天去参加商务宴会怎么穿？”，AI 给出搭配方案并展示虚拟试穿效果。
+【核心能力】服装单品自动抠图与分类、天气/场景感知推荐算法、2D/3D 虚拟试穿生成。
+【商业化方式】会员订阅（高级搭配算法）、虚拟试穿生成额度购买、服装品牌导购佣金、品牌合作推广。
+【客户付费理由】解决“今天穿什么”的焦虑，提高已有衣服利用率，降低买错衣服的概率。
+【成本结构】图像 Segmentation 成本、虚拟试穿（Diffusion Model）渲染 GPU 成本、云存储成本。
+【竞争与风险】虚拟试穿生成质量不稳定（如褶皱、身材匹配度）、用户上传衣服的初始门槛高。
+【验证方案】通过手动/半自动搭配结合 Stable Diffusion 渲染，邀请 100 名时尚博主进行体验测试。
+【阶段性判断】第二层储备项目。需重点验证虚拟试穿的视觉还原度与算法 GPU 成本效益。`
+            },
+            {
+                id: "ch6",
+                num: 6,
+                title: "第 6 章：AI 美颜、形象管理与虚拟试穿应用",
+                content: `【一句话解释】面向 ToC 消费者的多功能 AI 视觉修图、发型试穿与形象设计工具。
+【目标客户与需求】社交媒体活跃用户、追求高品质个人形象的消费群体。
+【使用场景】用户上传个人写真，一键更换不同发型、试穿时尚时装或生成高品质形象照，直接发布至社交网络。
+【核心能力】高保真人脸重绘、发型/妆容迁移、服装虚拟试穿、高清修图算法。
+【商业化方式】单次生成额度购买、月度/年度 VIP 订阅、品牌服饰试穿体验广告。
+【客户付费理由】低成本获得媲美专业摄影棚的形象照，满足社交分享与心理美感需求。
+【成本结构】图像生成与重绘 GPU 计算成本、边缘服务器带宽成本。
+【竞争与风险】替代品众多（美图、妙鸭等），用户新鲜感易消退，用户留存率较低。
+【验证方案】推出独立轻量 App/小程序，投放社交网络广告，测试 ROI 及单次生成付费意愿。
+【阶段性判断】第一层优先验证项目。爆发力强，可快速带来现金流，但需解决长期留存问题。`
+            },
+            {
+                id: "ch7",
+                num: 7,
+                title: "第 7 章：跨境电商 AI 商品内容生成平台",
+                content: `【一句话解释】为跨境电商卖家一键批量生成高转化率商品场景图、营销视频与多语种文案的生成式 SaaS 工具。
+【目标客户与需求】跨境电商卖家、独立站主、海外营销机构。需求：拍摄模特与场景成本极高、多语种文案不地道、营销素材迭代速度慢。
+【使用场景】卖家上传一张白底商品图，AI 在 1 分钟内生成欧美/中东/日韩等不同风格的场景背景图、15 秒短视频及地道英文 Description。
+【核心能力】商品主体保持（IP Consistency）、多场景背景融合、AI 短视频生成、多语种 SEO 营销文案撰写。
+【商业化方式】SaaS 月/年套餐、按生成张数/视频时长消耗额度、企业 API 接口调用付费、定制工作流集成服务。
+【客户付费理由】降本增效极其显著：将单套商品图拍摄成本从数百美元降至几美金，缩短商品上架周期 80%。
+【成本结构】SD/FLUX 图生图 API 成本、Sora/Runway 类视频生成成本、云服务器与存储成本。
+【竞争与风险】图像生成质量一致性问题（如商品细节变形）、AI 视频生成成本高昂；需优化单位经济性（Unit Economics）。
+【验证方案】开发 Web 侧 SaaS 平台 MVP，在跨境电商卖家群组招募 50 家企业试用，测算上架效率提升与付费意愿。
+【阶段性判断】第一层最高优先级项目。B 端付费意愿极其明确，ROI 高度可量化。`
+            },
+            {
+                id: "ch8",
+                num: 8,
+                title: "第 8 章：AI SEO、GEO 与电商内容自动化平台",
+                content: `【一句话解释】针对传统搜索引擎（SEO）与新型生成式 AI 引擎（GEO）的自动化内容生产与矩阵发布平台。
+【目标客户与需求】电商卖家、品牌方、内容营销团队。需求：需要海量优质文章提升搜索排名，同时被 Perplexity、ChatGPT 等 AI 引擎引用。
+【使用场景】输入品牌关键词，平台自动规划内容矩阵、生成高权重文章与多媒体素材，并通过 API 自动发布至 WordPress、Shopify 等渠道。
+【核心能力】GEO 引用优化算法、长尾词自动化拓展、高质量营销文章生成、多平台自动发布流水线。
+【商业化方式】SaaS 阶梯订阅制、按发布文章篇数/站点数计费、企业级专属定制服务。
+【客户付费理由】自动获取被生成式 AI 搜索推荐的红利，获得低成本有机流量。
+【成本结构】大模型文本生成 Token 成本、抓取与收录监控代理 API 成本。
+【竞争与风险】搜索引擎算法更新封禁 Low-quality AI 内容的风险、GEO 引用效果归因较难。
+【验证方案】挑选 3 个自营站点，自动化发布 500 篇高质量文章，观察 30 天内搜索引擎收录与 AI 引用转化率。
+【阶段性判断】第二层重点储备项目。随着 SearchGPT 与 Perplexity 普及，GEO 需求将呈现爆发式增长。`
+            },
+            {
+                id: "ch9",
+                num: 9,
+                title: "第 9 章：AI 社交活动与线下兴趣社区",
+                content: `【一句话解释】基于 AI 智能匹配算法，促进线上用户转化为线下同城兴趣社交活动的连接平台。
+【目标客户与需求】城市年轻人、有特定兴趣（如破冰游戏、徒步、读书）寻求线下社交的群体。
+【使用场景】用户输入兴趣偏好，AI 自动匹配同城兴趣相投的小伙伴，并自动生成活动流程与破冰话题，组织线下聚会。
+【核心能力】用户兴趣图谱匹配算法、AI 破冰话题生成器、活动自动筹备与通知工作流。
+【商业化方式】活动报名服务费/抽佣、组织者高级工具订阅、同城商家线下场地合作推广。
+【客户付费理由】打破社交恐惧，高效结识真实同好，提升线下活动组织质量。
+【成本结构】线下运营与撮合人工成本、匹配算法研发成本、用户身份验证成本。
+【竞争与风险】冷启动双边网络效应难、区域密度依赖度高、线下活动安全风险。
+【验证方案】在单一城市（如深圳或上海）特定圈子开展 MVP 测试，手动配合 AI 算法组织 5 场线下活动。
+【阶段性判断】第三层观察探索项目。重运营，技术杠杆较低，前期宜控制研发投入。`
+            },
+            {
+                id: "ch10",
+                num: 10,
+                title: "第 10 章：AI 陪伴与个性化智能伙伴",
+                content: `【一句话解释】具备拟人化性格、长期记忆与多模态交互能力的 24 小时 AI 虚拟伴侣。
+【目标客户与需求】有情感倾诉需求、孤独感较强的年轻群体及泛二次元爱好者。
+【使用场景】用户通过语音或文字随时与专属 AI 伙伴倾诉日常，AI 记住用户的喜好与习惯，并在特定节日主动关怀。
+【核心能力】长期记忆（Long-term Memory）系统、个性化 Prompt/LoRA 角色设定、拟人化 TTS 语音生成。
+【商业化方式】VIP 会员订阅（解除聊天限制、解锁语音）、数字服饰/道具增值服务、专属角色定制付费。
+【客户付费理由】提供无条件的心理陪伴与情绪价值，建立深厚的情感羁绊。
+【成本结构】高频对话的高额 LLM Token 成本、语音合成 TTS 成本、记忆数据库维护成本。
+【竞争与风险】大模型高额 Token 消耗导致单位用户成本高、伦理与合规审查风险、用户流失率高。
+【验证方案】推出轻量微信/ Telegram 机器人，测试用户日均对话轮次与付费订阅转化率。
+【阶段性判断】第三层探索项目。用户黏性极高但 Token 成本昂贵，需等待模型推理成本进一步下降。`
+            },
+            {
+                id: "ch11",
+                num: 11,
+                title: "第 11 章：AI 领养猫、救助猫与宠物服务平台",
+                content: `【一句话解释】利用 AI 识别与匹配技术，打造涵盖流浪猫救助、智能领养与宠物友好生活圈的服务平台。
+【目标客户与需求】宠物领养者、救助机构、宠物主。需求：领养信息不透明、救助站审核繁琐、宠物友好租房难找。
+【使用场景】救助者拍摄流浪猫照片，AI 自动生成标准化猫咪档案（品种、年龄评估、健康状况），匹配最合适的领养家庭，并提供宠物友好租房搜索。
+【核心能力】猫咪特征 AI 识别、领养人匹配度评分算法、宠物友好地图与租房搜索引擎。
+【商业化方式】宠物用品导购佣金、合作宠物医院/寄养服务抽佣、付费增值认证与健康档案管理。
+【客户付费理由】降低领养门槛，提供一站式宠物养育解决方案，保障宠物福利。
+【成本结构】图像识别与算法开发成本、线下救助信息审核运营成本。
+【竞争与风险】公益性质浓厚，商业变现路径相对较长，依赖双边社区生态。
+【验证方案】建立同城猫咪领养小程序，合作 3 家救助站，测试 AI 匹配成功率与后续用品转化。
+【阶段性判断】第三层社会价值与生态项目。商业化见效较慢，建议作为品牌或流量入口探索。`
+            },
+            {
+                id: "ch12",
+                num: 12,
+                title: "第 12 章：所有项目的商业模式对比矩阵",
+                content: `【商业模式横向全景评估】
+1. 跨境电商 AI 内容平台：客户：跨境卖家；付费理由：直接降本增效；模式：SaaS+按量；核心成本：GPU/视频 API；验证难点：生成一致性。
+2. AI 美颜与虚拟试穿：客户：ToC 消费者；付费理由：社交与美感；模式：订阅+按次；核心成本：渲染 GPU；验证难点：留存率。
+3. 律师 AI 助手：客户：律所/律师；付费理由：节省卷宗撰写时间；模式：SaaS/硬件合作；核心成本：RAG/语音 API；验证难点：专业幻觉风险。
+4. AI 智能记账：客户：年轻白领；付费理由：理财与省钱；模式：订阅+导购；核心成本：OCR/LLM；验证难点：付费意愿低。
+5. AI 衣橱穿搭：客户：时尚人群；付费理由：形象管理；模式：订阅+佣金；核心成本：Segmentation/GPU；验证难点：虚拟试穿精度。
+6. AI SEO/GEO 平台：客户：品牌与卖家；付费理由：获取 AI 搜索流量；模式：SaaS 订阅；核心成本：LLM/抓取；验证难点：效果归因。
+7. AI 社交活动：客户：同城青年；付费理由：破冰社交；模式：活动抽佣；核心成本：线下运营；验证难点：密度与安全性。
+8. AI 陪伴助手：客户：孤独青年；付费理由：情绪价值；模式：订阅+道具；核心成本：LLM Token/TTS；验证难点：高额 Token 成本。
+9. AI 宠物服务：客户：爱宠人群；付费理由：领养与服务；模式：佣金+增值；核心成本：社区运营；验证难点：商业闭环较长。`
+            },
+            {
+                id: "ch13",
+                num: 13,
+                title: "第 13 章：商业化路径与项目优先级推荐",
+                content: `【优先级三阶梯部署路线图】
+第一阶梯（优先验证，即刻启动）：
+- 跨境电商 AI 商品内容生成平台（高 ROI，B 端付费意愿极强）
+- AI 美颜与虚拟试穿工具（爆发力强，快速建立 ToC 现金流）
+
+第二阶梯（重点储备，顺次推进）：
+- AI SEO / GEO 自动化营销平台（随着 AI 搜索普及，抢占早期红利）
+- 律师 AI 智能助手（专业壁垒高，高 LTV 潜力）
+- AI 衣橱与智能记账（做大用户量后通过佣金变现）
+
+第三阶梯（观察探索，控制投入）：
+- AI 陪伴 / AI 社交 / AI 宠物服务（重运营或模型成本昂贵，待技术成熟与生态形成后再行放大）。`
+            },
+            {
+                id: "ch14",
+                num: 14,
+                title: "第 14 章：统一评估框架与战略决议建议",
+                content: `【统一项目评估六要素】1. 目标用户定义；2. 真实付费逻辑；3. 获客成本（CAC）；4. 单位经济效益（Unit Economics）；5. 实施壁垒与风险；6. 验证周期（以 4-6 周 MVP 为限）。
+【董事会战略决议建议】
+建议采取“双轮驱动，低成本验证”战略：集中资源优先研发“跨境电商 AI 内容生成平台”（ToB 现金流）与“AI 美颜/试穿应用”（ToC 流量），利用 6 周时间完成 MVP 并获取首批 100 名付费用户数据，根据真实数据再决定下一阶段研发资源扩张。`
+            }
+        ];
+
+        // 38 SLIDES MASTER CONFIGURATION
+        const SLIDES = [
+            // Chapter 1
+            {
+                chapter: "第 1 章：商业认知与宏观现象",
+                title: "AI 产品组合与商业化机会分析",
+                subtitle: "从消费级订阅到企业级 AI 服务 · 商业路演",
+                type: "cover",
+                chIndex: 0,
+                highlights: ["无需追求宏大通用模型", "以 ROI 与真实付费意愿为核心", "寻找高频刚需商业场景"]
+            },
+            {
+                chapter: "第 1 章：商业认知与宏观现象",
+                title: "AI 商业化的核心破局点",
+                subtitle: "告别技术叙事，回归商业本质",
+                type: "cards",
+                chIndex: 0,
+                cards: [
+                    { title: "消费级订阅 (ToC)", desc: "依靠高频工具、形象审美、情绪价值快速变现，单客价值低但基数大。", icon: "fa-user-group", color: "from-blue-600 to-indigo-600" },
+                    { title: "企业级服务 (ToB)", desc: "直击生产力痛点，帮企业明确降本增效，付费意愿强且续费率高。", icon: "fa-building", color: "from-cyan-600 to-blue-600" },
+                    { title: "能力复用矩阵", desc: "底层复用图像生成、LLM 理解、长期记忆，降低重复研发成本。", icon: "fa-cubes", color: "from-emerald-600 to-teal-600" }
+                ]
+            },
+
+            // Chapter 2
+            {
+                chapter: "第 2 章：项目储备整体概述",
+                title: "9 大 AI 项目储备全景矩阵",
+                subtitle: "涵盖四大生态象限的产品组合",
+                type: "grid",
+                chIndex: 1,
+                items: [
+                    "1. 跨境电商 AI 内容平台 (ToB 营销)", "2. AI SEO/GEO 内容自动化 (流量变现)",
+                    "3. 律师 AI 智能助手 (专业服务)", "4. AI 智能记账 (理财管家)",
+                    "5. AI 衣橱穿搭助手 (时尚管理)", "6. AI 美颜与虚拟试穿 (ToC 视觉)",
+                    "7. AI 社交活动社区 (同城链接)", "8. AI 陪伴与虚拟伴侣 (情感价值)",
+                    "9. AI 猫咪领养与宠物服务 (生态服务)"
+                ]
+            },
+            {
+                chapter: "第 2 章：项目储备整体概述",
+                title: "商业化多元变现收入模型",
+                subtitle: "建立多重防线的现金流体系",
+                type: "flow",
+                chIndex: 1,
+                flows: [
+                    { label: "SaaS 阶梯订阅", detail: "按月/年付费，锁定企业与高级个人用户" },
+                    { label: "按量 Token/生成额度", detail: "对图像、视频及高频 LLM 推理精准计费" },
+                    { label: "导购抽佣 & 商业合作", detail: "结合电商与品牌，获取转化导购分成" },
+                    { label: "企业定制与 SDK 授权", detail: "针对高壁垒客户与硬件厂商的私有化/授权" }
+                ]
+            },
+
+            // Chapter 3: Lawyer
+            {
+                chapter: "第 3 章：律师 AI 助手与智能眼镜",
+                title: "律师 AI 助手：产品定位与场景",
+                subtitle: "专业领域的现场智能助手",
+                type: "product_detail",
+                chIndex: 2,
+                tag: "专业垂直 ToB",
+                oneLiner: "为律师打造的现场智能助手，通过眼镜/手机实时转写、提取要点与检索法条。",
+                user: "律师、企业法务；解决现场记录繁琐、卷宗检索耗时问题。",
+                flow: "现场对话转写 → 争议焦点提取 → 法条 RAG 检索 → 法律文书生成"
+            },
+            {
+                chapter: "第 3 章：律师 AI 助手与智能眼镜",
+                title: "律师 AI 助手：商业模式与风险",
+                subtitle: "高 LTV 与高合规门槛并存",
+                type: "biz_risk",
+                chIndex: 2,
+                revenue: ["个人律师 VIP 订阅", "律所 Team 商业版", "硬件厂商 SDK 授权"],
+                costs: ["高精度语音识别 API", "法律数据库 RAG 存储", "LLM 推理 Token"],
+                risks: "法律数据严格保密要求、模型幻觉带来的责任风险。建议先从手机 App MVP 验证。"
+            },
+
+            // Chapter 4: Finance
+            {
+                chapter: "第 4 章：AI 智能记账助手",
+                title: "AI 智能记账：产品定位与场景",
+                subtitle: "无感记账与个人理财决策",
+                type: "product_detail",
+                chIndex: 3,
+                tag: "个人效率 ToC",
+                oneLiner: "拍照识别小票，结合长期记忆为用户提供针对性消费理财建议。",
+                user: "年轻白领、家庭主妇；解决手动记账繁琐、不知钱花何处的问题。",
+                flow: "小票 OCR 拍照 → 账单分类归档 → 长期消费记忆 → 理财省钱建议"
+            },
+            {
+                chapter: "第 4 章：AI 智能记账助手",
+                title: "AI 智能记账：商业化与验证",
+                subtitle: "克服 ToC 记账付费意愿偏弱的难题",
+                type: "biz_risk",
+                chIndex: 3,
+                revenue: ["高级理财分析会员", "金融/消费品导购佣金", "优质商家优惠推送"],
+                costs: ["OCR 识别计算", "大模型推理", "向量记忆存储"],
+                risks: "记账应用普遍面临付费意愿低、隐私敏感。需优先验证导购佣金的可行性。"
+            },
+
+            // Chapter 5: AI Wardrobe
+            {
+                chapter: "第 5 章：AI 衣橱穿搭助手",
+                title: "AI 衣橱：产品定位与场景",
+                subtitle: "数字化衣柜与智能搭配",
+                type: "product_detail",
+                chIndex: 4,
+                tag: "时尚生活 ToC",
+                oneLiner: "将个人衣柜数字化，基于天气与场景生成每日穿搭与虚拟试穿。",
+                user: "职场人士、时尚爱好者；解决“今天穿什么”的日常焦虑。",
+                flow: "拍照上传衣物 → AI 自动分类抠图 → 场景感知搭配 → 2D/3D 虚拟试穿"
+            },
+            {
+                chapter: "第 5 章：AI 衣橱穿搭助手",
+                title: "AI 衣橱：商业模式与算力成本",
+                subtitle: "平衡 Diffusion 渲染成本与收益",
+                type: "biz_risk",
+                chIndex: 4,
+                revenue: ["搭配高级算法订阅", "虚拟试穿生成额度", "品牌服装导购佣金"],
+                costs: ["Segmentation 图像抠图", "虚拟试穿 GPU 渲染", "云存储"],
+                risks: "试穿褶皱与身材匹配精度难控制，初始建橱门槛高。需验证渲染 GPU 效益。"
+            },
+
+            // Chapter 6: AI Beauty
+            {
+                chapter: "第 6 章：AI 美颜与虚拟试穿应用",
+                title: "AI 美颜/试穿：爆发式 ToC 视觉",
+                subtitle: "高频审美消费与社交分享",
+                type: "product_detail",
+                chIndex: 5,
+                tag: "第一阶梯 · 优先验证",
+                oneLiner: "面向消费者的 AI 视觉修图、发型试穿与高品质形象照生成工具。",
+                user: "社交媒体活跃用户；寻求低成本高品质写真与形象展示。",
+                flow: "上传个人照片 → 选择风格/发型/服装 → GPU 高清重绘 → 社交发布"
+            },
+            {
+                chapter: "第 6 章：AI 美颜与虚拟试穿应用",
+                title: "AI 美颜/试穿：变现逻辑与留存挑战",
+                subtitle: "追求快现金流，突破流失率瓶颈",
+                type: "biz_risk",
+                chIndex: 5,
+                revenue: ["单次生成 package 购买", "VIP 连续包月", "品牌服饰广告"],
+                costs: ["GPU 图生图算力", "边缘服务器带宽"],
+                risks: "同质化竞品多，新鲜感消退快。作为首批验证项目，重点获取快现金流。"
+            },
+
+            // Chapter 7: Cross-border E-commerce
+            {
+                chapter: "第 7 章：跨境电商 AI 内容生成平台",
+                title: "跨境电商 AI 内容平台：降本增效利器",
+                subtitle: "直击卖家拍摄与文案昂贵的痛点",
+                type: "product_detail",
+                chIndex: 6,
+                tag: "第一阶梯 · 最高优先级",
+                oneLiner: "一键批量生成高转化商品场景图、营销视频与多语种文案的 SaaS 工作台。",
+                user: "跨境电商卖家、独立站主；解决摄影贵、外籍模特贵、跨国文案难等问题。",
+                flow: "上传商品白底图 → AI 融图与场景生成 → 15s 短视频渲染 → 多语种 SEO 文案"
+            },
+            {
+                chapter: "第 7 章：跨境电商 AI 内容生成平台",
+                title: "跨境电商 AI 内容平台：商业架构",
+                subtitle: "清晰的 ROI 支撑的高额 SaaS 付费",
+                type: "biz_risk",
+                chIndex: 6,
+                revenue: ["SaaS 阶梯订阅套餐", "按张/按视频消耗额度", "企业专属 API 与工作流定制"],
+                costs: ["SD/FLUX 图像生成成本", "Sora/Runway 视频 API", "云存储"],
+                risks: "必须保持商品细节不变形（IP 一致性）。B 端付费意愿极其确切，优先全力研发。"
+            },
+
+            // Chapter 8: SEO / GEO
+            {
+                chapter: "第 8 章：AI SEO/GEO 内容自动化平台",
+                title: "AI SEO 与 GEO 营销自动化",
+                subtitle: "抢占生成式 AI 搜索引擎流量红利",
+                type: "product_detail",
+                chIndex: 7,
+                tag: "第二阶梯 · 重点储备",
+                oneLiner: "针对搜索引擎与 Perplexity/ChatGPT 等 AI 引擎的自动化内容生产矩阵平台。",
+                user: "品牌方、电商内容团队；寻求在传统及 AI 搜索引擎中获取低成本有机流量。",
+                flow: "关键词与 GEO 引用规划 → AI 高质量文章生成 → 多平台 API 自动发布 → 收录跟踪"
+            },
+            {
+                chapter: "第 8 章：AI SEO/GEO 内容自动化平台",
+                title: "AI SEO/GEO：模式与算法风险",
+                subtitle: "防范搜索引擎算法封禁，提升 GEO 引用率",
+                type: "biz_risk",
+                chIndex: 7,
+                revenue: ["SaaS 阶梯订阅", "按发布站点/篇数计费", "大客户品牌定制"],
+                costs: ["LLM 文章生成 Token", "抓取与收录监控 API"],
+                risks: "搜索引擎惩罚低质 AI 内容的风险。需重点保证生成文本的深度与人味。"
+            },
+
+            // Chapter 9: AI Social
+            {
+                chapter: "第 9 章：AI 社交活动与线下社区",
+                title: "AI 社交：破冰与线下兴趣链接",
+                subtitle: "通过 AI 促进同城真实社交",
+                type: "product_detail",
+                chIndex: 8,
+                tag: "第三阶梯 · 观察探索",
+                oneLiner: "基于兴趣图谱匹配，自动化组织线下破冰活动的同城社交平台。",
+                user: "城市年轻人、同城兴趣爱好者；解决孤单、线下聚会组织繁琐问题。",
+                flow: "兴趣输入 → AI 智能组队 → 自动化破冰话题生成 → 线下活动举行"
+            },
+            {
+                chapter: "第 9 章：AI 社交活动与线下社区",
+                title: "AI 社交：商业模式与网络效应",
+                subtitle: "高运营属性与冷启动挑战",
+                type: "biz_risk",
+                chIndex: 8,
+                revenue: ["活动报名服务费/抽佣", "组织者 SaaS 工具", "场地商家合作推广"],
+                costs: ["线下运营人工", "身份认证成本", "算法研发"],
+                risks: "依赖高区域密度与双边网络效应，存在线下安全风险。前期限制研发投入。"
+            },
+
+            // Chapter 10: AI Companion
+            {
+                chapter: "第 10 章：AI 陪伴与虚拟伴侣",
+                title: "AI 陪伴：拟人化情感智能伙伴",
+                subtitle: "提供无条件情绪价值的 24h 伴侣",
+                type: "product_detail",
+                chIndex: 9,
+                tag: "第三阶梯 · 探索项目",
+                oneLiner: "具备拟人化性格、长期记忆与多模态交互能力的 AI 虚拟伴侣。",
+                user: "有倾诉需求、追求情绪价值的泛二次元及年轻群体。",
+                flow: "Prompt/LoRA 角色选择 → 长期记忆互动 → 拟人化 TTS 语音 → 情绪羁绊建立"
+            },
+            {
+                chapter: "第 10 章：AI 陪伴与虚拟伴侣",
+                title: "AI 陪伴：高黏性与高 Token 成本",
+                subtitle: "寻找单位经济效益 (Unit Economics) 平衡",
+                type: "biz_risk",
+                chIndex: 9,
+                revenue: ["VIP 连续订阅", "TTS 语音/解锁增值包", "虚拟道具与服饰"],
+                costs: ["高频对话 LLM Token", "TTS 语音合成成本", "记忆库存储"],
+                risks: "Token 消耗极其高昂，合规审核严苛。待模型推理成本进一步下降后再扩大规模。"
+            },
+
+            // Chapter 11: AI Pet
+            {
+                chapter: "第 11 章：AI 猫咪领养与宠物服务",
+                title: "AI 宠物服务：领养与友好生态",
+                subtitle: "AI 识别与流浪猫救助匹配",
+                type: "product_detail",
+                chIndex: 10,
+                tag: "生态与社会价值",
+                oneLiner: "利用视觉识别与匹配算法，打造猫咪标准化档案与领养服务的平台。",
+                user: "领养者、救助机构、宠物主；解决信息不对称、领养审核慢的问题。",
+                flow: "流浪猫拍照 → AI 生成健康档案 → 领养人匹配度打分 → 宠物友好搜索"
+            },
+            {
+                chapter: "第 11 章：AI 猫咪领养与宠物服务",
+                title: "AI 宠物服务：变现闭环与推进",
+                subtitle: "公益流量向商业化合作转化",
+                type: "biz_risk",
+                chIndex: 10,
+                revenue: ["宠物用品导购佣金", "医院/寄养服务抽佣", "付费健康档案增值"],
+                costs: ["图像识别算法研发", "线下信息审核与社区运营"],
+                risks: "商业转化路径较长。建议先作为低成本流量入口与公益品牌建立合作。"
+            },
+
+            // Chapter 12: Monetization Comparison
+            {
+                chapter: "第 12 章：商业模式对比矩阵",
+                title: "9 大 AI 项目横向商业对比",
+                subtitle: "客观评估客户、付费理由与成本结构",
+                type: "matrix",
+                chIndex: 11
+            },
+
+            // Chapter 13: Roadmap
+            {
+                chapter: "第 13 章：商业化路径与优先级",
+                title: "项目优先级三阶梯部署",
+                subtitle: "基于 ROI、付费明确度与开发成本的排序",
+                type: "tier",
+                chIndex: 12
+            },
+
+            // Chapter 14: Framework & Strategic Decision
+            {
+                chapter: "第 14 章：评估框架与战略决议",
+                title: "项目评估六要素框架",
+                subtitle: "建立统一的低成本 MVP 检验准则",
+                type: "framework",
+                chIndex: 13
+            },
+            {
+                chapter: "第 14 章：评估框架与战略决议",
+                title: "董事会最终决策建议",
+                subtitle: "双轮驱动 · 6周极速 MVP 验证",
+                type: "conclusion",
+                chIndex: 13
+            }
+        ];
+
+        // ENGINE STATE
+        let currentIndex = 0;
+        let drawerOpen = false;
+
+        // DOM ELEMENTS
+        const slideViewport = document.getElementById('slideViewport');
+        const activeSlide = document.getElementById('activeSlide');
+        const slideCounter = document.getElementById('slideCounter');
+        const chapterBadge = document.getElementById('chapterBadge');
+        const progressBar = document.getElementById('progressBar');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const detailDrawer = document.getElementById('detailDrawer');
+        const drawerContent = document.getElementById('drawerContent');
+        const toggleDrawerBtn = document.getElementById('toggleDrawerBtn');
+        const drawerToggleText = document.getElementById('drawerToggleText');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        const tocBtn = document.getElementById('tocBtn');
+        const tocModal = document.getElementById('tocModal');
+        const closeTocBtn = document.getElementById('closeTocBtn');
+        const tocList = document.getElementById('tocList');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const toggleReaderBtn = document.getElementById('toggleReaderBtn');
+        const readerModal = document.getElementById('readerModal');
+        const closeReaderBtn = document.getElementById('closeReaderBtn');
+        const readerBody = document.getElementById('readerBody');
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            renderSlide(currentIndex);
+            buildTocModal();
+            buildReaderContent();
+            setupEventListeners();
+            setupSecurityProtections();
+        });
+
+        // RENDER SLIDE ENGINE
+        function renderSlide(index) {
+            const data = SLIDES[index];
+            if (!data) return;
+
+            // Update Header & Progress
+            slideCounter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(SLIDES.length).padStart(2, '0')}`;
+            chapterBadge.textContent = data.chapter;
+            progressBar.style.width = `${((index + 1) / SLIDES.length) * 100}%`;
+
+            // Button Enable/Disable State
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === SLIDES.length - 1;
+
+            // Dynamic HTML Generation based on Slide Type
+            let contentHTML = '';
+
+            if (data.type === 'cover') {
+                contentHTML = `
+                    <div class="flex-1 flex flex-col justify-center items-center text-center p-6 md:p-12">
+                        <div class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold mb-6 tracking-widest uppercase">
+                            Executive Strategy Pitch
+                        </div>
+                        <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4 tracking-tight">
+                            ${data.title}
+                        </h1>
+                        <p class="text-lg md:text-xl text-slate-300 max-w-2xl mb-8 font-light">
+                            ${data.subtitle}
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl my-6">
+                            ${data.highlights.map(h => `
+                                <div class="glass-card p-4 rounded-xl border border-slate-700/60 text-sm text-slate-200 flex items-center justify-center space-x-2">
+                                    <i class="fa-solid fa-circle-check text-cyan-400"></i>
+                                    <span>${h}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="mt-8 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                            <button onclick="nextSlide()" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-lg shadow-blue-500/25 transition">
+                                开始路演演示 <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </button>
+                            <button onclick="toggleToc()" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium border border-slate-700 transition">
+                                查看全盘目录
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (data.type === 'cards') {
+                contentHTML = `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <span class="text-xs font-mono text-cyan-400 tracking-wider">${data.chapter}</span>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white mt-1">${data.title}</h2>
+                            <p class="text-sm text-slate-400 mt-1">${data.subtitle}</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto py-6">
+                            ${data.cards.map(c => `
+                                <div class="glass-card p-6 rounded-2xl border border-slate-700/60 flex flex-col justify-between hover:border-blue-500/50 transition">
+                                    <div>
+                                        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr ${c.color} flex items-center justify-center text-white text-xl mb-4 shadow-lg">
+                                            <i class="fa-solid ${c.icon}"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-white mb-2">${c.title}</h3>
+                                        <p class="text-xs md:text-sm text-slate-300 leading-relaxed">${c.desc}</p>
+                                    </div>
+                                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center text-xs text-blue-400">
+                                        <span>商业价值分析</span>
+                                        <i class="fa-solid fa-angle-right ml-1"></i>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-xs text-slate-400">
+                            <strong>战略结论：</strong> 商业化成功关键在于场景选择而非技术复杂度。消费级看量与黏性，企业级看 ROI 与效率提升。
+                        </div>
+                    </div>
+                `;
+            } else if (data.type === 'grid') {
+                contentHTML = `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <span class="text-xs font-mono text-cyan-400 tracking-wider">${data.chapter}</span>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white mt-1">${data.title}</h2>
+                            <p class="text-sm text-slate-400 mt-1">${data.subtitle}</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto py-4">
+                            ${data.items.map((item, i) => `
+                                <div class="glass-card p-4 rounded-xl border border-slate-700/50 flex items-center space-x-3 hover:bg-slate-800/80 transition">
+                                    <div class="w-8 h-8 rounded-lg bg-blue-900/50 text-blue-400 border border-blue-500/30 flex items-center justify-center font-bold text-xs shrink-0">
+                                        ${i+1}
+                                    </div>
+                                    <span class="text-xs md:text-sm text-slate-200 font-medium">${item}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-blue-950/40 border border-blue-500/20 text-xs text-slate-300">
+                            核心原则：9 个项目均围绕“底层技术能力复用，前端细分痛点切入”的逻辑设计。
+                        </div>
+                    </div>
+                `;
+            } else if (data.type === 'flow') {
+                contentHTML = `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <span class="text-xs font-mono text-cyan-400 tracking-wider">${data.chapter}</span>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white mt-1">${data.title}</h2>
+                            <p class="text-sm text-slate-400 mt-1">${data.subtitle}</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-auto py-4">
+                            ${data.flows.map((f, i) => `
+                                <div class="glass-card p-5 rounded-2xl border border-slate-700/60 flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center text-white font-bold shrink-0 shadow-md">
+                                        0${i+1}
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base font-bold text-white">${f.label}</h3>
+                                        <p class="text-xs text-slate-300 mt-1 leading-relaxed">${f.detail}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400">
+                            避免单一收费模型，通过“订阅做基本盘 + 消耗型 Token / 佣金做弹性增量”实现商业化稳定性。
+                        </div>
+                    </div>
+                `;
+            } else if (data.type === 'product_detail') {
+                contentHTML = `
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-mono text-cyan-400 tracking-wider">${data.chapter}</span>
+                                <h2 class="text-2xl md:text-3xl font-bold text-white mt-1">${data.title}</h2>
+                                <p class="text-sm text-slate-400 mt-1">${data.subtitle}</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-medium">
+                                ${data.tag}
+                            </span>
+                        </div>
+
+                        <div class="space-y-4 my-auto py-2">
+                            <!-- 一句话解释 -->
+                            <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700">
+                                <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider block mb-1"><i class="fa-solid fa-lightbulb mr-1.5"></i> 一句话概念</span>
+                                <p class="text-sm md:text-base font-medium text-slate-100">${data.oneLiner}</p>
+                            </div>
+
+                            <!-- 目标客户 & 需求 -->
+                            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1"><i class="fa-solid fa-users mr-1.5"></i> 目标客户与关键需求</span>
+                                <p class="text-xs md:text-sm text-slate-300">${data.user}</p>
+                            </div>
+
+                            <!-- 产品工作流示意 -->
+                            <div class="p-4 rounded-xl bg-navy-900/80 border border-slate-800">
+                                <span class="text-xs font-bold text-blue-400 uppercase tracking-wider block mb-2"><i class="fa-solid fa-diagram-project mr-1.5"></i> 典型工作流流程</span>
+                                <div class="text-xs text-cyan-300 font-mono bg-slate-950 p-3 rounded-lg border border-slate-800">
+                                    ${data.flow}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center text-xs text-slate-400 pt-2 border-t border-slate-800">
+                            <span>提示：展开下方 drawer 可阅读本章 100% 原始未删减评估文本</span>
+                            <button onclick="toggleDrawer()" class="text-blue-400 hover:text-blue-300 font-medium">
+                                查看详细商业分析 <i class="fa-solid fa-chevron-up ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (data.type === 'biz_risk') {
+                contentHTML = `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <span class="text-xs font-mono text-cyan-400 tracking-wider">${data.chapter}</span>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white mt-1">${data.title}</h2>
+                            <p class="text-sm text-slate-400 mt-1">${data.subtitle}</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-auto py-2">
+                            <!-- 收入模式 -->
+                            <div class="glass-card p-5 rounded-xl border border-emerald-500/30">
+                                <h3 class="text-sm font-bold text-emerald-400 mb-3 flex items-center">
+                                    <i class="fa-solid fa-sack-dollar mr-2"></i> 商业化收入路径
+                                </h3>
+                                <ul class="space-y-2 text-xs md:text-sm text-slate-200">
+                                    ${data.revenue.map(r => `<li class="flex items-center"><i class="fa-solid fa-check text-emerald-400 mr-2 text-xs"></i>${r}</li>`).join('')}
+                                </ul>
+                            </div>
+
+                            <!-- 成本结构 -->
+                            <div class="glass-card p-5 rounded-xl border border-amber-500/30">
+                                <h3 class="text-sm font-bold text-amber-400 mb-3 flex items-center">
+                                    <i class="fa-solid fa-calculator mr-2"></i> 核心成本构成
+                                </h3>
+                                <ul class="space-y-2 text-xs md:text-sm text-slate-200">
+                                    ${data.costs.map(c => `<li class="flex items-center"><i class="fa-solid fa-minus text-amber-400 mr-2 text-xs"></i>${c}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 风险与验证 -->
+                        <div class="p-4 rounded-xl bg-rose-950/30 border border-rose-500/30 text-xs md:text-sm text-slate-300">
+                            <strong class="text-rose-400 block mb-1"><i class="fa-solid fa-triangle-exclamation mr-1.5"></i> 核心竞争、风控与验证建议：</strong>
+                            ${data.risks}
+                        </div>
+                    </div>
+                `;
+            } else if (data.type === 'matrix') {
+                contentHTML = `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <span class="text-xs font-mono text-cyan-400 tracking-wider">${data.chapter}</span>
+                            <h2 class="text-2xl font-bold text-white mt-1">${data.title}</h2>
+                            <p class="text-xs text-slate-400 mt-1">${data.subtitle}</p>
+                        </div>
+
+                        <div class="overflow-x-auto my-auto py-2">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-700 bg-slate-800/80 text-cyan-300 font-mono">
+                                        <th class="p-2.5">项目名称</th>
+                                        <th class="p-2.5">目标客户</th>
+                                        <th class="p-2.5">付费理由</th>
+                                        <th class="p-2.5">商业模式</th>
+                                        <th class="p-2.5">核心成本</th>
+                                        <th class="p-2.5">验证难点</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800 text-slate-300">
+                                    <tr><td class="p-2.5 font-bold text-white">跨境电商 AI 内容</td><td>跨境卖家</td><td>直接降本增效</td><td>SaaS + 按量</td><td>GPU / 视频 API</td><td>生成一致性</td></tr>
+                                    <tr><td class="p-2.5 font-bold text-white">AI 美颜/虚拟试穿</td><td>ToC 消费者</td><td>社交与审美需求</td><td>订阅 + 单次包</td><td>渲染算力 GPU</td><td>留存率低</td></tr>
+                                    <tr><td class="p-2.5 font-bold text-white">律师 AI 助手</td><td>律所/律师</td><td>节省卷宗撰写时间</td><td>SaaS / 硬件授权</td><td>RAG / 语音 API</td><td>幻觉与法律责任</td></tr>
+                                    <tr><td class="p-2.5 font-bold text-white">AI 智能记账</td><td>年轻白领</td><td>无感记账与理财</td><td>订阅 + 导购佣金</td><td>OCR / LLM</td><td>用户付费意愿偏弱</td></tr>
+                                    <tr><td class="p-2.5 font-bold text-white">AI 衣橱穿搭</td><td>时尚人群</td><td>形象与穿搭管理</td><td>订阅 + 佣金</td><td>Segmentation / GPU</td><td>虚拟试穿细节精度</td></tr>
+                                    <tr><td class="p-2.5 font-bold text-white">AI SEO/GEO 平台</td><td>品牌与卖家</td><td>获取 AI 搜索流量</td><td>SaaS 阶梯订阅</td><td>LLM / 抓取 API</td><td>效果归因难</td></tr>
+                                    <tr><td class="p-2.5 font-bold text-white">AI 社交社区</td><td>同城青年</td><td>破冰与同好社交</td><td>活动抽佣</td><td>线下运营</td><td>区域密度要求高</td></tr>
+                                    <tr><td class="p-2.5 font-bold text-white">AI 陪伴助手</td><td>孤独青年</td><td>情绪价值倾诉</td><td>订阅 + 数字道具</td><td>LLM Token / TTS</td><td>高额 Token 成本</td></tr>
+                                    <tr><td class="p-2.5 font-bold text-white">AI 宠物服务</td><td>爱宠人群</td><td>领养与友好地图</td><td>佣金 + 增值</td><td>社区运营</td><td>商业闭环较长</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-400">
+                            注：评分与对比基于战略评估假设，需在 4-6 周 MVP 验证期收集真实 CAC 与 LTV 数据修正。
+                        </div>
+                    </div>
+                `;
+            } else if (data.type === 'tier') {
+                contentHTML = `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <span class="text-xs font-mono text-cyan-400 tracking-wider">${data.chapter}</span>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white mt-1">${data.title}</h2>
+                            <p class="text-sm text-slate-400 mt-1">${data.subtitle}</p>
+                        </div>
+
+                        <div class="space-y-3 my-auto py-2">
+                            <!-- Tier 1 -->
+                            <div class="glass-card p-4 rounded-xl border-l-4 border-l-emerald-500 border-slate-700">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h3 class="text-base font-bold text-emerald-400">第一阶梯：优先验证，即刻启动</h3>
+                                    <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300">High ROI / 快现金流</span>
+                                </div>
+                                <p class="text-xs text-slate-200">项目：跨境电商 AI 商品内容生成平台、AI 美颜与虚拟试穿工具。</p>
+                                <p class="text-xs text-slate-400 mt-1">理由：付费意愿极其明确，技术可行性高，能迅速拉动 ToB / ToC 现金流。</p>
+                            </div>
+
+                            <!-- Tier 2 -->
+                            <div class="glass-card p-4 rounded-xl border-l-4 border-l-blue-500 border-slate-700">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h3 class="text-base font-bold text-blue-400">第二阶梯：重点储备，顺次推进</h3>
+                                    <span class="text-xs font-mono px-2 py-0.5 rounded bg-blue-950 text-blue-300">中长期壁垒</span>
+                                </div>
+                                <p class="text-xs text-slate-200">项目：AI SEO/GEO 自动化营销平台、律师 AI 智能助手、AI 衣橱、AI 智能记账。</p>
+                                <p class="text-xs text-slate-400 mt-1">理由：具有极高专业壁垒或能抢占新兴流量红利，待第一阶梯稳定后投入。</p>
+                            </div>
+
+                            <!-- Tier 3 -->
+                            <div class="glass-card p-4 rounded-xl border-l-4 border-l-slate-500 border-slate-700">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h3 class="text-base font-bold text-slate-400">第三阶梯：观察探索，控制投入</h3>
+                                    <span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">高运营 / 高 Token 成本</span>
+                                </div>
+                                <p class="text-xs text-slate-200">项目：AI 陪伴、AI 社交活动、AI 宠物服务平台。</p>
+                                <p class="text-xs text-slate-400 mt-1">理由：重线下运营或推理 Token 成本过于昂贵，建议先通过轻量 MVP 摸底。</p>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-blue-950/30 border border-blue-500/20 text-xs text-slate-300">
+                            按“低成本试错 → 拿到真实付费数据 → 放大研发资源”逻辑滚动执行。
+                        </div>
+                    </div>
+                `;
+            } else if (data.type === 'framework') {
+                contentHTML = `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <span class="text-xs font-mono text-cyan-400 tracking-wider">${data.chapter}</span>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white mt-1">${data.title}</h2>
+                            <p class="text-sm text-slate-400 mt-1">${data.subtitle}</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 my-auto py-4">
+                            <div class="glass-card p-4 rounded-xl border border-slate-700 text-center">
+                                <div class="w-8 h-8 rounded-full bg-blue-600/30 text-blue-400 flex items-center justify-center mx-auto mb-2 font-bold">1</div>
+                                <h3 class="text-xs font-bold text-white">目标用户定义</h3>
+                                <p class="text-[11px] text-slate-400 mt-1">画像是否清晰独立？</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl border border-slate-700 text-center">
+                                <div class="w-8 h-8 rounded-full bg-cyan-600/30 text-cyan-400 flex items-center justify-center mx-auto mb-2 font-bold">2</div>
+                                <h3 class="text-xs font-bold text-white">真实付费逻辑</h3>
+                                <p class="text-[11px] text-slate-400 mt-1">帮用户省钱还是赚钱？</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl border border-slate-700 text-center">
+                                <div class="w-8 h-8 rounded-full bg-emerald-600/30 text-emerald-400 flex items-center justify-center mx-auto mb-2 font-bold">3</div>
+                                <h3 class="text-xs font-bold text-white">获客成本 (CAC)</h3>
+                                <p class="text-[11px] text-slate-400 mt-1">获客路径是否可预测？</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl border border-slate-700 text-center">
+                                <div class="w-8 h-8 rounded-full bg-amber-600/30 text-amber-400 flex items-center justify-center mx-auto mb-2 font-bold">4</div>
+                                <h3 class="text-xs font-bold text-white">单位效益 (Unit Econ)</h3>
+                                <p class="text-[11px] text-slate-400 mt-1">LTV 能否覆盖 GPU/Token？</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl border border-slate-700 text-center">
+                                <div class="w-8 h-8 rounded-full bg-rose-600/30 text-rose-400 flex items-center justify-center mx-auto mb-2 font-bold">5</div>
+                                <h3 class="text-xs font-bold text-white">实施壁垒与风险</h3>
+                                <p class="text-[11px] text-slate-400 mt-1">数据隐私与幻觉责任？</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl border border-slate-700 text-center">
+                                <div class="w-8 h-8 rounded-full bg-purple-600/30 text-purple-400 flex items-center justify-center mx-auto mb-2 font-bold">6</div>
+                                <h3 class="text-xs font-bold text-white">验证周期 (4-6周)</h3>
+                                <p class="text-[11px] text-slate-400 mt-1">极速 MVP 是否可行？</p>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-400">
+                            所有拟立项项目均必须严格通过上述 6 项指标筛选后方能投入研发算力。
+                        </div>
+                    </div>
+                `;
+            } else if (data.type === 'conclusion') {
+                contentHTML = `
+                    <div class="flex flex-col h-full justify-between items-center text-center p-4 md:p-8">
+                        <div>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-medium">
+                                最终战略决策与提案
+                            </span>
+                            <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-4">双轮驱动 · 极速 MVP 验证战略</h2>
+                            <p class="text-slate-300 max-w-xl mx-auto mt-2 text-sm">
+                                集中资源优先落地“跨境电商 AI 内容平台”与“AI 美颜/虚拟试穿工具”
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6 w-full max-w-3xl text-left">
+                            <div class="glass-card p-6 rounded-2xl border border-emerald-500/40">
+                                <h3 class="text-lg font-bold text-emerald-400 mb-2 flex items-center">
+                                    <i class="fa-solid fa-rocket mr-2"></i> 动作一：ToB 现金流突破
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    启动“跨境电商 AI 商品内容生成平台”6 周 MVP 研发，在跨境卖家社区获取 50-100 家种子客户，验证 SaaS 订阅与商品图/视频生成频次。
+                                </p>
+                            </div>
+                            <div class="glass-card p-6 rounded-2xl border border-cyan-500/40">
+                                <h3 class="text-lg font-bold text-cyan-400 mb-2 flex items-center">
+                                    <i class="fa-solid fa-chart-line mr-2"></i> 动作二：ToC 流量变现
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    发布轻量“AI 美颜与虚拟试穿”轻应用，通过社交平台投放测试 CAC 与单次生成付费意愿，构建初始流量与快现金流。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-950/60 border border-blue-500/30 p-4 rounded-xl max-w-2xl text-xs text-slate-200">
+                            <strong>决策结论：</strong> 构建一组具备共同底层能力、拥有不同商业化入口的 AI 产品矩阵。通过低成本验证，筛选最值得持续投入的业务！
+                        </div>
+                    </div>
+                `;
+            }
+
+            activeSlide.innerHTML = contentHTML;
+
+            // Update Drawer Raw Text (Layer 2)
+            const rawChapter = CHAPTER_RAW_DATA[data.chIndex] || CHAPTER_RAW_DATA[0];
+            drawerContent.innerHTML = `
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 mb-4">
+                    <h3 class="font-bold text-blue-400 text-base mb-2">${rawChapter.title}</h3>
+                    <p class="text-xs text-slate-400 mb-3">（以下为基准文档原文全文，100% 完整保留，未作删除或缩减）</p>
+                    <div class="whitespace-pre-wrap text-slate-200 leading-relaxed font-sans text-xs md:text-sm">
+                        ${rawChapter.content}
+                    </div>
+                </div>
+            `;
+        }
+
+        // TOC MODAL BUILDER
+        function buildTocModal() {
+            tocList.innerHTML = CHAPTER_RAW_DATA.map((ch, idx) => `
+                <div onclick="jumpToChapter(${idx})" class="p-4 rounded-xl bg-slate-800/60 hover:bg-slate-700/80 border border-slate-700/60 cursor-pointer transition flex items-start space-x-3">
+                    <span class="font-mono text-xs font-bold text-cyan-400 bg-slate-900 px-2 py-1 rounded shrink-0">
+                        Ch ${ch.num}
+                    </span>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-100">${ch.title}</h4>
+                        <p class="text-xs text-slate-400 mt-1 line-clamp-2">${ch.content.substring(0, 80)}...</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // READER FULL CONTENT BUILDER
+        function buildReaderContent() {
+            readerBody.innerHTML = CHAPTER_RAW_DATA.map(ch => `
+                <section class="border-b border-slate-800 pb-8">
+                    <h2 class="text-xl font-bold text-cyan-400 mb-3 font-mono">${ch.title}</h2>
+                    <div class="whitespace-pre-wrap text-slate-300 leading-relaxed font-sans text-sm md:text-base">
+                        ${ch.content}
+                    </div>
+                </section>
+            `).join('');
+        }
+
+        // NAVIGATION LOGIC
+        function nextSlide() {
+            if (currentIndex < SLIDES.length - 1) {
+                currentIndex++;
+                renderSlide(currentIndex);
+            }
+        }
+
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderSlide(currentIndex);
+            }
+        }
+
+        function jumpToChapter(chIndex) {
+            // Find first slide matching chapter index
+            const targetIndex = SLIDES.findIndex(s => s.chIndex === chIndex);
+            if (targetIndex !== -1) {
+                currentIndex = targetIndex;
+                renderSlide(currentIndex);
+                tocModal.classList.add('hidden');
+            }
+        }
+
+        function toggleDrawer() {
+            drawerOpen = !drawerOpen;
+            if (drawerOpen) {
+                detailDrawer.style.height = '280px';
+                drawerToggleText.textContent = '收起原始未删减正文';
+            } else {
+                detailDrawer.style.height = '0px';
+                drawerToggleText.textContent = '查看对应原始完整正文';
+            }
+        }
+
+        function toggleToc() {
+            tocModal.classList.toggle('hidden');
+        }
+
+        function toggleReader() {
+            readerModal.classList.toggle('hidden');
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // EVENT LISTENERS
+        function setupEventListeners() {
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            toggleDrawerBtn.addEventListener('click', toggleDrawer);
+            closeDrawerBtn.addEventListener('click', toggleDrawer);
+            tocBtn.addEventListener('click', toggleToc);
+            closeTocBtn.addEventListener('click', toggleToc);
+            fullscreenBtn.addEventListener('click', toggleFullscreen);
+            toggleReaderBtn.addEventListener('click', toggleReader);
+            closeReaderBtn.addEventListener('click', toggleReader);
+
+            // KEYBOARD SHORTCUTS
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'PageDown') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                    prevSlide();
+                } else if (e.key === 'f' || e.key === 'F') {
+                    toggleFullscreen();
+                } else if (e.key === 'Escape') {
+                    tocModal.classList.add('hidden');
+                    readerModal.classList.add('hidden');
+                    if (drawerOpen) toggleDrawer();
+                }
+            });
+        }
+
+        // CONTENT PROTECTION & DISCLAIMER LOGIC
+        function setupSecurityProtections() {
+            // Disable context menu on slide view (allows inspect/copy disclaimer)
+            document.addEventListener('contextmenu', (e) => {
+                // If clicking inside selectable-text area, allow default
+                if (e.target.closest('.selectable-text')) return;
+                e.preventDefault();
+            });
+
+            // Prevent shortcuts like Ctrl+S, Ctrl+P, Ctrl+U on general areas
+            window.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && ['s', 'p', 'u'].includes(e.key.toLowerCase())) {
+                    if (!e.target.closest('.selectable-text')) {
+                        e.preventDefault();
+                    }
+                }
+            });
+
+            // Log technical limitation notice in developer console
+            console.log("%c【防抓取与保护机制说明】", "color: #3b82f6; font-size: 14px; font-weight: bold;");
+            console.log("客户端防选中与右键拦截旨在提高普通用户的直接复制成本。然而，无法完全防止通过浏览器开发者工具、网络请求分析或 OCR 提取公开交付的前端文本内容。真正的服务端保护需结合 JWT Token 与后端权限拦截。");
+        }
+    </script>
+</body>
+</html>

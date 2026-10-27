@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 应用商业化地图：从全球收入榜单到我们的产品机会</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #030712;
+      font-family: 'Noto Sans SC', 'Inter', sans-serif;
+      color: #E2E8F0;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      margin: 30px auto;
+      overflow: hidden;
+      box-sizing: border-box;
+      position: relative;
+      background: #0B0F19;
+      border: 1px solid #1E293B;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 36px 48px 20px 48px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    }
+    
+    /* Header & Footer */
+    .slide-header { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; }
+    .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #10B981; }
+    .slide-title { font-size: 24px; font-weight: 800; color: #F8FAFC; line-height: 1.25; letter-spacing: -0.3px; }
+    .slide-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; font-size: 11px; color: #64748B; font-family: 'JetBrains Mono', monospace; }
+    .footer-watermark { opacity: 0.4; letter-spacing: 1px; font-weight: 600; }
+
+    /* Layout Grimitives */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    
+    .card { background: #111827; border: 1px solid #1E293B; border-radius: 8px; padding: 18px; }
+    .card-accent { background: #111827; border: 1px solid #10B981; border-radius: 8px; padding: 18px; }
+    .card-blue { background: #111827; border: 1px solid #38BDF8; border-radius: 8px; padding: 18px; }
+
+    .tag { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #10B981; font-size: 11px; font-weight: 700; border-radius: 4px; }
+    .tag-blue { background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.3); color: #38BDF8; }
+    .tag-amber { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.3); color: #F59E0B; }
+    .tag-purple { background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.3); color: #A855F7; }
+
+    .metric-val { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 800; color: #10B981; line-height: 1.1; }
+    .metric-label { font-size: 12px; color: #94A3B8; margin-top: 4px; }
+
+    /* Custom Table */
+    table.data-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; }
+    table.data-table th { background: #1E293B; color: #F8FAFC; font-weight: 700; padding: 9px 12px; border-bottom: 2px solid #334155; }
+    table.data-table td { padding: 9px 12px; border-bottom: 1px solid #1E293B; color: #CBD5E1; }
+    table.data-table tr:nth-child(even) { background: rgba(255, 255, 255, 0.015); }
+
+    /* Visual Bars */
+    .bar-bg { background: #1E293B; height: 6px; border-radius: 3px; overflow: hidden; width: 100%; margin-top: 6px; }
+    .bar-fill { background: #10B981; height: 100%; border-radius: 3px; }
+    .bar-fill-blue { background: #38BDF8; height: 100%; border-radius: 3px; }
+
+    /* Flow Step */
+    .flow-step { background: #1E293B; padding: 10px 14px; border-radius: 6px; border-left: 3px solid #38BDF8; font-size: 12px; margin-bottom: 8px; }
+    .flow-step-green { border-left-color: #10B981; background: rgba(16, 185, 129, 0.08); }
+
+    /* Matrix Styles */
+    .matrix-cell { background: rgba(255, 255, 255, 0.02); border: 1px dashed #334155; border-radius: 6px; padding: 12px; }
+    .matrix-p0 { background: rgba(16, 185, 129, 0.12); border: 1px solid #10B981; }
+    .matrix-p1 { background: rgba(56, 189, 248, 0.1); border: 1px solid #38BDF8; }
+
+    ul.bullet-list { margin-left: 16px; font-size: 12px; color: #CBD5E1; line-height: 1.6; }
+    ul.bullet-list li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+  <!-- SLIDE 1: Cover -->
+  <div class="slide-container" id="slide1" style="justify-content: space-between; background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.15) 0%, rgba(11, 15, 25, 1) 70%);">
+    <div style="margin-top: 40px;">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 20px;">
+        <span class="eyebrow" style="font-size: 14px;"><i class="fa-solid fa-chart-line"></i> STRATEGIC ROADSHOW DECK</span>
+        <span class="tag tag-amber" style="font-size: 11px;">2026 Q1 EXECUTIVE EDITION</span>
+      </div>
+      <h1 style="font-size: 44px; font-weight: 900; color: #F8FAFC; letter-spacing: -1px; line-height: 1.15; max-width: 950px;">
+        AI 应用商业化地图：<br><span style="color: #10B981;">从全球收入榜单到我们的产品机会</span>
+      </h1>
+      <p style="font-size: 17px; color: #94A3B8; margin-top: 20px; max-width: 800px; line-height: 1.6;">
+        解构全球高收入 AI 应用的底层变现公式，将大模型技术优势翻译为用户持续付费理由，精准锚定高 ROI 商业落地赛道。
+      </p>
+    </div>
+
+    <div class="grid-3" style="margin-top: 20px; margin-bottom: 20px;">
+      <div class="card" style="border-left: 4px solid #10B981;">
+        <div style="font-size: 12px; color: #64748B; font-weight: 700;">核心范式转移</div>
+        <div style="font-size: 15px; font-weight: 800; color: #F8FAFC; margin-top: 4px;">从模型算力演进 ➔ 产品商业变现</div>
+      </div>
+      <div class="card" style="border-left: 4px solid #38BDF8;">
+        <div style="font-size: 12px; color: #64748B; font-weight: 700;">行业分析样本</div>
+        <div style="font-size: 15px; font-weight: 800; color: #F8FAFC; margin-top: 4px;">A16Z Top 50 头部案例深度透视</div>
+      </div>
+      <div class="card" style="border-left: 4px solid #F59E0B;">
+        <div style="font-size: 12px; color: #64748B; font-weight: 700;">落地战略目标</div>
+        <div style="font-size: 15px; font-weight: 800; color: #F8FAFC; margin-top: 4px;">90 天敏捷 MVP 验证正向单位经济</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料 (未经授权禁止复制与传播)</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 01</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: Commercial Phase -->
+  <div class="slide-container" id="slide2">
+    <div class="slide-header">
+      <div class="eyebrow">01. 商业化阶段判断 / MARKET PARADIGM</div>
+      <div class="slide-title">AI 的商业价值，最终要由用户付费与 ROI 验证</div>
+    </div>
+
+    <div class="grid-3" style="gap: 16px; flex-grow: 1; align-items: stretch;">
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid #10B981;">
+        <div>
+          <div class="tag"><i class="fa-solid fa-user"></i> C端体验层 (B2C)</div>
+          <h3 style="font-size: 17px; color: #F8FAFC; margin: 12px 0 6px 0;">直观结果与社交付费</h3>
+          <p style="font-size: 12px; color: #94A3B8; line-height: 1.5;">用户为“秒级见效”的视觉提升、个人社交货币及情感陪伴体验买单。</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.03); padding: 10px; border-radius: 6px; margin-top: 12px;">
+          <div style="font-size: 11px; color: #64748B;">高频付费场景</div>
+          <div style="font-size: 12px; font-weight: 700; color: #CBD5E1; margin-top: 4px;">AI 美颜滤镜、虚拟试穿、个性化头像、极简健康打卡</div>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid #38BDF8;">
+        <div>
+          <div class="tag tag-blue"><i class="fa-solid fa-briefcase"></i> 专业效率层 (Prosumer)</div>
+          <h3 style="font-size: 17px; color: #F8FAFC; margin: 12px 0 6px 0;">工作流提效付费</h3>
+          <p style="font-size: 12px; color: #94A3B8; line-height: 1.5;">专业人士为缩短生产周期、自动化重复劳动及精准专业检索付费。</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.03); padding: 10px; border-radius: 6px; margin-top: 12px;">
+          <div style="font-size: 11px; color: #64748B;">高频付费场景</div>
+          <div style="font-size: 12px; font-weight: 700; color: #CBD5E1; margin-top: 4px;">法律文本整理、语音纪要转写、AI 编程辅助、口语纠错</div>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid #F59E0B;">
+        <div>
+          <div class="tag tag-amber"><i class="fa-solid fa-building"></i> 企业生产力层 (B2B)</div>
+          <h3 style="font-size: 17px; color: #F8FAFC; margin: 12px 0 6px 0;">降本增效与确定性 ROI</h3>
+          <p style="font-size: 12px; color: #94A3B8; line-height: 1.5;">企业客户根据具体业务流程优化、综合人力成本降低或获客转化量付费。</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.03); padding: 10px; border-radius: 6px; margin-top: 12px;">
+          <div style="font-size: 11px; color: #64748B;">高频付费场景</div>
+          <div style="font-size: 12px; font-weight: 700; color: #CBD5E1; margin-top: 4px;">电商图文批量生成、GEO 营销自动化、客服 API 接入</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 14px; background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2); padding: 12px 18px;">
+      <div style="font-size: 12px; color: #CBD5E1;">
+        <i class="fa-solid fa-lightbulb" style="color: #10B981; margin-right: 8px;"></i>
+        <strong>战略结论：</strong> 技术实力仅构成立项门槛。明确的付费场景、粘性留存率与合理的推理成本（Unit Economics）共同决定最终商业成败。
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 02</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: Top Revenue Benchmarks -->
+  <div class="slide-container" id="slide3">
+    <div class="slide-header">
+      <div class="eyebrow">02. 全球榜单拆解 / GLOBAL BENCHMARKS</div>
+      <div class="slide-title">高收入 AI 应用分布多元，消费工具与专业服务均存高变现空间</div>
+    </div>
+
+    <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 15%;">代表性应用</th>
+            <th style="width: 15%;">主攻赛道分类</th>
+            <th style="width: 32%;">核心变现逻辑与用户付费点</th>
+            <th style="width: 18%;">主要收费模式</th>
+            <th style="width: 20%;">公开/估算收入表现 (参考)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color: #F8FAFC;"><i class="fa-solid fa-bolt" style="color:#10B981; margin-right:4px;"></i> ChatGPT</strong></td>
+            <td><span class="tag tag-blue">通用 AI 助手</span></td>
+            <td>高级模型访问权 (GPT-4o)、高并发极速响应、多模态功能拓展</td>
+            <td>B2C 订阅 ($20/月) + Enterprise API</td>
+            <td><strong style="font-family: 'JetBrains Mono'; color: #10B981;">ARR > $3.0B</strong> <span style="font-size:10px; color:#64748B;">(官方/第三方)</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color: #F8FAFC;"><i class="fa-solid fa-wand-magic-sparkles" style="color:#F59E0B; margin-right:4px;"></i> FaceApp</strong></td>
+            <td><span class="tag">图像/美颜工具</span></td>
+            <td>人像高精美化、滤镜特效、智能年龄变化、无水印高分辨率导出</td>
+            <td>IAP 内购 + 周/年度自动续费</td>
+            <td><strong style="font-family: 'JetBrains Mono'; color: #CBD5E1;">年流水估算 > $100M</strong> <span style="font-size:10px; color:#64748B;">(SensorTower)</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color: #F8FAFC;"><i class="fa-solid fa-leaf" style="color:#10B981; margin-right:4px;"></i> PictureThis</strong></td>
+            <td><span class="tag">垂直场景识别</span></td>
+            <td>植物病虫害快速诊断、专属养护方案、专家在线解答拓展服务</td>
+            <td>自动续费年订阅制 ($29.99/年)</td>
+            <td><strong style="font-family: 'JetBrains Mono'; color: #CBD5E1;">年内购 > $40M</strong> <span style="font-size:10px; color:#64748B;">(第三方估算)</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color: #F8FAFC;"><i class="fa-solid fa-microphone" style="color:#38BDF8; margin-right:4px;"></i> Speechify / Speak</strong></td>
+            <td><span class="tag tag-amber">语言与语音处理</span></td>
+            <td>AI 口语实时纠错、长文本超自然语音朗读、阅读效率倍速提升</td>
+            <td>个人订阅 + 团队企业版</td>
+            <td><strong style="font-family: 'JetBrains Mono'; color: #CBD5E1;">ARR $30M - $80M</strong> <span style="font-size:10px; color:#64748B;">(公开报道)</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color: #F8FAFC;"><i class="fa-solid fa-microchip" style="color:#A855F7; margin-right:4px;"></i> Plaud Note</strong></td>
+            <td><span class="tag tag-purple">软硬一体工具</span></td>
+            <td>录音硬件绑定 + AI 总结模板、会议纪要自动生成与思维导图导出</td>
+            <td>硬件售卖 + 软件转写额度订阅</td>
+            <td><strong style="font-family: 'JetBrains Mono'; color: #10B981;">硬件爆款+订阅增量</strong> <span style="font-size:10px; color:#64748B;">(高增速)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="font-size: 11px; color: #64748B; margin-top: 8px;">
+      *数据来源及说明：基于 A16Z Top 50 AI Apps 历史榜单及 SensorTower/TechCrunch 公开报道整理。不同产品统计口径存在差异（含 IAP、订阅及 API 算力），仅作商业模式逻辑参考。
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 03</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Revenue Models Structure -->
+  <div class="slide-container" id="slide4">
+    <div class="slide-header">
+      <div class="eyebrow">03. 商业模式解构 / REVENUE STRUCTURE</div>
+      <div class="slide-title">四类主流商业模式的付费对象、成本与风险对比</div>
+    </div>
+
+    <div class="grid-4" style="flex-grow: 1; align-items: stretch;">
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-size: 13px; font-weight: 800; color: #10B981;"><i class="fa-solid fa-user-check"></i> 1. C端个人订阅</div>
+          <div style="font-size: 11px; color: #94A3B8; margin-top: 4px;">Consumer SaaS (B2C)</div>
+          <hr style="border: none; border-top: 1px solid #1E293B; margin: 10px 0;">
+          <ul class="bullet-list">
+            <li><strong>付费对象：</strong> 个人消费者</li>
+            <li><strong>核心卖点：</strong> 娱乐、形象美化、效率提升、情感陪伴</li>
+            <li><strong>收费形式：</strong> 月卡 / 年卡订阅 (Apple/Google IAP)</li>
+          </ul>
+        </div>
+        <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); padding: 8px; border-radius: 4px; font-size: 10px; color: #FCA5A5;">
+          <strong>主要风险：</strong> 30 天留存率偏低，买量获客成本 (CAC) 持续走高。
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-size: 13px; font-weight: 800; color: #38BDF8;"><i class="fa-solid fa-coins"></i> 2. 增值包与使用额度</div>
+          <div style="font-size: 11px; color: #94A3B8; margin-top: 4px;">Pay-as-you-go / Credits</div>
+          <hr style="border: none; border-top: 1px solid #1E293B; margin: 10px 0;">
+          <ul class="bullet-list">
+            <li><strong>付费对象：</strong> 创作者 / 低频次使用用户</li>
+            <li><strong>核心卖点：</strong> 高清导出、高级模型点数、算力密集任务</li>
+            <li><strong>收费形式：</strong> Token 包、点数按需充值</li>
+          </ul>
+        </div>
+        <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); padding: 8px; border-radius: 4px; font-size: 10px; color: #FDE68A;">
+          <strong>关键点：</strong> 试用门槛极低，但单客月度收入难以精准预测。
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-size: 13px; font-weight: 800; color: #F59E0B;"><i class="fa-solid fa-building-user"></i> 3. B端企业软件订阅</div>
+          <div style="font-size: 11px; color: #94A3B8; margin-top: 4px;">B2B Team / Enterprise</div>
+          <hr style="border: none; border-top: 1px solid #1E293B; margin: 10px 0;">
+          <ul class="bullet-list">
+            <li><strong>付费对象：</strong> 企业主、SMB 商家、团队负责人</li>
+            <li><strong>核心卖点：</strong> 多人协作、批量生产、商业版权、数据安全</li>
+            <li><strong>收费形式：</strong> 按座席 (Seat) 或企业年费</li>
+          </ul>
+        </div>
+        <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); padding: 8px; border-radius: 4px; font-size: 10px; color: #A7F3D0;">
+          <strong>核心优势：</strong> LTV 极高，续费率稳健，提供健康现金流。
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-size: 13px; font-weight: 800; color: #A855F7;"><i class="fa-solid fa-code"></i> 4. API 与量化计费</div>
+          <div style="font-size: 11px; color: #94A3B8; margin-top: 4px;">Developer / API Platform</div>
+          <hr style="border: none; border-top: 1px solid #1E293B; margin: 10px 0;">
+          <ul class="bullet-list">
+            <li><strong>付费对象：</strong> 开发者、系统集成商、中大型企业</li>
+            <li><strong>核心卖点：</strong> 原生 AI 能力无缝嵌入自身工作流</li>
+            <li><strong>收费形式：</strong> 按调用次数 / 处理数据量计费</li>
+          </ul>
+        </div>
+        <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 8px; border-radius: 4px; font-size: 10px; color: #BAE6FD;">
+          <strong>关键点：</strong> 需要极高技术壁垒与 SLA 高可用服务保障。
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 04</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: Visual AI Apps Analysis -->
+  <div class="slide-container" id="slide5">
+    <div class="slide-header">
+      <div class="eyebrow">04. 视觉类 AI 赛道分析 / VISUAL AI OPPORTUNITIES</div>
+      <div class="slide-title">视觉工具提供直观结果，是 C 端商业化的天然高转化入口</div>
+    </div>
+
+    <div class="grid-2" style="flex-grow: 1; gap: 20px; align-items: center;">
+      <!-- Left Flow -->
+      <div class="card" style="padding: 20px;">
+        <div style="font-size: 14px; font-weight: 700; color: #F8FAFC; margin-bottom: 14px;"><i class="fa-solid fa-filter" style="color:#10B981;"></i> C端视觉应用标准变现漏斗</div>
+        
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div class="flow-step">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="color:#F8FAFC;">1. 社交媒体传播 / 社群爆款引流</strong>
+              <span class="tag">低成本流量</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="color:#F8FAFC;">2. 上传照片/视频 + 零门槛一键生成</strong>
+              <span class="tag tag-blue">极低体验门槛</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="color:#F8FAFC;">3. 效果预览 (水印掩码 / 低分辨率)</strong>
+              <span class="tag tag-amber">效果验真</span>
+            </div>
+          </div>
+          <div class="flow-step flow-step-green">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="color:#10B981;">4. 付费解锁 HD 高清 / 消除水印 / 开启 VIP 订阅</strong>
+              <span class="tag" style="background:#10B981; color:#000;">变现关键节点</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Analysis -->
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="card" style="border-left: 4px solid #10B981;">
+          <div style="font-size: 14px; font-weight: 700; color: #10B981;"><i class="fa-solid fa-circle-check"></i> 核心商业优势</div>
+          <ul class="bullet-list" style="margin-top: 8px;">
+            <li><strong>结果极度直观：</strong> 无需用户教育，生成成果即见即所得。</li>
+            <li><strong>病毒式社交裂变：</strong> 满足展现欲，用户自发传播带来免费有机流量。</li>
+            <li><strong>场景延展性极强：</strong> 可从美颜滤镜拓展至虚拟试穿、发型模拟与商用人像。</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #EF4444;">
+          <div style="font-size: 14px; font-weight: 700; color: #EF4444;"><i class="fa-solid fa-triangle-exclamation"></i> 必须警惕的风险点</div>
+          <ul class="bullet-list" style="margin-top: 8px;">
+            <li><strong>同质化竞争剧烈：</strong> 套壳应用生命周期短，次月留存率普遍偏低。</li>
+            <li><strong>GPU 推理成本高：</strong> 高清图像与视频生成对边际计算成本要求严苛。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 05</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Vertical AI Apps Opportunities -->
+  <div class="slide-container" id="slide6">
+    <div class="slide-header">
+      <div class="eyebrow">05. 垂直场景探讨 / VERTICAL OPPORTUNITIES</div>
+      <div class="slide-title">垂直产品的核心契机：精准解决痛点，提供可持续价值</div>
+    </div>
+
+    <div class="grid-3" style="flex-grow: 1; align-items: stretch;">
+      <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-size: 28px; color: #10B981; margin-bottom: 8px;"><i class="fa-solid fa-seedling"></i></div>
+          <div style="font-size: 15px; font-weight: 700; color: #F8FAFC;">植物/园艺识别 (PictureThis)</div>
+          <div style="font-size: 11px; color: #10B981; margin-top: 2px;">高客单价年订阅模式</div>
+          <p style="font-size: 12px; color: #94A3B8; margin-top: 8px; line-height: 1.5;">
+            <strong>刚性痛点：</strong> 解决植物救活与病虫害快速诊断。<br>
+            <strong>持续价值：</strong> 长期养护提醒与专家社区，流失率低。
+          </p>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 8px; font-size: 11px; color: #64748B;">年内购流量估算 > $40M</div>
+      </div>
+
+      <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-size: 28px; color: #38BDF8; margin-bottom: 8px;"><i class="fa-solid fa-apple-whole"></i></div>
+          <div style="font-size: 15px; font-weight: 700; color: #F8FAFC;">健康与热量管理 (Cal AI)</div>
+          <div style="font-size: 11px; color: #38BDF8; margin-top: 2px;">高频打卡极佳场景</div>
+          <p style="font-size: 12px; color: #94A3B8; margin-top: 8px; line-height: 1.5;">
+            <strong>刚性痛点：</strong> 拍照秒级识别食物卡路里与营养素。<br>
+            <strong>持续价值：</strong> 替代繁琐手动输入，绑定减脂人群每日习惯。
+          </p>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 8px; font-size: 11px; color: #64748B;">病毒式社群裂变传播</div>
+      </div>
+
+      <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-size: 28px; color: #F59E0B; margin-bottom: 8px;"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div style="font-size: 15px; font-weight: 700; color: #F8FAFC;">专业法律/会议 (Vertical Copilot)</div>
+          <div style="font-size: 11px; color: #F59E0B; margin-top: 2px;">高 B 端付费意愿</div>
+          <p style="font-size: 12px; color: #94A3B8; margin-top: 8px; line-height: 1.5;">
+            <strong>刚性痛点：</strong> 律师/顾问会谈录音整理与法条精准检索。<br>
+            <strong>持续价值：</strong> 极高客单价，直接替代高薪助理重复劳动。
+          </p>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 8px; font-size: 11px; color: #64748B;">高 LTV / 低客户退租率</div>
+      </div>
+    </div>
+
+    <div class="card" style="background: rgba(255,255,255,0.02); padding: 12px; margin-top: 12px;">
+      <div style="font-size: 12px; color: #CBD5E1; text-align: center;">
+        <strong>垂直应用成功公式：</strong> 明确真实痛点 + 极简交付形态 + 高频使用习惯 = 持续自动续费
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 06</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Two Commercial Paths -->
+  <div class="slide-container" id="slide7">
+    <div class="slide-header">
+      <div class="eyebrow">06. 商业路径对比 / DUAL GROWTH PATHS</div>
+      <div class="slide-title">消费者订阅与企业付费，决定了两种截然不同的增长引擎</div>
+    </div>
+
+    <div class="grid-2" style="flex-grow: 1; gap: 20px; align-items: stretch;">
+      <!-- B2C Column -->
+      <div class="card" style="border-top: 4px solid #10B981; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="font-size: 17px; color: #F8FAFC;">消费级 AI 应用 (B2C)</h3>
+            <span class="tag">规模驱动型</span>
+          </div>
+          
+          <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: #CBD5E1;">
+            <div style="display: flex; justify-content: space-between;"><span>核心指标：</span><strong style="color: #F8FAFC;">MAU / CAC / Pay-Rate / 30天留存</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span>获客路径：</span><strong>买量投放 + ASO 优化 + 社交裂变</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span>付费转化率：</span><strong>行业均值约 2% - 5%</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span>单客价值 (LTV)：</span><strong>相对较低 ($10 - $50)</strong></div>
+          </div>
+        </div>
+
+        <div style="background: rgba(16, 185, 129, 0.05); padding: 10px; border-radius: 6px; margin-top: 14px;">
+          <div style="font-size: 11px; color: #10B981; font-weight: 700;">核心考量</div>
+          <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">买量获客成本 (CAC) 必须显著低于 LTV，否则规模越大亏损越多。</div>
+        </div>
+      </div>
+
+      <!-- B2B Column -->
+      <div class="card" style="border-top: 4px solid #38BDF8; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="font-size: 17px; color: #F8FAFC;">企业级 AI 工具 (B2B / Prosumer)</h3>
+            <span class="tag tag-blue">ROI 驱动型</span>
+          </div>
+
+          <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: #CBD5E1;">
+            <div style="display: flex; justify-content: space-between;"><span>核心指标：</span><strong style="color: #F8FAFC;">ARPU / NDRR (续费率) / 交付成本</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span>获客路径：</span><strong>内容营销 + 商家社群 + 垂直销售</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span>付费转化率：</span><strong>免费试用转付费高 (10% - 20%)</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span>单客价值 (LTV)：</span><strong>较高 ($500 - $5,000+)</strong></div>
+          </div>
+        </div>
+
+        <div style="background: rgba(56, 189, 248, 0.05); padding: 10px; border-radius: 6px; margin-top: 14px;">
+          <div style="font-size: 11px; color: #38BDF8; font-weight: 700;">核心考量</div>
+          <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">必须能够量化证明为客户节省的人力工时或带来的确定性增量收入。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 07</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Project Portfolio Mapping -->
+  <div class="slide-container" id="slide8">
+    <div class="slide-header">
+      <div class="eyebrow">07. 内部项目梳理 / PROJECT PORTFOLIO</div>
+      <div class="slide-title">我们的 AI 项目储备：四大商业化切入方向</div>
+    </div>
+
+    <div class="grid-2" style="flex-grow: 1; gap: 14px; align-items: stretch;">
+      <!-- Direction 1 -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-size: 14px; color: #10B981;"><i class="fa-solid fa-camera"></i> 方向一：AI 视觉与个人形象</h3>
+          <span class="tag">B2C 消费级</span>
+        </div>
+        <div style="font-size: 11px; color: #CBD5E1; margin-top: 8px; line-height: 1.5;">
+          <strong>储备项目：</strong> AI 美颜滤镜、发型模拟、虚拟试穿、AI 智能衣橱。<br>
+          <strong>目标用户：</strong> 时尚敏感人群、社交平台活跃用户。<br>
+          <strong>付费机制：</strong> HD 导出点数充值 + VIP 月度订阅。
+        </div>
+      </div>
+
+      <!-- Direction 2 -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-size: 14px; color: #38BDF8;"><i class="fa-solid fa-cart-shopping"></i> 方向二：AI 商业生产力 (重点)</h3>
+          <span class="tag tag-blue">B2B 商家级</span>
+        </div>
+        <div style="font-size: 11px; color: #CBD5E1; margin-top: 8px; line-height: 1.5;">
+          <strong>储备项目：</strong> 跨境电商商品图生成、AI SEO/GEO 优化、自动发布。<br>
+          <strong>目标用户：</strong> 跨境卖家、独立站主、品牌营销团队。<br>
+          <strong>付费机制：</strong> 阶梯式 SaaS 月费 + 按量消耗 Package。
+        </div>
+      </div>
+
+      <!-- Direction 3 -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-size: 14px; color: #F59E0B;"><i class="fa-solid fa-user-tie"></i> 方向三：AI 专业助手</h3>
+          <span class="tag tag-amber">Prosumer 专业级</span>
+        </div>
+        <div style="font-size: 11px; color: #CBD5E1; margin-top: 8px; line-height: 1.5;">
+          <strong>储备项目：</strong> 律师会谈笔录与整理、AI 个人记账与消费决策。<br>
+          <strong>目标用户：</strong> 法律从业者、高净值个人、小微企业主。<br>
+          <strong>付费机制：</strong> 专业版软件订阅 (高单价)。
+        </div>
+      </div>
+
+      <!-- Direction 4 -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-size: 14px; color: #A855F7;"><i class="fa-solid fa-comments"></i> 方向四：AI 生活与社交垂直</h3>
+          <span class="tag tag-purple">垂直社区</span>
+        </div>
+        <div style="font-size: 11px; color: #CBD5E1; margin-top: 8px; line-height: 1.5;">
+          <strong>储备项目：</strong> AI 虚拟陪伴、宠物服务匹配、线下活动智能搭建。<br>
+          <strong>目标用户：</strong> 宠物主、青年社群。<br>
+          <strong>付费机制：</strong> 服务撮合佣金 + 社区增值功能。
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 08</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: Deep Dive 1 - Visual & Apparel -->
+  <div class="slide-container" id="slide9">
+    <div class="slide-header">
+      <div class="eyebrow">08. 重点项目深拆一 / OPPORTUNITY DEEP-DIVE I</div>
+      <div class="slide-title">AI 美颜与虚拟试穿：从单次照片处理演化为个人形象服务</div>
+    </div>
+
+    <div class="grid-2" style="flex-grow: 1; gap: 20px; align-items: center;">
+      <!-- Product Roadmap -->
+      <div class="card" style="padding: 18px;">
+        <div style="font-size: 13px; font-weight: 700; color: #10B981; margin-bottom: 12px;"><i class="fa-solid fa-route"></i> 渐进式产品路线演进</div>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 11px;">
+          <div style="border-left: 2px solid #10B981; padding-left: 8px;">
+            <strong style="color: #F8FAFC;">Phase 1: 基础美颜与发型模拟 (切入点)</strong>
+            <p style="color: #94A3B8; margin-top: 1px;">提供极佳的一键视觉变美效果，低成本吸引初始流量。</p>
+          </div>
+          <div style="border-left: 2px solid #38BDF8; padding-left: 8px;">
+            <strong style="color: #F8FAFC;">Phase 2: 虚拟试穿与穿搭建议 (商业化)</strong>
+            <p style="color: #94A3B8; margin-top: 1px;">上传人体与服饰，生成真实试穿效果，引入订阅收费。</p>
+          </div>
+          <div style="border-left: 2px solid #F59E0B; padding-left: 8px;">
+            <strong style="color: #F8FAFC;">Phase 3: 智能衣橱与电商导购 (生态闭环)</strong>
+            <p style="color: #94A3B8; margin-top: 1px;">管理个人衣物库，精准推荐新衣并获得 CPS 佣金。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Financial Model Hypothesis -->
+      <div class="card-accent" style="padding: 18px;">
+        <div style="font-size: 13px; font-weight: 700; color: #10B981;"><i class="fa-solid fa-calculator"></i> 情景化商业测算模型 (演示假设)</div>
+        <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px;">
+          <div>
+            <div style="font-size: 11px; color: #94A3B8;">假设月活跃用户 (MAU)</div>
+            <div class="metric-val" style="font-size: 22px;">100,000</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; color: #CBD5E1; border-top: 1px solid #1E293B; padding-top: 6px;">
+            <span>假设订阅付费转化率：</span><strong style="color: #10B981;">3.0%</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; color: #CBD5E1;">
+            <span>假设平均订阅单价 (ARPPU)：</span><strong style="color: #10B981;">¥30 元 / 月</strong>
+          </div>
+          <div style="background: rgba(16, 185, 129, 0.1); padding: 8px; border-radius: 6px; text-align: center;">
+            <div style="font-size: 10px; color: #94A3B8;">理论预估月度订阅收入 (MRR)</div>
+            <div style="font-size: 18px; font-weight: 800; color: #10B981; font-family: 'JetBrains Mono';">¥90,000 元/月</div>
+          </div>
+        </div>
+        <div style="font-size: 10px; color: #64748B; margin-top: 8px; line-height: 1.3;">
+          *注：上述数字仅为逻辑演示模型。仍需扣除应用商店 30% 分成、服务器算力成本、买量成本及退款。
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 09</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: Deep Dive 2 - E-commerce Automation -->
+  <div class="slide-container" id="slide10">
+    <div class="slide-header">
+      <div class="eyebrow">09. 重点项目深拆二 / OPPORTUNITY DEEP-DIVE II</div>
+      <div class="slide-title">AI 电商内容生成：为商家降低创作成本与自动化工作流</div>
+    </div>
+
+    <div class="grid-2" style="flex-grow: 1; gap: 20px; align-items: center;">
+      <!-- Workflow -->
+      <div class="card" style="padding: 18px;">
+        <div style="font-size: 13px; font-weight: 700; color: #38BDF8; margin-bottom: 12px;"><i class="fa-solid fa-diagram-project"></i> 商家全流程自动化工作流</div>
+        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: #CBD5E1;">
+          <div style="background: #1E293B; padding: 7px 10px; border-radius: 4px;">1. 批量导入商品白底图与规格参数</div>
+          <div style="background: #1E293B; padding: 7px 10px; border-radius: 4px;">2. AI 自动生成多背景场景图与营销短视频</div>
+          <div style="background: #1E293B; padding: 7px 10px; border-radius: 4px;">3. AI 生成多语言 Listing 文案与 GEO 搜索引擎优化</div>
+          <div style="background: #1E293B; padding: 7px 10px; border-radius: 4px;">4. 人工轻度审核 ➔ 自动同步发布至 Shopify/Amazon</div>
+        </div>
+      </div>
+
+      <!-- ROI Calculator -->
+      <div class="card-blue" style="padding: 18px;">
+        <div style="font-size: 13px; font-weight: 700; color: #38BDF8;"><i class="fa-solid fa-square-poll-vertical"></i> 商家 ROI 提效计算示例 (测试假设)</div>
+        <div style="margin-top: 8px; font-size: 12px; color: #CBD5E1; line-height: 1.5;">
+          • <strong>月处理规模：</strong> 单商家每月 500 个 SKUs 营销素材<br>
+          • <strong>传统模式：</strong> 外包摄影+美工，单件综合耗时 20 分钟<br>
+          • <strong>AI 自动化后：</strong> 人工仅作审核，单件耗时降至 5 分钟<br>
+          <hr style="border: none; border-top: 1px solid #1E293B; margin: 8px 0;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span>每月理论节省工时：</span>
+            <strong style="color: #38BDF8; font-family: 'JetBrains Mono'; font-size: 16px;">125 小时/月</strong>
+          </div>
+        </div>
+        <div style="background: rgba(56, 189, 248, 0.1); padding: 8px; border-radius: 6px; margin-top: 10px; font-size: 11px; color: #CBD5E1;">
+          <strong>收费定价设计：</strong> 基础版 $99/月 (含200张生成) + 超额 $0.3/张。商家极易算出正向 ROI 从而爽快买单。
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 10</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: Project Priority Matrix -->
+  <div class="slide-container" id="slide11">
+    <div class="slide-header">
+      <div class="eyebrow">10. 优先级与资源配置 / PRIORITY MATRIX</div>
+      <div class="slide-title">项目优先级矩阵：先验证高意愿需求，再扩展研发投入</div>
+    </div>
+
+    <div class="grid-2" style="flex-grow: 1; gap: 20px; align-items: center;">
+      <!-- Matrix Box -->
+      <div class="card" style="position: relative; height: 300px; display: flex; flex-direction: column; justify-content: space-between; background: #0F172A;">
+        <div style="position: absolute; top: 8px; right: 10px; font-size: 10px; color: #64748B;">纵轴: 商业价值 / 横轴: 验证难度</div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; height: 100%; gap: 8px; padding: 6px;">
+          <div class="matrix-cell matrix-p0">
+            <div style="font-size: 10px; color: #10B981; font-weight: 800;">第一优先 (P0: 快速突破)</div>
+            <div style="font-size: 11px; font-weight: 700; color: #F8FAFC; margin-top: 4px;">• AI 电商内容生成</div>
+            <div style="font-size: 11px; font-weight: 700; color: #F8FAFC; margin-top: 2px;">• AI 美颜与试穿</div>
+          </div>
+          <div class="matrix-cell matrix-p1">
+            <div style="font-size: 10px; color: #38BDF8; font-weight: 800;">第二优先 (P1: 战略储备)</div>
+            <div style="font-size: 11px; color: #CBD5E1; margin-top: 4px;">• 律师 AI 助手</div>
+            <div style="font-size: 11px; color: #CBD5E1; margin-top: 2px;">• 智能衣橱管理</div>
+          </div>
+          <div class="matrix-cell">
+            <div style="font-size: 10px; color: #64748B;">第三优先 (P2: 待观测)</div>
+            <div style="font-size: 11px; color: #94A3B8; margin-top: 4px;">• AI 个人记账</div>
+            <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">• 宠物服务匹配</div>
+          </div>
+          <div class="matrix-cell">
+            <div style="font-size: 10px; color: #64748B;">暂缓/再评估 (P3)</div>
+            <div style="font-size: 11px; color: #94A3B8; margin-top: 4px;">• 泛 AI 陪伴对话</div>
+            <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">• 线下活动搭建</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decision Factors -->
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div class="card" style="padding: 12px;">
+          <div style="font-size: 12px; font-weight: 700; color: #10B981;"><i class="fa-solid fa-bullseye"></i> P0 级项目选定逻辑</div>
+          <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">目标用户付费意愿明确、具备清晰的价值化指标，且现有团队具备技术与营销储备。</div>
+        </div>
+        <div class="card" style="padding: 12px;">
+          <div style="font-size: 12px; font-weight: 700; color: #F59E0B;"><i class="fa-solid fa-pie-chart"></i> 资源配置原则</div>
+          <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">80% 研发与市场资源集中投放于 P0 级 MVP 验证，20% 用于 P1 级原型搭建。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 11</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 12: 90-Day Validation Roadmap -->
+  <div class="slide-container" id="slide12">
+    <div class="slide-header">
+      <div class="eyebrow">11. 落地路线图 / ROADMAP</div>
+      <div class="slide-title">90 天商业化验证路线：控成本、快迭代、看真实付费</div>
+    </div>
+
+    <div class="grid-3" style="flex-grow: 1; gap: 14px; align-items: stretch;">
+      <div class="card" style="border-top: 4px solid #10B981; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <span class="tag">Day 1 - Day 30</span>
+          <h3 style="font-size: 15px; color: #F8FAFC; margin-top: 8px;">第一阶段：需求与原型验证</h3>
+          <ul class="bullet-list" style="margin-top: 8px;">
+            <li>完成 30 位目标商家 / 核心用户访谈</li>
+            <li>搭建高保真 Figma 原型与假落地页</li>
+            <li>测试落地页付费点击转化率 (Smoke Test)</li>
+            <li>精准测算模型 API 与 GPU 算力成本</li>
+          </ul>
+        </div>
+        <div style="font-size: 11px; color: #10B981; font-weight: 700;">里程碑：确认真实付费意愿 > 5%</div>
+      </div>
+
+      <div class="card" style="border-top: 4px solid #38BDF8; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <span class="tag tag-blue">Day 31 - Day 60</span>
+          <h3 style="font-size: 15px; color: #F8FAFC; margin-top: 8px;">第二阶段：最小可行产品 MVP</h3>
+          <ul class="bullet-list" style="margin-top: 8px;">
+            <li>仅开发核心主干工作流（剥离次要功能）</li>
+            <li>招募 100 名种子用户进行实操体验</li>
+            <li>上线支付通道（支持 Stripe / 微信支付）</li>
+            <li>收集早期使用数据与生成失败率</li>
+          </ul>
+        </div>
+        <div style="font-size: 11px; color: #38BDF8; font-weight: 700;">里程碑：产生首批真实首期付费账单</div>
+      </div>
+
+      <div class="card" style="border-top: 4px solid #F59E0B; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <span class="tag tag-amber">Day 61 - Day 90</span>
+          <h3 style="font-size: 15px; color: #F8FAFC; margin-top: 8px;">第三阶段：商业单位经济性验证</h3>
+          <ul class="bullet-list" style="margin-top: 8px;">
+            <li>观察次月续费率与留存曲线</li>
+            <li>计算精准 CAC (获客成本) 与 LTV 比值</li>
+            <li>评估是否具备 Unit Economics 正向循环</li>
+            <li>决定 Scaling 放大投入或及时止损转型</li>
+          </ul>
+        </div>
+        <div style="font-size: 11px; color: #F59E0B; font-weight: 700;">里程碑：提交正式商业化扩投报告</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 12</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 13: Conclusion & Strategic Next Steps -->
+  <div class="slide-container" id="slide13">
+    <div class="slide-header">
+      <div class="eyebrow">12. 战略总结与决策 / STRATEGIC DECISION</div>
+      <div class="slide-title">核心结论与下一步行动计划</div>
+    </div>
+
+    <div class="grid-2" style="flex-grow: 1; gap: 20px; align-items: stretch;">
+      <!-- Summary Bullet Cards -->
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div class="card" style="border-left: 3px solid #10B981; padding: 12px;">
+          <div style="font-size: 13px; font-weight: 700; color: #F8FAFC;">1. 坚定拥抱“付费验证”导向</div>
+          <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">技术只是手段，彻底摒弃纯技术导向思维，以用户是否掏钱作为唯一的商业检验标准。</div>
+        </div>
+        <div class="card" style="border-left: 3px solid #38BDF8; padding: 12px;">
+          <div style="font-size: 13px; font-weight: 700; color: #F8FAFC;">2. 双轮驱动：聚焦 B2B 电商与 B2C 视觉</div>
+          <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">B2B 电商自动化提供稳定高客单价现金流，B2C 视觉尝试低成本爆发机会。</div>
+        </div>
+        <div class="card" style="border-left: 3px solid #F59E0B; padding: 12px;">
+          <div style="font-size: 13px; font-weight: 700; color: #F8FAFC;">3. 严控研发沉没成本</div>
+          <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">严格执行 90 天验证节点，未通过第一阶段 Smoke Test 的项目及时止损切换。</div>
+        </div>
+      </div>
+
+      <!-- Call to Action Box -->
+      <div class="card-accent" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div class="tag">即刻启动提案 (NEXT STEPS)</div>
+          <h3 style="font-size: 18px; color: #F8FAFC; margin-top: 10px;">申请专项 MVP 验证预算与人员组建</h3>
+          <p style="font-size: 12px; color: #CBD5E1; margin-top: 8px; line-height: 1.5;">
+            建议即日起批准组建 3 人敏捷验证小组（1 产品经理 + 1 全栈工程师 + 1 增长营销），针对 <strong>“AI 电商内容生成”</strong> 与 <strong>“AI 视觉试穿”</strong> 正式开启 Day 1 - Day 30 需求验真。
+          </p>
+        </div>
+
+        <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #1E293B; font-size: 12px; color: #10B981; font-weight: 700;">
+          <i class="fa-solid fa-arrow-right" style="margin-right: 6px;"></i> 从真实需求出发，将 AI 技术能力转化为持续收入。
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 13</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 14: References & Data Disclosures -->
+  <div class="slide-container" id="slide14">
+    <div class="slide-header">
+      <div class="eyebrow">13. 参考资料与数据申明 / REFERENCES & DISCLOSURES</div>
+      <div class="slide-title">外部数据来源、核验状态与免责声明</div>
+    </div>
+
+    <div class="grid-2" style="flex-grow: 1; gap: 20px; align-items: stretch;">
+      <!-- References Column -->
+      <div class="card" style="font-size: 11px; color: #CBD5E1; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-size: 13px; font-weight: 700; color: #F8FAFC; margin-bottom: 8px;"><i class="fa-solid fa-book-bookmark"></i> 主要外部参考来源</div>
+          <ol style="margin-left: 16px; line-height: 1.7;">
+            <li><strong>a16z (Andreessen Horowitz):</strong> "The Top 100 Gen AI Consumer Apps" (2024/2025 榜单及行业报告)</li>
+            <li><strong>Sensor Tower / App Annie:</strong> 全球 Mobile AI 应用移动端内购 (IAP) 及下载量公开估算数据</li>
+            <li><strong>OpenAI / Public Filings:</strong> 公司新闻稿及媒体公开估算财报 (ChatGPT ARR 估算)</li>
+            <li><strong>TechCrunch / Bloomberg:</strong> 垂直领域 AI 创业公司融资与 ARR 变现新闻报道</li>
+          </ol>
+        </div>
+        <div style="font-size: 10px; color: #64748B;">
+          *注：报告中引用的外部数字均来自上述公开渠道或第三方统计分析，旨在进行商业模式逻辑验证。
+        </div>
+      </div>
+
+      <!-- Compliance & Disclosure Column -->
+      <div class="card" style="font-size: 11px; color: #CBD5E1; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-size: 13px; font-weight: 700; color: #F59E0B; margin-bottom: 8px;"><i class="fa-solid fa-shield-halved"></i> 内部知识产权与合规申明</div>
+          <ul class="bullet-list" style="line-height: 1.7;">
+            <li>本演示文稿涉及的内部项目名称均采用中性代号，未透露核心算法与敏感代码。</li>
+            <li>演示文稿中所列的财务收入测算（如第 9 页、第 10 页）均为情景化逻辑测试模型，不构成已实现的财务表现或盈利保证。</li>
+            <li>未公开的产品路线图仅供内部商业决策讨论使用。</li>
+          </ul>
+        </div>
+
+        <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); padding: 8px; border-radius: 6px; font-size: 10px; color: #F59E0B;">
+          <strong>保密级别：</strong> CONFIDENTIAL · 绝密级内部讨论材料。未经授权禁止进行截图、复制或二次分发。
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>CONFIDENTIAL | 内部商业讨论材料</div>
+      <div class="footer-watermark">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      <div>PAGE 14 (END)</div>
+    </div>
+  </div>
+
+</body>
+</html>

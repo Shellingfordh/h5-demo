@@ -100,6 +100,12 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
+
+        .pill { padding:.55rem .7rem; border-radius:.6rem; background:rgba(15,23,42,.75); border:1px solid rgba(148,163,184,.12); }
+        .donut { width:240px; height:240px; border-radius:9999px; display:grid; place-items:center; background:conic-gradient(#3b82f6 0 calc(var(--a)*1%),#06b6d4 calc(var(--a)*1%) calc((var(--a) + var(--b))*1%),#10b981 calc((var(--a) + var(--b))*1%) calc((var(--a) + var(--b) + var(--c))*1%),#8b5cf6 calc((var(--a) + var(--b) + var(--c))*1%) 100%); position:relative; }
+        .donut:after { content:""; position:absolute; width:145px; height:145px; border-radius:9999px; background:#111e38; }
+        .donut > div { position:relative; z-index:2; text-align:center; }
+
         /* Print styles protection */
         @media print {
             body { display: none !important; }
@@ -173,7 +179,7 @@
     <footer class="h-14 glass-panel border-t border-slate-800 px-4 md:px-6 flex items-center justify-between z-40 shrink-0">
         <!-- Slide Indicator -->
         <div class="flex items-center space-x-3 text-xs text-slate-400">
-            <span id="slideCounter" class="font-mono text-sm text-cyan-400 font-bold">01 / 38</span>
+            <span id="slideCounter" class="font-mono text-sm text-cyan-400 font-bold">01 / --</span>
             <span id="chapterBadge" class="hidden md:inline-block px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 truncate max-w-[240px] lg:max-w-[360px]">
                 第 1 章：封面与商业判断
             </span>
@@ -209,7 +215,7 @@
             <div class="p-5 border-b border-slate-800 flex justify-between items-center">
                 <div class="flex items-center space-x-3">
                     <i class="fa-solid fa-sitemap text-cyan-400 text-xl"></i>
-                    <h2 class="text-lg font-bold text-white">演示文稿全局目录 (14章 / 38页)</h2>
+                    <h2 class="text-lg font-bold text-white">演示文稿全局目录 <span id="tocCount"></span></h2>
                 </div>
                 <button id="closeTocBtn" class="text-slate-400 hover:text-white p-2">
                     <i class="fa-solid fa-xmark text-xl"></i>
@@ -699,6 +705,24 @@
                 risks: "商业转化路径较长。建议先作为低成本流量入口与公益品牌建立合作。"
             },
 
+            // Executive visualization pack — all numeric values below are strategic hypotheses for MVP validation, not historical results.
+            { chapter:"第 2 章：项目储备整体概述", title:"一张图看懂：我们不是做 9 个孤立项目", subtitle:"同一套 AI 中台能力，切入 9 个不同付费场景", type:"visual", visual:"capability_stack", chIndex:1 },
+            { chapter:"第 2 章：项目储备整体概述", title:"商业化飞轮：一次研发，多处变现", subtitle:"能力复用降低边际研发成本，业务数据反哺模型与工作流", type:"visual", visual:"flywheel", chIndex:1 },
+            { chapter:"第 12 章：商业模式对比矩阵", title:"项目商业吸引力评分", subtitle:"战略假设评分：付费明确度 × 毛利潜力 × 验证速度 × 可复制性", type:"visual", visual:"scorebars", chIndex:11 },
+            { chapter:"第 12 章：商业模式对比矩阵", title:"机会地图：先做右上角", subtitle:"横轴=商业化确定性，纵轴=增长/规模潜力；位置为内部战略假设", type:"visual", visual:"quadrant", chIndex:11 },
+            { chapter:"第 12 章：商业模式对比矩阵", title:"收入结构不是只靠会员费", subtitle:"订阅做基本盘，按量/佣金/企业服务做 ARPU 增量", type:"visual", visual:"revenue_mix", chIndex:11 },
+            { chapter:"第 12 章：商业模式对比矩阵", title:"ToB 单位经济模型：为什么先做跨境电商", subtitle:"示意模型：客户节省的成本必须显著高于我们的收费与算力成本", type:"visual", visual:"unit_econ_b2b", chIndex:11 },
+            { chapter:"第 12 章：商业模式对比矩阵", title:"ToC 增长漏斗：美颜/试穿怎么挣钱", subtitle:"不是只看下载量，而是逐层看激活、生成、付费、复购", type:"visual", visual:"consumer_funnel", chIndex:11 },
+            { chapter:"第 12 章：商业模式对比矩阵", title:"风险热力图：哪些项目不能重仓", subtitle:"高风险项目先用轻量 MVP 验证，避免一开始投入完整研发团队", type:"visual", visual:"risk_heatmap", chIndex:11 },
+            { chapter:"第 13 章：商业化路径与优先级", title:"资源配置建议：70 / 20 / 10", subtitle:"不是平均分资源，而是把大部分资源压在最容易验证现金流的方向", type:"visual", visual:"resource_split", chIndex:12 },
+            { chapter:"第 13 章：商业化路径与优先级", title:"6 周 MVP 作战图", subtitle:"每周都必须产生可验证结果，而不是 6 周后才第一次见用户", type:"visual", visual:"roadmap", chIndex:12 },
+            { chapter:"第 13 章：商业化路径与优先级", title:"从 MVP 到规模化：四道闸门", subtitle:"没有数据就不扩团队，没有单位经济就不买量", type:"visual", visual:"stage_gates", chIndex:12 },
+            { chapter:"第 13 章：商业化路径与优先级", title:"ToB 商业闭环：从一个 SKU 到企业工作流", subtitle:"先卖可量化结果，再逐步扩展为 API、工作流和企业合同", type:"visual", visual:"b2b_ladder", chIndex:12 },
+            { chapter:"第 13 章：商业化路径与优先级", title:"ToC 商业闭环：流量不是终点", subtitle:"视觉爆款负责获客，长期记忆与个性化负责留存，交易/订阅负责变现", type:"visual", visual:"toc_loop", chIndex:12 },
+            { chapter:"第 14 章：评估框架与战略决议", title:"老板只需要盯这 8 个数", subtitle:"所有项目统一用同一张经营仪表盘说话", type:"visual", visual:"metrics", chIndex:13 },
+            { chapter:"第 14 章：评估框架与战略决议", title:"止损机制：什么情况下立即停", subtitle:"把“做不做”从拍脑袋变成可执行的 Go / Pivot / Stop 规则", type:"visual", visual:"kill_rules", chIndex:13 },
+            { chapter:"第 14 章：评估框架与战略决议", title:"最终商业化全景：短期现金流 + 中期壁垒 + 长期生态", subtitle:"用不同时间尺度管理项目，不要求 9 个项目同时启动", type:"visual", visual:"horizon", chIndex:13 },
+
             // Chapter 12: Monetization Comparison
             {
                 chapter: "第 12 章：商业模式对比矩阵",
@@ -769,6 +793,31 @@
             setupEventListeners();
             setupSecurityProtections();
         });
+
+        function visualShell(data, body, note='图中数值均为内部战略假设/示意目标，用于明确验证方向；最终以 MVP 真实数据为准。') {
+            return `<div class="flex flex-col h-full justify-between"><div><span class="text-xs font-mono text-cyan-400 tracking-wider">${data.chapter}</span><h2 class="text-2xl md:text-3xl font-bold text-white mt-1">${data.title}</h2><p class="text-sm text-slate-400 mt-1">${data.subtitle}</p></div><div class="my-auto py-4">${body}</div><div class="p-3 rounded-lg bg-slate-950/70 border border-slate-800 text-[11px] text-slate-400"><i class="fa-solid fa-circle-info mr-1 text-blue-400"></i>${note}</div></div>`;
+        }
+        function barRow(name, score, cls='bg-blue-500', suffix='/100') { return `<div class="grid grid-cols-[150px_1fr_55px] gap-3 items-center"><div class="text-xs text-slate-200">${name}</div><div class="h-3 bg-slate-800 rounded-full overflow-hidden"><div class="h-full ${cls} rounded-full" style="width:${score}%"></div></div><div class="text-xs font-mono text-white text-right">${score}${suffix}</div></div>`; }
+        function renderVisual(data) {
+            let b='';
+            if(data.visual==='capability_stack') b=`<div class="grid grid-cols-1 md:grid-cols-3 gap-4"><div class="glass-card p-5 rounded-2xl border-cyan-500/30"><div class="text-cyan-400 font-bold mb-3">底层 AI 能力层</div><div class="space-y-2 text-xs text-slate-200"><div class="pill">LLM / RAG / Agent</div><div class="pill">图像 / 视频生成</div><div class="pill">OCR / ASR / TTS</div><div class="pill">长期记忆 / 用户画像</div></div></div><div class="glass-card p-5 rounded-2xl border-blue-500/30"><div class="text-blue-400 font-bold mb-3">可复用业务中台</div><div class="space-y-2 text-xs text-slate-200"><div class="pill">账号 / 订阅 / 额度</div><div class="pill">内容工作流 / 审核</div><div class="pill">向量库 / 数据库</div><div class="pill">多平台 API / 发布</div></div></div><div class="glass-card p-5 rounded-2xl border-emerald-500/30"><div class="text-emerald-400 font-bold mb-3">9 个前端商业场景</div><div class="grid grid-cols-3 gap-2 text-[10px] text-center">${['电商','美颜','SEO/GEO','律师','记账','衣橱','陪伴','社交','宠物'].map(x=>`<div class="bg-slate-900 p-2 rounded-lg">${x}</div>`).join('')}</div><div class="mt-4 text-xs text-emerald-300">核心逻辑：不是 9 套技术，而是 1 套能力 × 9 个付费入口。</div></div></div>`;
+            if(data.visual==='flywheel') b=`<div class="relative max-w-4xl mx-auto"><div class="grid grid-cols-2 md:grid-cols-4 gap-4">${[['1','低成本 MVP','快速上线验证'],['2','真实用户数据','拿到留存/付费'],['3','能力沉淀','Prompt/RAG/工作流复用'],['4','复制新场景','更低成本试下一个项目']].map((x,i)=>`<div class="glass-card p-5 rounded-2xl text-center border ${i==3?'border-emerald-500/40':'border-slate-700'}"><div class="w-10 h-10 mx-auto rounded-full bg-blue-600 flex items-center justify-center font-bold mb-3">${x[0]}</div><div class="font-bold text-white">${x[1]}</div><div class="text-xs text-slate-400 mt-2">${x[2]}</div></div>`).join('')}</div><div class="text-center mt-5 text-cyan-300 text-sm"><i class="fa-solid fa-rotate mr-2"></i>每跑通一个项目，下一项目的研发与验证成本继续下降</div></div>`;
+            if(data.visual==='scorebars') b=`<div class="space-y-3 max-w-4xl mx-auto">${[['跨境电商 AI 内容',92,'bg-emerald-500'],['AI 美颜/虚拟试穿',84,'bg-emerald-500'],['AI SEO/GEO',78,'bg-blue-500'],['律师 AI 助手',75,'bg-blue-500'],['AI 衣橱',68,'bg-cyan-500'],['AI 智能记账',64,'bg-cyan-500'],['AI 陪伴',58,'bg-amber-500'],['AI 社交',48,'bg-slate-500'],['AI 宠物服务',44,'bg-slate-500']].map(x=>barRow(...x)).join('')}</div>`;
+            if(data.visual==='quadrant') b=`<div class="relative h-[390px] max-w-4xl mx-auto border-l border-b border-slate-600 bg-slate-950/40 rounded-tr-xl"><div class="absolute left-1/2 top-0 bottom-0 border-l border-dashed border-slate-700"></div><div class="absolute top-1/2 left-0 right-0 border-t border-dashed border-slate-700"></div><div class="absolute right-2 top-2 text-[10px] text-emerald-400">高增长 × 高确定性 → 优先</div><div class="absolute left-2 bottom-2 text-[10px] text-slate-500">低增长 × 低确定性</div>${[['跨境电商',82,18,'bg-emerald-500'],['美颜/试穿',68,26,'bg-emerald-500'],['SEO/GEO',73,42,'bg-blue-500'],['律师',61,48,'bg-blue-500'],['衣橱',56,57,'bg-cyan-500'],['记账',48,62,'bg-cyan-500'],['陪伴',44,38,'bg-amber-500'],['社交',30,68,'bg-slate-500'],['宠物',24,76,'bg-slate-500']].map(x=>`<div class="absolute ${x[3]} text-white text-[10px] px-2 py-1 rounded-full shadow" style="left:${x[1]}%;top:${x[2]}%">${x[0]}</div>`).join('')}<div class="absolute -bottom-5 right-0 text-[10px] text-slate-400">商业化确定性 →</div><div class="absolute -left-8 top-0 text-[10px] text-slate-400 [writing-mode:vertical-rl]">增长/规模潜力 →</div></div>`;
+            if(data.visual==='revenue_mix') b=`<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center max-w-4xl mx-auto"><div class="donut mx-auto" style="--a:45;--b:25;--c:20"><div><div class="text-2xl font-bold">4 层收入</div><div class="text-[10px] text-slate-400">组合而非单点</div></div></div><div class="space-y-3 text-sm">${[['45%','订阅收入','基本盘：月/年 SaaS、VIP'],['25%','按量收入','图像/视频/Token/额度'],['20%','佣金收入','导购、服务撮合、交易抽佣'],['10%','企业服务','API、SDK、私有化、定制']].map((x,i)=>`<div class="flex items-center gap-3"><div class="text-xl font-bold text-${['blue','cyan','emerald','purple'][i]}-400 w-14">${x[0]}</div><div><b>${x[1]}</b><div class="text-xs text-slate-400">${x[2]}</div></div></div>`).join('')}</div></div>`;
+            if(data.visual==='unit_econ_b2b') b=`<div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto"><div class="glass-card p-5 rounded-2xl text-center"><div class="text-xs text-slate-400">客户原有内容生产成本</div><div class="text-4xl font-bold mt-2 text-rose-400">100</div><div class="text-xs mt-2">摄影 / 模特 / 剪辑 / 翻译 / 人工</div></div><div class="flex items-center justify-center text-3xl text-slate-500">→</div><div class="glass-card p-5 rounded-2xl border-emerald-500/40"><div class="space-y-3"><div class="flex justify-between"><span>AI 服务收费</span><b class="text-emerald-400">20–35</b></div><div class="flex justify-between"><span>推理/存储成本</span><b class="text-amber-400">5–12</b></div><div class="border-t border-slate-700 pt-3 flex justify-between"><span>客户仍节省</span><b class="text-cyan-400">65%+</b></div></div></div></div><div class="mt-5 text-center text-sm text-slate-300">商业成立条件：<b class="text-white">客户 ROI 足够明显 + 毛利覆盖获客与研发</b>，而不是单纯“AI 很酷”。</div>`;
+            if(data.visual==='consumer_funnel') b=`<div class="max-w-3xl mx-auto space-y-2">${[['访问/下载','100%','w-full','bg-blue-600'],['完成首张生成','60%','w-[82%]','bg-cyan-600'],['保存/分享结果','35%','w-[66%]','bg-teal-600'],['首次付费','8–12%','w-[50%]','bg-emerald-600'],['30 天复购/订阅','3–6%','w-[36%]','bg-purple-600']].map(x=>`<div class="${x[2]} ${x[3]} mx-auto p-3 rounded-lg flex justify-between text-xs shadow"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div><div class="text-center mt-4 text-xs text-slate-400">验证重点：如果“首张效果”不惊艳，后面的付费漏斗全部不存在。</div>`;
+            if(data.visual==='risk_heatmap') b=`<div class="grid grid-cols-[130px_repeat(4,1fr)] gap-1 text-[10px] max-w-4xl mx-auto">${['项目','付费风险','技术风险','合规风险','运营风险'].map(x=>`<div class="p-2 bg-slate-800 font-bold text-center">${x}</div>`).join('')}${[['跨境电商','低','中','低','低'],['美颜/试穿','中','中','中','低'],['SEO/GEO','中','低','中','低'],['律师','低','高','高','中'],['记账','高','低','高','低'],['衣橱','中','中','低','低'],['陪伴','中','中','高','中'],['社交','中','低','高','高'],['宠物','高','低','中','高']].map(r=>r.map((x,i)=>`<div class="p-2 text-center rounded-sm ${i===0?'bg-slate-900 text-left font-medium':x==='高'?'bg-rose-500/40 text-rose-200':x==='中'?'bg-amber-500/30 text-amber-200':'bg-emerald-500/25 text-emerald-200'}">${x}</div>`).join('')).join('')}</div>`;
+            if(data.visual==='resource_split') b=`<div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto"><div class="glass-card p-6 rounded-2xl border-emerald-500/50 text-center"><div class="text-5xl font-black text-emerald-400">70%</div><div class="font-bold mt-2">第一阶梯</div><div class="text-xs text-slate-400 mt-2">跨境电商 AI 内容 + AI 美颜/试穿<br>产品、工程、增长资源主力</div></div><div class="glass-card p-6 rounded-2xl border-blue-500/40 text-center"><div class="text-5xl font-black text-blue-400">20%</div><div class="font-bold mt-2">第二阶梯</div><div class="text-xs text-slate-400 mt-2">SEO/GEO、律师、衣橱、记账<br>原型与关键技术验证</div></div><div class="glass-card p-6 rounded-2xl border-slate-500/40 text-center"><div class="text-5xl font-black text-slate-400">10%</div><div class="font-bold mt-2">探索池</div><div class="text-xs text-slate-400 mt-2">陪伴、社交、宠物<br>只做调研/轻量实验</div></div></div>`;
+            if(data.visual==='roadmap') { let rows=[['需求/访谈',1,2],['核心原型',1,3],['MVP 开发',2,4],['种子用户',3,5],['付费测试',4,6],['数据复盘',5,6]]; b=`<div class="max-w-4xl mx-auto"><div class="grid grid-cols-[120px_repeat(6,1fr)] gap-1 text-[10px]"><div></div>${[1,2,3,4,5,6].map(w=>`<div class="text-center text-slate-400">W${w}</div>`).join('')}${rows.map(r=>`<div class="p-2 bg-slate-900 rounded">${r[0]}</div>${[1,2,3,4,5,6].map(w=>`<div class="rounded ${w>=r[1]&&w<=r[2]?'bg-blue-500/70':'bg-slate-900/50'}"></div>`).join('')}`).join('')}</div><div class="mt-4 grid grid-cols-3 gap-3 text-xs"><div class="p-3 bg-slate-900 rounded-lg"><b>W2</b>：原型可演示</div><div class="p-3 bg-slate-900 rounded-lg"><b>W4</b>：真实用户开始使用</div><div class="p-3 bg-slate-900 rounded-lg"><b>W6</b>：Go / Pivot / Stop</div></div></div>`; }
+            if(data.visual==='stage_gates') b=`<div class="grid grid-cols-1 md:grid-cols-4 gap-3 max-w-5xl mx-auto">${[['01','Problem Fit','有人痛','访谈/需求强度'],['02','Product Fit','有人用','激活/留存/使用频次'],['03','Revenue Fit','有人付钱','付费率/ARPU/毛利'],['04','Scale Fit','能放大','CAC<LTV、交付可复制']].map((x,i)=>`<div class="glass-card p-5 rounded-2xl ${i===3?'border-emerald-500/40':''}"><div class="text-3xl font-black text-slate-600">${x[0]}</div><div class="font-bold text-${['blue','cyan','emerald','purple'][i]}-400 mt-2">${x[1]}</div><div class="text-lg font-bold mt-2">${x[2]}</div><div class="text-xs text-slate-400 mt-2">看：${x[3]}</div></div>`).join('')}</div>`;
+            if(data.visual==='b2b_ladder') b=`<div class="flex flex-col md:flex-row items-stretch gap-2 max-w-5xl mx-auto">${[['1','单点工具','商品图/文案生成','低门槛试用'],['2','团队 SaaS','素材库/批量生成','稳定订阅'],['3','API 接入','嵌入卖家系统','按量收入'],['4','工作流集成','Shopify/ERP/发布','高粘性'],['5','Enterprise','权限/SLA/私有化','高客单合同']].map((x,i)=>`<div class="flex-1 glass-card p-4 rounded-xl border-slate-700"><div class="text-xs text-slate-500">LEVEL ${x[0]}</div><div class="font-bold mt-1 text-white">${x[1]}</div><div class="text-[11px] text-slate-400 mt-2">${x[2]}</div><div class="mt-3 text-xs text-${i>2?'emerald':'blue'}-400">${x[3]}</div></div>`).join('<div class="hidden md:flex items-center text-slate-600">→</div>')}</div>`;
+            if(data.visual==='toc_loop') b=`<div class="grid grid-cols-2 md:grid-cols-5 gap-3 max-w-5xl mx-auto items-center">${[['爆款内容','美颜/试穿结果'],['低门槛体验','首张免费/分享'],['个性化留存','历史偏好/长期记忆'],['多层变现','订阅/按次/导购'],['数据反哺','更懂用户 → 更高转化']].map((x,i)=>`<div class="glass-card p-4 rounded-xl text-center"><div class="w-9 h-9 mx-auto rounded-full bg-purple-600/30 text-purple-300 flex items-center justify-center font-bold">${i+1}</div><div class="font-bold text-sm mt-2">${x[0]}</div><div class="text-[10px] text-slate-400 mt-1">${x[1]}</div></div>`).join('')}</div><div class="text-center mt-5 text-purple-300 text-sm"><i class="fa-solid fa-arrow-rotate-right mr-2"></i>流量 → 留存 → 变现 → 数据 → 更好的产品</div>`;
+            if(data.visual==='metrics') b=`<div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">${[['CAC','获客成本','花多少钱得到 1 个付费用户'],['激活率','Aha Moment','多少人真正完成核心动作'],['D7/D30','留存','产品是不是一次性玩具'],['付费率','Conversion','用户是否愿意掏钱'],['ARPU','客单','每用户收入能否提升'],['毛利率','Gross Margin','扣除 GPU/Token 后剩多少'],['LTV/CAC','单位经济','长期价值能否覆盖获客'],['回本周期','Payback','多久把获客钱赚回来']].map((x,i)=>`<div class="glass-card p-4 rounded-xl"><div class="text-xl font-black text-${['blue','cyan','emerald','purple'][i%4]}-400">${x[0]}</div><div class="text-xs font-bold mt-1">${x[1]}</div><div class="text-[10px] text-slate-400 mt-2">${x[2]}</div></div>`).join('')}</div>`;
+            if(data.visual==='kill_rules') b=`<div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto"><div class="glass-card p-5 rounded-2xl border-emerald-500/40"><div class="text-emerald-400 font-bold text-lg">GO · 加码</div><div class="mt-3 text-xs space-y-2"><div>✓ 用户高频使用</div><div>✓ 出现自然付费</div><div>✓ 毛利为正且可优化</div><div>✓ 获客路径可重复</div></div></div><div class="glass-card p-5 rounded-2xl border-amber-500/40"><div class="text-amber-400 font-bold text-lg">PIVOT · 调整</div><div class="mt-3 text-xs space-y-2"><div>△ 有需求但付费弱</div><div>△ 有付费但成本过高</div><div>△ 用户只用某个子功能</div><div>△ 渠道与人群不匹配</div></div></div><div class="glass-card p-5 rounded-2xl border-rose-500/40"><div class="text-rose-400 font-bold text-lg">STOP · 止损</div><div class="mt-3 text-xs space-y-2"><div>× 核心场景低频</div><div>× 连续验证无付费意愿</div><div>× 技术质量无法达标</div><div>× 合规/交付成本不可控</div></div></div></div>`;
+            if(data.visual==='horizon') b=`<div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto"><div class="glass-card p-6 rounded-2xl border-emerald-500/40"><div class="text-xs text-emerald-400 font-mono">0–6 MONTHS</div><div class="text-xl font-bold mt-2">现金流</div><div class="mt-3 text-xs text-slate-300">跨境电商 AI 内容<br>AI 美颜 / 虚拟试穿</div><div class="mt-4 text-[11px] text-slate-500">目标：证明有人愿意持续付钱</div></div><div class="glass-card p-6 rounded-2xl border-blue-500/40"><div class="text-xs text-blue-400 font-mono">6–18 MONTHS</div><div class="text-xl font-bold mt-2">专业壁垒</div><div class="mt-3 text-xs text-slate-300">SEO/GEO 自动化<br>律师 AI / 衣橱 / 记账</div><div class="mt-4 text-[11px] text-slate-500">目标：沉淀数据、工作流与行业 Know-how</div></div><div class="glass-card p-6 rounded-2xl border-purple-500/40"><div class="text-xs text-purple-400 font-mono">18M+</div><div class="text-xl font-bold mt-2">生态与平台</div><div class="mt-3 text-xs text-slate-300">AI 陪伴 / 社交 / 宠物<br>跨产品用户画像与 Agent</div><div class="mt-4 text-[11px] text-slate-500">目标：复用用户、数据与交易网络</div></div></div>`;
+            return visualShell(data,b);
+        }
 
         // RENDER SLIDE ENGINE
         function renderSlide(index) {
@@ -986,6 +1035,8 @@
                         </div>
                     </div>
                 `;
+            } else if (data.type === 'visual') {
+                contentHTML = renderVisual(data);
             } else if (data.type === 'matrix') {
                 contentHTML = `
                     <div class="flex flex-col h-full justify-between">
@@ -1175,6 +1226,7 @@
 
         // TOC MODAL BUILDER
         function buildTocModal() {
+            const tocCount = document.getElementById('tocCount'); if (tocCount) tocCount.textContent = `(14章 / ${SLIDES.length}页)`;
             tocList.innerHTML = CHAPTER_RAW_DATA.map((ch, idx) => `
                 <div onclick="jumpToChapter(${idx})" class="p-4 rounded-xl bg-slate-800/60 hover:bg-slate-700/80 border border-slate-700/60 cursor-pointer transition flex items-start space-x-3">
                     <span class="font-mono text-xs font-bold text-cyan-400 bg-slate-900 px-2 py-1 rounded shrink-0">

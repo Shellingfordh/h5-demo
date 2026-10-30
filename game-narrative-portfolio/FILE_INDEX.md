@@ -1,0 +1,37 @@
+# File Index
+
+- `.gitignore`
+- `01-echoes-of-us/01-narrative-pillars.md`
+- `01-echoes-of-us/02-character-bible.md`
+- `01-echoes-of-us/03-chapter-flow.md`
+- `01-echoes-of-us/04-level-narrative.md`
+- `01-echoes-of-us/05-event-dialogue-spec.md`
+- `01-echoes-of-us/06-state-implementation.md`
+- `01-echoes-of-us/07-narrative-qa.md`
+- `01-echoes-of-us/README.md`
+- `02-companion/01-memory-design.md`
+- `02-companion/02-world-runtime.md`
+- `02-companion/03-event-generator.md`
+- `02-companion/04-context-and-llm-boundary.md`
+- `02-companion/05-dynamic-case.md`
+- `02-companion/06-ai-narrative-qa.md`
+- `02-companion/README.md`
+- `03-qing-palace/01-world-characters.md`
+- `03-qing-palace/02-main-story.md`
+- `03-qing-palace/03-state-event-dialogue.md`
+- `03-qing-palace/04-gold-integration.md`
+- `03-qing-palace/README.md`
+- `04-tomb-raiding/01-tomb-structure.md`
+- `04-tomb-raiding/02-clue-puzzle.md`
+- `04-tomb-raiding/03-story-endings.md`
+- `04-tomb-raiding/04-environment-event-qa.md`
+- `04-tomb-raiding/README.md`
+- `CONTRIBUTING.md`
+- `MANIFEST.md`
+- `PORTFOLIO.md`
+- `README.md`
+- `shared/collaboration-workflow.md`
+- `shared/git-workflow.md`
+- `shared/interview-guide.md`
+- `shared/narrative-data-schema.md`
+- `shared/narrative-qa-checklist.md`

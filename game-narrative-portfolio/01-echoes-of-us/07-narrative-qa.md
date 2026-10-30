@@ -1,0 +1,12 @@
+# Narrative QA
+- [ ] 首次满足条件只触发一次
+- [ ] 未满足 Anchor/Character/Memory 条件不误触
+- [ ] 快速进出 Area 不重复排队
+- [ ] 切角色不制造双事件
+- [ ] Memory discovered 可持久化
+- [ ] Checkpoint 不回滚已确认剧情
+- [ ] Save/Load 不重复 relationship_arc
+- [ ] 玩家不能单角色绕过核心协作
+- [ ] Anchor 视觉反馈足够
+- [ ] 失败频率不破坏情绪高潮
+- [ ] 对白不重复解释玩家刚做过的动作

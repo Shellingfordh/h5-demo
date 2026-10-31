@@ -1,0 +1,1 @@
+{"story_state":{"story_id":"string","content_version":"string","current_chapter":"string","current_scene":"string","completed_chapters":"string[]","choice_flags":"object","clue_flags":"object","relation_flags":"object","checkpoint_revision":"integer","updated_at":"datetime"},"constraints":["real_asset_state_not_writable_by_h5","completion_idempotent","server_revision_monotonic"]}

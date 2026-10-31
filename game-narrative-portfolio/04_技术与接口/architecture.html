@@ -1,0 +1,18 @@
+<!doctype html><meta charset='utf-8'><title>技术架构</title><h1>故事系统技术架构</h1><p>建议沿既有体系：Flutter Native Shell + H5 Story Reader + Bridge + EventBus/Rule Engine + 本地状态 + 云端可信状态。</p><pre>Flutter StoryScreen
+  └─ WebView(H5)
+      ├─ Scene Renderer
+      ├─ Choice Engine
+      ├─ Audio/BGM
+      ├─ local checkpoint
+      └─ JS Bridge
+Native
+  ├─ asset/event state
+  ├─ unlock validation
+  ├─ share card
+  ├─ analytics
+  └─ sync queue
+Backend
+  ├─ story config/version
+  ├─ progress
+  ├─ event/rule
+  └─ audit</pre><h2>原则</h2><p>H5只负责表现和剧情局部状态；真实资产与最终解锁不可由H5单方面写入。所有完成事件必须携带story_id/chapter_id/version/idempotency_key。</p>

@@ -1,0 +1,30 @@
+00_提交说明/DELIVERABLE_MANIFEST.json
+00_提交说明/README.html
+00_提交说明/file_index.lst
+01_总PRD/Golden_Story_System_PRD.html
+01_总PRD/Scope_and_Acceptance.json
+02_凤阙金册/Narrative_Fengque.html
+02_凤阙金册/PRD_Fengque.html
+02_凤阙金册/fengque.story.json
+03_救命我被黄金包围了/Narrative_GoldSurrounded.html
+03_救命我被黄金包围了/PRD_GoldSurrounded.html
+03_救命我被黄金包围了/gold_surrounded.story.json
+04_技术与接口/api_contract.yaml
+04_技术与接口/architecture.html
+04_技术与接口/bridge_contract.json
+04_技术与接口/error_codes.json
+05_数据与配置/event_schema.json
+05_数据与配置/story_state_schema.json
+05_数据与配置/unlock_rules.json
+06_UIUX与美术/UIUX_spec.html
+06_UIUX与美术/asset_manifest.json
+07_QA验收/QA_plan.html
+07_QA验收/test_cases.json
+08_运营与埋点/analytics_plan.json
+08_运营与埋点/content_hooks.html
+09_发布与交接/RACI.json
+09_发布与交接/open_questions.json
+09_发布与交接/release_checklist.html
+10_历史源材料/Pasted markdown(20260908-070758).md
+10_历史源材料/Pasted markdown(20260909-063945).md
+10_历史源材料/Pasted markdown(20260910-062940).md

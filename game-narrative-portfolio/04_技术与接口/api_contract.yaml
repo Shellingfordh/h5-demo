@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info: {title: Golden Story API, version: 1.0.0}
+paths:
+  /v1/stories/{storyId}/progress:
+    get: {summary: Get trusted story progress}
+    put: {summary: Idempotent progress sync}
+  /v1/stories/{storyId}/unlock:
+    get: {summary: Evaluate chapter unlock rules}
+  /v1/events:
+    post: {summary: Submit normalized product event}
+  /v1/stories/config:
+    get: {summary: Fetch story metadata and content version}
+components:
+  schemas:
+    Progress:
+      type: object
+      required: [story_id, chapter_id, revision]
+    ProductEvent:
+      type: object
+      required: [event_id, event_type, occurred_at]

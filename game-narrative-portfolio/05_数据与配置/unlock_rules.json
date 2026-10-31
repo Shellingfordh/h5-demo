@@ -1,0 +1,1 @@
+{"fengque":{"FQ01":{"record_count_gte":1},"FQ02":{"record_count_gte":3},"FQ03":{"record_count_gte":5,"goal_created":true},"FQ04":{"record_count_gte":8,"asset_archive_ready":true}},"gold_surrounded":{"GS01":{"record_count_gte":1},"GS02":{"record_count_gte":3},"GS03":{"record_count_gte":5,"asset_sorted":true},"GS04":{"record_count_gte":8,"asset_archive_ready":true}}}

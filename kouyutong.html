@@ -1,407 +1,412 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>口语通 · AI 拍照学口语</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232563EB'/%3E%3Cpath d='M20 40a12 12 0 0 1 24 0' stroke='white' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='24' r='7' fill='white'/%3E%3C/svg%3E">
-<style>
-:root{
-  --brand:#2563EB; --brand2:#0EA5E9; --brand-grad:linear-gradient(135deg,#2563EB,#0EA5E9);
-  --ink:#0F172A; --ink2:#475569; --ink3:#94A3B8; --line:#E2E8F0;
-  --bg:#F6F8FC; --card:#FFFFFF; --soft:#F1F5F9;
-  --ok:#10B981; --warn:#F59E0B; --danger:#EF4444;
-  --en:#2563EB; --ja:#E11D48; --ko:#0D9488; --ru:#6D28D9;
-  --fr:#1E40AF; --th:#CA8A04; --id:#DC2626; --ms:#15803D;
-  --es:#C2410C; --nl:#0891B2; --pt:#65A30D;
-  --yue:#9333EA; --sc:#EA580C; --vi:#DB2777;
-  --r:16px; --shadow:0 6px 24px rgba(15,23,42,.07);
-  --sidebar-w:268px; --top-h:44px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;color:var(--ink);background:var(--bg);font-size:15px;-webkit-font-smoothing:antialiased;overflow:hidden}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-input,textarea{font-family:inherit}
-::-webkit-scrollbar{width:6px;height:6px}
-::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
-::-webkit-scrollbar-track{background:transparent}
-
-/* ===== 布局 ===== */
-#app{display:flex;flex-direction:column;height:100vh;height:100dvh}
-#topbar{height:var(--top-h);display:flex;align-items:center;gap:9px;padding:0 14px;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(15,23,42,.04);flex-shrink:0;position:relative;z-index:50}
-.logo{display:flex;align-items:center;gap:8px;font-weight:800;flex-shrink:0;min-width:0}
-.logo-badge{width:28px;height:28px;border-radius:8px;background:var(--brand-grad);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(37,99,235,.32);flex-shrink:0}
-.logo-txt{font-size:14px;font-weight:800;letter-spacing:.5px;white-space:nowrap;line-height:1.15;color:var(--ink)}
-.logo small{display:block;font-size:9px;font-weight:600;color:var(--ink3);letter-spacing:1px;white-space:nowrap}
-.top-actions{display:flex;align-items:center;gap:7px;flex-shrink:0;margin-left:auto}
-#balance-pill{display:flex;align-items:center;gap:5px;background:linear-gradient(135deg,#EFF6FF,#F0F9FF);border:1px solid #BFDBFE;border-radius:999px;padding:4px 10px 4px 6px;font-size:12px;font-weight:800;color:#1D4ED8;cursor:pointer;transition:.15s;height:28px;box-sizing:border-box}
-#balance-pill .coin{width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,#FBBF24,#F59E0B);display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:800;box-shadow:inset 0 -2px 3px rgba(0,0,0,.15);flex-shrink:0}
-
-#model-pill{display:inline-flex;align-items:center;gap:4px;flex-shrink:0;background:rgba(255,255,255,.94);border:1px solid rgba(226,232,240,.96);border-radius:999px;padding:3px 8px 3px 4px;height:26px;box-sizing:border-box;max-width:100%;min-width:0;font-size:11px;font-weight:800;color:#1D4ED8;font-family:inherit;cursor:pointer;box-shadow:0 2px 6px rgba(15,23,42,.06);transition:.15s}
-#model-pill .hm-tag{background:linear-gradient(135deg,#2563EB,#0EA5E9);color:#fff;border-radius:999px;padding:1px 5px;font-size:9px;font-weight:800;letter-spacing:.3px;line-height:1.6;flex-shrink:0}
-
-#shell{display:flex;flex:1;min-height:0;position:relative}
-/* ===== 侧栏 ===== */
-#sidebar{width:var(--sidebar-w);background:var(--card);border-right:1px solid var(--line);display:flex;flex-direction:column;flex-shrink:0;min-height:0;transition:transform .25s ease}
-#sb-body{flex:1;overflow-y:auto;padding:14px 12px}
-#new-chat{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--brand-grad);color:#fff;border-radius:12px;padding:10px;font-size:13.5px;font-weight:700;box-shadow:0 4px 12px rgba(37,99,235,.22);transition:.15s}
-#new-chat:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(37,99,235,.3)}
-.sb-sec{margin-top:16px}
-.sb-sec-h{font-size:11px;font-weight:700;color:var(--ink3);letter-spacing:1px;padding:0 6px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
-.lang-filter{display:flex;flex-wrap:wrap;gap:5px;padding:0 2px;margin-bottom:6px}
-.lang-chip{flex:1 1 auto;min-width:42px;text-align:center;padding:5px 6px;border-radius:999px;font-size:11.5px;font-weight:600;color:var(--ink2);background:var(--soft);cursor:pointer;transition:.15s}
-.lang-chip.on{color:#fff}
-.lang-chip[data-l=en].on{background:var(--en)}
-.lang-chip[data-l=ja].on{background:var(--ja)}
-.lang-chip[data-l=ko].on{background:var(--ko)}
-.lang-chip[data-l=ru].on{background:var(--ru)}
-.lang-chip[data-l=fr].on{background:var(--fr)}
-.lang-chip[data-l=es].on{background:var(--es)}
-
-.sess-item{display:flex;align-items:center;gap:8px;padding:9px 8px;border-radius:10px;cursor:pointer;transition:.13s;margin-bottom:2px}
-.sess-item:hover{background:var(--soft)}
-.sess-item.active{background:#EFF6FF}
-.sess-ic{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;flex-shrink:0}
-.sess-meta{flex:1;min-width:0}
-.sess-title{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sess-sub{font-size:11px;color:var(--ink3);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-#sb-foot{border-top:1px solid var(--line);padding:10px;background:#FAFCFF}
-.sb-user{display:flex;align-items:center;gap:8px;padding:4px}
-.avatar{width:32px;height:32px;border-radius:50%;background:var(--brand-grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
-.sb-user b{font-size:12.5px;display:block}
-.sb-user span{font-size:10.5px;color:var(--ink3)}
-
-/* ===== 主区 ===== */
-#main{flex:1;min-width:0;display:flex;flex-direction:column;position:relative;background:var(--bg)}
-.view{display:none;flex:1;min-height:0;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.view.on{display:flex}
-
-/* —— 首页 —— */
-#home{justify-content:center;align-items:center;padding:24px 16px}
-.home-wrap{width:min(860px,100%);margin:0 auto}
-.hero{text-align:center;padding:10px 0 16px}
-.hero .big{font-size:clamp(20px,3.2vw,26px);font-weight:800;letter-spacing:.5px;line-height:1.3;background:linear-gradient(135deg,#1D4ED8,#0EA5E9);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .sub{color:var(--ink2);font-size:13px;margin-top:6px;line-height:1.6}
-.lang-pick-title{font-size:13.5px;font-weight:700;text-align:center;margin:12px 0 10px;color:var(--ink2)}
-.lang-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
-.lang-card{border:1.5px solid var(--line);border-radius:var(--r);padding:12px 8px;background:var(--card);cursor:pointer;transition:.16s;text-align:center;display:flex;flex-direction:column;align-items:center}
-.lang-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--brand)}
-.lang-card .lbadge{width:36px;height:36px;border-radius:10px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:900}
-.lang-card .lname{font-size:12.5px;font-weight:700}
-.lang-card .lsub{font-size:10.5px;color:var(--ink3);margin-top:2px}
-.lang-card[data-l=en] .lbadge{background:linear-gradient(135deg,#3B82F6,#1D4ED8)}
-.lang-card[data-l=ja] .lbadge{background:linear-gradient(135deg,#F43F5E,#BE123C)}
-.lang-card[data-l=ko] .lbadge{background:linear-gradient(135deg,#14B8A6,#0F766E)}
-.lang-card[data-l=es] .lbadge{background:linear-gradient(135deg,#FB923C,#C2410C)}
-
-/* —— 聊天 —— */
-#chat{min-height:0;overflow:hidden}
-#msg-scroll{flex:1;overflow-y:auto;padding:16px 14px 10px}
-#msg-scroll .in{max-width:min(760px,100%);margin:0 auto}
-.msg{display:flex;gap:8px;margin-bottom:14px;animation:msgIn .25s ease}
-@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.msg .av{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800;margin-top:2px}
-.msg.ai .av{background:var(--brand-grad)}
-.msg.me{flex-direction:row-reverse}
-.msg.me .av{background:linear-gradient(135deg,#64748B,#334155)}
-.msg-body{max-width:85%;min-width:0}
-.msg.me .msg-body{display:flex;flex-direction:column;align-items:flex-end}
-.bubble{padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.65;overflow-wrap:break-word}
-.msg.ai .bubble{background:var(--card);border:1px solid var(--line);border-top-left-radius:4px;box-shadow:0 2px 6px rgba(15,23,42,.03)}
-.msg.me .bubble{background:var(--brand-grad);color:#fff;border-top-right-radius:4px}
-
-/* 底部输入框 */
-#chat-input-bar{padding:10px 14px;background:#fff;border-top:1px solid var(--line);display:flex;gap:8px;align-items:center}
-#chat-input-bar input{flex:1;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:13.5px;outline:none;background:var(--soft)}
-#chat-input-bar input:focus{border-color:var(--brand);background:#fff}
-.btn-send{background:var(--brand-grad);color:#fff;border-radius:10px;padding:9px 16px;font-weight:700;font-size:13px;transition:.15s}
-.btn-send:hover{opacity:.9}
-.btn-cam{background:var(--soft);color:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:13px;display:flex;align-items:center;gap:4px;font-weight:600}
-.btn-cam:hover{background:#E2E8F0}
-
-/* 卡片类型 */
-.lesson-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px;margin-top:6px;box-shadow:0 3px 12px rgba(15,23,42,.04)}
-.lesson-card h4{font-size:15px;color:var(--brand);margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-top:8px}
-.word-box{border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--soft)}
-.word-box b{display:block;font-size:13.5px;color:var(--ink)}
-.word-box span{font-size:11px;color:var(--ink3)}
-
-/* 模拟摄像头模态框 */
-#cam-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100;align-items:center;justify-content:center;padding:16px}
-#cam-modal.on{display:flex}
-.cam-box{width:min(420px,100%);background:#1E293B;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;color:#fff}
-.cam-view{height:280px;background:#000;position:relative;display:flex;align-items:center;justify-content:center}
-.cam-view video{width:100%;height:100%;object-fit:cover}
-.cam-frame{position:absolute;inset:20px;border:2 border-dashed rgba(56,189,248,.6);border-radius:12px;pointer-events:none}
-.cam-ctrl{padding:16px;display:flex;justify-content:space-around;align-items:center;background:#0F172A}
-.btn-snap{width:56px;height:56px;border-radius:50%;background:#fff;border:4px solid #38BDF8;cursor:pointer}
-.btn-close-cam{color:#94A3B8;font-size:13px}
-</style>
-</head>
-<body>
-
-<div id="app">
-  <!-- 顶栏 -->
-  <div id="topbar">
-    <div class="logo">
-      <div class="logo-badge">口</div>
-      <div class="logo-txt">口语通 <small>AI 拍照学口语</small></div>
-    </div>
-    <div class="top-actions">
-      <div id="model-pill">
-        <span class="hm-tag">Web API</span>
-        <span id="model-name">智能多模态引擎</span>
-      </div>
-      <div id="balance-pill">
-        <div class="coin">￥</div>
-        <span>无限点数</span>
-      </div>
-    </div>
-  </div>
-
-  <div id="shell">
-    <!-- 侧边栏 -->
-    <div id="sidebar">
-      <div id="sb-body">
-        <button id="new-chat">+ 开启新学习</button>
-        <div class="sb-sec">
-          <div class="sb-sec-h">目标语言</div>
-          <div class="lang-filter">
-            <div class="lang-chip on" data-l="en">英语</div>
-            <div class="lang-chip" data-l="ja">日语</div>
-            <div class="lang-chip" data-l="ko">韩语</div>
-            <div class="lang-chip" data-l="ru">俄语</div>
-            <div class="lang-chip" data-l="fr">法语</div>
-            <div class="lang-chip" data-l="es">西语</div>
-          </div>
-        </div>
-        <div class="sb-sec">
-          <div class="sb-sec-h">历史记录</div>
-          <div id="sess-list">
-            <div class="sess-item active">
-              <div class="sess-ic" style="background:var(--en)">EN</div>
-              <div class="sess-meta">
-                <div class="sess-title">机场办理登机手续</div>
-                <div class="sess-sub">包含 8 个核心词汇句型</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="sb-foot">
-        <div class="sb-user">
-          <div class="avatar">U</div>
-          <div>
-            <b>学习者 Pro</b>
-            <span>已连续打卡 7 天</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 主界面 -->
-    <div id="main">
-      <!-- 首页视图 -->
-      <div id="home" class="view on">
-        <div class="home-wrap">
-          <div class="hero">
-            <div class="big">拍照即刻识别 · 全场景AI口语导师</div>
-            <div class="sub">拍课本、拍场景、拍题目，自动提取核心词汇与地道表达</div>
-          </div>
-          <div class="lang-pick-title">选择你今天想练习的语言</div>
-          <div class="lang-cards">
-            <div class="lang-card" data-l="en">
-              <div class="lbadge">EN</div>
-              <div class="lname">英语</div>
-              <div class="lsub">English</div>
-            </div>
-            <div class="lang-card" data-l="ja">
-              <div class="lbadge">JA</div>
-              <div class="lname">日语</div>
-              <div class="lsub">日本語</div>
-            </div>
-            <div class="lang-card" data-l="ko">
-              <div class="lbadge">KO</div>
-              <div class="lname">韩语</div>
-              <div class="lsub">한국어</div>
-            </div>
-            <div class="lang-card" data-l="es">
-              <div class="lbadge">ES</div>
-              <div class="lname">西班牙语</div>
-              <div class="lsub">Español</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 聊天/对话学习视图 -->
-      <div id="chat" class="view">
-        <div id="msg-scroll">
-          <div class="in" id="chat-msgs">
-            <!-- 消息列表 -->
-          </div>
-        </div>
-        <div id="chat-input-bar">
-          <button class="btn-cam" id="open-cam-btn">📷 拍照学习</button>
-          <input type="text" id="chat-input" placeholder="输入对话内容或提问..." />
-          <button class="btn-send" id="send-btn">发送</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 摄像头弹窗 -->
-<div id="cam-modal">
-  <div class="cam-box">
-    <div class="cam-view">
-      <video id="webcam" autoplay playsinline muted></video>
-      <div class="cam-frame"></div>
-    </div>
-    <div class="cam-ctrl">
-      <button class="btn-close-cam" id="close-cam-btn">取消</button>
-      <button class="btn-snap" id="snap-btn" title="拍照"></button>
-    </div>
-  </div>
-</div>
 
 <script>
-// --- 核心前端交互与服务 API 实现 ---
-const state = {
-  currentLang: 'en',
-  currentView: 'home',
-  mediaStream: null
-};
+/* =========================================================
+   口语通静态演示适配层
+   适用：本地 file:// 和 GitHub Pages
+   正式服务器环境不启用此补丁
+   ========================================================= */
+(function () {
+  'use strict';
 
-// DOM 元素引用
-const views = {
-  home: document.getElementById('home'),
-  chat: document.getElementById('chat')
-};
-const chatMsgs = document.getElementById('chat-msgs');
-const chatInput = document.getElementById('chat-input');
-const sendBtn = document.getElementById('send-btn');
-const openCamBtn = document.getElementById('open-cam-btn');
-const camModal = document.getElementById('cam-modal');
-const webcam = document.getElementById('webcam');
-const snapBtn = document.getElementById('snap-btn');
-const closeCamBtn = document.getElementById('close-cam-btn');
+  const host = location.hostname.toLowerCase();
+  const STATIC_DEMO =
+    location.protocol === 'file:' ||
+    host === 'github.io' ||
+    host.endsWith('.github.io');
 
-// 切换视图
-function switchView(viewName) {
-  state.currentView = viewName;
-  Object.keys(views).forEach(k => {
-    views[k].classList.toggle('on', k === viewName);
-  });
-}
+  if (!STATIC_DEMO) return;
 
-// 模拟多模态 AI 分析 API 响应（全前端无阻断调用）
-function simulateAiAnalysis(promptText, isImage = false) {
-  appendMsg('ai', isImage ? '📷 正在解析拍摄图片中的文本与情景...' : 'Thinking...');
+  window.KY_STATIC_DEMO = true;
+  window.KY_DEMO_LABEL = '演示模式 · AI 数据为模拟结果';
 
-  setTimeout(() => {
-    // 移除加载占位
-    const lastMsg = chatMsgs.lastElementChild;
-    if (lastMsg) lastMsg.remove();
+  /* 1. 页面顶部添加演示模式标识 */
+  function addDemoNotice() {
+    if (document.getElementById('ky-demo-notice')) return;
 
-    if (isImage) {
-      appendMsg('ai', `
-        <div><b>识别结果与口语教学卡片</b></div>
-        <div class="lesson-card">
-          <h4>✈️ 场景：机场办理登机 (Airport Check-in)</h4>
-          <p style="font-size:13px; color:#475569; margin:4px 0 8px;">识别到关键句型："Could I please have a window seat?"</p>
-          <div style="font-size:12.5px; font-weight:700; margin-top:8px;">💡 核心词汇：</div>
-          <div class="word-grid">
-            <div class="word-box"><b>window seat</b><span>靠窗座位</span></div>
-            <div class="word-box"><b>boarding pass</b><span>登机牌</span></div>
-            <div class="word-box"><b>luggage</b><span>行李</span></div>
-          </div>
-        </div>
-      `);
-    } else {
-      appendMsg('ai', `收到！针对"${promptText}"，地道的发音表达可以是：<br><br><b>"That sounds like a great idea!"</b><br><small style="color:#64748B">（这听起来是个绝妙的主意！）</small>`);
+    const el = document.createElement('div');
+    el.id = 'ky-demo-notice';
+    el.textContent = window.KY_DEMO_LABEL;
+    el.style.cssText = `
+      position:fixed;
+      z-index:99999;
+      top:8px;
+      left:50%;
+      transform:translateX(-50%);
+      max-width:calc(100vw - 24px);
+      padding:7px 13px;
+      border:1px solid #bfdbfe;
+      border-radius:999px;
+      background:rgba(239,246,255,.96);
+      color:#1d4ed8;
+      font:600 12px/1.4 system-ui,sans-serif;
+      box-shadow:0 3px 12px rgba(15,23,42,.10);
+      text-align:center;
+      pointer-events:none;
+      white-space:nowrap;
+    `;
+    document.body.appendChild(el);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addDemoNotice);
+  } else {
+    addDemoNotice();
+  }
+
+  /* 2. 模拟 AI 讲解数据 */
+  function demoLesson() {
+    return {
+      scene: '咖啡店点单',
+      insight: '这张图片可以用于练习在咖啡店点单。下面是适合初学者的常用表达。',
+      points: [
+        {
+          word: 'Could I have a latte?',
+          phonetic: '/kʊd aɪ hæv ə ˈlɑːteɪ/',
+          meaning: '我可以要一杯拿铁吗？',
+          example: 'Could I have a latte, please?',
+          translation: '请给我一杯拿铁。',
+          tip: 'Could I have… 是礼貌点单的常用句型。'
+        },
+        {
+          word: 'For here or to go?',
+          phonetic: '/fɔːr hɪr ɔːr tə ɡoʊ/',
+          meaning: '在这里喝还是打包？',
+          example: 'Is that for here or to go?',
+          translation: '您是在这里喝还是带走？',
+          tip: 'to go 表示外带。'
+        },
+        {
+          word: 'Iced, please.',
+          phonetic: '/aɪst pliːz/',
+          meaning: '请做冰的。',
+          example: 'Could I get it iced, please?',
+          translation: '可以帮我做成冰的吗？',
+          tip: 'iced 表示加冰的。'
+        },
+        {
+          word: 'That’s all, thank you.',
+          phonetic: '/ðæts ɔːl θæŋk juː/',
+          meaning: '就这些，谢谢。',
+          example: 'That’s all for now, thank you.',
+          translation: '暂时就这些，谢谢。',
+          tip: '结束点单时自然又礼貌。'
+        }
+      ],
+      tips: [
+        '先听完整句，再跟读关键词。',
+        '把 please 放在请求句末尾，会显得更礼貌。'
+      ]
+    };
+  }
+
+  /* 3. 模拟聊天和训练 */
+  function demoReply() {
+    return {
+      text: '当然可以。我们来模拟一个真实的日常对话。你可以说：“Could I have a latte, please?”（请给我一杯拿铁。）这句话很自然，也很礼貌。试着用目标语言再说一遍吧。',
+      reply: '当然可以。我们来模拟一个真实的日常对话。你可以说：“Could I have a latte, please?”（请给我一杯拿铁。）这句话很自然，也很礼貌。试着用目标语言再说一遍吧。'
+    };
+  }
+
+  /* 4. 替换 AI 请求函数 */
+  if (typeof window.callArk === 'function') {
+    window.callArk = async function (
+      messages,
+      kind,
+      meta,
+      maxTokens,
+      useJson,
+      thinkMode,
+      onDelta,
+      modelOverride
+    ) {
+      const isLesson =
+        kind === 'explain' ||
+        kind === 'lesson';
+
+      const data = isLesson
+        ? demoLesson()
+        : demoReply();
+
+      const content = isLesson
+        ? JSON.stringify(data)
+        : data.text;
+
+      if (typeof onDelta === 'function') {
+        const chunkSize = 28;
+
+        for (let i = 0; i < content.length; i += chunkSize) {
+          onDelta(content.slice(i, i + chunkSize));
+          await new Promise(resolve => setTimeout(resolve, 12));
+        }
+      }
+
+      return {
+        content,
+        tokens: 0,
+        logId: 'demo-' + Date.now(),
+        demo: true
+      };
+    };
+  }
+
+  /* 5. 模拟账号服务 */
+  if (typeof window.acctApi === 'function') {
+    window.acctApi = function (path, method, body, qs) {
+      const p = String(path || '');
+
+      const account = {
+        id: 'demo-user',
+        uid: 'demo-user',
+        phone: body?.phone || '13800000000',
+        nickname: '演示用户',
+        name: '演示用户',
+        role: 'user',
+        grant: 0,
+        balance: 0,
+        plan: 'free',
+        status: 'active'
+      };
+
+      const token = 'ky-demo-token';
+
+      if (/\/acct\/(login|register|onekey)$/.test(p)) {
+        try {
+          localStorage.setItem(
+            'kyt_demo_account',
+            JSON.stringify({ token, account })
+          );
+        } catch (e) {}
+
+        return Promise.resolve({
+          ok: true,
+          token,
+          account,
+          me: account,
+          demo: true
+        });
+      }
+
+      if (/\/acct\/me$/.test(p)) {
+        let saved = null;
+
+        try {
+          saved = JSON.parse(
+            localStorage.getItem('kyt_demo_account') || 'null'
+          );
+        } catch (e) {}
+
+        return Promise.resolve(
+          saved
+            ? {
+                ok: true,
+                token,
+                account: saved.account,
+                me: saved.account,
+                demo: true
+              }
+            : {
+                ok: false,
+                error: '当前为访客演示，请体验登录流程。',
+                demo: true
+              }
+        );
+      }
+
+      if (/\/acct\/logout$/.test(p)) {
+        try {
+          localStorage.removeItem('kyt_demo_account');
+        } catch (e) {}
+
+        return Promise.resolve({ ok: true, demo: true });
+      }
+
+      if (/\/(friend|dm)\//.test(p)) {
+        return Promise.resolve({
+          ok: true,
+          list: [],
+          rows: [],
+          friends: [],
+          convs: [],
+          messages: [],
+          data: [],
+          demo: true
+        });
+      }
+
+      if (/\/admin\//.test(p)) {
+        return Promise.resolve({
+          ok: false,
+          error: '演示模式不开放真实管理端写操作。',
+          demo: true
+        });
+      }
+
+      return Promise.resolve({
+        ok: true,
+        data: {},
+        list: [],
+        rows: [],
+        demo: true
+      });
+    };
+  }
+
+  /* 6. 运营后台静态化 */
+  if (typeof window.opsFetch === 'function') {
+    window.opsFetch = function () {
+      return Promise.resolve(null);
+    };
+  }
+
+  if (typeof window.opsPost === 'function') {
+    window.opsPost = function () {
+      return Promise.reject(
+        new Error('演示模式不开放运营后台写操作')
+      );
+    };
+  }
+
+  /* 7. 拦截后端 API 请求 */
+  const nativeFetch = window.fetch.bind(window);
+
+  window.fetch = function (input, init) {
+    const url = typeof input === 'string'
+      ? input
+      : input?.url || '';
+
+    let path = '';
+
+    try {
+      path = new URL(url, location.href).pathname;
+    } catch (e) {
+      path = String(url);
     }
-    scrollToBottom();
-  }, 1000);
-}
 
-// 消息渲染逻辑
-function appendMsg(role, text) {
-  const msgDiv = document.createElement('div');
-  msgDiv.className = `msg ${role}`;
-  msgDiv.innerHTML = `
-    <div class="av">${role === 'ai' ? 'AI' : '我'}</div>
-    <div class="msg-body">
-      <div class="bubble">${text}</div>
-    </div>
-  `;
-  chatMsgs.appendChild(msgDiv);
-  scrollToBottom();
-}
+    const isBackend =
+      /\/(health|log|log\/dump|chat|tts|asr)$/.test(path) ||
+      /^\/(acct|friend|dm|admin|api)\//.test(path);
 
-function scrollToBottom() {
-  const scrollEl = document.getElementById('msg-scroll');
-  scrollEl.scrollTop = scrollEl.scrollHeight;
-}
+    if (!isBackend) {
+      return nativeFetch(input, init);
+    }
 
-// 语言选择卡片点击事件
-document.querySelectorAll('.lang-card').forEach(card => {
-  card.addEventListener('click', () => {
-    state.currentLang = card.getAttribute('data-l');
-    switchView('chat');
-    chatMsgs.innerHTML = '';
-    appendMsg('ai', `你好！我是你的 ${card.querySelector('.lname').innerText} AI 口语导师。可以点击下方“拍照学习”拍摄教材或直接发送文本！`);
-  });
-});
+    const jsonResponse = data =>
+      new Response(JSON.stringify(data), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
-// 新建学习按钮
-document.getElementById('new-chat').addEventListener('click', () => {
-  switchView('home');
-});
+    if (/\/health$/.test(path)) {
+      return Promise.resolve(
+        jsonResponse({
+          ok: true,
+          model: 'demo-mock',
+          speech: {
+            capabilities: {
+              llm: 'demo-mock',
+              asr: 'demo-mock',
+              tts: 'browser-speechSynthesis',
+              ttsVoiceCount: 0
+            },
+            version: 'static-demo'
+          }
+        })
+      );
+    }
 
-// 消息发送
-sendBtn.addEventListener('click', () => {
-  const txt = chatInput.value.trim();
-  if (!txt) return;
-  appendMsg('me', txt);
-  chatInput.value = '';
-  simulateAiAnalysis(txt, false);
-});
+    if (/\/(log|log\/dump)$/.test(path)) {
+      return Promise.resolve(
+        jsonResponse({ ok: true, data: [] })
+      );
+    }
 
-chatInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') sendBtn.click();
-});
+    if (/\/tts$/.test(path)) {
+      return Promise.resolve(
+        jsonResponse({
+          ok: true,
+          audio: null,
+          demo: true,
+          message: '使用浏览器语音合成'
+        })
+      );
+    }
 
-// 摄像头接口与 WebRTC 真实支持
-openCamBtn.addEventListener('click', async () => {
-  camModal.classList.add('on');
-  try {
-    state.mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-    webcam.srcObject = state.mediaStream;
-  } catch (err) {
-    console.warn('无法获取真实摄像头，切入模拟模式', err);
-  }
-});
+    if (/\/asr$/.test(path)) {
+      return Promise.resolve(
+        jsonResponse({
+          ok: true,
+          text: 'Could I have a latte, please?',
+          demo: true
+        })
+      );
+    }
 
-function closeCamera() {
-  if (state.mediaStream) {
-    state.mediaStream.getTracks().forEach(t => t.stop());
-    state.mediaStream = null;
-  }
-  camModal.classList.remove('on');
-}
+    if (/\/chat$/.test(path)) {
+      return Promise.resolve(
+        jsonResponse({
+          ok: true,
+          content: demoReply().text,
+          demo: true
+        })
+      );
+    }
 
-closeCamBtn.addEventListener('click', closeCamera);
+    return Promise.resolve(
+      jsonResponse({
+        ok: true,
+        data: {},
+        list: [],
+        rows: [],
+        demo: true
+      })
+    );
+  };
 
-snapBtn.addEventListener('click', () => {
-  closeCamera();
-  if (state.currentView !== 'chat') switchView('chat');
-  appendMsg('me', '📷 [上传了一张拍照图]');
-  simulateAiAnalysis('', true);
-});
+  /* 8. 浏览器原生语音朗读 */
+  window.KY_DEMO_SPEAK = function (text, lang) {
+    if (!('speechSynthesis' in window)) {
+      return false;
+    }
+
+    try {
+      speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(
+        String(text || '')
+      );
+
+      const map = {
+        en: 'en-US',
+        ja: 'ja-JP',
+        ko: 'ko-KR',
+        ru: 'ru-RU',
+        fr: 'fr-FR',
+        es: 'es-ES',
+        nl: 'nl-NL',
+        pt: 'pt-PT',
+        th: 'th-TH',
+        id: 'id-ID',
+        ms: 'ms-MY',
+        vi: 'vi-VN',
+        yu: 'zh-HK',
+        sc: 'zh-CN'
+      };
+
+      utterance.lang = map[lang || 'en'] || 'en-US';
+      utterance.rate = 0.9;
+
+      speechSynthesis.speak(utterance);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  console.info(
+    '[口语通] 静态演示模式已启用，不连接本地或生产后端。'
+  );
+
+})();
 </script>
-</body>
-</html>

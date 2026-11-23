@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>衣间星河 VESTORIA · AI 数字衣橱与虚拟时尚社区</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  :root {
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-bg-strong: rgba(255, 255, 255, 0.88);
+    --glass-border: rgba(255, 255, 255, 0.85);
+    --glass-shadow: 0 12px 32px -8px rgba(31, 38, 135, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    --ink-main: #0f172a;
+    --ink-sub: #475569;
+    --ink-muted: #64748b;
+    --accent-violet: #6366f1;
+    --accent-rose: #ec4899;
+    --accent-sky: #0ea5e9;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 15% 15%, #e0e7ff 0%, transparent 45%),
+      radial-gradient(circle at 85% 20%, #fce7f3 0%, transparent 45%),
+      radial-gradient(circle at 50% 85%, #e0f2fe 0%, #f1f5f9 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", sans-serif;
+    color: var(--ink-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+  }
+
+  /* iPhone Hardware Shell */
+  .iphone-shell {
+    width: 100%;
+    max-width: 414px;
+    height: 864px;
+    max-height: 95vh;
+    background: linear-gradient(165deg, #f8fafc 0%, #eef2ff 50%, #fdf2f8 100%);
+    border-radius: 54px;
+    position: relative;
+    box-shadow:
+      0 0 0 3px #e2e8f0,
+      0 0 0 9px #1e293b,
+      0 0 0 11px #94a3b8,
+      0 32px 72px -12px rgba(15, 23, 42, 0.35);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Ambient Liquid Orbs inside Screen */
+  .liquid-orb {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(42px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.65;
+  }
+  .orb-1 { width: 220px; height: 220px; background: #c7d2fe; top: 40px; left: -50px; }
+  .orb-2 { width: 200px; height: 200px; background: #fbcfe8; top: 280px; right: -60px; }
+  .orb-3 { width: 240px; height: 240px; background: #bae6fd; bottom: 80px; left: 20px; }
+
+  /* iOS Status Bar + Dynamic Island */
+  .ios-status-bar {
+    height: 50px;
+    padding: 12px 26px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 50;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .dynamic-island {
+    position: absolute;
+    left: 50%;
+    top: 11px;
+    transform: translateX(-50%);
+    width: 124px;
+    height: 34px;
+    background: #09090b;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 60;
+    cursor: pointer;
+  }
+  .dynamic-island.expanded {
+    width: 256px;
+    height: 40px;
+  }
+  .di-lens {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #818cf8 0%, #1e1b4b 55%, #000 100%);
+  }
+  .di-sparkle {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .di-sparkle span {
+    width: 3px;
+    height: 8px;
+    border-radius: 99px;
+    background: linear-gradient(180deg, #818cf8, #f472b6);
+    animation: eqBar 1.2s ease-in-out infinite;
+  }
+  .di-sparkle span:nth-child(2) { animation-delay: 0.2s; height: 12px; }
+  .di-sparkle span:nth-child(3) { animation-delay: 0.4s; height: 7px; }
+  @keyframes eqBar {
+    0%, 100% { transform: scaleY(0.5); }
+    50% { transform: scaleY(1.2); }
+  }
+
+  /* Liquid Glass Card System */
+  .liquid-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(22px) saturate(165%);
+    -webkit-backdrop-filter: blur(22px) saturate(165%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .liquid-card-strong {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(26px) saturate(180%);
+    -webkit-backdrop-filter: blur(26px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 14px 36px -10px rgba(31, 38, 135, 0.14), inset 0 1px 0 #ffffff;
+    border-radius: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .liquid-pill {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    border-radius: 999px;
+  }
+
+  /* Viewport Scrolling */
+  .app-viewport {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 2;
+  }
+  .app-viewport::-webkit-scrollbar { display: none; }
+
+  /* Character Stage */
+  .avatar-stage {
+    background:
+      radial-gradient(circle at 50% 25%, rgba(255, 255, 255, 0.92) 0%, rgba(238, 242, 255, 0.65) 55%, rgba(252, 231, 243, 0.72) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    box-shadow: inset 0 2px 16px rgba(255, 255, 255, 0.9), 0 12px 28px -8px rgba(99, 102, 241, 0.16);
+    border-radius: 26px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @keyframes floatAvatar {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+  }
+  .avatar-float {
+    animation: floatAvatar 3.6s ease-in-out infinite;
+  }
+
+  /* Chat Bubbles */
+  .bubble-user {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #db2777 100%);
+    color: #ffffff;
+    border-radius: 20px 20px 6px 20px;
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.25);
+  }
+  .bubble-ai {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    color: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 20px 20px 20px 6px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  }
+
+  /* Bottom Tabbar */
+  .liquid-tabbar {
+    background: rgba(255, 255, 255, 0.84);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-top: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.05);
+    z-index: 30;
+  }
+
+  /* Home Indicator */
+  .home-indicator-bar {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 30;
+  }
+  .home-pill {
+    width: 134px;
+    height: 5px;
+    background: #0f172a;
+    opacity: 0.22;
+    border-radius: 99px;
+  }
+
+  @media (max-width: 440px) {
+    body { padding: 0; }
+    .iphone-shell {
+      max-width: 100%;
+      height: 100vh;
+      max-height: 100vh;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="iphone-shell" id="vestoriaShell">
+  <!-- Ambient Liquid Glass Glow Orbs -->
+  <div class="liquid-orb orb-1"></div>
+  <div class="liquid-orb orb-2"></div>
+  <div class="liquid-orb orb-3"></div>
+
+  <!-- iOS Status Bar & Dynamic Island -->
+  <div class="ios-status-bar">
+    <span class="text-[13px] font-bold tracking-tight text-slate-900" id="iosClock">22:26</span>
+
+    <div class="dynamic-island" id="dynamicIsland" onclick="toggleDynamicIsland()" title="点击查看衣间星河状态">
+      <div class="flex items-center gap-1.5">
+        <span class="di-lens"></span>
+        <span class="text-[10px] font-semibold text-white/90 hidden" id="diStatusText">AI 穿搭引擎在线</span>
+      </div>
+      <div class="di-sparkle">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-1.5 text-slate-900">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M2 17h2v4H2v-4zm4-5h2v9H6v-9zm4-4h2v13h-2V8zm4-4h2v17h-2V4zm4-2h2v19h-2V2z"/></svg>
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C7.79 3 3.7 4.41.38 7L12 21.5 23.62 7C20.3 4.41 16.21 3 12 3z"/></svg>
+      <div class="w-6 h-3 rounded-[4px] border border-slate-900/40 p-[1.5px] flex items-center">
+        <div class="w-full h-full bg-slate-900 rounded-[2px]"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Brand Header -->
+  <header class="px-4 py-2 flex items-center justify-between z-20 flex-shrink-0">
+    <div class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 text-white flex items-center justify-center shadow-md shadow-indigo-500/25 font-black text-sm">
+        ✦
+      </div>
+      <div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-sm font-black tracking-tight text-slate-900">衣间星河</span>
+          <span class="text-[10px] font-extrabold tracking-widest text-indigo-600 bg-white/80 px-1.5 py-0.5 rounded-md border border-indigo-100">VESTORIA</span>
+        </div>
+        <div class="text-[11px] font-medium text-slate-600" id="topWeatherSubtitle">🌤️ 晴 · 19°C 微风 · 适合叠穿针织与风衣</div>
+      </div>
+    </div>
+
+    <button onclick="openUploadGarmentModal()" class="liquid-pill px-3 py-1.5 text-xs font-extrabold text-indigo-700 flex items-center gap-1 hover:bg-white active:scale-95 transition">
+      <span>＋</span>
+      <span>录入衣物</span>
+    </button>
+  </header>
+
+  <!-- =========================================================
+       MAIN SCROLLABLE VIEWPORT (5 CORE MODULES FROM PRD V1.0)
+       ========================================================= -->
+  <main class="app-viewport px-4 pt-1 pb-4 space-y-3.5" id="mainViewport">
+
+    <!-- 1. 首页 HOME -->
+    <section id="view-home" class="space-y-3.5">
+      <!-- Top Character Showcase & Switcher -->
+      <div class="liquid-card-strong p-4">
+        <div class="flex items-center justify-between mb-2.5">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 text-[10px] font-extrabold border border-indigo-100" id="homeAvatarRoleTag">主理人分身</span>
+            <h2 class="text-base font-black text-slate-900" id="homeAvatarName">星野 · Luna</h2>
+          </div>
+          <div class="flex items-center gap-1.5" id="avatarSwitcherPills"></div>
+        </div>
+
+        <!-- 2.5D Layered Paper-Doll Stage -->
+        <div class="avatar-stage p-3 flex items-center gap-3.5">
+          <div class="w-[138px] h-[186px] flex-shrink-0 flex items-center justify-center avatar-float" id="homeAvatarCanvas"></div>
+
+          <div class="flex-1 min-w-0 space-y-2">
+            <div class="liquid-pill px-2.5 py-1 inline-flex items-center gap-1 text-[11px] font-bold text-slate-700">
+              <span>✨ 当前造型：</span>
+              <span class="text-indigo-600 truncate" id="homeCurrentLookName">秋日学院清冷风</span>
+            </div>
+            <p class="text-[11px] text-slate-600 leading-relaxed" id="homeWearingSummary">
+              上装：奶油白绞花针织衫<br/>
+              下装：燕麦灰百褶短裙<br/>
+              鞋履：复古厚底乐福鞋
+            </p>
+            <div class="flex gap-1.5 pt-1">
+              <button onclick="switchTab('studio')" class="flex-1 py-2 rounded-xl bg-slate-900 text-white text-[11px] font-bold shadow-sm active:scale-95 transition">
+                捏脸换装
+              </button>
+              <button onclick="openPublishModal()" class="flex-1 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-pink-500 text-white text-[11px] font-bold shadow-sm active:scale-95 transition">
+                发布作品
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Today's AI Recommendation Card -->
+      <div class="liquid-card p-4">
+        <div class="flex items-center justify-between mb-2">
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-pink-600">TODAY'S AI CURATION</span>
+            <h3 class="text-sm font-black text-slate-900">今日天气与场景智能推荐</h3>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[10px] font-extrabold">
+            匹配度 97%
+          </span>
+        </div>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          检测到今日 <b class="text-slate-800">19°C 微风多云</b>，已从你的现实衣橱筛选出 3 件高适配单品，兼顾早晚温差与通勤质感。
+        </p>
+        <div class="grid grid-cols-3 gap-2 my-3" id="todayRecItems"></div>
+        <div class="flex gap-2">
+          <button onclick="applyTodayRecommendation()" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold shadow-md shadow-indigo-500/20 active:scale-[0.98] transition">
+            ✦ 一键穿到角色身上
+          </button>
+          <button onclick="switchTab('ai')" class="px-3.5 py-2.5 rounded-xl bg-white/90 border border-slate-200 text-slate-800 text-xs font-bold active:scale-95 transition">
+            微调搭配
+          </button>
+        </div>
+      </div>
+
+      <!-- Daily Theme Challenge -->
+      <div class="liquid-card p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-sm font-black text-slate-900">🔥 每日主题搭配挑战</h3>
+          <span class="text-[11px] font-bold text-indigo-600">2,480 人参与</span>
+        </div>
+        <div class="flex gap-2 overflow-x-auto pb-1">
+          <button onclick="triggerThemeChallenge('秋日学院风')" class="px-3 py-2 rounded-2xl bg-white/85 border border-indigo-100 text-left flex-shrink-0 min-w-[132px] shadow-2xs active:scale-95 transition">
+            <div class="text-xs font-extrabold text-slate-900">🍂 秋日学院风</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">针织 · 百褶 · 乐福鞋</div>
+          </button>
+          <button onclick="triggerThemeChallenge('千禧甜酷风')" class="px-3 py-2 rounded-2xl bg-white/85 border border-pink-100 text-left flex-shrink-0 min-w-[132px] shadow-2xs active:scale-95 transition">
+            <div class="text-xs font-extrabold text-slate-900">🖤 千禧甜酷风</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">短款皮衣 · 银饰 · 马丁靴</div>
+          </button>
+          <button onclick="triggerThemeChallenge('新中式清冷')" class="px-3 py-2 rounded-2xl bg-white/85 border border-emerald-100 text-left flex-shrink-0 min-w-[132px] shadow-2xs active:scale-95 transition">
+            <div class="text-xs font-extrabold text-slate-900">🎋 新中式清冷</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">盘扣立领 · 宋锦半裙</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Community Inspiration Preview -->
+      <div class="liquid-card p-4">
+        <div class="flex items-center justify-between mb-2.5">
+          <h3 class="text-sm font-black text-slate-900">✨ 社区穿搭灵感精选</h3>
+          <button onclick="switchTab('community')" class="text-xs font-extrabold text-indigo-600">进入社区 →</button>
+        </div>
+        <div class="grid grid-cols-2 gap-2.5" id="homeCommunityPreview"></div>
+      </div>
+    </section>
+
+    <!-- 2. 我的衣橱 DIGITAL WARDROBE -->
+    <section id="view-wardrobe" class="hidden space-y-3.5">
+      <div class="liquid-card-strong p-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-indigo-600">REAL-TO-VIRTUAL ASSETS</span>
+            <h2 class="text-lg font-black text-slate-900">我的数字衣橱</h2>
+            <p class="text-[11px] text-slate-600 mt-0.5">现实衣物拍照上传 · AI 自动抠图与属性建档</p>
+          </div>
+          <button onclick="openUploadGarmentModal()" class="px-3.5 py-2 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-extrabold shadow-md shadow-indigo-500/25 active:scale-95 transition">
+            + 拍照入橱
+          </button>
+        </div>
+
+        <!-- Wardrobe Stats -->
+        <div class="grid grid-cols-3 gap-2 mt-3.5">
+          <div class="p-2.5 rounded-2xl bg-white/80 border border-white text-center">
+            <div class="text-base font-black text-slate-900" id="statTotalItems">8</div>
+            <div class="text-[10px] font-bold text-slate-500">数字资产总数</div>
+          </div>
+          <div class="p-2.5 rounded-2xl bg-white/80 border border-white text-center">
+            <div class="text-base font-black text-indigo-600" id="statRealItems">6</div>
+            <div class="text-[10px] font-bold text-slate-500">现实衣物转化</div>
+          </div>
+          <div class="p-2.5 rounded-2xl bg-white/80 border border-white text-center">
+            <div class="text-base font-black text-pink-600">94%</div>
+            <div class="text-[10px] font-bold text-slate-500">衣橱利用率</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex gap-1.5 overflow-x-auto pb-1" id="wardrobeCategoryBar"></div>
+
+      <!-- Garment Cards Grid -->
+      <div class="grid grid-cols-2 gap-3" id="wardrobeGrid"></div>
+    </section>
+
+    <!-- 3. 角色工坊 AVATAR STUDIO & DRESS-UP -->
+    <section id="view-studio" class="hidden space-y-3.5">
+      <div class="liquid-card-strong p-4">
+        <div class="flex items-center justify-between mb-2">
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-pink-600">CHARACTER & 2.5D DRESS-UP</span>
+            <h2 class="text-base font-black text-slate-900" id="studioAvatarTitle">角色工坊 · 星野 Luna</h2>
+          </div>
+          <div class="flex gap-1.5" id="studioAvatarSelector"></div>
+        </div>
+
+        <!-- Interactive 2.5D Dress-up Stage -->
+        <div class="avatar-stage p-4 flex flex-col items-center justify-center relative" id="studioBgStage">
+          <div class="absolute top-3 left-3 flex flex-col gap-1.5">
+            <span class="liquid-pill px-2.5 py-1 text-[10px] font-extrabold text-slate-700" id="studioPoseBadge">姿势：优雅站姿</span>
+            <span class="liquid-pill px-2.5 py-1 text-[10px] font-extrabold text-indigo-600" id="studioSceneBadge">场景：星河试衣间</span>
+          </div>
+
+          <button onclick="undoOutfit()" class="absolute top-3 right-3 liquid-pill px-2.5 py-1 text-[10px] font-extrabold text-slate-700 hover:bg-white active:scale-95 transition">
+            ↺ 撤销上一步
+          </button>
+
+          <div class="w-[172px] h-[230px] flex items-center justify-center avatar-float my-1" id="studioAvatarCanvas"></div>
+
+          <!-- Pose & Backdrop Quick Bar -->
+          <div class="flex gap-1.5 mt-2 flex-wrap justify-center">
+            <button onclick="cycleAvatarPose()" class="liquid-pill px-3 py-1 text-[11px] font-bold text-slate-800 active:scale-95 transition">💃 切换姿势</button>
+            <button onclick="cycleStageBg()" class="liquid-pill px-3 py-1 text-[11px] font-bold text-slate-800 active:scale-95 transition">🖼️ 切换背景</button>
+            <button onclick="saveOutfitSnapshot()" class="px-3 py-1 rounded-full bg-slate-900 text-white text-[11px] font-bold shadow-xs active:scale-95 transition">💾 保存造型</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Studio Mode Switch: 捏脸外观 vs 衣橱试穿 -->
+      <div class="liquid-card p-3.5 space-y-3">
+        <div class="grid grid-cols-2 gap-1.5 p-1 rounded-2xl bg-slate-200/60">
+          <button id="studioTab-look" onclick="switchStudioMode('look')" class="py-2 rounded-xl bg-white text-slate-900 font-extrabold text-xs shadow-xs transition">
+            🎨 捏脸与发型定制
+          </button>
+          <button id="studioTab-wear" onclick="switchStudioMode('wear')" class="py-2 rounded-xl text-slate-600 font-bold text-xs transition">
+            👗 衣橱单品试穿
+          </button>
+        </div>
+
+        <!-- Pane A: Parameterized Avatar Customization -->
+        <div id="studioPane-look" class="space-y-3">
+          <div>
+            <div class="text-xs font-extrabold text-slate-700 mb-1.5">肤色基调 (Skin Tone)</div>
+            <div class="flex gap-2.5" id="skinToneOptions"></div>
+          </div>
+          <div>
+            <div class="text-xs font-extrabold text-slate-700 mb-1.5">发型与发色 (Hairstyle & Color)</div>
+            <div class="grid grid-cols-3 gap-2" id="hairStyleOptions"></div>
+          </div>
+          <div>
+            <div class="text-xs font-extrabold text-slate-700 mb-1.5">角色身份定位 (养成标签)</div>
+            <div class="flex gap-2">
+              <button onclick="setAvatarRoleTag('主理人分身')" class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800">本人分身</button>
+              <button onclick="setAvatarRoleTag('虚拟女儿 · 养成')" class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800">虚拟女儿</button>
+              <button onclick="setAvatarRoleTag('潮玩 BJD 娃娃')" class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800">潮玩娃娃</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane B: Quick Dress-up from Digital Wardrobe -->
+        <div id="studioPane-wear" class="hidden space-y-2.5">
+          <div class="text-[11px] font-bold text-slate-500">点击衣橱单品实时穿脱到当前角色身上：</div>
+          <div class="grid grid-cols-2 gap-2 max-h-[210px] overflow-y-auto pr-0.5" id="studioQuickWearGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. AI 穿搭助手 AI STYLIST CHAT -->
+    <section id="view-ai" class="hidden flex flex-col h-full space-y-3">
+      <div class="liquid-card-strong p-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 to-pink-500 text-white flex items-center justify-center text-lg shadow-sm">🪄</div>
+          <div>
+            <div class="text-sm font-black text-slate-900">Vivi · AI 私人造型总监</div>
+            <div class="text-[11px] font-semibold text-emerald-600">● 已读取你的 8 件现实衣橱资产与今日天气</div>
+          </div>
+        </div>
+        <span class="px-2 py-1 rounded-lg bg-indigo-50 text-indigo-700 text-[10px] font-extrabold">可执行换装</span>
+      </div>
+
+      <!-- Chat Stream -->
+      <div id="aiStylistMessages" class="space-y-3 flex-1 overflow-y-auto min-h-[290px] max-h-[380px] pr-0.5"></div>
+
+      <!-- Prompt Suggestions -->
+      <div class="flex gap-1.5 overflow-x-auto pb-1">
+        <button onclick="sendAiStylistPrompt('周末去美术馆看展，帮我从衣橱挑一套温柔高级的穿搭')" class="liquid-pill px-3 py-1.5 text-[11px] font-bold text-slate-700 whitespace-nowrap active:scale-95 transition">
+          🖼️ 周末美术馆看展
+        </button>
+        <button onclick="sendAiStylistPrompt('今晚和朋友去 livehouse，想要甜酷一点的搭配')" class="liquid-pill px-3 py-1.5 text-[11px] font-bold text-slate-700 whitespace-nowrap active:scale-95 transition">
+          🎸 Livehouse 甜酷风
+        </button>
+        <button onclick="sendAiStylistPrompt('给我的虚拟女儿小星配一套学院风出游装')" class="liquid-pill px-3 py-1.5 text-[11px] font-bold text-slate-700 whitespace-nowrap active:scale-95 transition">
+          🎀 给虚拟女儿搭一套
+        </button>
+      </div>
+
+      <!-- Input Composer -->
+      <div class="liquid-card-strong p-2.5 flex items-center gap-2">
+        <input id="aiStylistInput" type="text" placeholder="告诉 AI 你的天气、场合或想要的风格..." onkeydown="if(event.key==='Enter') handleSendAiStylist()" class="flex-1 bg-white/80 border border-slate-200/80 rounded-xl px-3 py-2 text-xs font-semibold text-slate-900 focus:outline-none focus:border-indigo-500" />
+        <button onclick="handleSendAiStylist()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-extrabold shadow-sm active:scale-95 transition">
+          搭配
+        </button>
+      </div>
+    </section>
+
+    <!-- 5. 作品社区 UGC FASHION COMMUNITY -->
+    <section id="view-community" class="hidden space-y-3.5">
+      <div class="liquid-card-strong p-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-pink-600">UGC FASHION & ASSET ECOSYSTEM</span>
+            <h2 class="text-lg font-black text-slate-900">星河时尚创作社区</h2>
+            <p class="text-[11px] text-slate-600 mt-0.5">支持「一键同款试穿」与创作者授权素材复用</p>
+          </div>
+          <button onclick="openPublishModal()" class="px-3.5 py-2 rounded-2xl bg-slate-900 text-white text-xs font-extrabold shadow-sm active:scale-95 transition">
+            ✦ 投稿造型
+          </button>
+        </div>
+
+        <div class="flex gap-1.5 mt-3 overflow-x-auto">
+          <button onclick="filterCommunity('all')" class="comm-filter px-3 py-1 rounded-full bg-slate-900 text-white text-[11px] font-bold" data-f="all">全部精选</button>
+          <button onclick="filterCommunity('reuse')" class="comm-filter px-3 py-1 rounded-full bg-white/80 text-slate-700 text-[11px] font-bold" data-f="reuse">允许复用配方</button>
+          <button onclick="filterCommunity('designer')" class="comm-filter px-3 py-1 rounded-full bg-white/80 text-slate-700 text-[11px] font-bold" data-f="designer">独立设计师原创</button>
+        </div>
+      </div>
+
+      <!-- Community Posts Feed -->
+      <div class="space-y-3" id="communityFeedList"></div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       BOTTOM NAVIGATION BAR (5 CORE TABS)
+       ========================================================= -->
+  <nav class="liquid-tabbar px-2 py-2 grid grid-cols-5 gap-1 flex-shrink-0">
+    <button onclick="switchTab('home')" id="nav-home" class="tab-btn py-1.5 rounded-2xl flex flex-col items-center justify-center text-indigo-600 bg-white/90 shadow-2xs font-extrabold transition">
+      <span class="text-base leading-none">🏠</span>
+      <span class="text-[10px] mt-1">首页</span>
+    </button>
+    <button onclick="switchTab('wardrobe')" id="nav-wardrobe" class="tab-btn py-1.5 rounded-2xl flex flex-col items-center justify-center text-slate-500 font-bold transition">
+      <span class="text-base leading-none">👗</span>
+      <span class="text-[10px] mt-1">我的衣橱</span>
+    </button>
+    <button onclick="switchTab('studio')" id="nav-studio" class="tab-btn py-1.5 rounded-2xl flex flex-col items-center justify-center text-slate-500 font-bold transition">
+      <span class="text-base leading-none">🧸</span>
+      <span class="text-[10px] mt-1">角色工坊</span>
+    </button>
+    <button onclick="switchTab('ai')" id="nav-ai" class="tab-btn py-1.5 rounded-2xl flex flex-col items-center justify-center text-slate-500 font-bold transition">
+      <span class="text-base leading-none">🪄</span>
+      <span class="text-[10px] mt-1">AI 穿搭</span>
+    </button>
+    <button onclick="switchTab('community')" id="nav-community" class="tab-btn py-1.5 rounded-2xl flex flex-col items-center justify-center text-slate-500 font-bold transition">
+      <span class="text-base leading-none">✨</span>
+      <span class="text-[10px] mt-1">时尚社区</span>
+    </button>
+  </nav>
+
+  <!-- =========================================================
+       MODAL: AI REAL GARMENT DIGITIZATION (模拟拍照上传与属性识别)
+       ========================================================= -->
+  <div id="uploadGarmentModal" class="hidden absolute inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-end justify-center">
+    <div class="w-full bg-white/95 backdrop-blur-xl rounded-t-3xl p-5 shadow-2xl border-t border-white max-h-[86%] overflow-y-auto">
+      <div class="w-10 h-1.5 bg-slate-300 rounded-full mx-auto mb-3"></div>
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider text-indigo-600">AI VISION DIGITIZER</span>
+          <h3 class="text-base font-black text-slate-900">现实衣物拍照数字化</h3>
+        </div>
+        <button onclick="closeUploadGarmentModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-bold text-sm">✕</button>
+      </div>
+
+      <div class="space-y-3 mt-3">
+        <!-- Simulated Camera Capture Box -->
+        <div class="p-3.5 rounded-2xl bg-gradient-to-br from-indigo-50 to-pink-50 border border-indigo-100 flex items-center justify-between">
+          <div>
+            <div class="text-xs font-extrabold text-slate-900">📸 模拟拍摄/选择现实单品</div>
+            <div class="text-[11px] text-slate-600 mt-0.5">AI 自动去背景、提取版型锚点并生成 2.5D 穿戴素材</div>
+          </div>
+          <button onclick="randomizeMockScan()" class="px-3 py-1.5 rounded-xl bg-white border border-indigo-200 text-indigo-700 text-xs font-extrabold shadow-2xs active:scale-95 transition">
+            换一件扫描
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <div>
+            <label class="block text-[11px] font-extrabold text-slate-700 mb-1">单品名称</label>
+            <input id="newGarmentName" type="text" value="法式蕾丝拼接短开衫" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-900" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-extrabold text-slate-700 mb-1">衣物分类</label>
+            <select id="newGarmentCat" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-900">
+              <option value="top">上装 (Top)</option>
+              <option value="bottom">下装 (Bottom)</option>
+              <option value="shoes">鞋履 (Shoes)</option>
+              <option value="acc">包袋配饰 (Accessory)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2">
+          <div>
+            <label class="block text-[11px] font-extrabold text-slate-700 mb-1">主色调</label>
+            <input id="newGarmentColor" type="color" value="#f472b6" class="w-full h-9 rounded-xl bg-slate-50 border border-slate-200 p-1 cursor-pointer" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-extrabold text-slate-700 mb-1">适用季节</label>
+            <select id="newGarmentSeason" class="w-full px-2.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-900">
+              <option value="春/秋">春 / 秋</option>
+              <option value="夏">夏季</option>
+              <option value="冬">冬季</option>
+              <option value="四季">四季通用</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-extrabold text-slate-700 mb-1">风格标签</label>
+            <input id="newGarmentStyle" type="text" value="温柔法式" class="w-full px-2.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-900" />
+          </div>
+        </div>
+
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
+          <div>
+            <div class="text-xs font-extrabold text-slate-900">隐私保护策略 (PRD V1.0 默认开启)</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">原始照片仅本人可见，不默认用于公共模型训练</div>
+          </div>
+          <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-extrabold">仅自己可见</span>
+        </div>
+
+        <button onclick="confirmAddGarment()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 text-white font-extrabold text-xs shadow-lg shadow-indigo-500/25 active:scale-[0.98] transition">
+          ✦ 确认入橱并立即试穿
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL: PUBLISH OUTFIT TO COMMUNITY (作品发布与授权设置)
+       ========================================================= -->
+  <div id="publishModal" class="hidden absolute inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-end justify-center">
+    <div class="w-full bg-white/95 backdrop-blur-xl rounded-t-3xl p-5 shadow-2xl border-t border-white">
+      <div class="w-10 h-1.5 bg-slate-300 rounded-full mx-auto mb-3"></div>
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider text-pink-600">PUBLISH LOOKBOOK</span>
+          <h3 class="text-base font-black text-slate-900">发布角色穿搭作品到社区</h3>
+        </div>
+        <button onclick="closePublishModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-bold text-sm">✕</button>
+      </div>
+
+      <div class="space-y-3 mt-3">
+        <div>
+          <label class="block text-[11px] font-extrabold text-slate-700 mb-1">作品标题</label>
+          <input id="pubTitle" type="text" value="秋日星河 · 奶油系学院叠穿灵感" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-900" />
+        </div>
+        <div>
+          <label class="block text-[11px] font-extrabold text-slate-700 mb-1">资产复用授权范围 (PRD 权限分离)</label>
+          <select id="pubLicense" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-900">
+            <option value="reuse">允许社区好友一键同款试穿与复用搭配配方</option>
+            <option value="view">仅公开展示作品成图，禁止复用原始衣物素材</option>
+          </select>
+        </div>
+        <button onclick="confirmPublishPost()" class="w-full py-3 rounded-2xl bg-slate-900 text-white font-extrabold text-xs shadow-md active:scale-[0.98] transition">
+          🚀 立即发布至衣间星河社区
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Feedback -->
+  <div id="liquidToast" class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-slate-900/90 text-white text-xs font-bold shadow-xl backdrop-blur-md whitespace-nowrap">
+    已应用穿搭方案
+  </div>
+
+  <!-- iOS Home Indicator -->
+  <div class="home-indicator-bar">
+    <div class="home-pill"></div>
+  </div>
+</div>
+
+<script>
+  // Live iOS Clock
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('iosClock').textContent =
+      `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  }
+  setInterval(updateClock, 15000);
+  updateClock();
+
+  function toggleDynamicIsland() {
+    const di = document.getElementById('dynamicIsland');
+    const txt = document.getElementById('diStatusText');
+    di.classList.toggle('expanded');
+    txt.classList.toggle('hidden');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('liquidToast');
+    t.textContent = msg;
+    t.classList.remove('hidden');
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(() => t.classList.add('hidden'), 2200);
+  }
+
+  /* =========================================================
+     MOCK DATABASE (PRD V1.0: 衣橱资产 / 多角色养成 / AI 推荐 / 社区)
+     ========================================================= */
+  const wardrobeItems = [
+    { id: 'top-cream', name: '奶油白绞花针织衫', cat: 'top', catName: '上装', color: '#fffbeb', stroke: '#d97706', season: '春/秋', style: '学院温柔', source: '现实衣物', wearCount: 14, emoji: '🧶' },
+    { id: 'top-leather', name: '廓形短款机车皮衣', cat: 'top', catName: '上装', color: '#1e293b', stroke: '#0f172a', season: '秋/冬', style: '千禧甜酷', source: '现实衣物', wearCount: 9, emoji: '🧥' },
+    { id: 'top-chinese', name: '月白盘扣立领真丝衫', cat: 'top', catName: '上装', color: '#ecfdf5', stroke: '#059669', season: '春/夏', style: '新中式', source: '设计师联名', wearCount: 6, emoji: '👘' },
+    { id: 'bot-pleat', name: '燕麦灰高腰百褶短裙', cat: 'bottom', catName: '下装', color: '#cbd5e1', stroke: '#475569', season: '四季', style: '学院百搭', source: '现实衣物', wearCount: 18, emoji: '👗' },
+    { id: 'bot-denim', name: '水洗复古微喇牛仔裤', cat: 'bottom', catName: '下装', color: '#3b82f6', stroke: '#1d4ed8', season: '四季', style: '松弛通勤', source: '现实衣物', wearCount: 22, emoji: '👖' },
+    { id: 'bot-song', name: '青瓷暗纹马面长裙', cat: 'bottom', catName: '下装', color: '#a7f3d0', stroke: '#047857', season: '春/秋', style: '新中式', source: '设计师联名', wearCount: 5, emoji: '🎐' },
+    { id: 'sho-loafer', name: '焦糖棕厚底乐福鞋', cat: 'shoes', catName: '鞋履', color: '#78350f', stroke: '#451a03', season: '四季', style: '复古学院', source: '现实衣物', wearCount: 16, emoji: '👞' },
+    { id: 'acc-bag', name: '星月银链腋下法棍包', cat: 'acc', catName: '配饰', color: '#f472b6', stroke: '#be185d', season: '四季', style: '精致点睛', source: '现实衣物', wearCount: 11, emoji: '👜' }
+  ];
+
+  const avatars = [
+    {
+      id: 'luna',
+      name: '星野 · Luna',
+      roleTag: '主理人分身',
+      skin: '#fde6d8',
+      hairColor: '#1e1b4b',
+      hairStyle: 'long',
+      pose: '优雅站姿',
+      bgIndex: 0,
+      lookName: '秋日学院清冷风',
+      wearing: { top: 'top-cream', bottom: 'bot-pleat', shoes: 'sho-loafer', acc: 'acc-bag' },
+      history: []
+    },
+    {
+      id: 'momo',
+      name: '小星 · Momo',
+      roleTag: '虚拟女儿 · 养成',
+      skin: '#ffedd5',
+      hairColor: '#9a3412',
+      hairStyle: 'twin',
+      pose: '俏皮歪头',
+      bgIndex: 1,
+      lookName: '新中式游园小主',
+      wearing: { top: 'top-chinese', bottom: 'bot-song', shoes: 'sho-loafer', acc: 'acc-bag' },
+      history: []
+    }
+  ];
+
+  const stageBackgrounds = [
+    { name: '星河试衣间', css: 'radial-gradient(circle at 50% 25%, rgba(255,255,255,0.95) 0%, rgba(224,231,255,0.75) 60%, rgba(252,231,243,0.8) 100%)' },
+    { name: '巴黎左岸咖啡馆', css: 'linear-gradient(160deg, rgba(254,243,199,0.85) 0%, rgba(255,255,255,0.92) 55%, rgba(254,205,211,0.75) 100%)' },
+    { name: '赛博霓虹秀场', css: 'linear-gradient(155deg, rgba(199,210,254,0.88) 0%, rgba(243,232,255,0.9) 50%, rgba(186,230,253,0.85) 100%)' }
+  ];
+
+  const communityPosts = [
+    {
+      id: 'post-1',
+      author: '林雾 · 独立设计师',
+      badge: '原创服饰主理人',
+      title: '「月白新中式」现实真丝衫 + 虚拟青瓷马面裙混搭',
+      likes: 1284,
+      reuses: 342,
+      allowReuse: true,
+      isDesigner: true,
+      recipe: { top: 'top-chinese', bottom: 'bot-song', shoes: 'sho-loafer', acc: 'acc-bag' },
+      previewHair: '#1e1b4b',
+      previewSkin: '#fde6d8'
+    },
+    {
+      id: 'post-2',
+      author: '苏打气泡水',
+      badge: '每日穿搭打卡 42 天',
+      title: '19°C 通勤救星！用衣橱里的旧皮衣搭出千禧甜酷感',
+      likes: 856,
+      reuses: 198,
+      allowReuse: true,
+      isDesigner: false,
+      recipe: { top: 'top-leather', bottom: 'bot-pleat', shoes: 'sho-loafer', acc: 'acc-bag' },
+      previewHair: '#7c2d12',
+      previewSkin: '#ffedd5'
+    },
+    {
+      id: 'post-3',
+      author: 'Atelier K · 虚拟高定',
+      badge: '认证创作者',
+      title: '星河秀场限定 · 极简廓形学院风 Lookbook',
+      likes: 2190,
+      reuses: 0,
+      allowReuse: false,
+      isDesigner: true,
+      recipe: { top: 'top-cream', bottom: 'bot-denim', shoes: 'sho-loafer', acc: 'acc-bag' },
+      previewHair: '#312e81',
+      previewSkin: '#fde6d8'
+    }
+  ];
+
+  let activeAvatarId = 'luna';
+  let activeWardrobeCat = 'all';
+  let activeCommunityFilter = 'all';
+
+  function getActiveAvatar() {
+    return avatars.find(a => a.id === activeAvatarId) || avatars[0];
+  }
+
+  function findGarment(id) {
+    return wardrobeItems.find(item => item.id === id);
+  }
+
+  /* =========================================================
+     2.5D LAYERED SVG PAPER-DOLL RENDERER (角色 + 服装锚点渲染)
+     ========================================================= */
+  function renderAvatarSVG(avatar, customRecipe = null) {
+    const wear = customRecipe || avatar.wearing;
+    const topItem = findGarment(wear.top);
+    const botItem = findGarment(wear.bottom);
+    const shoeItem = findGarment(wear.shoes);
+    const accItem = findGarment(wear.acc);
+
+    const topFill = topItem ? topItem.color : '#f8fafc';
+    const topStroke = topItem ? topItem.stroke : '#94a3b8';
+    const botFill = botItem ? botItem.color : '#e2e8f0';
+    const botStroke = botItem ? botItem.stroke : '#64748b';
+    const shoeFill = shoeItem ? shoeItem.color : '#334155';
+    const accFill = accItem ? accItem.color : '#ec4899';
+
+    const tilt = avatar.pose === '俏皮歪头' ? 'rotate(-3 80 60)' : (avatar.pose === '秀场叉腰' ? 'rotate(2 80 90)' : '');
+
+    // Hair Back Layer
+    let hairBack = `<path d="M52 44 C44 75, 44 115, 52 135 L108 135 C116 115, 116 75, 108 44 Z" fill="${avatar.hairColor}" />`;
+    if (avatar.hairStyle === 'twin') {
+      hairBack = `
+        <ellipse cx="44" cy="76" rx="11" ry="34" fill="${avatar.hairColor}" />
+        <ellipse cx="116" cy="76" rx="11" ry="34" fill="${avatar.hairColor}" />
+      `;
+    } else if (avatar.hairStyle === 'bob') {
+      hairBack = `<path d="M52 42 C46 65, 48 84, 55 90 L105 90 C112 84, 114 65, 108 42 Z" fill="${avatar.hairColor}" />`;
+    }
+
+    // Bottom Garment Layer (Skirt vs Pants)
+    const isPants = botItem && (botItem.name.includes('裤'));
+    const bottomLayer = isPants
+      ? `<path d="M62 126 L98 126 L102 184 L85 184 L80 146 L75 184 L58 184 Z" fill="${botFill}" stroke="${botStroke}" stroke-width="1.8" stroke-linejoin="round" />`
+      : `<path d="M62 126 L98 126 L110 166 L50 166 Z" fill="${botFill}" stroke="${botStroke}" stroke-width="1.8" stroke-linejoin="round" />
+         <line x1="70" y1="128" x2="65" y2="165" stroke="${botStroke}" stroke-opacity="0.35" stroke-width="1.2"/>
+         <line x1="80" y1="128" x2="80" y2="165" stroke="${botStroke}" stroke-opacity="0.35" stroke-width="1.2"/>
+         <line x1="90" y1="128" x2="95" y2="165" stroke="${botStroke}" stroke-opacity="0.35" stroke-width="1.2"/>`;
+
+    return `
+      <svg viewBox="0 0 160 220" class="w-full h-full drop-shadow-md">
+        <!-- Soft Floor Shadow -->
+        <ellipse cx="80" cy="208" rx="36" ry="6" fill="rgba(15, 23, 42, 0.12)" />
+
+        <!-- Hair Back -->
+        ${hairBack}
+
+        <!-- Legs -->
+        <rect x="65" y="152" width="10" height="46" rx="5" fill="${avatar.skin}" />
+        <rect x="85" y="152" width="10" height="46" rx="5" fill="${avatar.skin}" />
+
+        <!-- Shoes -->
+        <rect x="61" y="193" width="16" height="11" rx="5" fill="${shoeFill}" />
+        <rect x="83" y="193" width="16" height="11" rx="5" fill="${shoeFill}" />
+
+        <!-- Bottom Garment -->
+        ${bottomLayer}
+
+        <!-- Arms -->
+        <path d="M56 84 L44 126" stroke="${avatar.skin}" stroke-width="8" stroke-linecap="round" />
+        <path d="M104 84 L116 126" stroke="${avatar.skin}" stroke-width="8" stroke-linecap="round" />
+
+        <!-- Top Garment -->
+        <path d="M55 80 L105 80 L100 128 L60 128 Z" fill="${topFill}" stroke="${topStroke}" stroke-width="1.8" stroke-linejoin="round" />
+        <path d="M55 80 L43 114 L52 117 L60 92" fill="${topFill}" stroke="${topStroke}" stroke-width="1.5" />
+        <path d="M105 80 L117 114 L108 117 L100 92" fill="${topFill}" stroke="${topStroke}" stroke-width="1.5" />
+
+        <!-- Accessory Bag -->
+        ${accItem ? `
+          <line x1="94" y1="80" x2="112" y2="124" stroke="${accFill}" stroke-width="2" />
+          <rect x="104" y="122" width="18" height="13" rx="4" fill="${accFill}" stroke="#ffffff" stroke-width="1.2" />
+        ` : ''}
+
+        <!-- Neck & Head Group -->
+        <g transform="${tilt}">
+          <rect x="74" y="66" width="12" height="16" rx="5" fill="${avatar.skin}" />
+          <circle cx="80" cy="48" r="22" fill="${avatar.skin}" />
+          <!-- Front Bangs -->
+          <path d="M58 46 C58 26, 102 26, 102 46 C96 36, 86 38, 80 43 C74 38, 64 36, 58 46 Z" fill="${avatar.hairColor}" />
+          <!-- Eyes & Blush -->
+          <circle cx="72" cy="49" r="2.6" fill="#0f172a" />
+          <circle cx="88" cy="49" r="2.6" fill="#0f172a" />
+          <circle cx="71.2" cy="48.2" r="0.9" fill="#ffffff" />
+          <circle cx="87.2" cy="48.2" r="0.9" fill="#ffffff" />
+          <ellipse cx="68" cy="54" rx="3.2" ry="1.6" fill="#fda4af" opacity="0.65" />
+          <ellipse cx="92" cy="54" rx="3.2" ry="1.6" fill="#fda4af" opacity="0.65" />
+          <!-- Gentle Smile -->
+          <path d="M76 57 Q80 60 84 57" stroke="#be123c" stroke-width="1.6" fill="none" stroke-linecap="round" />
+        </g>
+      </svg>
+    `;
+  }
+
+  /* =========================================================
+     NAVIGATION & RENDER PIPELINE
+     ========================================================= */
+  function switchTab(tab) {
+    ['home', 'wardrobe', 'studio', 'ai', 'community'].forEach(t => {
+      document.getElementById(`view-${t}`).classList.add('hidden');
+      const btn = document.getElementById(`nav-${t}`);
+      btn.classList.remove('text-indigo-600', 'bg-white/90', 'shadow-2xs', 'font-extrabold');
+      btn.classList.add('text-slate-500', 'font-bold');
+    });
+
+    document.getElementById(`view-${tab}`).classList.remove('hidden');
+    const activeBtn = document.getElementById(`nav-${tab}`);
+    activeBtn.classList.add('text-indigo-600', 'bg-white/90', 'shadow-2xs', 'font-extrabold');
+    activeBtn.classList.remove('text-slate-500', 'font-bold');
+
+    if (tab === 'home') renderHomeView();
+    if (tab === 'wardrobe') renderWardrobeView();
+    if (tab === 'studio') renderStudioView();
+    if (tab === 'community') renderCommunityView();
+  }
+
+  function renderHomeView() {
+    const av = getActiveAvatar();
+    document.getElementById('homeAvatarName').textContent = av.name;
+    document.getElementById('homeAvatarRoleTag').textContent = av.roleTag;
+    document.getElementById('homeCurrentLookName').textContent = av.lookName;
+    document.getElementById('homeAvatarCanvas').innerHTML = renderAvatarSVG(av);
+
+    const t = findGarment(av.wearing.top);
+    const b = findGarment(av.wearing.bottom);
+    const s = findGarment(av.wearing.shoes);
+    document.getElementById('homeWearingSummary').innerHTML = `
+      上装：${t ? t.name : '未穿戴'}<br/>
+      下装：${b ? b.name : '未穿戴'}<br/>
+      鞋履：${s ? s.name : '未穿戴'}
+    `;
+
+    // Avatar Switcher Pills
+    document.getElementById('avatarSwitcherPills').innerHTML = avatars.map(item => `
+      <button onclick="selectAvatar('${item.id}')" class="px-2.5 py-1 rounded-full text-[11px] font-extrabold transition ${item.id === av.id ? 'bg-slate-900 text-white' : 'bg-white/80 text-slate-600 border border-slate-200'}">
+        ${item.name.split('·')[0].trim()}
+      </button>
+    `).join('');
+
+    // Today's Recommendation Items
+    const recIds = ['top-cream', 'bot-pleat', 'sho-loafer'];
+    document.getElementById('todayRecItems').innerHTML = recIds.map(id => {
+      const g = findGarment(id);
+      return `
+        <div class="p-2 rounded-2xl bg-white/85 border border-white text-center shadow-2xs">
+          <div class="text-xl">${g.emoji}</div>
+          <div class="text-[10px] font-extrabold text-slate-800 truncate mt-1">${g.name}</div>
+          <div class="text-[9px] text-indigo-600 font-bold">${g.source}</div>
+        </div>
+      `;
+    }).join('');
+
+    // Community Preview Cards
+    document.getElementById('homeCommunityPreview').innerHTML = communityPosts.slice(0, 2).map(p => `
+      <div onclick="switchTab('community')" class="p-2.5 rounded-2xl bg-white/85 border border-white cursor-pointer hover:border-indigo-200 transition">
+        <div class="h-24 rounded-xl bg-gradient-to-b from-indigo-50 to-pink-50 flex items-center justify-center mb-2">
+          <div class="w-16 h-22">${renderAvatarSVG({ skin: p.previewSkin, hairColor: p.previewHair, hairStyle: 'long', pose: '优雅站姿' }, p.recipe)}</div>
+        </div>
+        <div class="text-[11px] font-extrabold text-slate-900 line-clamp-1">${p.title}</div>
+        <div class="flex items-center justify-between mt-1 text-[10px] text-slate-500 font-bold">
+          <span>@${p.author.split('·')[0].trim()}</span>
+          <span>♥ ${p.likes}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function selectAvatar(id) {
+    activeAvatarId = id;
+    renderHomeView();
+    renderStudioView();
+    showToast(`已切换角色：${getActiveAvatar().name}`);
+  }
+
+  function applyTodayRecommendation() {
+    const av = getActiveAvatar();
+    av.history.push({ ...av.wearing });
+    av.wearing = { top: 'top-cream', bottom: 'bot-pleat', shoes: 'sho-loafer', acc: 'acc-bag' };
+    av.lookName = '19°C 微风学院通勤装';
+    renderHomeView();
+    showToast(`✨ 已将今日推荐穿搭穿到 ${av.name} 身上`);
+  }
+
+  function triggerThemeChallenge(themeName) {
+    const av = getActiveAvatar();
+    av.history.push({ ...av.wearing });
+    if (themeName === '千禧甜酷风') {
+      av.wearing = { top: 'top-leather', bottom: 'bot-pleat', shoes: 'sho-loafer', acc: 'acc-bag' };
+    } else if (themeName === '新中式清冷') {
+      av.wearing = { top: 'top-chinese', bottom: 'bot-song', shoes: 'sho-loafer', acc: 'acc-bag' };
+    } else {
+      av.wearing = { top: 'top-cream', bottom: 'bot-pleat', shoes: 'sho-loafer', acc: 'acc-bag' };
+    }
+    av.lookName = themeName;
+    renderHomeView();
+    showToast(`🔥 已自动搭配「${themeName}」主题造型`);
+  }
+
+  /* =========================================================
+     WARDROBE VIEW & DIGITIZATION MODAL
+     ========================================================= */
+  function renderWardrobeView() {
+    document.getElementById('statTotalItems').textContent = wardrobeItems.length;
+    document.getElementById('statRealItems').textContent = wardrobeItems.filter(i => i.source === '现实衣物').length;
+
+    const cats = [
+      { id: 'all', label: '全部单品' },
+      { id: 'top', label: '上装' },
+      { id: 'bottom', label: '下装' },
+      { id: 'shoes', label: '鞋履' },
+      { id: 'acc', label: '包袋配饰' }
+    ];
+    document.getElementById('wardrobeCategoryBar').innerHTML = cats.map(c => `
+      <button onclick="setWardrobeCat('${c.id}')" class="px-3.5 py-1.5 rounded-full text-xs font-extrabold whitespace-nowrap transition ${activeWardrobeCat === c.id ? 'bg-slate-900 text-white shadow-xs' : 'bg-white/80 text-slate-700 border border-white'}">
+        ${c.label}
+      </button>
+    `).join('');
+
+    const av = getActiveAvatar();
+    const filtered = activeWardrobeCat === 'all'
+      ? wardrobeItems
+      : wardrobeItems.filter(i => i.cat === activeWardrobeCat);
+
+    document.getElementById('wardrobeGrid').innerHTML = filtered.map(item => {
+      const isWearing = Object.values(av.wearing).includes(item.id);
+      return `
+        <div class="liquid-card p-3 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold ${item.source === '现实衣物' ? 'bg-indigo-50 text-indigo-700' : 'bg-pink-50 text-pink-700'}">
+                ${item.source}
+              </span>
+              <span class="text-[10px] font-bold text-slate-400">穿 ${item.wearCount} 次</span>
+            </div>
+            <div class="h-24 rounded-2xl flex items-center justify-center text-4xl mb-2 border border-white/80" style="background: linear-gradient(145deg, #ffffff, ${item.color}44);">
+              ${item.emoji}
+            </div>
+            <div class="text-xs font-black text-slate-900 truncate">${item.name}</div>
+            <div class="text-[10px] text-slate-500 font-semibold mt-0.5">${item.catName} · ${item.season} · ${item.style}</div>
+          </div>
+
+          <button onclick="wearGarmentOnAvatar('${item.id}')" class="mt-2.5 w-full py-2 rounded-xl text-[11px] font-extrabold transition ${isWearing ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-900 text-white active:scale-95'}">
+            ${isWearing ? '✓ 已穿在身上' : '👗 给角色试穿'}
+          </button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function setWardrobeCat(cat) {
+    activeWardrobeCat = cat;
+    renderWardrobeView();
+  }
+
+  function wearGarmentOnAvatar(itemId) {
+    const item = findGarment(itemId);
+    if (!item) return;
+    const av = getActiveAvatar();
+    av.history.push({ ...av.wearing });
+    av.wearing[item.cat] = item.id;
+    item.wearCount += 1;
+    av.lookName = '自定义混搭造型';
+    renderWardrobeView();
+    renderStudioView();
+    showToast(`👗 已为 ${av.name} 换上「${item.name}」`);
+  }
+
+  function openUploadGarmentModal() {
+    document.getElementById('uploadGarmentModal').classList.remove('hidden');
+  }
+
+  function closeUploadGarmentModal() {
+    document.getElementById('uploadGarmentModal').classList.add('hidden');
+  }
+
+  const mockScanSamples = [
+    { name: '法式蕾丝拼接短开衫', cat: 'top', color: '#f472b6', season: '春/秋', style: '温柔法式', emoji: '👚' },
+    { name: '美式复古水洗工装半裙', cat: 'bottom', color: '#94a3b8', season: '四季', style: '街头复古', emoji: '🩳' },
+    { name: '奶油云朵厚底玛丽珍鞋', cat: 'shoes', color: '#fef3c7', season: '春/秋', style: '少女学院', emoji: '🥿' },
+    { name: '银色星芒金属链条斜挎包', cat: 'acc', color: '#38bdf8', season: '四季', style: '未来千禧', emoji: '👝' }
+  ];
+  let mockScanIdx = 0;
+
+  function randomizeMockScan() {
+    mockScanIdx = (mockScanIdx + 1) % mockScanSamples.length;
+    const s = mockScanSamples[mockScanIdx];
+    document.getElementById('newGarmentName').value = s.name;
+    document.getElementById('newGarmentCat').value = s.cat;
+    document.getElementById('newGarmentColor').value = s.color;
+    document.getElementById('newGarmentSeason').value = s.season;
+    document.getElementById('newGarmentStyle').value = s.style;
+    showToast('📸 AI 视觉识别完成，已自动填充衣物属性');
+  }
+
+  function confirmAddGarment() {
+    const name = document.getElementById('newGarmentName').value.trim() || '新录入单品';
+    const cat = document.getElementById('newGarmentCat').value;
+    const color = document.getElementById('newGarmentColor').value;
+    const season = document.getElementById('newGarmentSeason').value;
+    const style = document.getElementById('newGarmentStyle').value.trim() || '日常百搭';
+
+    const catMap = { top: '上装', bottom: '下装', shoes: '鞋履', acc: '配饰' };
+    const emojiMap = { top: '👚', bottom: '👗', shoes: '🥿', acc: '👜' };
+    const newId = 'custom-' + Date.now();
+
+    wardrobeItems.unshift({
+      id: newId,
+      name,
+      cat,
+      catName: catMap[cat],
+      color,
+      stroke: '#334155',
+      season,
+      style,
+      source: '现实衣物',
+      wearCount: 1,
+      emoji: emojiMap[cat]
+    });
+
+    const av = getActiveAvatar();
+    av.history.push({ ...av.wearing });
+    av.wearing[cat] = newId;
+
+    closeUploadGarmentModal();
+    switchTab('studio');
+    showToast(`✦ 「${name}」已转化为虚拟资产并试穿`);
+  }
+
+  /* =========================================================
+     AVATAR STUDIO VIEW (捏脸定制 + 换装撤销 + 姿势背景)
+     ========================================================= */
+  function renderStudioView() {
+    const av = getActiveAvatar();
+    document.getElementById('studioAvatarTitle').textContent = `角色工坊 · ${av.name}`;
+    document.getElementById('studioPoseBadge').textContent = `姿势：${av.pose}`;
+    document.getElementById('studioSceneBadge').textContent = `场景：${stageBackgrounds[av.bgIndex].name}`;
+    document.getElementById('studioBgStage').style.background = stageBackgrounds[av.bgIndex].css;
+    document.getElementById('studioAvatarCanvas').innerHTML = renderAvatarSVG(av);
+
+    document.getElementById('studioAvatarSelector').innerHTML = avatars.map(item => `
+      <button onclick="selectAvatar('${item.id}')" class="px-2.5 py-1 rounded-full text-[11px] font-extrabold ${item.id === av.id ? 'bg-indigo-600 text-white' : 'bg-white/85 text-slate-700'}">
+        ${item.name.split('·')[0].trim()}
+      </button>
+    `).join('');
+
+    // Skin Tones
+    const skins = ['#fff1e6', '#fde6d8', '#ffedd5', '#f5d0a9', '#d4a373'];
+    document.getElementById('skinToneOptions').innerHTML = skins.map(hex => `
+      <button onclick="updateAvatarSkin('${hex}')" class="w-8 h-8 rounded-full border-2 shadow-xs transition ${av.skin === hex ? 'border-indigo-600 scale-110' : 'border-white'}" style="background:${hex}"></button>
+    `).join('');
+
+    // Hairstyles
+    const hairs = [
+      { style: 'long', color: '#1e1b4b', label: '星夜长直发' },
+      { style: 'twin', color: '#9a3412', label: '栗棕双马尾' },
+      { style: 'bob', color: '#4c1d95', label: '雾紫初恋短发' }
+    ];
+    document.getElementById('hairStyleOptions').innerHTML = hairs.map(h => `
+      <button onclick="updateAvatarHair('${h.style}', '${h.color}')" class="p-2 rounded-xl border text-[11px] font-extrabold transition ${av.hairStyle === h.style && av.hairColor === h.color ? 'bg-indigo-50 border-indigo-400 text-indigo-800' : 'bg-white/85 border-white text-slate-700'}">
+        ${h.label}
+      </button>
+    `).join('');
+
+    // Quick Wear Grid
+    document.getElementById('studioQuickWearGrid').innerHTML = wardrobeItems.map(item => {
+      const active = Object.values(av.wearing).includes(item.id);
+      return `
+        <button onclick="wearGarmentOnAvatar('${item.id}')" class="p-2 rounded-xl border text-left flex items-center gap-2 transition ${active ? 'bg-indigo-50/90 border-indigo-400' : 'bg-white/85 border-white'}">
+          <span class="text-lg">${item.emoji}</span>
+          <div class="min-w-0">
+            <div class="text-[11px] font-extrabold text-slate-900 truncate">${item.name}</div>
+            <div class="text-[9px] text-slate-500">${item.catName}</div>
+          </div>
+        </button>
+      `;
+    }).join('');
+  }
+
+  function switchStudioMode(mode) {
+    const lookBtn = document.getElementById('studioTab-look');
+    const wearBtn = document.getElementById('studioTab-wear');
+    const lookPane = document.getElementById('studioPane-look');
+    const wearPane = document.getElementById('studioPane-wear');
+
+    if (mode === 'look') {
+      lookBtn.className = 'py-2 rounded-xl bg-white text-slate-900 font-extrabold text-xs shadow-xs transition';
+      wearBtn.className = 'py-2 rounded-xl text-slate-600 font-bold text-xs transition';
+      lookPane.classList.remove('hidden');
+      wearPane.classList.add('hidden');
+    } else {
+      wearBtn.className = 'py-2 rounded-xl bg-white text-slate-900 font-extrabold text-xs shadow-xs transition';
+      lookBtn.className = 'py-2 rounded-xl text-slate-600 font-bold text-xs transition';
+      wearPane.classList.remove('hidden');
+      lookPane.classList.add('hidden');
+    }
+  }
+
+  function updateAvatarSkin(hex) {
+    getActiveAvatar().skin = hex;
+    renderStudioView();
+  }
+
+  function updateAvatarHair(style, color) {
+    const av = getActiveAvatar();
+    av.hairStyle = style;
+    av.hairColor = color;
+    renderStudioView();
+  }
+
+  function setAvatarRoleTag(tag) {
+    getActiveAvatar().roleTag = tag;
+    renderHomeView();
+    showToast(`角色身份已更新为：${tag}`);
+  }
+
+  function cycleAvatarPose() {
+    const poses = ['优雅站姿', '俏皮歪头', '秀场叉腰'];
+    const av = getActiveAvatar();
+    av.pose = poses[(poses.indexOf(av.pose) + 1) % poses.length];
+    renderStudioView();
+  }
+
+  function cycleStageBg() {
+    const av = getActiveAvatar();
+    av.bgIndex = (av.bgIndex + 1) % stageBackgrounds.length;
+    renderStudioView();
+  }
+
+  function undoOutfit() {
+    const av = getActiveAvatar();
+    if (!av.history.length) {
+      showToast('已回到初始搭配状态');
+      return;
+    }
+    av.wearing = av.history.pop();
+    renderStudioView();
+    showToast('↺ 已撤销上一步换装');
+  }
+
+  function saveOutfitSnapshot() {
+    showToast(`💾 已保存「${getActiveAvatar().name}」当前造型到穿搭档案`);
+  }
+
+  /* =========================================================
+     AI STYLIST CHAT (可执行动作的 AI 穿搭助手)
+     ========================================================= */
+  const aiChatHistory = [
+    {
+      sender: 'ai',
+      text: '你好！我是 Vivi。我已经同步了你数字衣橱里的 8 件单品和今日 19°C 微风天气。告诉我你要去哪里、见什么人，或者想给哪个角色搭配？',
+      outfit: null
+    }
+  ];
+
+  function renderAiStylistMessages() {
+    const container = document.getElementById('aiStylistMessages');
+    container.innerHTML = aiChatHistory.map((m, idx) => {
+      if (m.sender === 'user') {
+        return `
+          <div class="flex justify-end">
+            <div class="bubble-user px-3.5 py-2.5 max-w-[80%] text-xs font-semibold leading-relaxed">
+              ${m.text}
+            </div>
+          </div>
+        `;
+      }
+      return `
+        <div class="flex items-start gap-2">
+          <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-indigo-600 to-pink-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">AI</div>
+          <div class="bubble-ai p-3 max-w-[84%] space-y-2">
+            <p class="text-xs font-medium text-slate-800 leading-relaxed">${m.text}</p>
+            ${m.outfit ? `
+              <div class="p-2.5 rounded-2xl bg-indigo-50/70 border border-indigo-100 space-y-2">
+                <div class="text-[11px] font-black text-indigo-900">✨ 推荐方案：${m.outfit.title}</div>
+                <div class="text-[10px] text-slate-600">${m.outfit.itemsText}</div>
+                <button onclick="applyChatOutfit(${idx})" class="w-full py-2 rounded-xl bg-indigo-600 text-white text-[11px] font-extrabold shadow-xs active:scale-95 transition">
+                  ✦ 立即为角色换上这套搭配
+                </button>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+    container.scrollTop = container.scrollHeight;
+  }
+
+  function sendAiStylistPrompt(promptText) {
+    document.getElementById('aiStylistInput').value = promptText;
+    handleSendAiStylist();
+  }
+
+  function handleSendAiStylist() {
+    const input = document.getElementById('aiStylistInput');
+    const text = input.value.trim();
+    if (!text) return;
+
+    aiChatHistory.push({ sender: 'user', text });
+    input.value = '';
+    renderAiStylistMessages();
+
+    setTimeout(() => {
+      let outfit = {
+        title: '美术馆温柔知性叠穿',
+        targetAvatarId: 'luna',
+        itemsText: '奶油白绞花针织衫 + 复古微喇牛仔裤 + 焦糖棕乐福鞋 + 星月腋下包',
+        recipe: { top: 'top-cream', bottom: 'bot-denim', shoes: 'sho-loafer', acc: 'acc-bag' }
+      };
+      let reply = '结合你衣橱里现有的单品和今日微风天气，这套「松弛感知识分子风」既上镜又舒适：';
+
+      if (text.includes('甜酷') || text.includes('livehouse')) {
+        outfit = {
+          title: 'Livehouse 千禧甜酷机车风',
+          targetAvatarId: 'luna',
+          itemsText: '廓形短款机车皮衣 + 高腰百褶短裙 + 厚底乐福鞋 + 银链腋下包',
+          recipe: { top: 'top-leather', bottom: 'bot-pleat', shoes: 'sho-loafer', acc: 'acc-bag' }
+        };
+        reply = '为你调用了衣橱里的短款机车皮衣搭配百褶裙，形成上硬朗下灵动的甜酷比例：';
+      } else if (text.includes('女儿') || text.includes('小星')) {
+        outfit = {
+          title: '小星 · 新中式游园学院装',
+          targetAvatarId: 'momo',
+          itemsText: '月白盘扣立领真丝衫 + 青瓷暗纹马面长裙 + 复古乐福鞋',
+          recipe: { top: 'top-chinese', bottom: 'bot-song', shoes: 'sho-loafer', acc: 'acc-bag' }
+        };
+        reply = '已为你切换至虚拟女儿「小星 · Momo」的身形比例，挑选了这套清雅的新中式游园装：';
+      }
+
+      aiChatHistory.push({ sender: 'ai', text: reply, outfit });
+      renderAiStylistMessages();
+    }, 550);
+  }
+
+  function applyChatOutfit(msgIdx) {
+    const item = aiChatHistory[msgIdx];
+    if (!item || !item.outfit) return;
+    activeAvatarId = item.outfit.targetAvatarId || activeAvatarId;
+    const av = getActiveAvatar();
+    av.history.push({ ...av.wearing });
+    av.wearing = { ...item.outfit.recipe };
+    av.lookName = item.outfit.title;
+    switchTab('studio');
+    showToast(`🪄 已为 ${av.name} 执行「${item.outfit.title}」`);
+  }
+
+  /* =========================================================
+     UGC FASHION COMMUNITY & ASSET REUSE (作品社区与同款复用)
+     ========================================================= */
+  function renderCommunityView() {
+    const list = communityPosts.filter(p => {
+      if (activeCommunityFilter === 'reuse') return p.allowReuse;
+      if (activeCommunityFilter === 'designer') return p.isDesigner;
+      return true;
+    });
+
+    document.getElementById('communityFeedList').innerHTML = list.map(post => `
+      <div class="liquid-card-strong p-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500 text-white font-black text-xs flex items-center justify-center">
+              ${post.author[0]}
+            </div>
+            <div>
+              <div class="text-xs font-black text-slate-900">${post.author}</div>
+              <div class="text-[10px] font-bold text-indigo-600">${post.badge}</div>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold ${post.allowReuse ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600'}">
+            ${post.allowReuse ? '✓ 授权配方复用' : '🔒 仅限观赏'}
+          </span>
+        </div>
+
+        <div class="avatar-stage p-3 flex items-center gap-3">
+          <div class="w-24 h-32 flex-shrink-0">
+            ${renderAvatarSVG({ skin: post.previewSkin, hairColor: post.previewHair, hairStyle: 'long', pose: '优雅站姿' }, post.recipe)}
+          </div>
+          <div class="flex-1 min-w-0 space-y-2">
+            <h4 class="text-xs font-black text-slate-900 leading-snug">${post.title}</h4>
+            <div class="flex items-center gap-3 text-[11px] font-bold text-slate-500">
+              <button onclick="likeCommunityPost('${post.id}')" class="hover:text-pink-600 transition">♥ ${post.likes}</button>
+              <span>♻️ ${post.reuses} 次同款</span>
+            </div>
+            ${post.allowReuse ? `
+              <button onclick="tryOnCommunityRecipe('${post.id}')" class="w-full py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-pink-500 text-white text-[11px] font-extrabold shadow-xs active:scale-95 transition">
+                ✦ 一键同款穿到我的角色
+              </button>
+            ` : `
+              <div class="py-1.5 px-2.5 rounded-xl bg-white/80 text-[10px] font-bold text-slate-500 text-center">
+                创作者已开启原始资产保护
+              </div>
+            `}
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function filterCommunity(filter) {
+    activeCommunityFilter = filter;
+    document.querySelectorAll('.comm-filter').forEach(btn => {
+      if (btn.dataset.f === filter) {
+        btn.className = 'comm-filter px-3 py-1 rounded-full bg-slate-900 text-white text-[11px] font-bold';
+      } else {
+        btn.className = 'comm-filter px-3 py-1 rounded-full bg-white/80 text-slate-700 text-[11px] font-bold';
+      }
+    });
+    renderCommunityView();
+  }
+
+  function likeCommunityPost(postId) {
+    const p = communityPosts.find(item => item.id === postId);
+    if (p) {
+      p.likes += 1;
+      renderCommunityView();
+    }
+  }
+
+  function tryOnCommunityRecipe(postId) {
+    const post = communityPosts.find(item => item.id === postId);
+    if (!post || !post.allowReuse) return;
+    post.reuses += 1;
+    const av = getActiveAvatar();
+    av.history.push({ ...av.wearing });
+    av.wearing = { ...post.recipe };
+    av.lookName = `同款：${post.title.slice(0, 10)}...`;
+    switchTab('studio');
+    showToast(`✨ 已复用「${post.author.split('·')[0].trim()}」的搭配配方`);
+  }
+
+  function openPublishModal() {
+    document.getElementById('publishModal').classList.remove('hidden');
+  }
+
+  function closePublishModal() {
+    document.getElementById('publishModal').classList.add('hidden');
+  }
+
+  function confirmPublishPost() {
+    const av = getActiveAvatar();
+    const title = document.getElementById('pubTitle').value.trim() || `${av.name} 的星河穿搭日记`;
+    const allowReuse = document.getElementById('pubLicense').value === 'reuse';
+
+    communityPosts.unshift({
+      id: 'post-' + Date.now(),
+      author: `${av.name} · 主理人`,
+      badge: '刚刚发布',
+      title,
+      likes: 1,
+      reuses: 0,
+      allowReuse,
+      isDesigner: false,
+      recipe: { ...av.wearing },
+      previewHair: av.hairColor,
+      previewSkin: av.skin
+    });
+
+    closePublishModal();
+    switchTab('community');
+    showToast('🚀 作品已发布至衣间星河社区');
+  }
+
+  // Initial Boot
+  renderHomeView();
+  renderAiStylistMessages();
+</script>
+</body>
+</html>
